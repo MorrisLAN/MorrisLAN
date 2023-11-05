@@ -26,4 +26,12 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
+  allow_homer_admin_list = [
+    {
+      email = ["null@example.com"]
+      github = {
+        name = "Null"
+      }
+    }
+  ]
 }

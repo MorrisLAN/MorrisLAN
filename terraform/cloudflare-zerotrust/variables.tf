@@ -48,5 +48,13 @@ variable "allow_home_assistant_list" {
     email  = list(string),
     github = map(string)
   }))
-  description = "List of access conditions"
+  description = "List of access conditions for Home Assistant"
+}
+
+variable "allow_homer_admin_list" {
+  type = list(object({
+    email  = list(string),
+    github = map(string)
+  }))
+  description = "List of access conditions for Homer Admin"
 }
