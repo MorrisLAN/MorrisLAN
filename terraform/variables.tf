@@ -1,25 +1,25 @@
 variable "cloudflare_account_id" {
-    type = string
-    sensitive = true
-    description = "Cloudflare Account ID"
+  type        = string
+  sensitive   = true
+  description = "Cloudflare Account ID"
 }
 
 variable "cloudflare_token" {
-    type = string
-    sensitive = true
-    description = "Cloudflare API Token"
+  type        = string
+  sensitive   = true
+  description = "Cloudflare API Token"
 }
 
 variable "cloudflare_github_client_id" {
-    type = string
-    sensitive = true
-    description = "GitHub Client ID for SSO"
+  type        = string
+  sensitive   = true
+  description = "GitHub Client ID for SSO"
 }
 
 variable "cloudflare_github_client_secret" {
-    type = string
-    sensitive = true
-    description = "GitHub Client Secret for SSO"
+  type        = string
+  sensitive   = true
+  description = "GitHub Client Secret for SSO"
 }
 
 variable "cloudflare_clancy_secret" {
@@ -39,13 +39,13 @@ variable "cloudflare_clancy_secret" {
 }
 
 variable "cloudflare_zone_id" {
-    type = string
-    description = "Cloudflare Zone ID"
+  type        = string
+  description = "Cloudflare Zone ID"
 }
 
 variable "allow_home_assistant_list" {
   type = list(object({
-    email = list(string),
+    email  = list(string),
     github = map(string)
   }))
   description = "List of access conditions"
