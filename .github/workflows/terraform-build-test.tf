@@ -10,8 +10,8 @@ provider "cloudflare" {
   api_token = "nullnullnullnullnullnullnullnullnullnull"
 }
 
-module "maxmorrisio" {
-  source             = "../../terraform"
+module "cloudflare-zerotrust" {
+  source             = "../../terraform/cloudflare-zerotrust"
   cloudflare_token = "nullnullnullnullnullnullnullnullnullnull"
   cloudflare_account_id = "null"
   cloudflare_clancy_secret = "l2BnR/sz3/FztVJW9szhglQRy93naSBWt0c3XrU3nEF7zFg+6m4lg5D5/8F2Ov6K"
