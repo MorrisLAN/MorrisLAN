@@ -10,10 +10,6 @@ provider "cloudflare" {
   api_token = "nullnullnullnullnullnullnullnullnullnull"
 }
 
-provider "digitalocean" {
-  token = "null"
-}
-
 module "maxmorrisio" {
   source             = "../../terraform"
   cloudflare_token = "nullnullnullnullnullnullnullnullnullnull"
