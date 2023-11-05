@@ -59,6 +59,14 @@ variable "allow_unifi_list" {
   description = "List of access conditions for UniFi"
 }
 
+variable "allow_clancy_admin_list" {
+  type = list(object({
+    email  = list(string),
+    github = map(string)
+  }))
+  description = "List of access conditions for Homer Admin"
+}
+
 variable "allow_homer_admin_list" {
   type = list(object({
     email  = list(string),

@@ -34,6 +34,14 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
+  allow_clancy_admin_list = [
+    {
+      email = ["null@example.com"]
+      github = {
+        name = "Null"
+      }
+    }
+  ]
   allow_homer_admin_list = [
     {
       email = ["null@example.com"]
