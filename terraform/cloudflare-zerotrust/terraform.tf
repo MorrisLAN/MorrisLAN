@@ -1,7 +1,7 @@
 terraform {
   cloud {
     organization = "morrislan"
-    workspaces { name = "cloudflare-zerotrust" }
+    workspaces { name = "morrislan-cloudflare-zerotrust" }
   }
   required_providers {
     cloudflare = {
