@@ -16,6 +16,14 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
+      hostname = "homer-admin.morrislan.net"
+      service  = "https://homer.morrislan.net:2053"
+      origin_request {
+        connect_timeout = "2m0s"
+        no_tls_verify = true
+      }
+    }
+    ingress_rule {
       service = "http_status:404"
     }
   }
