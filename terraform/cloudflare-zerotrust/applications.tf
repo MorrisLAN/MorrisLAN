@@ -22,6 +22,18 @@ resource "cloudflare_access_application" "unifi" {
   auto_redirect_to_identity = false
 }
 
+resource "cloudflare_access_application" "clancy_admin" {
+  zone_id                   = var.cloudflare_zone_id
+  name                      = "Clancy Admin"
+  logo_url                  = "https://user-images.githubusercontent.com/23664304/36225509-be167464-117f-11e8-9bfc-cba7acd889c5.png"
+  domain                    = "clancy-admin.morrislan.net"
+  type                      = "self_hosted"
+  allowed_idps              = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
+  app_launcher_visible      = true
+  session_duration          = "12h"
+  auto_redirect_to_identity = false
+}
+
 resource "cloudflare_access_application" "homer_admin" {
   zone_id                   = var.cloudflare_zone_id
   name                      = "Homer Admin"
