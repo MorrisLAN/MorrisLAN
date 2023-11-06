@@ -23,6 +23,7 @@ module "cloudflare-zerotrust" {
       email = ["null@example.com"]
       github = {
         name = "Null"
+        identity_provider_id = "null"
       }
     }
   ]
@@ -31,6 +32,7 @@ module "cloudflare-zerotrust" {
       email = ["null@example.com"]
       github = {
         name = "Null"
+        identity_provider_id = "null"
       }
     }
   ]
@@ -39,6 +41,7 @@ module "cloudflare-zerotrust" {
       email = ["null@example.com"]
       github = {
         name = "Null"
+        identity_provider_id = "null"
       }
     }
   ]
@@ -47,6 +50,7 @@ module "cloudflare-zerotrust" {
       email = ["null@example.com"]
       github = {
         name = "Null"
+        identity_provider_id = "null"
       }
     }
   ]
@@ -55,6 +59,7 @@ module "cloudflare-zerotrust" {
       email = ["null@example.com"]
       github = {
         name = "Null"
+        identity_provider_id = "null"
       }
     }
   ]
