@@ -4,81 +4,81 @@ variable "cloudflare_account_id" {
   description = "Cloudflare Account ID"
 }
 
+variable "cloudflare_zone_id" {
+  type        = string
+  description = "Cloudflare Zone ID"
+}
+
 variable "cloudflare_token" {
   type        = string
   sensitive   = true
   description = "Cloudflare API Token"
 }
 
-variable "cloudflare_github_client_id" {
+variable "github_client_id" {
   type        = string
   sensitive   = true
   description = "GitHub Client ID for SSO"
 }
 
-variable "cloudflare_github_client_secret" {
+variable "github_client_secret" {
   type        = string
   sensitive   = true
   description = "GitHub Client Secret for SSO"
 }
 
-variable "cloudflare_clancy_secret" {
+variable "access_tunnel_clancy_password" {
   type        = string
   sensitive   = true
-  description = "Cloudflare Tunnel password"
+  description = "Access Tunnel password for clancy"
 
   validation {
-    condition     = can(regex("^[A-Za-z0-9+/]*={0,2}$", var.cloudflare_clancy_secret))
+    condition     = can(regex("^[A-Za-z0-9+/]*={0,2}$", var.access_tunnel_clancy_password))
     error_message = "The value must be a base64-encoded string."
   }
 
   validation {
-    condition     = length(var.cloudflare_clancy_secret) >= 32
+    condition     = length(var.access_tunnel_clancy_password) >= 32
     error_message = "The value must be 32 or more bytes in length."
   }
 }
 
-variable "cloudflare_zone_id" {
-  type        = string
-  description = "Cloudflare Zone ID"
-}
-
-variable "allow_status_list" {
+variable "access_app_status_policy" {
   type = list(object({
     email  = list(string),
     github = map(string)
   }))
-  description = "List of access conditions for Network Status page"
+  description = "List of access conditions for Network Status Access App"
 }
 
-variable "allow_home_assistant_list" {
+variable "access_app_ha_policy" {
   type = list(object({
     email  = list(string),
     github = map(string)
   }))
-  description = "List of access conditions for Home Assistant"
+  description = "List of access conditions for Home Assistant Access App"
 }
 
-variable "allow_unifi_list" {
+variable "access_app_unifi_policy" {
   type = list(object({
     email  = list(string),
     github = map(string)
   }))
-  description = "List of access conditions for UniFi"
+  description = "List of access conditions for UniFi Access App"
 }
 
-variable "allow_clancy_admin_list" {
+variable "access_app_clancyadmin_policy" {
   type = list(object({
     email  = list(string),
     github = map(string)
   }))
-  description = "List of access conditions for Homer Admin"
+  description = "List of access conditions for Clancy Admin Access App"
 }
 
-variable "allow_homer_admin_list" {
+variable "access_app_homeradmin_policy" {
   type = list(object({
     email  = list(string),
     github = map(string)
   }))
-  description = "List of access conditions for Homer Admin"
+  description = "List of access conditions for Homer Admin Access App"
 }

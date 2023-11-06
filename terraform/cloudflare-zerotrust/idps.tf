@@ -3,8 +3,8 @@ resource "cloudflare_access_identity_provider" "github" {
   name       = "GitHub"
   type       = "github"
   config {
-    client_id     = var.cloudflare_github_client_id
-    client_secret = var.cloudflare_github_client_secret
+    client_id     = var.github_client_id
+    client_secret = var.github_client_secret
   }
 }
 

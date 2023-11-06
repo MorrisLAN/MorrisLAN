@@ -11,14 +11,14 @@ provider "cloudflare" {
 }
 
 module "cloudflare-zerotrust" {
-  source             = "../../terraform/cloudflare-zerotrust"
-  cloudflare_token = "nullnullnullnullnullnullnullnullnullnull"
-  cloudflare_account_id = "null"
-  cloudflare_clancy_secret = "l2BnR/sz3/FztVJW9szhglQRy93naSBWt0c3XrU3nEF7zFg+6m4lg5D5/8F2Ov6K"
-  cloudflare_github_client_id = "null"
-  cloudflare_github_client_secret = "null"
-  cloudflare_zone_id = "nul"
-  allow_status_list = [
+  source                          = "../../terraform/cloudflare-zerotrust"
+  cloudflare_token                = "nullnullnullnullnullnullnullnullnullnull"
+  cloudflare_account_id           = "null"
+  access_tunnel_clancy_password   = "l2BnR/sz3/FztVJW9szhglQRy93naSBWt0c3XrU3nEF7zFg+6m4lg5D5/8F2Ov6K"
+  github_client_id     = "null"
+  github_client_secret = "null"
+  cloudflare_zone_id              = "nul"
+  access_app_status_policy = [
     {
       email = ["null@example.com"]
       github = {
@@ -26,7 +26,7 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
-  allow_home_assistant_list = [
+  access_app_ha_policy = [
     {
       email = ["null@example.com"]
       github = {
@@ -34,7 +34,7 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
-  allow_unifi_list = [
+  access_app_unifi_policy = [
     {
       email = ["null@example.com"]
       github = {
@@ -42,7 +42,7 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
-  allow_clancy_admin_list = [
+  access_app_clancyadmin_policy = [
     {
       email = ["null@example.com"]
       github = {
@@ -50,7 +50,7 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
-  allow_homer_admin_list = [
+  access_app_homeradmin_policy = [
     {
       email = ["null@example.com"]
       github = {
