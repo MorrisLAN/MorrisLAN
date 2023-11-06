@@ -30,7 +30,7 @@ variable "github_client_secret" {
 variable "access_tunnel_clancy_password" {
   type        = string
   sensitive   = true
-  description = "Access Tunnel password for clancy.morrislan.net"
+  description = "Access Tunnel password for clancy"
 
   validation {
     condition     = can(regex("^[A-Za-z0-9+/]*={0,2}$", var.access_tunnel_clancy_password))
