@@ -8,7 +8,7 @@ resource "cloudflare_record" "status" {
   depends_on      = [cloudflare_tunnel.clancy]
 }
 
-resource "cloudflare_record" "home_assistant" {
+resource "cloudflare_record" "ha" {
   zone_id         = var.cloudflare_zone_id
   name            = "ha.morrislan.net"
   value           = cloudflare_tunnel.clancy.cname
@@ -28,9 +28,9 @@ resource "cloudflare_record" "unifi" {
   depends_on      = [cloudflare_tunnel.clancy]
 }
 
-resource "cloudflare_record" "clancy_admin" {
+resource "cloudflare_record" "clancyadmin" {
   zone_id         = var.cloudflare_zone_id
-  name            = "clancy-admin.morrislan.net"
+  name            = "clancyadmin.morrislan.net"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
   type            = "CNAME"
@@ -38,9 +38,9 @@ resource "cloudflare_record" "clancy_admin" {
   depends_on      = [cloudflare_tunnel.clancy]
 }
 
-resource "cloudflare_record" "homer_admin" {
+resource "cloudflare_record" "homeradmin" {
   zone_id         = var.cloudflare_zone_id
-  name            = "homer-admin.morrislan.net"
+  name            = "homeradmin.morrislan.net"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
   type            = "CNAME"

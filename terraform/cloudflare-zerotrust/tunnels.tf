@@ -32,7 +32,7 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = "clancy-admin.morrislan.net"
+      hostname = "clancyadmin.morrislan.net"
       service  = "https://clancy.morrislan.net:2053"
       origin_request {
         connect_timeout = "2m0s"
@@ -40,7 +40,7 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = "homer-admin.morrislan.net"
+      hostname = "homeradmin.morrislan.net"
       service  = "https://homer.morrislan.net:2053"
       origin_request {
         connect_timeout = "2m0s"

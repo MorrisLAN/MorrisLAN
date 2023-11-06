@@ -11,13 +11,13 @@ provider "cloudflare" {
 }
 
 module "cloudflare-zerotrust" {
-  source             = "../../terraform/cloudflare-zerotrust"
-  cloudflare_token = "nullnullnullnullnullnullnullnullnullnull"
-  cloudflare_account_id = "null"
-  cloudflare_clancy_secret = "l2BnR/sz3/FztVJW9szhglQRy93naSBWt0c3XrU3nEF7zFg+6m4lg5D5/8F2Ov6K"
-  cloudflare_github_client_id = "null"
+  source                          = "../../terraform/cloudflare-zerotrust"
+  cloudflare_token                = "nullnullnullnullnullnullnullnullnullnull"
+  cloudflare_account_id           = "null"
+  cloudflare_clancy_secret        = "l2BnR/sz3/FztVJW9szhglQRy93naSBWt0c3XrU3nEF7zFg+6m4lg5D5/8F2Ov6K"
+  cloudflare_github_client_id     = "null"
   cloudflare_github_client_secret = "null"
-  cloudflare_zone_id = "nul"
+  cloudflare_zone_id              = "nul"
   allow_status_list = [
     {
       email = ["null@example.com"]
@@ -26,7 +26,7 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
-  allow_home_assistant_list = [
+  allow_ha_list = [
     {
       email = ["null@example.com"]
       github = {
@@ -42,7 +42,7 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
-  allow_clancy_admin_list = [
+  allow_clancyadmin_list = [
     {
       email = ["null@example.com"]
       github = {
@@ -50,7 +50,7 @@ module "cloudflare-zerotrust" {
       }
     }
   ]
-  allow_homer_admin_list = [
+  allow_homeradmin_list = [
     {
       email = ["null@example.com"]
       github = {

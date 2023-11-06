@@ -51,7 +51,7 @@ variable "allow_status_list" {
   description = "List of access conditions for Network Status page"
 }
 
-variable "allow_home_assistant_list" {
+variable "allow_ha_list" {
   type = list(object({
     email  = list(string),
     github = map(string)
@@ -67,7 +67,7 @@ variable "allow_unifi_list" {
   description = "List of access conditions for UniFi"
 }
 
-variable "allow_clancy_admin_list" {
+variable "allow_clancyadmin_list" {
   type = list(object({
     email  = list(string),
     github = map(string)
@@ -75,7 +75,7 @@ variable "allow_clancy_admin_list" {
   description = "List of access conditions for Homer Admin"
 }
 
-variable "allow_homer_admin_list" {
+variable "allow_homeradmin_list" {
   type = list(object({
     email  = list(string),
     github = map(string)
