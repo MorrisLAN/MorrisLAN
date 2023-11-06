@@ -10,7 +10,7 @@ module "access_app_status" {
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
-  allow_conditions      = var.allow_status_list
+  allow_conditions      = var.access_app_status_policy
 }
 
 module "access_app_ha" {
@@ -25,7 +25,7 @@ module "access_app_ha" {
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
-  allow_conditions      = var.allow_ha_list
+  allow_conditions      = var.access_app_ha_policy
 }
 
 module "access_app_unifi" {
@@ -40,7 +40,7 @@ module "access_app_unifi" {
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
-  allow_conditions      = var.allow_unifi_list
+  allow_conditions      = var.access_app_unifi_policy
 }
 
 module "access_app_clancyadmin" {
@@ -55,7 +55,7 @@ module "access_app_clancyadmin" {
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
-  allow_conditions      = var.allow_clancyadmin_list
+  allow_conditions      = var.access_app_clancyadmin_policy
 }
 
 module "access_app_homeradmin" {
@@ -70,5 +70,5 @@ module "access_app_homeradmin" {
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
-  allow_conditions      = var.allow_homeradmin_list
+  allow_conditions      = var.access_app_homeradmin_policy
 }
