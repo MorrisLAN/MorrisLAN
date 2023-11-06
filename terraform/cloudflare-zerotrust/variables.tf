@@ -27,18 +27,18 @@ variable "github_client_secret" {
   description = "GitHub Client Secret for SSO"
 }
 
-variable "access_tunnel_clancy_secret" {
+variable "access_tunnel_clancy_password" {
   type        = string
   sensitive   = true
   description = "Access Tunnel password for clancy.morrislan.net"
 
   validation {
-    condition     = can(regex("^[A-Za-z0-9+/]*={0,2}$", var.cloudflare_clancy_secret))
+    condition     = can(regex("^[A-Za-z0-9+/]*={0,2}$", var.access_tunnel_clancy_password))
     error_message = "The value must be a base64-encoded string."
   }
 
   validation {
-    condition     = length(var.cloudflare_clancy_secret) >= 32
+    condition     = length(var.access_tunnel_clancy_password) >= 32
     error_message = "The value must be 32 or more bytes in length."
   }
 }

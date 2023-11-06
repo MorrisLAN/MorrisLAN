@@ -1,7 +1,7 @@
 resource "cloudflare_tunnel" "clancy" {
   account_id = var.cloudflare_account_id
   name       = "clancy.morrislan.net"
-  secret     = var.access_tunnel_clancy_secret
+  secret     = var.access_tunnel_clancy_password
   config_src = "cloudflare"
 }
 resource "cloudflare_tunnel_config" "clancy" {
