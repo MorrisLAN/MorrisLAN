@@ -18,6 +18,14 @@ module "cloudflare-zerotrust" {
   cloudflare_github_client_id = "null"
   cloudflare_github_client_secret = "null"
   cloudflare_zone_id = "nul"
+  allow_status_list = [
+    {
+      email = ["null@example.com"]
+      github = {
+        name = "Null"
+      }
+    }
+  ]
   allow_home_assistant_list = [
     {
       email = ["null@example.com"]

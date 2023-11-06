@@ -1,3 +1,15 @@
+resource "cloudflare_access_application" "status" {
+  zone_id                   = var.cloudflare_zone_id
+  name                      = "Network Status"
+  logo_url                  = "https://static-00.iconduck.com/assets.00/uptime-kuma-icon-512x469-ce3ut52z.png"
+  domain                    = "status.morrislan.net"
+  type                      = "self_hosted"
+  allowed_idps              = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
+  app_launcher_visible      = true
+  session_duration          = "12h"
+  auto_redirect_to_identity = false
+}
+
 resource "cloudflare_access_application" "home_assistant" {
   zone_id                   = var.cloudflare_zone_id
   name                      = "Home Assistant"
