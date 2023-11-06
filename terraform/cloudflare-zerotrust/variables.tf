@@ -43,6 +43,14 @@ variable "cloudflare_zone_id" {
   description = "Cloudflare Zone ID"
 }
 
+variable "allow_status_list" {
+  type = list(object({
+    email  = list(string),
+    github = map(string)
+  }))
+  description = "List of access conditions for Network Status page"
+}
+
 variable "allow_home_assistant_list" {
   type = list(object({
     email  = list(string),

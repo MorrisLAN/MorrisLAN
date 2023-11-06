@@ -9,6 +9,14 @@ resource "cloudflare_tunnel_config" "clancy" {
   tunnel_id  = cloudflare_tunnel.clancy.id
   config {
     ingress_rule {
+      hostname = "status.morrislan.net"
+      service  = "http://marge.morrislan.net:3001"
+      origin_request {
+        connect_timeout = "2m0s"
+        no_tls_verify   = true
+      }
+    }
+    ingress_rule {
       hostname = "ha.morrislan.net"
       service  = "https://ha.morrislan.net"
       origin_request {
