@@ -18,49 +18,4 @@ module "cloudflare-zerotrust" {
   github_client_id     = "null"
   github_client_secret = "null"
   cloudflare_zone_id              = "nul"
-  access_app_status_policy = [
-    {
-      email = ["null@example.com"]
-      github = {
-        name = "Null"
-        identity_provider_id = "null"
-      }
-    }
-  ]
-  access_app_ha_policy = [
-    {
-      email = ["null@example.com"]
-      github = {
-        name = "Null"
-        identity_provider_id = "null"
-      }
-    }
-  ]
-  access_app_unifi_policy = [
-    {
-      email = ["null@example.com"]
-      github = {
-        name = "Null"
-        identity_provider_id = "null"
-      }
-    }
-  ]
-  access_app_clancyadmin_policy = [
-    {
-      email = ["null@example.com"]
-      github = {
-        name = "Null"
-        identity_provider_id = "null"
-      }
-    }
-  ]
-  access_app_homeradmin_policy = [
-    {
-      email = ["null@example.com"]
-      github = {
-        name = "Null"
-        identity_provider_id = "null"
-      }
-    }
-  ]
 }
