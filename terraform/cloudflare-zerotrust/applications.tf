@@ -13,8 +13,8 @@ module "access_app_status" {
   cloudflare_zone_id    = var.cloudflare_zone_id
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
-  github_teams          = ["Users"]
-  allowed_emails        = [""]
+  github_teams          = []
+  allowed_emails        = []
 }
 
 module "access_app_ha" {
@@ -32,8 +32,8 @@ module "access_app_ha" {
   cloudflare_zone_id    = var.cloudflare_zone_id
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
-  github_teams          = ["Users"]
-  allowed_emails        = [""]
+  github_teams          = []
+  allowed_emails        = []
 }
 
 module "access_app_unifi" {
@@ -51,8 +51,8 @@ module "access_app_unifi" {
   cloudflare_zone_id    = var.cloudflare_zone_id
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
-  github_teams          = ["Users"]
-  allowed_emails        = [""]
+  github_teams          = ["Admins"]
+  allowed_emails        = []
 }
 
 module "access_app_clancyadmin" {
@@ -70,8 +70,8 @@ module "access_app_clancyadmin" {
   cloudflare_zone_id    = var.cloudflare_zone_id
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
-  github_teams          = ["Users"]
-  allowed_emails        = [""]
+  github_teams          = ["Admins"]
+  allowed_emails        = []
 }
 
 module "access_app_homeradmin" {
@@ -89,6 +89,6 @@ module "access_app_homeradmin" {
   cloudflare_zone_id    = var.cloudflare_zone_id
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
-  github_teams          = ["Users"]
-  allowed_emails        = [""]
+  github_teams          = ["Admins"]
+  allowed_emails        = []
 }
