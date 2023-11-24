@@ -91,5 +91,4 @@ module "access_app_homeradmin" {
   github_org            = "MorrisLAN"
   github_teams          = ["Admins"]
   allowed_emails        = [""]
-  ]
 }
