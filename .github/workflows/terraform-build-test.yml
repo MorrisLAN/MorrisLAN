@@ -14,7 +14,6 @@ jobs:
   terraform:
     name: 'Terraform-Build-Test'
     runs-on: ubuntu-latest
-    environment: build-test
     defaults:
       run:
         shell: bash
