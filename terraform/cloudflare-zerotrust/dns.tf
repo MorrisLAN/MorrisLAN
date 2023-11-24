@@ -52,3 +52,25 @@ resource "cloudflare_record" "access_app_homeradmin" {
   proxied         = true
   depends_on      = [cloudflare_tunnel.clancy]
 }
+
+resource "cloudflare_record" "access_app_clancyssh" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "clancyssh.morrislan.net"
+  comment         = "CNAME to Clancy ZT Tunnel for Clancy SSH"
+  value           = cloudflare_tunnel.clancy.cname
+  allow_overwrite = true
+  type            = "CNAME"
+  proxied         = true
+  depends_on      = [cloudflare_tunnel.clancy]
+}
+
+resource "cloudflare_record" "access_app_homerssh" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "homerssh.morrislan.net"
+  comment         = "CNAME to Clancy ZT Tunnel for Homer SSH"
+  value           = cloudflare_tunnel.clancy.cname
+  allow_overwrite = true
+  type            = "CNAME"
+  proxied         = true
+  depends_on      = [cloudflare_tunnel.clancy]
+}
