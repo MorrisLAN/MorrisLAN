@@ -14,7 +14,7 @@ module "access_app_status" {
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
   github_teams          = []
-  allowed_emails        = ["cf-zt-test@maxmorris.io","cf-zt-test2@maxmorris.io"]
+  allowed_emails        = []
 }
 
 module "access_app_ha" {
