@@ -48,14 +48,6 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = "clancyssh.morrislan.net"
-      service  = "ssh://clancy.morrislan.net:4022"
-    }
-    ingress_rule {
-      hostname = "homerssh.morrislan.net"
-      service  = "ssh://homer.morrislan.net:4022"
-    }
-    ingress_rule {
       service = "http_status:404"
     }
   }
