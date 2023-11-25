@@ -1,6 +1,6 @@
 module "cloudflare-zerotrust" {
   source                        = "./cloudflare-zerotrust"
-  env                        = var.env
+  env                           = var.env
   cloudflare_token              = var.cloudflare_token
   cloudflare_account_id         = var.cloudflare_account_id
   access_tunnel_clancy_password = var.access_tunnel_clancy_password
