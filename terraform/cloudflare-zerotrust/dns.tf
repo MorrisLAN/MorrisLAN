@@ -1,6 +1,6 @@
 resource "cloudflare_record" "access_app_status" {
   zone_id         = var.cloudflare_zone_id
-  name            = "status.${var.domain}"
+  name            = "status-${var.env}.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Network Status page"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -11,7 +11,7 @@ resource "cloudflare_record" "access_app_status" {
 
 resource "cloudflare_record" "access_app_ha" {
   zone_id         = var.cloudflare_zone_id
-  name            = "ha.${var.domain}"
+  name            = "ha-${var.env}.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Home Assistant"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -22,7 +22,7 @@ resource "cloudflare_record" "access_app_ha" {
 
 resource "cloudflare_record" "access_app_unifi" {
   zone_id         = var.cloudflare_zone_id
-  name            = "unifi.${var.domain}"
+  name            = "unifi-${var.env}.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for UniFi Controller"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -33,7 +33,7 @@ resource "cloudflare_record" "access_app_unifi" {
 
 resource "cloudflare_record" "access_app_clancyadmin" {
   zone_id         = var.cloudflare_zone_id
-  name            = "clancyadmin.${var.domain}"
+  name            = "clancyadmin-${var.env}.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Clancy Admin"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -44,7 +44,7 @@ resource "cloudflare_record" "access_app_clancyadmin" {
 
 resource "cloudflare_record" "access_app_homeradmin" {
   zone_id         = var.cloudflare_zone_id
-  name            = "homeradmin.${var.domain}"
+  name            = "homeradmin-${var.env}.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Homer Admin"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
