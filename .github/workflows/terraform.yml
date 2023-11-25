@@ -46,7 +46,7 @@ jobs:
 
       - name: Create Plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color -out=${{ github.run_id }}.tfplan
         continue-on-error: true
 
       - uses: actions/github-script@v6
@@ -89,4 +89,4 @@ jobs:
       - name: Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: apply
-        run: terraform apply --auto-approve
+        run: terraform apply -input=${{ github.run_id }}.tfplan --auto-approve
