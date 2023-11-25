@@ -56,7 +56,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `### Terraform \`${{ steps.fmt.outcome }}\`
+            const output = `### Terraform\`${{ steps.fmt.outcome }}\`
+            #### Format Check 📏\`${{ steps.fmt-check.outcome }}\`
             #### Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Validation 🤖\`${{ steps.validate.outcome }}\`
             #### Plan 📖\`${{ steps.plan.outcome }}\`
@@ -78,7 +79,7 @@ jobs:
               body: output
             })
 
-            - name: Apply
-              if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-              id: apply
-              run: terraform apply --auto-approve
+      - name: Apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        id: apply
+        run: terraform apply --auto-approve
