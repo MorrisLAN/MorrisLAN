@@ -57,7 +57,7 @@ jobs:
 
       - name: Apply
         id: apply
-        run: terraform apply -input=${{ github.run_id }}.tfplan --auto-approve
+        run: terraform apply --auto-approve ${{ github.run_id }}.tfplan
 
 
   terraform-apply-dev:
