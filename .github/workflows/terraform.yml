@@ -4,7 +4,11 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
+    branches:
+      - main
+      - dev
 
 env:
   TF_VAR_cloudflare_token: "${{ secrets.CLOUDFLARE_TOKEN }}"
@@ -16,8 +20,12 @@ env:
 
 jobs:
   terraform-prod:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main')
     name: "Terraform (prod)"
     environment: prod
+    env:
+      TF_VAR_domain: "morrislan.net"
+      TF_WORKSPACE: "morrislan"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -58,7 +66,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `## Terraform Checks
+            const output = `## Terraform Checks (Prod)
             #### Format Check 📏\`${{ steps.fmt-check.outcome }}\`
             #### Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Validation 🤖\`${{ steps.validate.outcome }}\`
@@ -85,3 +93,83 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: apply
         run: terraform apply --auto-approve
+
+  terraform-dev:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/dev') || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dev')
+    name: "Terraform (dev)"
+    environment: dev
+    env:
+      TF_VAR_domain: "dev.morrislan.net"
+      TF_WORKSPACE: "morrislan-dev"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TFC_TOKEN }}
+
+      - name: Format Check
+        id: fmt-check
+        run: terraform fmt -check
+
+      - name: Initialize Terraform
+        id: init
+        run: terraform init
+
+      - name: Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Create Plan
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: true
+
+      - name: Upload Plan to PR
+        uses: actions/github-script@v6
+        if: github.event_name == 'pull_request' && github.ref == 'refs/heads/dev'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `## Terraform Checks (Dev)
+            #### Format Check 📏\`${{ steps.fmt-check.outcome }}\`
+            #### Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Validation 🤖\`${{ steps.validate.outcome }}\`
+            #### Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+
+            </details>
+            `;
+
+            github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+            });
+
+
+      - name: Apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        id: apply
+        run: terraform apply --auto-approve
+
+      - name: Destroy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        id: destroy
+        run: terraform destroy --auto-approve
