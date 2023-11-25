@@ -1,3 +1,8 @@
+variable "domain" {
+  type        = string
+  description = "Root domain to use (for setting prod/dev)"
+}
+
 variable "cloudflare_account_id" {
   type        = string
   sensitive   = true
