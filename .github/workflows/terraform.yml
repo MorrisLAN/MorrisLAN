@@ -15,8 +15,9 @@ env:
   TF_VAR_gh_client_secret: "${{ secrets.GH_CLIENT_SECRET }}"
 
 jobs:
-  terraform:
-    name: "Terraform"
+  terraform-prod:
+    name: "Terraform (prod)"
+    environment: prod
     runs-on: ubuntu-latest
     defaults:
       run:
