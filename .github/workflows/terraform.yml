@@ -16,6 +16,7 @@ env:
 
 jobs:
   terraform-prod:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main')
     name: "Terraform (prod)"
     environment: prod
     env:
@@ -55,7 +56,7 @@ jobs:
 
       - name: Upload Plan to PR
         uses: actions/github-script@v6
-        if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
