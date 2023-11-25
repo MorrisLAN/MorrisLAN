@@ -1,15 +1,10 @@
-name: "Terraform"
+name: "Terraform Plan"
 
 on:
-  push:
-    branches:
-      - main
-      - dev
   pull_request:
     branches:
       - main
       - dev
-  workflow_dispatch:
 
 env:
   TF_IN_AUTOMATION: "true"
@@ -22,9 +17,9 @@ env:
   TF_VAR_gh_client_secret: "${{ secrets.GH_CLIENT_SECRET }}"
 
 jobs:
-  terraform-prod:
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main')
-    name: "Terraform (prod)"
+  terraform-plan-prod:
+    if: (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main')
+    name: "Terraform Plan (prod)"
     environment: prod
     env:
       TF_VAR_env: "prod"
@@ -91,15 +86,9 @@ jobs:
                 body: output
             });
 
-
-      - name: Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        id: apply
-        run: terraform apply --auto-approve
-
-  terraform-dev:
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/dev') || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dev')
-    name: "Terraform (dev)"
+  terraform-plan-dev:
+    if: (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dev')
+    name: "Terraform Plan (dev)"
     environment: dev
     env:
       TF_VAR_env: "dev"
@@ -165,38 +154,3 @@ jobs:
                 repo: context.repo.repo,
                 body: output
             });
-
-
-      - name: Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
-        id: apply
-        run: terraform apply --auto-approve
-
-  terraform-destroy-dev:
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev'
-    name: "Destroy Terraform (dev)"
-    environment: dev
-    env:
-      TF_VAR_env: "dev"
-      TF_WORKSPACE: "morrislan-dev"
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./terraform
-    permissions:
-      contents: read
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: hashicorp/setup-terraform@v2
-        with:
-          cli_config_credentials_token: ${{ secrets.TFC_TOKEN }}
-
-      - name: Initialize Terraform
-        id: init
-        run: terraform init
-
-      - name: Destroy
-        id: destroy
-        run: terraform destroy --auto-approve

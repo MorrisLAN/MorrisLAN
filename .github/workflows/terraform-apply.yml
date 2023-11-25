@@ -1,0 +1,103 @@
+name: "Terraform Apply"
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+env:
+  TF_IN_AUTOMATION: "true"
+  TF_INPUT: "false"
+  TF_VAR_cloudflare_token: "${{ secrets.CLOUDFLARE_TOKEN }}"
+  TF_VAR_cloudflare_account_id: "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+  TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
+  TF_VAR_access_tunnel_clancy_password: "${{ secrets.ACCESS_TUNNEL_CLANCY_PASSWORD }}"
+  TF_VAR_gh_client_id: "${{ secrets.GH_CLIENT_ID }}"
+  TF_VAR_gh_client_secret: "${{ secrets.GH_CLIENT_SECRET }}"
+
+jobs:
+  terraform-apply-prod:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    name: "Terraform  Apply (prod)"
+    environment: prod
+    env:
+      TF_VAR_env: "prod"
+      TF_WORKSPACE: "morrislan"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TFC_TOKEN }}
+
+      - name: Format Check
+        id: fmt-check
+        run: terraform fmt -check
+
+      - name: Initialize Terraform
+        id: init
+        run: terraform init
+
+      - name: Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Create Plan
+        id: plan
+        run: terraform plan -no-color -out=${{ github.run_id }}.tfplan
+
+      - name: Apply
+        id: apply
+        run: terraform apply -input=${{ github.run_id }}.tfplan --auto-approve
+
+
+  terraform-apply-dev:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/dev')
+    name: "Terraform  Apply (dev)"
+    environment: dev
+    env:
+      TF_VAR_env: "dev"
+      TF_WORKSPACE: "morrislan-dev"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TFC_TOKEN }}
+
+      - name: Format Check
+        id: fmt-check
+        run: terraform fmt -check
+
+      - name: Initialize Terraform
+        id: init
+        run: terraform init
+
+      - name: Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Create Plan
+        id: plan
+        run: terraform plan -no-color -out=${{ github.run_id }}.tfplan
+
+      - name: Apply
+        id: apply
+        run: terraform apply --auto-approve ${{ github.run_id }}.tfplan
