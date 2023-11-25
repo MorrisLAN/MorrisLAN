@@ -8,7 +8,7 @@ on:
    pull_request:
    workflow_call:
     secrets:
-      TF_API_TOKEN: { required: true }
+      TFC_TOKEN: { required: true }
       CLOUDFLARE_TOKEN: { required: true }
       CLOUDFLARE_ACCOUNT_ID: { required: true }
       ACCESS_TUNNEL_CLANCY_PASSWORD: { required: true }
