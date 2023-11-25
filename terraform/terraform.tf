@@ -1,4 +1,8 @@
 terraform {
+  cloud {
+    organization = "morrislan"
+    workspaces { name = "morrislan" }
+  }
   required_providers {
     cloudflare = {
       source = "cloudflare/cloudflare"
