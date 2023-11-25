@@ -171,8 +171,12 @@ jobs:
         run: terraform apply --auto-approve
 
   terraform-destroy-dev:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev'
     name: "Destroy Terraform (dev)"
+    environment: dev
+    env:
+      TF_VAR_env: "dev"
+      TF_WORKSPACE: "morrislan-dev"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -180,7 +184,6 @@ jobs:
         working-directory: ./terraform
     permissions:
       contents: read
-      pull-requests: write
 
     steps:
       - uses: actions/checkout@v3
