@@ -42,9 +42,8 @@ jobs:
     - name: Initialize Terraform
       run: terraform init
 
-    - name: Validate module `cloudflare-zerotrust`
+    - name: Validate root module
       run: terraform fmt -check && terraform validate -no-color
-      working-directory: ./terraform/cloudflare-zerotrust
 
     - name: Upload config to Terraform Cloud
       uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
