@@ -56,7 +56,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `## Terraform Checks\
+            const output = `## Terraform Checks\`\
             #### Format Check 📏\`${{ steps.fmt-check.outcome }}\`
             #### Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Validation 🤖\`${{ steps.validate.outcome }}\`
