@@ -25,6 +25,7 @@ jobs:
     environment: prod
     env:
       TF_VAR_domain: "morrislan.net"
+      TF_WORKSPACE: "morrislan"
     runs-on: ubuntu-latest
     defaults:
       run:
