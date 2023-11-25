@@ -7,15 +7,15 @@ terraform {
 }
 
 provider "cloudflare" {
-  api_token = ${{ secrets.CLOUDFLARE_TOKEN }}
+  api_token = var.cloudflare_token
 }
 
 module "cloudflare-zerotrust" {
-  source                          = "./cloudflare-zerotrust"
-  cloudflare_token                = ${{ secrets.CLOUDFLARE_TOKEN }}
-  cloudflare_account_id           = ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-  access_tunnel_clancy_password   = ${{ secrets.ACCESS_TUNNEL_CLANCY_PASSWORD }}
-  github_client_id     = ${{ secrets.GH_CLIENT_ID }}
-  github_client_secret = ${{ secrets.CH_CLIENT_SECRET }}
-  cloudflare_zone_id              = ${{ env.CLOUDFLARE_ZONE_ID }}
+  source                        = "./cloudflare-zerotrust"
+  cloudflare_token              = var.cloudflare_token
+  cloudflare_account_id         = var.cloudflare_account_id
+  access_tunnel_clancy_password = var.access_tunnel_clancy_password
+  github_client_id              = var.gh_client_id
+  github_client_secret          = var.gh_client_secret
+  cloudflare_zone_id            = var.cloudflare_zone_id
 }
