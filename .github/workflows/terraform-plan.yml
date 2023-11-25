@@ -7,7 +7,7 @@ env:
   TF_CLOUD_ORGANIZATION: "morrislan"
   TF_API_TOKEN: "${{ secrets.TFC_TOKEN }}"
   TF_WORKSPACE: "morrislan"
-  CONFIG_DIRECTORY: "terraform"
+  CONFIG_DIRECTORY: "./terraform"
   TF_VAR_cloudflare_token: "${{ secrets.CLOUDFLARE_TOKEN }}"
   TF_VAR_cloudflare_account_id: "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
   TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
@@ -19,6 +19,9 @@ jobs:
   terraform:
     name: "Terraform Plan"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform/
     permissions:
       contents: read
       pull-requests: write
