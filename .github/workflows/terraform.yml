@@ -56,7 +56,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `### Terraform\`${{ steps.fmt.outcome }}\`
+            const output = `### Terraform \`${{ steps.fmt.outcome }}\`
             #### Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Validation 🤖\`${{ steps.validate.outcome }}\`
             #### Plan 📖\`${{ steps.plan.outcome }}\`
@@ -69,7 +69,7 @@ jobs:
 
             </details>
 
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\``;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\``*`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
