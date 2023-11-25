@@ -24,7 +24,7 @@ jobs:
     name: "Terraform (prod)"
     environment: prod
     env:
-      TF_VAR_domain: "morrislan.net"
+      TF_VAR_env: "prod"
       TF_WORKSPACE: "morrislan"
     runs-on: ubuntu-latest
     defaults:
@@ -99,7 +99,7 @@ jobs:
     name: "Terraform (dev)"
     environment: dev
     env:
-      TF_VAR_domain: "dev.morrislan.net"
+      TF_VAR_env: "dev"
       TF_WORKSPACE: "morrislan-dev"
     runs-on: ubuntu-latest
     defaults:

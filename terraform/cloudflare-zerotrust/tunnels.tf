@@ -1,6 +1,6 @@
 resource "cloudflare_tunnel" "clancy" {
   account_id = var.cloudflare_account_id
-  name       = "clancy.${var.domain}"
+  name       = "clancy-${var.env}.morrislan.net"
   secret     = var.access_tunnel_clancy_password
   config_src = "cloudflare"
 }
@@ -9,7 +9,7 @@ resource "cloudflare_tunnel_config" "clancy" {
   tunnel_id  = cloudflare_tunnel.clancy.id
   config {
     ingress_rule {
-      hostname = "status.${var.domain}"
+      hostname = "status-${var.env}.morrislan.net"
       service  = "http://marge.morrislan.net:3001"
       origin_request {
         connect_timeout = "2m0s"
@@ -17,14 +17,14 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = "ha.${var.domain}"
+      hostname = "ha-${var.env}.morrislan.net"
       service  = "https://ha.morrislan.net"
       origin_request {
         connect_timeout = "2m0s"
       }
     }
     ingress_rule {
-      hostname = "unifi.${var.domain}"
+      hostname = "unifi-${var.env}.morrislan.net"
       service  = "https://marge.morrislan.net:8443"
       origin_request {
         connect_timeout = "2m0s"
@@ -32,7 +32,7 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = "clancyadmin.${var.domain}"
+      hostname = "clancyadmin-${var.env}.morrislan.net"
       service  = "https://clancy.morrislan.net:2053"
       origin_request {
         connect_timeout = "2m0s"
@@ -40,7 +40,7 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = "homeradmin.${var.domain}"
+      hostname = "homeradmin-${var.env}.morrislan.net"
       service  = "https://homer.morrislan.net:2053"
       origin_request {
         connect_timeout = "2m0s"

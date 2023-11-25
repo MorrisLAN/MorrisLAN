@@ -1,6 +1,11 @@
-variable "domain" {
+variable "env" {
   type        = string
-  description = "Root domain to use (for setting prod/dev)"
+  description = "Specify the environment (prod or dev)"
+
+  validation {
+    condition     = var.env == "prod" || var.env == "dev"
+    error_message = "Environment must be either 'prod' or 'dev'"
+  }
 }
 
 variable "cloudflare_account_id" {
