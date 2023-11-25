@@ -168,8 +168,3 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
         id: apply
         run: terraform apply --auto-approve
-
-      - name: Destroy
-        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
-        id: destroy
-        run: terraform destroy --auto-approve
