@@ -6,6 +6,15 @@ on:
    push:
      branches: [ "main", "staging" ]
    pull_request:
+   workflow_call:
+    secrets:
+      TF_API_TOKEN: { required: true }
+      CLOUDFLARE_TOKEN: { required: true }
+      CLOUDFLARE_ACCOUNT_ID: { required: true }
+      CLOUDFLARE_ZONE_ID: { required: true }
+      ACCESS_TUNNEL_CLANCY_PASSWORD: { required: true }
+      GH_CLIENT_ID: { required: true }
+      GH_CLIENT_SECRET: { required: true }
 
 permissions:
   contents: read
