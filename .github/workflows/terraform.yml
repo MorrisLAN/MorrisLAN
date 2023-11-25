@@ -12,7 +12,7 @@ permissions:
   pull-requests: write
 
 env:
-  TF_CLOUD_ORGANIZATION: "MorrisLAN"
+  TF_CLOUD_ORGANIZATION: "morrislan"
   TF_API_TOKEN: "${{ secrets.TFC_TOKEN }}"
   TF_WORKSPACE: "morrislan"
   CONFIG_DIRECTORY: "./terraform"
