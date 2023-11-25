@@ -18,7 +18,6 @@ env:
 jobs:
   terraform:
     name: "Terraform Plan"
-    environment: prod
     runs-on: ubuntu-latest
     permissions:
       contents: read
