@@ -42,12 +42,3 @@ jobs:
       - name: Destroy
         id: destroy
         run: terraform destroy --auto-approve
-
-      - name: Update GitHub Deployment Status
-        run: |
-          curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-
-
