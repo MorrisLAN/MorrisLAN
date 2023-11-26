@@ -1,7 +1,7 @@
 name: "Terraform Destroy"
 
 on:
-  pull_request:
+  push:
     branches:
       - main
   workflow_dispatch:
@@ -18,14 +18,7 @@ env:
 
 jobs:
  terraform-destroy-dev:
-    if: |
-      (
-        github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev'
-      ) || (
-        github.event_name == 'pull_request' &&
-        github.event.action == 'closed' &&
-        github.event.pull_request.base.ref == 'main'
-      )
+    if: (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     name: "Terraform Destroy (dev)"
     environment: dev
     env:
