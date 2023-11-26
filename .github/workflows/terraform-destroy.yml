@@ -18,7 +18,7 @@ env:
 
 jobs:
  terraform-destroy-dev:
-    if: (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') || (github.event_name == 'pull_request' && github.event.action == 'synchronize' && github.ref == 'refs/heads/dev')
+    if: (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.base.ref == 'main')
     name: "Terraform Destroy (dev)"
     environment: dev
     env:
