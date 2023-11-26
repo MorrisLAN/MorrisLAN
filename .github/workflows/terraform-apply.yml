@@ -1,6 +1,7 @@
 name: "Terraform Apply"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -18,7 +19,7 @@ env:
 
 jobs:
   terraform-apply-prod:
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     name: "Terraform  Apply (prod)"
     environment: prod
     env:
@@ -61,7 +62,7 @@ jobs:
 
 
   terraform-apply-dev:
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/dev')
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/dev') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev')
     name: "Terraform  Apply (dev)"
     environment: dev
     env:
