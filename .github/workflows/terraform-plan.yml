@@ -1,6 +1,7 @@
 name: "Terraform Plan"
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -18,7 +19,7 @@ env:
 
 jobs:
   terraform-plan-prod:
-    if: (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main')
+    if: (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     name: "Terraform Plan (prod)"
     env:
       TF_VAR_env: "prod"
@@ -86,7 +87,7 @@ jobs:
             });
 
   terraform-plan-dev:
-    if: (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dev')
+    if: (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dev') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev')
     name: "Terraform Plan (dev)"
     env:
       TF_VAR_env: "dev"
