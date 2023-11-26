@@ -1,3 +1,6 @@
 # morrislan
 
-IaC repository for my home/personal infrastructure.
+### Infrastructure as Code (IaC) for my personal network/digital infrastructure.
+
+##### Using [Terraform](https://www.terraform.io) and [GitHub Actions](https://github.com/features/actions) for a fully automated deployment pipeline.
+###### (built using several of my modules/packages, which you are free to pinch from [here](https://github.com/m4xmorris))
