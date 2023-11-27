@@ -33,6 +33,7 @@ resource "cloudflare_split_tunnel" "morrislan" {
   policy_id  = cloudflare_device_settings_policy.morrislan_settings.id
   mode       = "include"
   tunnels {
+    host        = ""
     address     = "10.1.240.0/24"
     description = "MorrisLAN"
   }
@@ -43,6 +44,7 @@ resource "cloudflare_split_tunnel" "morrislan_iot" {
   policy_id  = cloudflare_device_settings_policy.morrislan_settings.id
   mode       = "include"
   tunnels {
+    host        = ""
     address     = "10.1.241.0/24"
     description = "MorrisLAN-IOT"
   }
