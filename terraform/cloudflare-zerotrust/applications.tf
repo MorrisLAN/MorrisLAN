@@ -54,7 +54,7 @@ module "access_app_unifi" {
   github_teams          = ["Admins"]
   allowed_emails        = []
   device_policy_mode    = "require"
-  device_policy_rules   = var.all_device_rules
+  device_policy_rules   = local.all_device_rules
 }
 
 module "access_app_clancyadmin" {
@@ -75,7 +75,7 @@ module "access_app_clancyadmin" {
   github_teams          = ["Admins"]
   allowed_emails        = []
   device_policy_mode    = "require"
-  device_policy_rules   = var.all_device_rules
+  device_policy_rules   = local.all_device_rules
 }
 
 module "access_app_homeradmin" {
@@ -96,5 +96,5 @@ module "access_app_homeradmin" {
   github_teams          = ["Admins"]
   allowed_emails        = []
   device_policy_mode    = "require"
-  device_policy_rules   = var.all_device_rules
+  device_policy_rules   = local.all_device_rules
 }

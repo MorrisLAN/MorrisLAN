@@ -57,7 +57,6 @@ data "cloudflare_device_posture_rule" "all_rules" {
   count = length(cloudflare_device_posture_rule)
 }
 
-variable "all_device_rules" {
-  type    = list(string)
-  default = data.cloudflare_device_posture_rule.all_rules[*].id
+locals {
+  all_device_rules = data.cloudflare_device_posture_rule.all_rules[*].id
 }
