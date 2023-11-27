@@ -15,7 +15,7 @@ resource "cloudflare_tunnel_virtual_network" "morrislan_cloud" {
 resource "cloudflare_tunnel_route" "morrislan" {
   account_id         = var.cloudflare_account_id
   tunnel_id          = cloudflare_tunnel.clancy.id
-  virtual_network_id = cloudflare.cloudflare_tunnel_virtual_network.morrislan_cloud.id
+  virtual_network_id = cloudflare_tunnel_virtual_network.morrislan_cloud.id
   network            = "10.1.240.0/24"
   comment            = "MorrisLAN"
 }
@@ -23,7 +23,7 @@ resource "cloudflare_tunnel_route" "morrislan" {
 resource "cloudflare_tunnel_route" "morrislan_iot" {
   account_id         = var.cloudflare_account_id
   tunnel_id          = cloudflare_tunnel.clancy.id
-  virtual_network_id = cloudflare.cloudflare_tunnel_virtual_network.morrislan_cloud.id
+  virtual_network_id = cloudflare_tunnel_virtual_network.morrislan_cloud.id
   network            = "10.1.241.0/24"
   comment            = "MorrisLAN-IOT"
 }
