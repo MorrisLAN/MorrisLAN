@@ -52,19 +52,3 @@ variable "access_tunnel_clancy_password" {
     error_message = "The value must be 32 or more bytes in length."
   }
 }
-
-
-#variable "all_device_rules" {
-#  type = list(string)
-#  default = [ cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_windows.id, cloudflare_device_posture_rule.os_version_macos.id, cloudflare_device_posture_rule.os_version_ios.id, cloudflare_device_posture_rule.os_version_android.id ]
-#  description = "Handy list of all device rules"
-#}
-
-data "cloudflare_device_posture_rules" "all_device_rules" {
-  account_id = var.cloudflare_account_id
-  count = length(cloudflare_device_posture_rule.*.id)
-}
-
-locals {
-  all_device_rules = data.cloudflare_device_posture_rules.all_device_rules[*].id
-}
