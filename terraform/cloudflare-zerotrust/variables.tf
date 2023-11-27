@@ -53,10 +53,10 @@ variable "access_tunnel_clancy_password" {
   }
 }
 
-data "cloudflare_device_posture_rule" "all_rules" {
+data "cloudflare_device_posture_rule" "all_device_rules" {
   count = length(cloudflare_device_posture_rule)
 }
 
 locals {
-  all_device_rules = data.cloudflare_device_posture_rule.all_rules[*].id
+  all_device_rules = data.cloudflare_device_posture_rule.all_device_rules[*].id
 }
