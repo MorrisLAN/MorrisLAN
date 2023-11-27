@@ -52,3 +52,12 @@ variable "access_tunnel_clancy_password" {
     error_message = "The value must be 32 or more bytes in length."
   }
 }
+
+data "cloudflare_device_posture_rule" "all_rules" {
+  count = length(cloudflare_device_posture_rule)
+}
+
+variable "all_device_rules" {
+  type    = list(string)
+  default = data.cloudflare_device_posture_rule.all_rules[*].id
+}
