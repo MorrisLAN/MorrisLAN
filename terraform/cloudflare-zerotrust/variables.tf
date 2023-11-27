@@ -66,5 +66,5 @@ data "cloudflare_device_posture_rules" "all_device_rules" {
 }
 
 locals {
-  all_device_rules = data.cloudflare_device_posture_rule.all_device_rules[*].id
+  all_device_rules = data.cloudflare_device_posture_rules.all_device_rules[*].id
 }
