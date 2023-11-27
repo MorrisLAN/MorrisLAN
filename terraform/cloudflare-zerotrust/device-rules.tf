@@ -1,3 +1,12 @@
+resource "cloudflare_device_posture_rule" "warp" {
+  account_id  = var.cloudflare_account_id
+  name        = "Cloudflare WARP"
+  type        = "warp"
+  description = "Check device is using Cloudflare WARP"
+  schedule    = "24h"
+  expiration  = "24h"
+}
+
 resource "cloudflare_device_posture_rule" "gateway" {
   account_id  = var.cloudflare_account_id
   name        = "Zero Trust Gateway"
