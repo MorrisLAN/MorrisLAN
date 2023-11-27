@@ -48,7 +48,7 @@ module "access_app_unifi" {
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
   github_teams          = ["Admins"]
-  device_policy_rules   = local.all_device_rules
+  device_policy_rules   = var.var.all_device_rules
 }
 
 module "access_app_clancyadmin" {
@@ -67,7 +67,7 @@ module "access_app_clancyadmin" {
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
   github_teams          = ["Admins"]
-  device_policy_rules   = local.all_device_rules
+  device_policy_rules   = var.var.all_device_rules
 }
 
 module "access_app_homeradmin" {
@@ -86,5 +86,5 @@ module "access_app_homeradmin" {
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
   github_teams          = ["Admins"]
-  device_policy_rules   = local.all_device_rules
+  device_policy_rules   = var.var.all_device_rules
 }
