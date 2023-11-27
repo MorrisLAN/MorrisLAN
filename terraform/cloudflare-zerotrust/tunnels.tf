@@ -4,6 +4,48 @@ resource "cloudflare_tunnel" "clancy" {
   secret     = var.access_tunnel_clancy_password
   config_src = "cloudflare"
 }
+
+resource "cloudflare_tunnel_virtual_network" "morrislan_cloud" {
+  account_id         = var.cloudflare_account_id
+  name               = "MorrisLAN-Cloud"
+  comment            = "Default virtual network for accessing MorrisLAN resources"
+  is_default_network = true
+}
+
+resource "cloudflare_tunnel_route" "morrislan" {
+  account_id         = var.cloudflare_account_id
+  tunnel_id          = cloudflare_tunnel.clancy.id
+  virtual_network_id = cloudflare_tunnel_virtual_network.morrislan_cloud.id
+  network            = "10.1.240.0/24"
+  comment            = "MorrisLAN"
+}
+
+resource "cloudflare_tunnel_route" "morrislan_iot" {
+  account_id         = var.cloudflare_account_id
+  tunnel_id          = cloudflare_tunnel.clancy.id
+  virtual_network_id = cloudflare_tunnel_virtual_network.morrislan_cloud.id
+  network            = "10.1.241.0/24"
+  comment            = "MorrisLAN-IOT"
+}
+
+resource "cloudflare_split_tunnel" "morrislan" {
+  account_id = var.cloudflare_account_id
+  mode       = "include"
+  tunnels {
+    address     = "10.1.240.0/24"
+    description = "MorrisLAN"
+  }
+}
+
+resource "cloudflare_split_tunnel" "morrislan_iot" {
+  account_id = var.cloudflare_account_id
+  mode       = "include"
+  tunnels {
+    address     = "10.1.241.0/24"
+    description = "MorrisLAN-IOT"
+  }
+}
+
 resource "cloudflare_tunnel_config" "clancy" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.clancy.id
