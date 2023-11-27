@@ -1,6 +1,6 @@
 resource "cloudflare_device_settings_policy" "morrislan_settings" {
   account_id           = var.cloudflare_account_id
-  name                 = "MorrisLAN WARP Profile ${var.env}"
+  name                 = "MorrisLAN WARP Profile"
   description          = "Default WARP profile for accessing MorrisLAN resources"
   default              = true
   enabled              = true
