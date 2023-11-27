@@ -48,7 +48,7 @@ module "access_app_unifi" {
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
   github_teams          = ["Admins"]
-  device_policy_rules   = [ cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_windows.id, cloudflare_device_posture_rule.os_version_macos.id, cloudflare_device_posture_rule.os_version_ios.id, cloudflare_device_posture_rule.os_version_android.id ]
+  device_policy_rules   = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_windows.id, cloudflare_device_posture_rule.os_version_macos.id, cloudflare_device_posture_rule.os_version_ios.id, cloudflare_device_posture_rule.os_version_android.id]
 }
 
 module "access_app_clancyadmin" {
@@ -67,7 +67,7 @@ module "access_app_clancyadmin" {
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
   github_teams          = ["Admins"]
-  device_policy_rules   = [ cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_windows.id, cloudflare_device_posture_rule.os_version_macos.id, cloudflare_device_posture_rule.os_version_ios.id, cloudflare_device_posture_rule.os_version_android.id ]
+  device_policy_rules   = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_windows.id, cloudflare_device_posture_rule.os_version_macos.id, cloudflare_device_posture_rule.os_version_ios.id, cloudflare_device_posture_rule.os_version_android.id]
 }
 
 module "access_app_homeradmin" {
@@ -86,5 +86,5 @@ module "access_app_homeradmin" {
   github_idp            = cloudflare_access_identity_provider.github.id
   github_org            = "MorrisLAN"
   github_teams          = ["Admins"]
-  device_policy_rules   = [ cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_windows.id, cloudflare_device_posture_rule.os_version_macos.id, cloudflare_device_posture_rule.os_version_ios.id, cloudflare_device_posture_rule.os_version_android.id ]
+  device_policy_rules   = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_windows.id, cloudflare_device_posture_rule.os_version_macos.id, cloudflare_device_posture_rule.os_version_ios.id, cloudflare_device_posture_rule.os_version_android.id]
 }
