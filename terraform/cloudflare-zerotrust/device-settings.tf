@@ -2,7 +2,6 @@ resource "cloudflare_device_settings_policy" "morrislan_settings" {
   account_id           = var.cloudflare_account_id
   name                 = "MorrisLAN WARP Profile"
   description          = "Default WARP profile for accessing MorrisLAN resources"
-  precedence           = 10
   default              = true
   enabled              = true
   captive_portal       = 5
