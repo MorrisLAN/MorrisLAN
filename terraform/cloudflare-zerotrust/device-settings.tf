@@ -25,6 +25,6 @@ resource "cloudflare_device_settings_policy" "home_settings" {
   allowed_to_leave     = true
   allow_updates        = true
   auto_connect         = 300
-  service_mode_v2_mode = "posture_onlyxs"
+  service_mode_v2_mode = "posture_only"
   service_mode_v2_port = 3000
 }
