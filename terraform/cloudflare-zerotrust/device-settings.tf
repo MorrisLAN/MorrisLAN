@@ -18,7 +18,7 @@ resource "cloudflare_device_settings_policy" "home_settings" {
   name                 = "On Home Network (Disabled)"
   description          = "Connected to Home Network - Posture Checks Only"
   precedence           = 10
-  match                = "network == ${cloudflare_device_managed_networks.home.id}"
+  match                = "network == Home"
   enabled              = true
   allow_mode_switch    = true
   switch_locked        = true
