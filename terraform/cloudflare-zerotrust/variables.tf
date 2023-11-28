@@ -1,11 +1,6 @@
 variable "env" {
   type        = string
   description = "Specify the environment (prod or dev)"
-
-  validation {
-    condition     = var.env == "prod" || var.env == "dev"
-    error_message = "Environment must be either 'prod' or 'dev'"
-  }
 }
 
 variable "cloudflare_account_id" {
