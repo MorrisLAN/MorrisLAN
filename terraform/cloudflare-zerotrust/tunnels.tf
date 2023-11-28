@@ -33,7 +33,7 @@ resource "cloudflare_split_tunnel" "morrislan" {
   policy_id  = cloudflare_device_settings_policy.morrislan_settings.id
   mode       = "include"
   tunnels {
-    host     = "*.morrislan.net"
+    host        = "*.morrislan.net"
     description = "MorrisLAN"
   }
   tunnels {
@@ -45,11 +45,11 @@ resource "cloudflare_split_tunnel" "morrislan" {
     description = "MorrisLAN-IOT"
   }
   tunnels {
-    host     = "*.cloudflareaccess.com"
+    host        = "*.cloudflareaccess.com"
     description = "Cloudflare"
   }
   tunnels {
-    host     = "*.cloudflare.com"
+    host        = "*.cloudflare.com"
     description = "Cloudflare"
   }
 }
