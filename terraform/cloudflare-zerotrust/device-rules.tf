@@ -63,7 +63,7 @@ resource "cloudflare_device_posture_rule" "disk_encryption_windows" {
   }
 
   input {
-    check_disks = ["C:"]
+    check_disks = ["C"]
   }
 }
 
