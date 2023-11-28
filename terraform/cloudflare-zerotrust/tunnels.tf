@@ -7,7 +7,7 @@ resource "cloudflare_tunnel" "clancy" {
 
 resource "cloudflare_tunnel_virtual_network" "morrislan_cloud" {
   account_id         = var.cloudflare_account_id
-  name       = var.env == "prod" ? "MorrisLAN-Cloud" : "MorrisLAN-Cloud-${var.env}"
+  name               = var.env == "prod" ? "MorrisLAN-Cloud" : "MorrisLAN-Cloud-${var.env}"
   comment            = "Default virtual network for accessing MorrisLAN resources"
   is_default_network = true
 }
@@ -17,7 +17,7 @@ resource "cloudflare_tunnel_route" "morrislan" {
   tunnel_id          = cloudflare_tunnel.clancy.id
   virtual_network_id = cloudflare_tunnel_virtual_network.morrislan_cloud.id
   network            = "10.1.240.0/24"
-  comment       = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
+  comment            = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
 }
 
 resource "cloudflare_tunnel_route" "morrislan_iot" {
@@ -25,7 +25,7 @@ resource "cloudflare_tunnel_route" "morrislan_iot" {
   tunnel_id          = cloudflare_tunnel.clancy.id
   virtual_network_id = cloudflare_tunnel_virtual_network.morrislan_cloud.id
   network            = "10.1.241.0/24"
-  comment       = var.env == "prod" ? "MorrisLAN-IOT" : "MorrisLAN-IOT-${var.env}"
+  comment            = var.env == "prod" ? "MorrisLAN-IOT" : "MorrisLAN-IOT-${var.env}"
 }
 
 resource "cloudflare_split_tunnel" "morrislan" {
@@ -34,15 +34,15 @@ resource "cloudflare_split_tunnel" "morrislan" {
   mode       = "include"
   tunnels {
     host        = "*.morrislan.net"
-    description       = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
+    description = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
   }
   tunnels {
     address     = "10.1.240.0/24"
-    description       = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
+    description = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
   }
   tunnels {
     address     = "10.1.241.0/24"
-  description       = var.env == "prod" ? "MorrisLAN-IOT" : "MorrisLAN-IOT-${var.env}"
+    description = var.env == "prod" ? "MorrisLAN-IOT" : "MorrisLAN-IOT-${var.env}"
   }
   tunnels {
     host        = "*.cloudflareaccess.com"
