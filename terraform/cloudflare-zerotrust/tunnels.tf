@@ -40,6 +40,14 @@ resource "cloudflare_split_tunnel" "morrislan" {
     address     = "10.1.241.0/24"
     description = "MorrisLAN-IOT"
   }
+  tunnels {
+    host     = "*.cloudflareaccess.com"
+    description = "Cloudflare"
+  }
+  tunnels {
+    host     = "*.cloudflare.com"
+    description = "Cloudflare"
+  }
 }
 
 resource "cloudflare_tunnel_config" "clancy" {
