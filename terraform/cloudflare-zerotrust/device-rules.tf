@@ -3,8 +3,6 @@ resource "cloudflare_device_posture_rule" "warp" {
   name        = var.env == "prod" ? "Cloudflare WARP" : "Cloudflare WARP (${var.env})"
   type        = "warp"
   description = "Check device is using Cloudflare WARP"
-  schedule    = "24h"
-  expiration  = "24h"
 }
 
 resource "cloudflare_device_posture_rule" "gateway" {
@@ -12,8 +10,6 @@ resource "cloudflare_device_posture_rule" "gateway" {
   name        = var.env == "prod" ? "Cloudflare ZT Gateway" : "Cloudflare ZT Gateway (${var.env})"
   type        = "gateway"
   description = "Check device is using Cloudflare Zero Trust Gateway"
-  schedule    = "24h"
-  expiration  = "24h"
 }
 
 resource "cloudflare_device_posture_rule" "firewall_windows" {
