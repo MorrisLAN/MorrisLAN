@@ -145,7 +145,7 @@ resource "cloudflare_device_posture_rule" "os_version_android" {
   }
 
   input {
-    version  = "14.0.0"
+    version  = "13.0.0"
     operator = ">="
   }
 }
