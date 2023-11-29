@@ -31,3 +31,7 @@ variable "github_client_secret" {
   sensitive   = true
   description = "GitHub Client Secret for SSO"
 }
+
+resource "random_password" "tunnel_secret" {
+  length = 64
+}

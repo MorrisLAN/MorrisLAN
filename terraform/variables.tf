@@ -25,10 +25,6 @@ variable "cloudflare_zone_id" {
   type        = string
 }
 
-resource "random_password" "tunnel_secret" {
-  length = 64
-}
-
 variable "gh_client_id" {
   description = "GitHub Client ID"
   type        = string
