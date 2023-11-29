@@ -31,27 +31,8 @@ resource "cloudflare_tunnel_route" "morrislan_iot" {
 resource "cloudflare_split_tunnel" "morrislan" {
   account_id = var.cloudflare_account_id
   policy_id  = cloudflare_device_settings_policy.morrislan_settings.id
-  mode       = "include"
-  tunnels {
-    host        = "*.morrislan.net"
-    description = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
-  }
-  tunnels {
-    address     = "10.1.240.0/24"
-    description = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
-  }
-  tunnels {
-    address     = "10.1.241.0/24"
-    description = var.env == "prod" ? "MorrisLAN-IOT" : "MorrisLAN-IOT-${var.env}"
-  }
-  tunnels {
-    host        = "*.cloudflareaccess.com"
-    description = "Cloudflare Access"
-  }
-  tunnels {
-    host        = "*.cloudflare.com"
-    description = "Cloudflare"
-  }
+  mode       = "exclude"
+  tunnels {}
 }
 
 resource "cloudflare_tunnel_config" "clancy" {
