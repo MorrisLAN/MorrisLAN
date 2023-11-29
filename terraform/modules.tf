@@ -1,9 +1,9 @@
 module "cloudflare-zerotrust" {
-  source                        = "./cloudflare-zerotrust"
-  env                           = var.env
-  cloudflare_token              = var.cloudflare_token
-  cloudflare_account_id         = var.cloudflare_account_id
-  github_client_id              = var.gh_client_id
-  github_client_secret          = var.gh_client_secret
-  cloudflare_zone_id            = var.cloudflare_zone_id
+  source                = "./cloudflare-zerotrust"
+  env                   = var.env
+  cloudflare_token      = var.cloudflare_token
+  cloudflare_account_id = var.cloudflare_account_id
+  github_client_id      = var.gh_client_id
+  github_client_secret  = var.gh_client_secret
+  cloudflare_zone_id    = var.cloudflare_zone_id
 }

@@ -1,13 +1,13 @@
 resource "cloudflare_device_posture_rule" "warp" {
-  account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "Cloudflare WARP" : "Cloudflare WARP (${var.env})"
-  type        = "warp"
+  account_id = var.cloudflare_account_id
+  name       = var.env == "prod" ? "Cloudflare WARP" : "Cloudflare WARP (${var.env})"
+  type       = "warp"
 }
 
 resource "cloudflare_device_posture_rule" "gateway" {
-  account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "Cloudflare ZT Gateway" : "Cloudflare ZT Gateway (${var.env})"
-  type        = "gateway"
+  account_id = var.cloudflare_account_id
+  name       = var.env == "prod" ? "Cloudflare ZT Gateway" : "Cloudflare ZT Gateway (${var.env})"
+  type       = "gateway"
 }
 
 resource "cloudflare_device_posture_rule" "firewall_windows" {

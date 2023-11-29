@@ -32,7 +32,7 @@ resource "cloudflare_tunnel_config" "clancy" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.clancy.id
   config {
-    warp_routing {enabled = true}
+    warp_routing { enabled = true }
     ingress_rule {
       hostname = var.env == "prod" ? "status.morrislan.net" : "status-${var.env}.morrislan.net"
       service  = "http://marge.morrislan.net:3001"

@@ -1,18 +1,18 @@
 module "access_app_status" {
-  source                = "m4xmorris/access-application/cloudflare"
-  version               = "3.3.0"
-  name                  = var.env == "prod" ? "Network Status" : "Network Status (${var.env})"
-  logo                  = "https://static-00.iconduck.com/assets.00/uptime-kuma-icon-512x469-ce3ut52z.png"
-  domain                = var.env == "prod" ? "status.morrislan.net" : "status-${var.env}.morrislan.net"
-  type                  = "self_hosted"
-  allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
-  app_launcher_visible  = true
-  session_duration      = "12h"
-  cloudflare_account_id = var.cloudflare_account_id
-  cloudflare_token      = var.cloudflare_token
-  cloudflare_zone_id    = var.cloudflare_zone_id
-  github_idp            = cloudflare_access_identity_provider.github.id
-  github_org            = "MorrisLAN"
+  source                 = "m4xmorris/access-application/cloudflare"
+  version                = "3.3.0"
+  name                   = var.env == "prod" ? "Network Status" : "Network Status (${var.env})"
+  logo                   = "https://static-00.iconduck.com/assets.00/uptime-kuma-icon-512x469-ce3ut52z.png"
+  domain                 = var.env == "prod" ? "status.morrislan.net" : "status-${var.env}.morrislan.net"
+  type                   = "self_hosted"
+  allowed_idps           = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
+  app_launcher_visible   = true
+  session_duration       = "12h"
+  cloudflare_account_id  = var.cloudflare_account_id
+  cloudflare_token       = var.cloudflare_token
+  cloudflare_zone_id     = var.cloudflare_zone_id
+  github_idp             = cloudflare_access_identity_provider.github.id
+  github_org             = "MorrisLAN"
   gateway_device_rule_id = cloudflare_device_posture_rule.gateway.id
 }
 
@@ -35,7 +35,7 @@ module "access_app_ha" {
   device_policy_rules_macos   = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
   device_policy_rules_ios     = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.os_version_ios.id]
   device_policy_rules_android = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.os_version_android.id]
-  gateway_device_rule_id = cloudflare_device_posture_rule.gateway.id
+  gateway_device_rule_id      = cloudflare_device_posture_rule.gateway.id
 }
 
 module "access_app_unifi" {
@@ -56,7 +56,7 @@ module "access_app_unifi" {
   github_teams                = ["Admins"]
   device_policy_rules_windows = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
   device_policy_rules_macos   = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
-  gateway_device_rule_id = cloudflare_device_posture_rule.gateway.id
+  gateway_device_rule_id      = cloudflare_device_posture_rule.gateway.id
 }
 
 module "access_app_clancyadmin" {
@@ -77,7 +77,7 @@ module "access_app_clancyadmin" {
   github_teams                = ["Admins"]
   device_policy_rules_windows = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
   device_policy_rules_macos   = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
-  gateway_device_rule_id = cloudflare_device_posture_rule.gateway.id
+  gateway_device_rule_id      = cloudflare_device_posture_rule.gateway.id
 }
 
 module "access_app_homeradmin" {
@@ -98,5 +98,5 @@ module "access_app_homeradmin" {
   github_teams                = ["Admins"]
   device_policy_rules_windows = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
   device_policy_rules_macos   = [cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
-  gateway_device_rule_id = cloudflare_device_posture_rule.gateway.id
+  gateway_device_rule_id      = cloudflare_device_posture_rule.gateway.id
 }
