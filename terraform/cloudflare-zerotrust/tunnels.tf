@@ -1,7 +1,7 @@
 resource "cloudflare_tunnel" "clancy" {
   account_id = var.cloudflare_account_id
   name       = var.env == "prod" ? "clancy.morrislan.net" : "clancy-${var.env}.morrislan.net"
-  secret     = var.access_tunnel_clancy_password
+  secret     = base64sha256(random_password.tunnel_secret.result)
   config_src = "cloudflare"
 }
 

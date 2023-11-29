@@ -25,10 +25,8 @@ variable "cloudflare_zone_id" {
   type        = string
 }
 
-variable "access_tunnel_clancy_password" {
-  description = "Password for Clancy's Access Tunnel"
-  type        = string
-  sensitive   = true
+resource "random_password" "tunnel_secret" {
+  length = 64
 }
 
 variable "gh_client_id" {
