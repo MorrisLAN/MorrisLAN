@@ -28,13 +28,6 @@ resource "cloudflare_tunnel_route" "morrislan_iot" {
   comment            = var.env == "prod" ? "MorrisLAN-IOT" : "MorrisLAN-IOT-${var.env}"
 }
 
-resource "cloudflare_split_tunnel" "morrislan" {
-  account_id = var.cloudflare_account_id
-  policy_id  = cloudflare_device_settings_policy.morrislan_settings.id
-  mode       = "exclude"
-  tunnels {}
-}
-
 resource "cloudflare_tunnel_config" "clancy" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.clancy.id
