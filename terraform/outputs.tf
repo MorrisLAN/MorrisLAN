@@ -4,6 +4,6 @@ output "tunnel_token" {
 }
 
 output "home_doh" {
-  value = cloudflare_teams_location.home.doh_subdomain
+  value     = cloudflare_teams_location.home.doh_subdomain
   sensitive = true
 }
