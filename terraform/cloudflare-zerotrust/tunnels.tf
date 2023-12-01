@@ -29,6 +29,7 @@ resource "cloudflare_tunnel_config" "clancy" {
       service  = "https://10.1.240.3"
       origin_request {
         connect_timeout = "2m0s"
+        no_tls_verify   = true
       }
     }
     ingress_rule {
