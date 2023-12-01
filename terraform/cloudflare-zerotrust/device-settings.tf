@@ -5,8 +5,8 @@ resource "cloudflare_device_settings_policy" "morrislan_settings" {
   default           = true
   enabled           = true
   allow_mode_switch = false
-  switch_locked     = true
-  allowed_to_leave  = false
+  switch_locked     = false
+  allowed_to_leave  = true
   allow_updates     = true
-  auto_connect      = 180
+  auto_connect      = 1200
 }

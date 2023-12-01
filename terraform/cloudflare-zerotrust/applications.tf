@@ -7,7 +7,7 @@ module "access_app_status" {
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
-  session_duration      = "12h"
+  session_duration      = "2160h"
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
@@ -40,7 +40,7 @@ module "access_app_unifi" {
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
-  session_duration      = "12h"
+  session_duration      = "6h"
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
@@ -56,7 +56,7 @@ module "access_app_clancyadmin" {
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
-  session_duration      = "12h"
+  session_duration      = "6h"
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
@@ -72,7 +72,7 @@ module "access_app_homeradmin" {
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
-  session_duration      = "12h"
+  session_duration      = "6h"
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id

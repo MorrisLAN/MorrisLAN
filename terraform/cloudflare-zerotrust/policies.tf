@@ -3,11 +3,16 @@ resource "cloudflare_access_policy" "device_policy_windows_ha" {
   zone_id        = var.cloudflare_zone_id
   name           = "Home Assistant Device Policy (Windows)"
   precedence     = "1"
-  decision       = "non_identity"
+  decision       = "allow"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
   require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = []
+    }
     device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
   }
 }
@@ -17,11 +22,16 @@ resource "cloudflare_access_policy" "device_policy_macos_ha" {
   zone_id        = var.cloudflare_zone_id
   name           = "Home Assistant Device Policy (macOS)"
   precedence     = "2"
-  decision       = "non_identity"
+  decision       = "allow"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
   require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = []
+    }
     device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
   }
 }
