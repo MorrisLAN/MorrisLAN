@@ -18,7 +18,7 @@ resource "cloudflare_tunnel_config" "clancy" {
   config {
     ingress_rule {
       hostname = var.env == "prod" ? "status.morrislan.net" : "status-${var.env}.morrislan.net"
-      service  = "http://marge.morrislan.net:3001"
+      service  = "http://10.1.240.3:3001"
       origin_request {
         connect_timeout = "2m0s"
         no_tls_verify   = true
@@ -26,14 +26,14 @@ resource "cloudflare_tunnel_config" "clancy" {
     }
     ingress_rule {
       hostname = var.env == "prod" ? "ha.morrislan.net" : "ha-${var.env}.morrislan.net"
-      service  = "https://ha.morrislan.net"
+      service  = "https://10.1.240.3"
       origin_request {
         connect_timeout = "2m0s"
       }
     }
     ingress_rule {
       hostname = var.env == "prod" ? "unifi.morrislan.net" : "unifi-${var.env}.morrislan.net"
-      service  = "https://marge.morrislan.net:8443"
+      service  = "https://10.1.240.3:8443"
       origin_request {
         connect_timeout = "2m0s"
         no_tls_verify   = true
@@ -41,7 +41,7 @@ resource "cloudflare_tunnel_config" "clancy" {
     }
     ingress_rule {
       hostname = var.env == "prod" ? "clancyadmin.morrislan.net" : "clancyadmin-${var.env}.morrislan.net"
-      service  = "https://clancy.morrislan.net:2053"
+      service  = "https://10.1.240.1:2053"
       origin_request {
         connect_timeout = "2m0s"
         no_tls_verify   = true
@@ -49,7 +49,7 @@ resource "cloudflare_tunnel_config" "clancy" {
     }
     ingress_rule {
       hostname = var.env == "prod" ? "homeradmin.morrislan.net" : "homeradmin-${var.env}.morrislan.net"
-      service  = "https://homer.morrislan.net:2053"
+      service  = "https://10.1.240.2:2053"
       origin_request {
         connect_timeout = "2m0s"
         no_tls_verify   = true
