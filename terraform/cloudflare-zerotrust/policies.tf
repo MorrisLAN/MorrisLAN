@@ -1,9 +1,10 @@
 resource "cloudflare_access_policy" "device_policy_windows_ha" {
-  application_id = module.access_app_ha.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "Home Assistant Device Policy (Windows)"
-  precedence     = "1"
-  decision       = "allow"
+  application_id   = module.access_app_ha.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Home Assistant Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "24h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
@@ -18,11 +19,12 @@ resource "cloudflare_access_policy" "device_policy_windows_ha" {
 }
 
 resource "cloudflare_access_policy" "device_policy_macos_ha" {
-  application_id = module.access_app_ha.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "Home Assistant Device Policy (macOS)"
-  precedence     = "2"
-  decision       = "allow"
+  application_id   = module.access_app_ha.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Home Assistant Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "24h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
@@ -37,11 +39,12 @@ resource "cloudflare_access_policy" "device_policy_macos_ha" {
 }
 
 resource "cloudflare_access_policy" "device_policy_ios_ha" {
-  application_id = module.access_app_ha.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "Home Assistant Device Policy (iOS)"
-  precedence     = "3"
-  decision       = "non_identity"
+  application_id   = module.access_app_ha.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Home Assistant Device Policy (iOS)"
+  precedence       = "3"
+  decision         = "non_identity"
+  session_duration = "2160h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_ios.id]
   }
@@ -51,11 +54,12 @@ resource "cloudflare_access_policy" "device_policy_ios_ha" {
 }
 
 resource "cloudflare_access_policy" "device_policy_android_ha" {
-  application_id = module.access_app_ha.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "Home Assistant Device Policy (Android)"
-  precedence     = "4"
-  decision       = "non_identity"
+  application_id   = module.access_app_ha.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Home Assistant Device Policy (Android)"
+  precedence       = "4"
+  decision         = "non_identity"
+  session_duration = "2160h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_android.id]
   }
@@ -65,11 +69,12 @@ resource "cloudflare_access_policy" "device_policy_android_ha" {
 }
 
 resource "cloudflare_access_policy" "device_policy_windows_unifi" {
-  application_id = module.access_app_unifi.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "UniFi Device Policy (Windows)"
-  precedence     = "1"
-  decision       = "allow"
+  application_id   = module.access_app_unifi.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "UniFi Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "6h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
@@ -84,11 +89,12 @@ resource "cloudflare_access_policy" "device_policy_windows_unifi" {
 }
 
 resource "cloudflare_access_policy" "device_policy_macos_unifi" {
-  application_id = module.access_app_unifi.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "UniFi Device Policy (macOS)"
-  precedence     = "2"
-  decision       = "allow"
+  application_id   = module.access_app_unifi.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "UniFi Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "6h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
@@ -103,11 +109,12 @@ resource "cloudflare_access_policy" "device_policy_macos_unifi" {
 }
 
 resource "cloudflare_access_policy" "device_policy_windows_homeradmin" {
-  application_id = module.access_app_homeradmin.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "Homer Admin Device Policy (Windows)"
-  precedence     = "1"
-  decision       = "allow"
+  application_id   = module.access_app_homeradmin.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Homer Admin Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "6h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
@@ -122,11 +129,12 @@ resource "cloudflare_access_policy" "device_policy_windows_homeradmin" {
 }
 
 resource "cloudflare_access_policy" "device_policy_macos_homeradmin" {
-  application_id = module.access_app_homeradmin.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "Homer Admin Device Policy (macOS)"
-  precedence     = "2"
-  decision       = "allow"
+  application_id   = module.access_app_homeradmin.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Homer Admin Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "6h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
@@ -141,11 +149,12 @@ resource "cloudflare_access_policy" "device_policy_macos_homeradmin" {
 }
 
 resource "cloudflare_access_policy" "device_policy_windows_clancyadmin" {
-  application_id = module.access_app_clancyadmin.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "Clancy Admin Device Policy (Windows)"
-  precedence     = "1"
-  decision       = "allow"
+  application_id   = module.access_app_clancyadmin.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Clancy Admin Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "6h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
@@ -160,11 +169,12 @@ resource "cloudflare_access_policy" "device_policy_windows_clancyadmin" {
 }
 
 resource "cloudflare_access_policy" "device_policy_macos_clancyadmin" {
-  application_id = module.access_app_clancyadmin.id
-  zone_id        = var.cloudflare_zone_id
-  name           = "Clancy Admin Device Policy (macOS)"
-  precedence     = "2"
-  decision       = "allow"
+  application_id   = module.access_app_clancyadmin.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Clancy Admin Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "6h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
