@@ -12,27 +12,10 @@ resource "cloudflare_tunnel_virtual_network" "morrislan_cloud" {
   is_default_network = true
 }
 
-resource "cloudflare_tunnel_route" "morrislan" {
-  account_id         = var.cloudflare_account_id
-  tunnel_id          = cloudflare_tunnel.clancy.id
-  virtual_network_id = cloudflare_tunnel_virtual_network.morrislan_cloud.id
-  network            = "10.1.240.0/24"
-  comment            = var.env == "prod" ? "MorrisLAN" : "MorrisLAN-${var.env}"
-}
-
-resource "cloudflare_tunnel_route" "morrislan_iot" {
-  account_id         = var.cloudflare_account_id
-  tunnel_id          = cloudflare_tunnel.clancy.id
-  virtual_network_id = cloudflare_tunnel_virtual_network.morrislan_cloud.id
-  network            = "10.1.241.0/24"
-  comment            = var.env == "prod" ? "MorrisLAN-IOT" : "MorrisLAN-IOT-${var.env}"
-}
-
 resource "cloudflare_tunnel_config" "clancy" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.clancy.id
   config {
-    warp_routing { enabled = true }
     ingress_rule {
       hostname = var.env == "prod" ? "status.morrislan.net" : "status-${var.env}.morrislan.net"
       service  = "http://marge.morrislan.net:3001"
@@ -71,6 +54,30 @@ resource "cloudflare_tunnel_config" "clancy" {
         connect_timeout = "2m0s"
         no_tls_verify   = true
       }
+    }
+    ingress_rule {
+      hostname = var.env == "prod" ? "clancyipmi.morrislan.net" : "clancyipmi-${var.env}.morrislan.net"
+      service  = "https://10.1.240.12:2053"
+      origin_request {
+        connect_timeout = "2m0s"
+        no_tls_verify   = true
+      }
+    }
+    ingress_rule {
+      hostname = var.env == "prod" ? "homeripmi.morrislan.net" : "homeripmi-${var.env}.morrislan.net"
+      service  = "https://10.1.240.11:2053"
+      origin_request {
+        connect_timeout = "2m0s"
+        no_tls_verify   = true
+      }
+    }
+    ingress_rule {
+      hostname = var.env == "prod" ? "clancyssh.morrislan.net" : "clancyssh-${var.env}.morrislan.net"
+      service  = "ssh://10.1.240.1:4022"
+    }
+    ingress_rule {
+      hostname = var.env == "prod" ? "homerssh.morrislan.net" : "homerssh-${var.env}.morrislan.net"
+      service  = "ssh://10.1.240.2:4022"
     }
     ingress_rule {
       service = "http_status:404"

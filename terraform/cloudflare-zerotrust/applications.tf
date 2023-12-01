@@ -78,3 +78,67 @@ module "access_app_homeradmin" {
   cloudflare_zone_id    = var.cloudflare_zone_id
   enable_managed_policy = false
 }
+
+module "access_app_clancyipmi" {
+  source                = "m4xmorris/access-application/cloudflare"
+  version               = "3.2.0"
+  name                  = var.env == "prod" ? "Clancy IPMI" : "Clancy IPMI (${var.env})"
+  logo                  = "https://cdn.lantronix.com/wp-content/uploads/img/connectivity-type-ethernet1.png"
+  domain                = var.env == "prod" ? "clancyipmi.morrislan.net" : "clancyipmi-${var.env}.morrislan.net"
+  type                  = "self_hosted"
+  allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
+  app_launcher_visible  = true
+  session_duration      = "6h"
+  cloudflare_account_id = var.cloudflare_account_id
+  cloudflare_token      = var.cloudflare_token
+  cloudflare_zone_id    = var.cloudflare_zone_id
+  enable_managed_policy = false
+}
+
+module "access_app_homeripmi" {
+  source                = "m4xmorris/access-application/cloudflare"
+  version               = "3.2.0"
+  name                  = var.env == "prod" ? "Homer IPMI" : "Homer IPMI (${var.env})"
+  logo                  = "https://cdn.lantronix.com/wp-content/uploads/img/connectivity-type-ethernet1.png"
+  domain                = var.env == "prod" ? "homeripmi.morrislan.net" : "homeripmi-${var.env}.morrislan.net"
+  type                  = "self_hosted"
+  allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
+  app_launcher_visible  = true
+  session_duration      = "6h"
+  cloudflare_account_id = var.cloudflare_account_id
+  cloudflare_token      = var.cloudflare_token
+  cloudflare_zone_id    = var.cloudflare_zone_id
+  enable_managed_policy = false
+}
+
+module "access_app_clancyssh" {
+  source                = "m4xmorris/access-application/cloudflare"
+  version               = "3.2.0"
+  name                  = var.env == "prod" ? "Clancy SSH" : "Clancy SSH (${var.env})"
+  logo                  = "https://upload.wikimedia.org/wikipedia/commons/b/b3/Terminalicon2.png"
+  domain                = var.env == "prod" ? "clancyssh.morrislan.net" : "clancyssh-${var.env}.morrislan.net"
+  type                  = "self_hosted"
+  allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
+  app_launcher_visible  = true
+  session_duration      = "6h"
+  cloudflare_account_id = var.cloudflare_account_id
+  cloudflare_token      = var.cloudflare_token
+  cloudflare_zone_id    = var.cloudflare_zone_id
+  enable_managed_policy = false
+}
+
+module "access_app_homerssh" {
+  source                = "m4xmorris/access-application/cloudflare"
+  version               = "3.2.0"
+  name                  = var.env == "prod" ? "Homer SSH" : "Homer SSH (${var.env})"
+  logo                  = "https://upload.wikimedia.org/wikipedia/commons/b/b3/Terminalicon2.png"
+  domain                = var.env == "prod" ? "homerssh.morrislan.net" : "homerssh-${var.env}.morrislan.net"
+  type                  = "self_hosted"
+  allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
+  app_launcher_visible  = true
+  session_duration      = "6h"
+  cloudflare_account_id = var.cloudflare_account_id
+  cloudflare_token      = var.cloudflare_token
+  cloudflare_zone_id    = var.cloudflare_zone_id
+  enable_managed_policy = false
+}

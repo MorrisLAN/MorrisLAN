@@ -187,3 +187,163 @@ resource "cloudflare_access_policy" "device_policy_macos_clancyadmin" {
     device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
   }
 }
+
+resource "cloudflare_access_policy" "device_policy_windows_clancyipmi" {
+  application_id   = module.access_app_clancyipmi.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Clancy IPMI Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
+  }
+  require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
+  }
+}
+
+resource "cloudflare_access_policy" "device_policy_macos_clancyipmi" {
+  application_id   = module.access_app_clancyipmi.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Clancy IPMI Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
+  }
+  require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
+  }
+}
+
+resource "cloudflare_access_policy" "device_policy_windows_homeripmi" {
+  application_id   = module.access_app_homeripmi.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Homer IPMI Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
+  }
+  require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
+  }
+}
+
+resource "cloudflare_access_policy" "device_policy_macos_homeripmi" {
+  application_id   = module.access_app_homeripmi.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Homer IPMI Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
+  }
+  require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
+  }
+}
+
+resource "cloudflare_access_policy" "device_policy_windows_clancyssh" {
+  application_id   = module.access_app_clancyssh.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Clancy SSH Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
+  }
+  require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
+  }
+}
+
+resource "cloudflare_access_policy" "device_policy_macos_clancyssh" {
+  application_id   = module.access_app_clancyssh.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Clancy SSH Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
+  }
+  require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
+  }
+}
+
+resource "cloudflare_access_policy" "device_policy_windows_homerssh" {
+  application_id   = module.access_app_homerssh.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Homer SSH Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
+  }
+  require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
+  }
+}
+
+resource "cloudflare_access_policy" "device_policy_macos_homerssh" {
+  application_id   = module.access_app_homerssh.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Homer SSH Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
+  }
+  require {
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
+  }
+}
