@@ -72,14 +72,6 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = var.env == "prod" ? "clancyssh.morrislan.net" : "clancyssh-${var.env}.morrislan.net"
-      service  = "ssh://10.1.240.1:4022"
-    }
-    ingress_rule {
-      hostname = var.env == "prod" ? "homerssh.morrislan.net" : "homerssh-${var.env}.morrislan.net"
-      service  = "ssh://10.1.240.2:4022"
-    }
-    ingress_rule {
       service = "http_status:404"
     }
   }
