@@ -1,8 +1,3 @@
-variable "env" {
-  type        = string
-  description = "Specify the environment (prod or dev)"
-}
-
 variable "cloudflare_account_id" {
   type        = string
   sensitive   = true

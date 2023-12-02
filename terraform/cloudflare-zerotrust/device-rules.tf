@@ -1,18 +1,18 @@
 resource "cloudflare_device_posture_rule" "warp" {
   account_id = var.cloudflare_account_id
-  name       = var.env == "prod" ? "Cloudflare WARP" : "Cloudflare WARP (${var.env})"
+  name       = "Cloudflare WARP"
   type       = "warp"
 }
 
 resource "cloudflare_device_posture_rule" "gateway" {
   account_id = var.cloudflare_account_id
-  name       = var.env == "prod" ? "Cloudflare ZT Gateway" : "Cloudflare ZT Gateway (${var.env})"
+  name       = "Cloudflare ZT Gateway"
   type       = "gateway"
 }
 
 resource "cloudflare_device_posture_rule" "firewall_windows" {
   account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "Firewall (Windows)" : "Firewall (Windows) (${var.env})"
+  name        = "Firewall (Windows)"
   type        = "firewall"
   description = "Check Windows firewall is enabled"
   schedule    = "24h"
@@ -29,7 +29,7 @@ resource "cloudflare_device_posture_rule" "firewall_windows" {
 
 resource "cloudflare_device_posture_rule" "firewall_macos" {
   account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "Firewall (macOS)" : "Firewall (macOS) (${var.env})"
+  name        = "Firewall (macOS)"
   type        = "firewall"
   description = "Check macOS firewall is enabled"
   schedule    = "24h"
@@ -46,7 +46,7 @@ resource "cloudflare_device_posture_rule" "firewall_macos" {
 
 resource "cloudflare_device_posture_rule" "disk_encryption_windows" {
   account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "Disk Encryption (Windows)" : "Disk Encryption (Windows) (${var.env})"
+  name        = "Disk Encryption (Windows)"
   type        = "disk_encryption"
   description = "Check BitLocker is enabled"
   schedule    = "24h"
@@ -63,7 +63,7 @@ resource "cloudflare_device_posture_rule" "disk_encryption_windows" {
 
 resource "cloudflare_device_posture_rule" "disk_encryption_macos" {
   account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "Disk Encryption (macOS)" : "Disk Encryption (macOS) (${var.env})"
+  name        = "Disk Encryption (macOS)"
   type        = "disk_encryption"
   description = "Check FileVault is enabled"
   schedule    = "24h"
@@ -80,7 +80,7 @@ resource "cloudflare_device_posture_rule" "disk_encryption_macos" {
 
 resource "cloudflare_device_posture_rule" "os_version_windows" {
   account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "OS Version (Windows)" : "OS Version (Windows) (${var.env})"
+  name        = "OS Version (Windows)"
   type        = "os_version"
   description = "Check Windows version meets or exceeds minimum"
   schedule    = "24h"
@@ -98,7 +98,7 @@ resource "cloudflare_device_posture_rule" "os_version_windows" {
 
 resource "cloudflare_device_posture_rule" "os_version_macos" {
   account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "OS Version (macOS)" : "OS Version (macOS) (${var.env})"
+  name        = "OS Version (macOS)"
   type        = "os_version"
   description = "Check macOS version meets or exceeds minimum"
   schedule    = "24h"
@@ -116,7 +116,7 @@ resource "cloudflare_device_posture_rule" "os_version_macos" {
 
 resource "cloudflare_device_posture_rule" "os_version_ios" {
   account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "OS Version (iOS)" : "OS Version (iOS) (${var.env})"
+  name        = "OS Version (iOS)"
   type        = "os_version"
   description = "Check iOS version meets or exceeds minimum"
   schedule    = "24h"
@@ -134,7 +134,7 @@ resource "cloudflare_device_posture_rule" "os_version_ios" {
 
 resource "cloudflare_device_posture_rule" "os_version_android" {
   account_id  = var.cloudflare_account_id
-  name        = var.env == "prod" ? "OS Version (Android)" : "OS Version (Android) (${var.env})"
+  name        = "OS Version (Android)"
   type        = "os_version"
   description = "Check Android version meets or exceeds minimum"
   schedule    = "24h"

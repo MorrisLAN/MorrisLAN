@@ -5,7 +5,6 @@ on:
   pull_request:
     branches:
       - main
-      - dev
 
 env:
   TF_IN_AUTOMATION: "true"
@@ -18,12 +17,9 @@ env:
   TF_VAR_gh_client_secret: "${{ secrets.GH_CLIENT_SECRET }}"
 
 jobs:
-  terraform-plan-prod:
+  terraform-plan:
     if: (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
-    name: "Terraform Plan (prod)"
-    env:
-      TF_VAR_env: "prod"
-      TF_WORKSPACE: "morrislan"
+    name: "Terraform Plan"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -64,75 +60,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `## Terraform Checks (Prod)
-            #### Format Check 📏\`${{ steps.fmt-check.outcome }}\`
-            #### Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Validation 🤖\`${{ steps.validate.outcome }}\`
-            #### Plan 📖\`${{ steps.plan.outcome }}\`
-
-            <details><summary>Show Plan</summary>
-
-            \`\`\`\n
-            ${process.env.PLAN}
-            \`\`\`
-
-            </details>
-            `;
-
-            github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: output
-            });
-
-  terraform-plan-dev:
-    if: (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'dev') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev')
-    name: "Terraform Plan (dev)"
-    env:
-      TF_VAR_env: "dev"
-      TF_WORKSPACE: "morrislan-dev"
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./terraform
-    permissions:
-      contents: read
-      pull-requests: write
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: hashicorp/setup-terraform@v2
-        with:
-          cli_config_credentials_token: ${{ secrets.TFC_TOKEN }}
-
-      - name: Format Check
-        id: fmt-check
-        run: terraform fmt -check
-
-      - name: Initialize Terraform
-        id: init
-        run: terraform init
-
-      - name: Validate
-        id: validate
-        run: terraform validate -no-color
-
-      - name: Create Plan
-        id: plan
-        run: terraform plan -no-color
-        continue-on-error: true
-
-      - name: Upload Plan to PR
-        uses: actions/github-script@v6
-        if: github.event_name == 'pull_request' && github.ref == 'refs/heads/dev'
-        env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `## Terraform Checks (Dev)
+            const output = `## Terraform Checks
             #### Format Check 📏\`${{ steps.fmt-check.outcome }}\`
             #### Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Validation 🤖\`${{ steps.validate.outcome }}\`

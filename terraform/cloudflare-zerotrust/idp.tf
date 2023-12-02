@@ -1,6 +1,6 @@
 resource "cloudflare_access_identity_provider" "github" {
   account_id = var.cloudflare_account_id
-  name       = var.env == "prod" ? "MorrisLAN GitHub" : "MorrisLAN GitHub (${var.env})"
+  name       = "MorrisLAN GitHub"
   type       = "github"
   config {
     client_id     = var.github_client_id
@@ -10,6 +10,6 @@ resource "cloudflare_access_identity_provider" "github" {
 
 resource "cloudflare_access_identity_provider" "otp" {
   account_id = var.cloudflare_account_id
-  name       = var.env == "prod" ? "OTP" : "OTP (${var.env})"
+  name       = "Email OTP"
   type       = "onetimepin"
 }

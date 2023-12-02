@@ -1,6 +1,6 @@
 resource "cloudflare_record" "access_app_status" {
   zone_id         = var.cloudflare_zone_id
-  name            = var.env == "prod" ? "status.morrislan.net" : "status-${var.env}.morrislan.net"
+  name            = "status.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Network Status page"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -11,7 +11,7 @@ resource "cloudflare_record" "access_app_status" {
 
 resource "cloudflare_record" "access_app_ha" {
   zone_id         = var.cloudflare_zone_id
-  name            = var.env == "prod" ? "ha.morrislan.net" : "ha-${var.env}.morrislan.net"
+  name            = "ha.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Home Assistant"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -22,7 +22,7 @@ resource "cloudflare_record" "access_app_ha" {
 
 resource "cloudflare_record" "access_app_unifi" {
   zone_id         = var.cloudflare_zone_id
-  name            = var.env == "prod" ? "unifi.morrislan.net" : "unifi-${var.env}.morrislan.net"
+  name            = "unifi.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for UniFi Controller"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -33,7 +33,7 @@ resource "cloudflare_record" "access_app_unifi" {
 
 resource "cloudflare_record" "access_app_clancyadmin" {
   zone_id         = var.cloudflare_zone_id
-  name            = var.env == "prod" ? "clancyadmin.morrislan.net" : "clancyadmin-${var.env}.morrislan.net"
+  name            = "clancyadmin.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Clancy Admin"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -44,7 +44,7 @@ resource "cloudflare_record" "access_app_clancyadmin" {
 
 resource "cloudflare_record" "access_app_homeradmin" {
   zone_id         = var.cloudflare_zone_id
-  name            = var.env == "prod" ? "homeradmin.morrislan.net" : "homeradmin-${var.env}.morrislan.net"
+  name            = "homeradmin.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Homer Admin"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -55,7 +55,7 @@ resource "cloudflare_record" "access_app_homeradmin" {
 
 resource "cloudflare_record" "access_app_clancyipmi" {
   zone_id         = var.cloudflare_zone_id
-  name            = var.env == "prod" ? "clancyipmi.morrislan.net" : "clancyipmi-${var.env}.morrislan.net"
+  name            = "clancyipmi.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Clancy IPMI"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
@@ -66,7 +66,7 @@ resource "cloudflare_record" "access_app_clancyipmi" {
 
 resource "cloudflare_record" "access_app_homeripmi" {
   zone_id         = var.cloudflare_zone_id
-  name            = var.env == "prod" ? "homeripmi.morrislan.net" : "homeripmi-${var.env}.morrislan.net"
+  name            = "homeripmi.morrislan.net"
   comment         = "CNAME to Clancy ZT Tunnel for Homer IPMI"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true

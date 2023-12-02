@@ -1,9 +1,9 @@
 module "access_app_status" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
-  name                  = var.env == "prod" ? "Network Status" : "Network Status (${var.env})"
+  name                  = "MorrisLAN Status"
   logo                  = "https://static-00.iconduck.com/assets.00/uptime-kuma-icon-512x469-ce3ut52z.png"
-  domain                = var.env == "prod" ? "status.morrislan.net" : "status-${var.env}.morrislan.net"
+  domain                = "status.morrislan.net"
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
@@ -18,9 +18,9 @@ module "access_app_status" {
 module "access_app_ha" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
-  name                  = var.env == "prod" ? "Home Assistant" : "Home Assistant (${var.env})"
+  name                  = "Home Assistant"
   logo                  = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/2048px-Home_Assistant_Logo.svg.png"
-  domain                = var.env == "prod" ? "ha.morrislan.net" : "ha-${var.env}.morrislan.net"
+  domain                = "ha.morrislan.net"
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
@@ -34,9 +34,9 @@ module "access_app_ha" {
 module "access_app_unifi" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
-  name                  = var.env == "prod" ? "UniFi" : "UniFi (${var.env})"
+  name                  = "UniFi"
   logo                  = "https://assets-global.website-files.com/622b70d8906c7ab0c03f77f8/63b40a92093c6b2f3767e4e6_tMCv8T-y_400x400.png"
-  domain                = var.env == "prod" ? "unifi.morrislan.net" : "unifi-${var.env}.morrislan.net"
+  domain                = "unifi.morrislan.net"
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
@@ -50,9 +50,9 @@ module "access_app_unifi" {
 module "access_app_clancyadmin" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
-  name                  = var.env == "prod" ? "Clancy Admin" : "Clancy Admin (${var.env})"
+  name                  = "Clancy Admin"
   logo                  = "https://user-images.githubusercontent.com/23664304/36225509-be167464-117f-11e8-9bfc-cba7acd889c5.png"
-  domain                = var.env == "prod" ? "clancyadmin.morrislan.net" : "clancyadmin-${var.env}.morrislan.net"
+  domain                = "clancyadmin.morrislan.net"
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
@@ -66,9 +66,9 @@ module "access_app_clancyadmin" {
 module "access_app_homeradmin" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
-  name                  = var.env == "prod" ? "Homer Admin" : "Homer Admin (${var.env})"
+  name                  = "Homer Admin"
   logo                  = "https://tweakers.net/ext/i/2005515460.png"
-  domain                = var.env == "prod" ? "homeradmin.morrislan.net" : "homeradmin-${var.env}.morrislan.net"
+  domain                = "homeradmin.morrislan.net"
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
@@ -82,9 +82,9 @@ module "access_app_homeradmin" {
 module "access_app_clancyipmi" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
-  name                  = var.env == "prod" ? "Clancy IPMI" : "Clancy IPMI (${var.env})"
+  name                  = "Clancy IPMI"
   logo                  = "https://cdn.lantronix.com/wp-content/uploads/img/connectivity-type-ethernet1.png"
-  domain                = var.env == "prod" ? "clancyipmi.morrislan.net" : "clancyipmi-${var.env}.morrislan.net"
+  domain                = "clancyipmi.morrislan.net"
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
@@ -98,9 +98,9 @@ module "access_app_clancyipmi" {
 module "access_app_homeripmi" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
-  name                  = var.env == "prod" ? "Homer IPMI" : "Homer IPMI (${var.env})"
+  name                  = "Homer IPMI"
   logo                  = "https://cdn.lantronix.com/wp-content/uploads/img/connectivity-type-ethernet1.png"
-  domain                = var.env == "prod" ? "homeripmi.morrislan.net" : "homeripmi-${var.env}.morrislan.net"
+  domain                = "homeripmi.morrislan.net"
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
