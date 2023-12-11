@@ -42,38 +42,6 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = "clancyadmin.morrislan.net"
-      service  = "https://10.1.240.1:2053"
-      origin_request {
-        connect_timeout = "2m0s"
-        no_tls_verify   = true
-      }
-    }
-    ingress_rule {
-      hostname = "homeradmin.morrislan.net"
-      service  = "https://10.1.240.2:2053"
-      origin_request {
-        connect_timeout = "2m0s"
-        no_tls_verify   = true
-      }
-    }
-    ingress_rule {
-      hostname = "clancyipmi.morrislan.net"
-      service  = "https://10.1.240.12:2053"
-      origin_request {
-        connect_timeout = "2m0s"
-        no_tls_verify   = true
-      }
-    }
-    ingress_rule {
-      hostname = "homeripmi.morrislan.net"
-      service  = "https://10.1.240.11:2053"
-      origin_request {
-        connect_timeout = "2m0s"
-        no_tls_verify   = true
-      }
-    }
-    ingress_rule {
       service = "http_status:404"
     }
   }
