@@ -9,6 +9,7 @@ resource "cloudflare_teams_rule" "allow_morrislan" {
   name        = "Allow MorrisLAN"
   description = "Allow access to MorrisLAN resources"
   precedence  = 1
+  enabled     = true
   action      = "allow"
   filters     = ["dns"]
   traffic     = "any(dns.domains[*] == \"morrislan.net\")"
@@ -19,6 +20,7 @@ resource "cloudflare_teams_rule" "block_threats" {
   name        = "Block Security Threats"
   description = "Block access to domains that are shown as threats in Cloudflare Radar"
   precedence  = 2
+  enabled     = true
   action      = "block"
   filters     = ["dns"]
   traffic     = "any(dns.security_category[*] in {80 83 117 131 151 153 175 176}) or any(dns.content_category[*] in {32})"
