@@ -5,13 +5,6 @@ resource "cloudflare_tunnel" "clancy" {
   config_src = "cloudflare"
 }
 
-resource "cloudflare_tunnel_virtual_network" "morrislan_cloud" {
-  account_id         = var.cloudflare_account_id
-  name               = "MorrisLAN-Cloud"
-  comment            = "Default virtual network for accessing MorrisLAN resources"
-  is_default_network = true
-}
-
 resource "cloudflare_tunnel_config" "clancy" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.clancy.id
