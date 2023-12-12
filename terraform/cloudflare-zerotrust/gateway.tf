@@ -21,7 +21,7 @@ resource "cloudflare_teams_rule" "block_threats" {
   precedence  = 2
   action      = "block"
   filters     = ["dns"]
-  traffic     = "any(dns.security_category[*] in {80,83,117,131,151,153,175,176})"
+  traffic     = "any(dns.security_category[*] in {80 83 117 131 151 153 175 176})"
   rule_settings {
     block_page_enabled = true
   }
