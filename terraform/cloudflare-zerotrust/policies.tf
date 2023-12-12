@@ -9,7 +9,7 @@ resource "cloudflare_access_policy" "device_policy_windows_ha" {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
   require {
-    geo = [ "GB" ]
+    geo = ["GB"]
     github {
       name                 = "MorrisLAN"
       identity_provider_id = cloudflare_access_identity_provider.github.id
@@ -30,7 +30,7 @@ resource "cloudflare_access_policy" "device_policy_macos_ha" {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
   require {
-    geo = [ "GB" ]
+    geo = ["GB"]
     github {
       name                 = "MorrisLAN"
       identity_provider_id = cloudflare_access_identity_provider.github.id
@@ -51,7 +51,7 @@ resource "cloudflare_access_policy" "device_policy_ios_ha" {
     device_posture = [cloudflare_device_posture_rule.os_version_ios.id]
   }
   require {
-    geo = [ "GB" ]
+    geo            = ["GB"]
     device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.os_version_ios.id]
   }
 }
@@ -67,7 +67,7 @@ resource "cloudflare_access_policy" "device_policy_android_ha" {
     device_posture = [cloudflare_device_posture_rule.os_version_android.id]
   }
   require {
-    geo = [ "GB" ]
+    geo            = ["GB"]
     device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.os_version_android.id]
   }
 }
@@ -83,7 +83,7 @@ resource "cloudflare_access_policy" "device_policy_windows_unifi" {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
   require {
-    geo = [ "GB" ]
+    geo = ["GB"]
     github {
       name                 = "MorrisLAN"
       identity_provider_id = cloudflare_access_identity_provider.github.id
@@ -104,7 +104,7 @@ resource "cloudflare_access_policy" "device_policy_macos_unifi" {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
   require {
-    geo = [ "GB" ]
+    geo = ["GB"]
     github {
       name                 = "MorrisLAN"
       identity_provider_id = cloudflare_access_identity_provider.github.id
