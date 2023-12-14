@@ -4,6 +4,13 @@ variable "cloudflare_token" {
   sensitive   = true
 }
 
+variable "do_token" {
+  description = "DigitalOcean API Token"
+  type        = string
+  sensitive   = true
+}
+
+
 variable "cloudflare_account_id" {
   description = "Cloudflare Account ID"
   type        = string
