@@ -1,6 +1,6 @@
 module "static_site" {
   source      = "m4xmorris/static-site/digitalocean"
-  version     = "1.3.1"
+  version     = "1.3.2"
   site_name   = "morrislan"
   description = "Webroot for MorrisLAN"
   environment = "Production"
