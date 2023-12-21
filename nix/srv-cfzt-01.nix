@@ -58,6 +58,7 @@
   users.users = {
     admin = {
       uid = 1000;
+      isNormalUser = true;
       home = "/home/admin";
       name = "admin";
       group = "admin";
