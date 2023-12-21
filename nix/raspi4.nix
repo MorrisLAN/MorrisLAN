@@ -1,23 +1,34 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, pkgs, ... }: {
+  nixpkgs.localSystem.system = "aarch64-linux";
   imports = [
-    <nixpkgs/nixos/modules/installer/cd-dvd/sd-image.nix>
+    <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
     ./srv-cfzt-01.nix
   ];
+  boot.kernelPackages = pkgs.linuxPackages_rpi4;
+  boot.loader.grub.enable = false;
+  boot.loader.generic-extlinux-compatible.enable = true;
 
-  boot = {
-    kernelPackages = pkgs.linuxPackages_rpi4;
-    loader.grub.enable = false;
-    loader.generic-extlinux-compatible.enable = true;
-    consoleLogLevel = lib.mkDefault 7;
-    kernelParams =
-      [ "console=ttyS0,115200n8" "console=ttyAMA0,115200n8" "console=tty0" ];
-    initrd.availableKernelModules = [
-      "vc4"
-      "bcm2835_dma"
-      "i2c_bcm2835"
-    ];
-  };
-  
+  boot.consoleLogLevel = lib.mkDefault 7;
+ 
+  boot.kernelParams =
+    [ "console=ttyS0,115200n8" "console=ttyAMA0,115200n8" "console=tty0" ];
+
+  boot.initrd.availableKernelModules = [
+    "vc4"
+    "bcm2835_dma"
+    "i2c_bcm2835"
+    "sun4i_drm"
+    "sun8i_drm_hdmi"
+    "sun8i_mixer"
+  ];
+
+  nixpkgs.overlays = [
+    (final: super: {
+      makeModulesClosure = x:
+        super.makeModulesClosure (x // { allowMissing = true; });
+    })
+  ];
+
   sdImage = {
     populateFirmwareCommands = let
       configTxt = pkgs.writeText "config.txt" ''
@@ -27,16 +38,28 @@
         kernel=u-boot-rpi4.bin
         enable_gic=1
         armstub=armstub8-gic.bin
+        # Otherwise the resolution will be weird in most cases, compared to
+        # what the pi3 firmware does by default.
+        disable_overscan=1
         [all]
+        # Boot in 64-bit mode.
         arm_64bit=1
+        # U-Boot needs this to work, regardless of whether UART is actually used or not.
+        # Look in arch/arm/mach-bcm283x/Kconfig in the U-Boot tree to see if this is still
+        # a requirement in the future.
         enable_uart=1
+        # Prevent the firmware from smashing the framebuffer setup done by the mainline kernel
+        # when attempting to show low-voltage or overtemperature warnings.
         avoid_warnings=1
       '';
     in ''
       (cd ${pkgs.raspberrypifw}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf $NIX_BUILD_TOP/firmware/)
+      # Add the config
       cp ${configTxt} firmware/config.txt
+      # Add pi3 specific files
       cp ${pkgs.ubootRaspberryPi3_64bit}/u-boot.bin firmware/u-boot-rpi3.bin
-      cp ${pkgs.ubootRaspberryPi}/u-boot.bin firmware/u-boot-rpi4.bin
+      # Add pi4 specific files
+      cp ${pkgs.ubootRaspberryPi4_64bit}/u-boot.bin firmware/u-boot-rpi4.bin
       cp ${pkgs.raspberrypi-armstubs}/armstub8-gic.bin firmware/armstub8-gic.bin
       cp ${pkgs.raspberrypifw}/share/raspberrypi/boot/bcm2711-rpi-4-b.dtb firmware/
     '';
