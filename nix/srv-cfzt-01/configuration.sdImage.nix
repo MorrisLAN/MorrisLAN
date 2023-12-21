@@ -41,9 +41,9 @@
        rand = "asd";
        prefixLength = 24;
       }];
-      defaultGateway = "10.1.240.1";
-      nameservers = [ "10.1.240.3" ];
     };
+    defaultGateway = "10.1.240.1";
+    nameservers = [ "10.1.240.3" ];
   };
 
   time.timeZone = "Europe/London";
