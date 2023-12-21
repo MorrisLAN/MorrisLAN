@@ -13,7 +13,7 @@
  
   boot.kernelPackages = pkgs.linuxPackages_5_4;
 
-  environment.systemPackages = with pkgs; [ vim curl wget nano neofetch cloudflared libraspberrypi raspberrypi-eeprom ];
+  environment.systemPackages = with pkgs; [ vim curl wget nano neofetch cloudflared libraspberrypi ];
 
   services.openssh = {
       enable = true;

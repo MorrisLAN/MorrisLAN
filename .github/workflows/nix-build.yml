@@ -1,5 +1,5 @@
 # Just a sample workflow if using debian packages for binfmt
-name: nix-build
+name: "Nix Build"
 on:
   push:
   workflow_dispatch:
