@@ -1,12 +1,11 @@
 # Just a sample workflow if using debian packages for binfmt
-name: nix-build-on-demand-debian
+name: nix-build
 on:
-  push:
   workflow_dispatch:
       
 jobs:
   build-srv-cfzt-01:
-    name: Build custom image
+    name: Build NixOS image for `srv-cfzt-01`
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3.5.3
@@ -17,11 +16,6 @@ jobs:
           extra-platforms = aarch64-linux
     - name: Check nix.conf
       run: cat /etc/nix/nix.conf
-    - uses: myci-actions/add-deb-repo@11
-      with:
-        repo: deb http://http.us.debian.org/debian sid main non-free contrib
-        repo-name: debian-sid
-        keys: 04EE7237B7D453EC
     - run: |
         sudo apt -y install qemu-user-static
     - name: Test binfmt availability
