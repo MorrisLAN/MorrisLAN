@@ -27,7 +27,10 @@
   };
 
   networking.firewall.enable = false;
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+      enable = true;
+      unmanaged = [ "wlan0" ];
+  }
 
   time.timeZone = "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
