@@ -1,6 +1,7 @@
 # Just a sample workflow if using debian packages for binfmt
 name: nix-build
 on:
+  push:
   workflow_dispatch:
       
 jobs:
