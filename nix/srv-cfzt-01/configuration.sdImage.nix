@@ -38,7 +38,6 @@
       useDHCP = false;
       ipv4.addresses = [{
        address = "10.1.240.5";
-       rand = "asd";
        prefixLength = 24;
       }];
     };
