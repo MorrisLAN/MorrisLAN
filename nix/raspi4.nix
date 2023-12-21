@@ -7,7 +7,10 @@
   ];
 
   sdImage.compressImage = false;
- 
+  
+  boot.loader.grub.enable = false;
+  boot.loader.generic-extlinux-compatible.enable = true;
+
   boot.kernelPackages = pkgs.linuxPackages_5_4;
 
   nixpkgs.config.allowUnfree = true;
@@ -24,11 +27,7 @@
   };
 
   networking.firewall.enable = false;
-  networking = {
-    interfaces.eth0 = {
-      useDHCP = true;
-    };
-  };
+  networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
