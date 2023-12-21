@@ -2,19 +2,11 @@
 name: nix-build-on-demand-debian
 on:
   workflow_dispatch:
-    inputs:
-      environmentName:
-        description: Environment name that stores configuration.nix
-        required: true
-        default: default
       
 jobs:
   build-srv-cfzt-01:
     name: Build custom image
-    if: ${{ github.event.inputs.environmentName != 'default' }}
     runs-on: ubuntu-22.04
-    environment:
-      name: ${{ github.event.inputs.environmentName }}
     steps:
     - uses: actions/checkout@v3.5.3
     - uses: cachix/install-nix-action@v20
