@@ -2,7 +2,7 @@
   nixpkgs.localSystem.system = "aarch64-linux";
   imports = [
     <nixpkgs/nixos/modules/installer/cd-dvd/sd-image.nix>
-    ./configuration.nix
+    ./nix/srv-cfzt-01.nix
   ];
 
   boot = {
