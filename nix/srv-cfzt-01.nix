@@ -1,18 +1,4 @@
 { config, pkgs, lib, ... }: {
-  boot = {
-    kernelPackages = pkgs.linuxPackages_rpi4;
-    loader.grub.enable = false;
-    loader.generic-extlinux-compatible.enable = true;
-    consoleLogLevel = lib.mkDefault 7;
-    kernelParams =
-      [ "console=ttyS0,115200n8" "console=ttyAMA0,115200n8" "console=tty0" ];
-    initrd.availableKernelModules = [
-      "vc4"
-      "bcm2835_dma"
-      "i2c_bcm2835"
-    ];
-  };
-
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
