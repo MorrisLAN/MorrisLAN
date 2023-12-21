@@ -4,7 +4,7 @@
     <nixpkgs/nixos/modules/installer/cd-dvd/sd-image.nix>
     ./srv-cfzt-01.nix
   ];
-  boot.kernelPackages = pkgs.linuxPackages_rpi4 pkgs.ubootRaspberryPi4_64bit;
+  boot.kernelPackages = pkgs.linuxPackages_rpi4;
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
