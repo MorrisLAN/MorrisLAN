@@ -14,8 +14,8 @@ jobs:
         nix_path: nixpkgs=channel:nixos-20.09
         extra_nix_config: |
           extra-platforms = aarch64-linux
-    - run: |
-        sudo apt -y install qemu-user-static
+    - name: "Install QEMU"
+      run: sudo apt -y install qemu-user-static
     - name: Test aarch64 binfmt emulation
       run: |
         cat /proc/sys/fs/binfmt_misc/qemu-aarch64
