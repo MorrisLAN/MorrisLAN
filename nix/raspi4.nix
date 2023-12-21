@@ -29,6 +29,11 @@
     })
   ];
 
+
+  environment.systemPackages = [
+    pkgs.ubootRaspberryPi4_64bit
+  ];
+
   sdImage = {
     populateFirmwareCommands = let
       configTxt = pkgs.writeText "config.txt" ''
