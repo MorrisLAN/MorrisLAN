@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }: {
-  nixpkgs.localSystem.system = "aarch64-linux";
   imports = [
     <nixpkgs/nixos/modules/installer/cd-dvd/sd-image.nix>
     ./srv-cfzt-01.nix
