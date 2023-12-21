@@ -13,6 +13,7 @@
  
   boot.kernelPackages = pkgs.linuxPackages_5_4;
 
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [ vim curl wget nano neofetch cloudflared libraspberrypi ];
 
   services.openssh = {
