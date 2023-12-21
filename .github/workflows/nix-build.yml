@@ -6,7 +6,7 @@ on:
       
 jobs:
   build-srv-cfzt-01:
-    name: Build NixOS image for `srv-cfzt-01`
+    name: Build NixOS for Raspberry Pi 4
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3.5.3
@@ -27,10 +27,10 @@ jobs:
       run: |
         nix-build '<nixpkgs/nixos>'  \
           -A config.system.build.sdImage \
-          -I nixos-config=./nix/srv-cfzt-01/configuration.sdImage.nix \
+          -I nixos-config=./nix/raspi4.nix \
           --argstr system aarch64-linux \
           --option sandbox false
     - uses: actions/upload-artifact@v3
       with:
-        name: sd-image.img
+        name: raspi4.img
         path: ./result/sd-image/*.img*

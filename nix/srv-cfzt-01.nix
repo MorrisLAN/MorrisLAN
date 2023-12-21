@@ -1,20 +1,20 @@
 { config, pkgs, lib, ... }:
 {
-
-  imports = [
-    <nixpkgs/nixos/modules/installer/cd-dvd/sd-image-aarch64.nix>
-    <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
-  ];
-
-  sdImage.compressImage = false;
-  
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
  
   boot.kernelPackages = pkgs.linuxPackages_5_4;
 
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/NIXOS_SD";
+      fsType = "ext4";
+    };
+  };
+  swapDevices = [ { device = "/swapfile"; size = 1024; } ];
+
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ vim curl wget nano neofetch cloudflared libraspberrypi ];
+  environment.systemPackages = with pkgs; [ vim curl wget nano neofetch cloudflared ];
 
   services.openssh = {
       enable = true;
@@ -69,9 +69,9 @@
       group = "admin";
       shell = pkgs.zsh;
       extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjgkh0LyGVjWzYnCxrKC5dxQMHE3ky7s/vFpAyjfk5l"
+      ];
     };
   };
-  users.extraUsers.root.openssh.authorizedKeys.keys = [
-     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjgkh0LyGVjWzYnCxrKC5dxQMHE3ky7s/vFpAyjfk5l"
-  ];
 }
