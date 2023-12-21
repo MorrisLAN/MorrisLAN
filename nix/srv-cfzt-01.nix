@@ -60,6 +60,7 @@
       uid = 1000;
       home = "/home/admin";
       name = "admin";
+      group = "admin";
       shell = pkgs.zsh;
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = [
@@ -67,4 +68,5 @@
       ];
     };
   };
+  users.groups.admin = {};
 }
