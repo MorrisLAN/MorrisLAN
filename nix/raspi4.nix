@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
   nixpkgs.localSystem.system = "aarch64-linux";
   imports = [
-    <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
+    <nixpkgs/nixos/modules/installer/cd-dvd/sd-image.nix>
     ./srv-cfzt-01.nix
   ];
   boot.kernelPackages = pkgs.linuxPackages_rpi4;
