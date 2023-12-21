@@ -7,9 +7,6 @@
   ];
 
   sdImage.compressImage = false;
-  
-  boot.loader.grub.enable = false;
-  boot.loader.generic-extlinux-compatible.enable = true;
  
   boot.kernelPackages = pkgs.linuxPackages_5_4;
 

@@ -7,3 +7,4 @@
 
 [![Trivy](https://github.com/MorrisLAN/morrislan/actions/workflows/trivy.yml/badge.svg)](https://github.com/MorrisLAN/morrislan/actions/workflows/trivy.yml)
 [![Terraform Apply](https://github.com/MorrisLAN/morrislan/actions/workflows/terraform-apply.yml/badge.svg)](https://github.com/MorrisLAN/morrislan/actions/workflows/terraform-apply.yml)
+[![Nix Build](https://github.com/MorrisLAN/morrislan/actions/workflows/nix-build.yml/badge.svg)](https://github.com/MorrisLAN/morrislan/actions/workflows/nix-build.yml)
