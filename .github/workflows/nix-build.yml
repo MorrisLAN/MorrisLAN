@@ -1,6 +1,5 @@
 name: "Nix Build"
 on:
-  push:
   workflow_dispatch:
       
 jobs:
