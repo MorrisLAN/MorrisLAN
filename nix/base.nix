@@ -47,4 +47,5 @@
     };
   };
   users.groups.admin = {};
+  security.sudo.wheelNeedsPassword = false;
 }
