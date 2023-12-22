@@ -46,4 +46,5 @@
       Group = "cloudflared";
     };
   };
+  system.stateVersion = "23.11";
 }
