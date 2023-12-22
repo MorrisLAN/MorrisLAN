@@ -2,7 +2,7 @@
   nixpkgs.localSystem.system = "aarch64-linux";
   imports = [
     <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
-    ./srv-cfzt-01.nix
+    ./configuration.nix
   ];
   boot.kernelPackages = pkgs.linuxPackages_rpi4;
   boot.loader.grub.enable = false;

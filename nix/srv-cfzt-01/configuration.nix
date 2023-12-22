@@ -68,6 +68,22 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjgkh0LyGVjWzYnCxrKC5dxQMHE3ky7s/vFpAyjfk5l"
       ];
     };
+    cloudflared = {
+      group = "cloudflared";
+      isSystemUser = true;
+    };
   };
   users.groups.admin = {};
+  users.groups.cloudflared = { };
+
+  systemd.services.morrislan_tunnel = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token=TOKEN_PLACEHOLDER";
+      Restart = "always";
+      User = "cloudflared";
+      Group = "cloudflared";
+    };
+  };
 }
