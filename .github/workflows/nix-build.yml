@@ -32,5 +32,5 @@ jobs:
     - name: Upload image
       uses: actions/upload-artifact@v3
       with:
-        name: srv-cfzt-01.zip
+        name: srv-cfzt-01
         path: ./result/sd-image/*.img*
