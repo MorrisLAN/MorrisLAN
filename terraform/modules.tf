@@ -31,3 +31,11 @@ module "cloudflare-zerotrust" {
   github_client_secret  = var.gh_client_secret
   cloudflare_zone_id    = var.cloudflare_zone_id
 }
+
+module "teleport" {
+  source             = "./teleport"
+  gh_client_id       = var.gh_client_id
+  gh_client_secret   = var.gh_client_secret
+  do_token           = var.do_token
+  dovpc_tunnel_token = module.cloudflare-zerotrust.dovpc_tunnel_token
+}
