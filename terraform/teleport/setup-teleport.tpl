@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
+# Wait for do-agent DPKG lock to release
+while true; do
+    if [ ! -f /var/lib/dpkg/lock ] && [ ! -f /var/lib/apt/lists/lock ]; then
+        break
+    else
+        echo "Waiting for APT/DPKG to be available..."
+        sleep 5
+    fi
+done
+
 # Install Teleport
 curl https://goteleport.com/static/install.sh | bash -s 14.2.3
 
