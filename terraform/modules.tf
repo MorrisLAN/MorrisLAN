@@ -33,9 +33,9 @@ module "cloudflare-zerotrust" {
 }
 
 module "teleport" {
-  source           = "./teleport"
-  gh_client_id     = var.gh_client_id
-  gh_client_secret = var.gh_client_secret
-  do_token         = var.do_token
+  source             = "./teleport"
+  gh_client_id       = var.gh_client_id
+  gh_client_secret   = var.gh_client_secret
+  do_token           = var.do_token
   dovpc_tunnel_token = module.cloudflare-zerotrust.dovpc_tunnel_token
 }
