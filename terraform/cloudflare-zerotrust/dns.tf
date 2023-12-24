@@ -30,3 +30,14 @@ resource "cloudflare_record" "access_app_unifi" {
   proxied         = true
   depends_on      = [cloudflare_tunnel.clancy]
 }
+
+resource "cloudflare_record" "access_app_teleport" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "access.morrislan.net"
+  comment         = "CNAME to DigitalOcean VPC ZT Tunnel for Teleport"
+  value           = cloudflare_tunnel.dovpc.cname
+  allow_overwrite = true
+  type            = "CNAME"
+  proxied         = true
+  depends_on      = [cloudflare_tunnel.dovpc]
+}

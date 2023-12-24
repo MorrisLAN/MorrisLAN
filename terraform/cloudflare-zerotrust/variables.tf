@@ -30,3 +30,7 @@ variable "github_client_secret" {
 resource "random_password" "tunnel_secret" {
   length = 64
 }
+
+resource "random_password" "dovpc_tunnel_secret" {
+  length = 64
+}

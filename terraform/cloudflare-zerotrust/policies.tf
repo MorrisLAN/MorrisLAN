@@ -113,3 +113,45 @@ resource "cloudflare_access_policy" "device_policy_macos_unifi" {
     device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
   }
 }
+
+resource "cloudflare_access_policy" "device_policy_windows_teleport" {
+  application_id   = module.access_app_teleport.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Teleport Device Policy (Windows)"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
+  }
+  require {
+    geo = ["GB"]
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_windows.id, cloudflare_device_posture_rule.disk_encryption_windows.id, cloudflare_device_posture_rule.os_version_windows.id]
+  }
+}
+
+resource "cloudflare_access_policy" "device_policy_macos_teleport" {
+  application_id   = module.access_app_teleport.id
+  zone_id          = var.cloudflare_zone_id
+  name             = "Teleport Device Policy (macOS)"
+  precedence       = "2"
+  decision         = "allow"
+  session_duration = "6h"
+  include {
+    device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
+  }
+  require {
+    geo = ["GB"]
+    github {
+      name                 = "MorrisLAN"
+      identity_provider_id = cloudflare_access_identity_provider.github.id
+      teams                = ["Admins"]
+    }
+    device_posture = [cloudflare_device_posture_rule.gateway.id, cloudflare_device_posture_rule.warp.id, cloudflare_device_posture_rule.firewall_macos.id, cloudflare_device_posture_rule.disk_encryption_macos.id, cloudflare_device_posture_rule.os_version_macos.id]
+  }
+}
