@@ -60,5 +60,8 @@ resource "cloudflare_tunnel_config" "dovpc" {
         no_tls_verify   = true
       }
     }
+    ingress_rule {
+      service = "http_status:404"
+    }
   }
 }
