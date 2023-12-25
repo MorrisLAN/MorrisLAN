@@ -67,10 +67,6 @@
         enabled = true;
         web_listen_addr = "127.0.0.1:443";
         public_addr = "access.morrislan.net:443";
-        https_keypairs = {
-          key_file = "/etc/teleport/key.pem";
-          cert_file = "/etc/teleport/cert.pem";
-        };
       };
       ssh_service = {
         enabled = true;
@@ -78,25 +74,16 @@
     };
   };
 
-  environment.etc."teleport/key.pem".text = ''
-    ${pkgs.openssl}/bin/openssl genpkey -algorithm RSA -out /etc/teleport/key.pem
-  '';
-
-  environment.etc."teleport/cert.pem".text = ''
-    ${pkgs.openssl}/bin/openssl req -new -x509 -key /etc/teleport/key.pem -out /etc/teleport/cert.pem -days 3650 -subj "/CN=access.morrislan.net"
-    '';
-
   systemd.services.teleport-sso = {
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      Type = "oneshot";
+      enable = true;
       script = ''
         #!/bin/sh
-        # Commands to configure GitHub SSO for Teleport
-        ${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=morrislan,admins,auditor,access,editor > github.yaml
-        ${pkgs.teleport}/bin/tctl create -f github.yaml
+        ${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=MorrisLAN,admins,auditor,access,editor > /tmp/github.yaml
+        sed -i '/endpoint_url:/d' /tmp/github.yaml
+        ${pkgs.teleport}/bin/tctl create -f /tmp/github.yaml
         systemctl disable teleport-sso.service
-        rm /etc/nixos/teleport-sso.sh
       '';
     };
   };
