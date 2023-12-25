@@ -30,7 +30,7 @@ jobs:
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Upload image
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: nixos-srv-cfzt-01
         path: ./result/sd-image/*.img*
@@ -53,7 +53,7 @@ jobs:
           --argstr system x86_64-linux \
           --option sandbox false
     - name: Upload image
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: nixos-digitalocean
         path: ./result/sd-image/*.img*
