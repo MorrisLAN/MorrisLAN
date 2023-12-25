@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3.5.3
     - name: Inject secrets in .nix files
-      run: sed -i "s/TOKEN_PLACEHOLDER/${{ secrets.CFZT_MORRISLAN_TUNNEL_TOKEN }}/" ./nix/srv-cfzt-01/configuration.nix
+      run: sed -i "s/TOKEN_PLACEHOLDER/${{ secrets.CFZT_MORRISLAN_TUNNEL_TOKEN }}/" ./nix/srv-access-01/configuration.nix
     - name: "Setup Nix"
       uses: cachix/install-nix-action@v24
       with:
