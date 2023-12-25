@@ -90,15 +90,13 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = ''
-        ${pkgs.writeScriptBin}/writeScriptBin /etc/nixos/teleport-sso.sh <<EOF
+      script = ''
         #!/bin/sh
-        # Commands to configure SSO for Teleport
+        # Commands to configure GitHub SSO for Teleport
         ${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=morrislan,admins,auditor,access,editor > github.yaml
         ${pkgs.teleport}/bin/tctl create -f github.yaml
         systemctl disable teleport-sso.service
         rm /etc/nixos/teleport-sso.sh
-        EOF
       '';
     };
   };
