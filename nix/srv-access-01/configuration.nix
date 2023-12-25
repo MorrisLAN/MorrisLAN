@@ -109,6 +109,7 @@
           - editor
           team: admins
       EOF
+      systemctl restart teleport.service
     '';
     serviceConfig = {
       Type = "oneshot";
