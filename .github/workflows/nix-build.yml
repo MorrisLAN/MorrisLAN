@@ -34,6 +34,7 @@ jobs:
       with:
         name: nixos-srv-cfzt-01
         path: ./result/sd-image/*.img*
+        retention-days: 1
 
   build-digitalocean:
     name: Build NixOS for DigitalOcean
