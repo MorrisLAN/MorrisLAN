@@ -1,7 +1,9 @@
-{ config, lib, pkgs, ... }: {
-  nixpkgs.localSystem.system = "x86_64-linux";
-  imports = [
+{ pkgs ? import <nixpkgs> { } }:
+let config = {
+  imports = [ 
     <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix>
     ./configuration.nix
-  ];
-}
+    ];
+};
+in
+(pkgs.nixos config).digitalOceanImage
