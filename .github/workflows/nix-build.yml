@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
       
 jobs:
-  # build-srv-cfzt-01:
-  #   name: Build NixOS for `srv-cfzt-01`
+  # build-appliances:
+  #   name: Build NixOS for appliances
   #   runs-on: ubuntu-22.04
   #   steps:
   #   - uses: actions/checkout@v3.5.3
@@ -35,7 +35,7 @@ jobs:
   #       name: nixos-srv-cfzt-01
   #       path: ./result/sd-image/*.img*
 
-  build-srv-tp-01:
+  build-digitalocean:
     name: Build NixOS for DigitalOcean
     runs-on: ubuntu-22.04
     steps:
@@ -53,4 +53,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: nixos-digitalocean
-        path: ./result/*
+        path: ./result/nixos.qcow2
