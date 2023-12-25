@@ -8,8 +8,11 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3.5.3
-    - name: Inject secrets in .nix files
-      run: sed -i "s/TOKEN_PLACEHOLDER/${{ secrets.CFZT_MORRISLAN_TUNNEL_TOKEN }}/" ./nix/srv-access-01/configuration.nix
+    - name: Inject secrets
+      run: |
+        sed -i "s/MORRISLAN_TUNNEL_TOKEN/${{ secrets.CFZT_MORRISLAN_TUNNEL_TOKEN }}/" ./nix/srv-access-01/configuration.nix
+        sed -i "s/TP_GH_CLIENT_ID/${{ secrets.TP_GH_CLIENT_ID }}/" ./nix/srv-access-01/configuration.nix
+        sed -i "s/TP_GH_CLIENT_SECRET/${{ secrets.TP_GH_CLIENT_SECRET }}/" ./nix/srv-access-01/configuration.nix
     - name: "Setup Nix"
       uses: cachix/install-nix-action@v24
       with:

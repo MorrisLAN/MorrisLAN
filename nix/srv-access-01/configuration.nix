@@ -41,7 +41,7 @@
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token=TOKEN_PLACEHOLDER";
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token=MORRISLAN_TUNNEL_TOKEN";
       Restart = "always";
       User = "cloudflared";
       Group = "cloudflared";
@@ -58,6 +58,10 @@
         enabled = true;
         listen_addr = "127.0.0.1:3025";
         cluster_name = "access.morrislan.net";
+        authentication = {
+          type = "github";
+          local_auth = false;
+        };
       };
       proxy_service = {
         enabled = true;
@@ -81,6 +85,23 @@
   environment.etc."teleport/cert.pem".text = ''
     ${pkgs.openssl}/bin/openssl req -new -x509 -key /etc/teleport/key.pem -out /etc/teleport/cert.pem -days 3650 -subj "/CN=access.morrislan.net"
     '';
+
+  systemd.services.teleport-sso = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = ''
+        ${pkgs.writeScriptBin}/writeScriptBin /etc/nixos/teleport-sso.sh <<EOF
+        #!/bin/sh
+        # Commands to configure SSO for Teleport
+        ${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=morrislan,admins,auditor,access,editor > github.yaml
+        ${pkgs.teleport}/bin/tctl create -f github.yaml
+        systemctl disable teleport-sso.service
+        rm /etc/nixos/teleport-sso.sh
+        EOF
+      '';
+    };
+  };
 
   system.stateVersion = "23.11";
 }
