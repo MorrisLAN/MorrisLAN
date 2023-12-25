@@ -64,12 +64,8 @@
         web_listen_addr = "127.0.0.1:443";
         public_addr = "access.morrislan.net:443";
         https_keypairs = {
-          key_file = builtins.toFile "/etc/teleport/key.pem" ''
-            ${pkgs.openssl}/bin/openssl genpkey -algorithm RSA -out /etc/teleport/key.pem
-          '';
-          cert_file = builtins.toFile "/etc/teleport/cert.pem" ''
-            ${pkgs.openssl}/bin/openssl req -new -x509 -key /etc/teleport/key.pem -out /etc/teleport/cert.pem -days 3650 -subj "/CN=access.morrislan.net"
-          '';
+          key_file = "/etc/teleport/key.pem";
+          cert_file = "/etc/teleport/cert.pem";
         };
       };
       ssh_service = {
@@ -77,6 +73,13 @@
       };
     };
   };
+
+  environment.etc."teleport/key.pem".text = ''
+    ${pkgs.openssl}/bin/openssl genpkey -algorithm RSA -out /etc/teleport/key.pem
+  '';
+
+  environment.etc."teleport/cert.pem".text = ''
+    ${pkgs.openssl}/bin/openssl req -new -x509 -key /etc/teleport/key.pem -out /etc/teleport/cert.pem -days 3650 -subj "/CN
 
   system.stateVersion = "23.11";
 }
