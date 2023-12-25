@@ -77,14 +77,8 @@
   systemd.services.teleport-sso = {
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      enable = true;
-      script = ''
-        #!/bin/sh
-        ${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=MorrisLAN,admins,auditor,access,editor > /tmp/github.yaml
-        sed -i '/endpoint_url:/d' /tmp/github.yaml
-        ${pkgs.teleport}/bin/tctl create -f /tmp/github.yaml
-        systemctl disable teleport-sso.service
-      '';
+      ExecStart = "${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=MorrisLAN,admins,auditor,access,editor > /tmp/github.yaml && sed -i '/endpoint_url:/d' /tmp/github.yaml && ${pkgs.teleport}/bin/tctl create -f /tmp/github.yaml && systemctl disable teleport-sso";
+      Restart = "always";
     };
   };
 
