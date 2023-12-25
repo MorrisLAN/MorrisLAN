@@ -2,7 +2,7 @@
 let config = {
   imports = [ 
     <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix>
-    ./configuration.nix
+    ./base.nix
     ];
 };
 in
