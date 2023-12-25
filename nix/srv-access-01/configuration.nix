@@ -51,7 +51,7 @@
     enable = true;
     settings = {
       teleport = {
-        nodename = ${networking.hostName};
+        nodename = config.networking.hostName;
       };
       auth_service = {
         enabled = true;
