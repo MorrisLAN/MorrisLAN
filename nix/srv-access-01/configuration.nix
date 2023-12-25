@@ -79,7 +79,18 @@
     script = ''
       #!/bin/sh
       sleep 60
-      ${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=MorrisLAN,admins,auditor,access,editor > /tmp/github.yaml
+      ${pkgs.teleport}/bin/tctl create << EOF
+      kind: role
+      version: v7
+      metadata:
+        name: admin-login
+      spec:
+        allow:
+          node_labels:
+            '*': '*'
+          logins: ['admin']
+      EOF
+      ${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=MorrisLAN,admins,admin-login,auditor,access,editor > /tmp/github.yaml
       sed -i '/endpoint_url:/d' /tmp/github.yaml
       ${pkgs.teleport}/bin/tctl create -f /tmp/github.yaml
     '';
