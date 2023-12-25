@@ -48,8 +48,7 @@ jobs:
           extra-platforms = x86_64-linux
     - name: Build image
       run: |
-        nix-build '<nixpkgs/nixos>'  \
-          -A config.system.build.sdImage \
+        nix-build \
           -I nixos-config=./nix/digitalocean.nix \
           --argstr system x86_64-linux \
           --option sandbox false
