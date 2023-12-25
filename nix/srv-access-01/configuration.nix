@@ -11,7 +11,20 @@
   };
   swapDevices = [ { device = "/swapfile"; size = 1024; } ];
 
-  environment.systemPackages = with pkgs; [ cloudflared teleport ];
+  environment.systemPackages = with pkgs; [ cloudflared teleport
+    (writeTextFile {
+      name = "teleport-key";
+      text = ''
+        ${openssldir}/bin/openssl genpkey -algorithm RSA -out /etc/teleport/key.pem
+      '';
+    })
+    (writeTextFile {
+      name = "teleport-cert";
+      text = ''
+        ${openssldir}/bin/openssl req -new -x509 -key /etc/teleport/key.pem -out /etc/teleport/cert.pem -days 3650 -subj "/CN=access.morrislan.net"
+      '';
+    })
+   ];
 
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 4022 ];
@@ -73,21 +86,6 @@
       };
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    (writeTextFile {
-      name = "generate-key";
-      text = ''
-        ${openssldir}/bin/openssl genpkey -algorithm RSA -out /etc/teleport/key.pem
-      '';
-    })
-    (writeTextFile {
-      name = "generate-cert";
-      text = ''
-        ${openssldir}/bin/openssl req -new -x509 -key /etc/teleport/key.pem -out /etc/teleport/cert.pem -days 3650 -subj "/CN=access.morrislan.net"
-      '';
-    })
-  ];
 
   system.stateVersion = "23.11";
 }
