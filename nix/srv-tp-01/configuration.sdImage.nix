@@ -2,7 +2,7 @@
   sdImage.compressImage = false;
   nixpkgs.localSystem.system = "x86_64-linux";
   imports = [
-    <nixpkgs/nixos/modules/virtualisation/digitalocean-image.nix>
+    <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
     ./configuration.nix
   ];
   boot.kernelPackages = pkgs.linuxPackages;
