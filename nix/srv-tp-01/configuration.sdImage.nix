@@ -6,6 +6,8 @@
     ./configuration.nix
   ];
   boot.kernelPackages = pkgs.linuxPackages;
+  boot.loader.grub.enable = false;
+  boot.loader.generic-extlinux-compatible.enable = true;
 
   boot.consoleLogLevel = lib.mkDefault 7;
  
