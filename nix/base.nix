@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }: {
-  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [ vim curl wget nano neofetch ];
 
   services.openssh = {
