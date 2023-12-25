@@ -54,3 +54,4 @@ jobs:
       with:
         name: nixos-digitalocean
         path: ./result/nixos.qcow2.gz
+        compression-level: 0
