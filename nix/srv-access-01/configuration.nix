@@ -90,9 +90,25 @@
             '*': '*'
           logins: ['admin']
       EOF
-      ${pkgs.teleport}/bin/tctl sso configure github --id=TP_GH_CLIENT_ID --secret=TP_GH_CLIENT_SECRET --teams-to-roles=MorrisLAN,admins,admin-login,auditor,access,editor > /tmp/github.yaml
-      sed -i '/endpoint_url:/d' /tmp/github.yaml
-      ${pkgs.teleport}/bin/tctl create -f /tmp/github.yaml
+      sleep 5
+      ${pkgs.teleport}/bin/tctl create << EOF
+      kind: github
+      version: v3
+      metadata:
+        name: github
+      spec:
+        client_id: TP_GH_CLIENT_ID
+        client_secret: TP_GH_CLIENT_SECRET
+        redirect_url: https://access.morrislan.net:443/v1/webapi/github/callback
+        teams_to_roles:
+        - organization: MorrisLAN
+          roles:
+          - admin-login
+          - auditor
+          - access
+          - editor
+          team: admins
+      EOF
     '';
     serviceConfig = {
       Type = "oneshot";
