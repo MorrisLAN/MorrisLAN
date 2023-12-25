@@ -5,7 +5,7 @@
   services.openssh = {
       enable = true;
       ports = [ 4022 ];
-      passwordAuthentication = false;
+      settings.PasswordAuthentication = false;
   };
 
   programs.zsh = {
