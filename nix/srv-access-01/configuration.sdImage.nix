@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: {
-  sdImage.compressImage = false;
+  sdImage.compressImage = true;
   nixpkgs.localSystem.system = "aarch64-linux";
   imports = [
     <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
