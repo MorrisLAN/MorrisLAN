@@ -10,6 +10,17 @@ variable "do_token" {
   sensitive   = true
 }
 
+variable "do_spaces_access_key" {
+  description = "DigitalOcean Spaces Access Key"
+  type        = string
+  sensitive   = true
+}
+
+variable "do_spaces_secret_key" {
+  description = "DigitalOcean Spaces Secret Key"
+  type        = string
+  sensitive   = true
+}
 
 variable "cloudflare_account_id" {
   description = "Cloudflare Account ID"
