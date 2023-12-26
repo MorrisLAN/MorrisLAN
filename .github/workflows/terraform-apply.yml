@@ -1,8 +1,7 @@
 name: "Terraform Apply"
 
 permissions:
-  actions: write
-  contents: write
+  actions: read
 
 on:
   workflow_dispatch:
