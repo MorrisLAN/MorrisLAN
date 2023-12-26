@@ -2,7 +2,7 @@
   imports = [
     <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
     ./modules/base.nix
-    ./modules/home-tunnel.nix
+    ./modules/cfzt/home-tunnel.nix
   ];
 
   boot = {
