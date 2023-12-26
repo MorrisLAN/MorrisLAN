@@ -1,6 +1,8 @@
 name: "Terraform Apply"
 
-permissions: write-all
+permissions:
+  contents: read
+  actions: write
 
 on:
   workflow_dispatch:

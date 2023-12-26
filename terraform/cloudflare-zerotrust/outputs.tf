@@ -3,8 +3,13 @@ output "home_doh" {
   sensitive = true
 }
 
-resource "github_actions_secret" "cfzt_home_tunnel_token" {
-  repository       = "morrislan"
-  secret_name      = "CFZT_HOME_TUNNEL_TOKEN"
-  plaintext_value  = cloudflare_tunnel.home.tunnel_token
+data "github_repository" "morrislan" {
+  full_name = "MorrisLAN/morrislan"
+}
+
+resource "github_actions_organization_secret" "cfzt_home_tunnel_token" {
+  secret_name             = "CFZT_HOME_TUNNEL_TOKEN"
+  visibility              = private
+  selected_repository_ids = [data.github_repository.morrislan]
+  plaintext_value         = cloudflare_tunnel.home.tunnel_token
 }
