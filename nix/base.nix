@@ -13,7 +13,7 @@
       enable = true;
       ohMyZsh = {
           enable = true;
-          theme = "af-magic";
+          theme = "agnoster";
       };
   };
 
