@@ -36,8 +36,10 @@ jobs:
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Upload image
-      uses: actions/upload-artifact@v4
+      uses: shallwefootball/s3-upload-action@master
       with:
-        name: nixos-srv-access-01
-        path: ./result/sd-image/*.img*
-        retention-days: 1
+        aws_key_id: ${{ secrets.DOSPACES_ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.DOSPACES_SECRET_KEY }}
+        aws_bucket: "morrislan-nixos-images"
+        endpoint: https://morrislan-nixos-images.fra1.digitaloceanspaces.com
+        source_dir: ./result/sd-image/*.img*

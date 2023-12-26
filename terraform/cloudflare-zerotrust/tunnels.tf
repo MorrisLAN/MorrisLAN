@@ -9,7 +9,6 @@ resource "cloudflare_tunnel_config" "clancy" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.clancy.id
   config {
-    warp_routing { enabled = true }
     ingress_rule {
       hostname = "status.morrislan.net"
       service  = "http://10.1.240.3:3001"
