@@ -7,7 +7,7 @@ resource "cloudflare_tunnel" "home" {
 
 resource "cloudflare_tunnel_config" "home" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.clancy.id
+  tunnel_id  = cloudflare_tunnel.home.id
   config {
     ingress_rule {
       hostname = "status.morrislan.net"
