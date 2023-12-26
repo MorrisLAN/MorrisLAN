@@ -27,5 +27,5 @@ provider "digitalocean" {
 }
 
 provider "github" {
-  owner = "MorrisLAN"
+  owner = "morrislan"
 }
