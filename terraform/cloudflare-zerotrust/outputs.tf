@@ -3,11 +3,6 @@ output "tunnel_token" {
   sensitive = true
 }
 
-output "dovpc_tunnel_token" {
-  value     = cloudflare_tunnel.dovpc.tunnel_token
-  sensitive = true
-}
-
 output "home_doh" {
   value     = cloudflare_teams_location.home.doh_subdomain
   sensitive = true

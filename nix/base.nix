@@ -1,10 +1,11 @@
 { config, pkgs, lib, ... }: {
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [ vim curl wget nano neofetch ];
 
   services.openssh = {
       enable = true;
       ports = [ 4022 ];
-      passwordAuthentication = false;
+      settings.PasswordAuthentication = false;
   };
 
   programs.zsh = {
