@@ -14,7 +14,6 @@
   swapDevices = [ { device = "/swapfile"; size = 1024; } ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 4022 ];
   networking = {
     hostName = "srv-access-01";
     domain = "morrislan.net";
