@@ -45,6 +45,12 @@ variable "gh_client_secret" {
   sensitive   = true
 }
 
+variable "gh_morrislan_actions" {
+  description = "GitHub API key to use for non-standard API calls"
+  type        = string
+  sensitive   = true
+}
+
 variable "nixos_bucket" {
   description = "Bucket used for NixOS image uploads"
   type        = string
