@@ -32,7 +32,7 @@ jobs:
       run: |
         nix-build '<nixpkgs/nixos>'  \
           -A config.system.build.sdImage \
-          -I nixos-config=./nix/srv-access-01/configuration.sdImage.nix \
+          -I nixos-config=./nix/srv-access-01/configuration.nix \
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Prepare image
