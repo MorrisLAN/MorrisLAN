@@ -53,7 +53,7 @@ module "access_app_srv_access_01_ssh" {
   name                  = "srv-access-01 SSH"
   logo                  = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Terminalicon2.png/768px-Terminalicon2.png"
   domain                = "srv-access-01-ssh.morrislan.net"
-  type                  = "self_hosted"
+  type                  = "ssh"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
   session_duration      = "6h"
