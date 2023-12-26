@@ -6,11 +6,10 @@ on:
   workflow_dispatch:
       
 jobs:
-  build-srv-access-01:
-    name: Build NixOS for `srv-access-01`
+  srv-access-01:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3.5.3
+    - uses: actions/checkout@v4
     - name: Inject secrets
       if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       run: |
@@ -31,12 +30,12 @@ jobs:
       run: |
         nix-build '<nixpkgs/nixos>'  \
           -A config.system.build.sdImage \
-          -I nixos-config=./nix/srv-access-01.nix \
+          -I nixos-config=./nix/${{ matrix.job-name }}.nix \
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Prepare image
       run : |
-        sudo mv ./result/sd-image/*.img.zst ./result/sd-image/srv-access-01.img.zst
+        sudo mv ./result/sd-image/*.img.zst ./result/sd-image/${{ matrix.job-name }}.img.zst
     - name: Upload image (secure)
       if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       uses: shallwefootball/s3-upload-action@master
@@ -51,15 +50,17 @@ jobs:
       if: (github.event_name == 'push' && github.ref != 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')
       uses: actions/upload-artifact@v4
       with:
-        name: srv-access-01
+        name: ${{ matrix.job-name }}
         path: ./result/sd-image
 
-
-  build-vm-maxmbp:
-    name: Build NixOS for `vm-maxmbp`
+  vm-maxmbp:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3.5.3
+    - uses: actions/checkout@v4
+    - name: Inject secrets
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+      run: |
+        sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/home-tunnel.nix
     - name: "Setup Nix"
       uses: cachix/install-nix-action@v24
       with:
@@ -75,13 +76,13 @@ jobs:
     - name: Build image
       run: |
         nix-build '<nixpkgs/nixos>'  \
-          -A config.system.build.image \
-          -I nixos-config=./nix/vm-maxmbp.nix \
+          -A config.system.build.sdImage \
+          -I nixos-config=./nix/${{ matrix.job-name }}.nix \
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Prepare image
       run : |
-        sudo mv ./result/sd-image/*.img.zst ./result/sd-image/vm-maxmbp.img.zst
+        sudo mv ./result/sd-image/*.img.zst ./result/sd-image/${{ matrix.job-name }}.img.zst
     - name: Upload image (secure)
       if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       uses: shallwefootball/s3-upload-action@master
@@ -96,5 +97,5 @@ jobs:
       if: (github.event_name == 'push' && github.ref != 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')
       uses: actions/upload-artifact@v4
       with:
-        name: vm-maxmbp
+        name: ${{ matrix.job-name }}
         path: ./result/sd-image
