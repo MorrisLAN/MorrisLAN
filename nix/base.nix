@@ -5,6 +5,7 @@
   services.openssh = {
       enable = true;
       ports = [ 4022 ];
+      openFirewall = true;
       settings.PasswordAuthentication = false;
   };
 

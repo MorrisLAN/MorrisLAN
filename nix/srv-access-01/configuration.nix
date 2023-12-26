@@ -2,7 +2,6 @@
   imports = [
     ../base.nix
     ../modules/cloudflared.nix
-    ../modules/teleport.nix
   ];
 
   fileSystems = {

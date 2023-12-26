@@ -31,10 +31,10 @@ resource "cloudflare_record" "access_app_unifi" {
   depends_on      = [cloudflare_tunnel.clancy]
 }
 
-resource "cloudflare_record" "access_app_teleport" {
+resource "cloudflare_record" "access_app_ssh_srv_access_01" {
   zone_id         = var.cloudflare_zone_id
-  name            = "access.morrislan.net"
-  comment         = "CNAME to DigitalOcean VPC ZT Tunnel for Teleport"
+  name            = "srv-access-01-ssh.morrislan.net"
+  comment         = "CNAME to MorrisLAN ZT Tunnel for srv-access-01 SSH"
   value           = cloudflare_tunnel.clancy.cname
   allow_overwrite = true
   type            = "CNAME"

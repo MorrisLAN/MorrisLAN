@@ -114,10 +114,10 @@ resource "cloudflare_access_policy" "device_policy_macos_unifi" {
   }
 }
 
-resource "cloudflare_access_policy" "device_policy_windows_teleport" {
-  application_id   = module.access_app_teleport.id
+resource "cloudflare_access_policy" "device_policy_windows_ssh_srv_access_01" {
+  application_id   = module.access_app_ssh_srv_access_01.id
   zone_id          = var.cloudflare_zone_id
-  name             = "Teleport Device Policy (Windows)"
+  name             = "srv-access-01 SSH Device Policy (Windows)"
   precedence       = "1"
   decision         = "allow"
   session_duration = "6h"
@@ -135,10 +135,10 @@ resource "cloudflare_access_policy" "device_policy_windows_teleport" {
   }
 }
 
-resource "cloudflare_access_policy" "device_policy_macos_teleport" {
-  application_id   = module.access_app_teleport.id
+resource "cloudflare_access_policy" "device_policy_macos_ssh_srv_access_01" {
+  application_id   = module.access_app_ssh_srv_access_01.id
   zone_id          = var.cloudflare_zone_id
-  name             = "Teleport Device Policy (macOS)"
+  name             = "srv-access-01 SSH Device Policy (macOS)"
   precedence       = "2"
   decision         = "allow"
   session_duration = "6h"
