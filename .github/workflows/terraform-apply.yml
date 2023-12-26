@@ -36,7 +36,7 @@ jobs:
         working-directory: ./terraform
     permissions:
       contents: read
-      pull-requests: write
+      actions: write
 
     steps:
       - uses: actions/checkout@v3

@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v3.5.3
     - name: Inject secrets
       run: |
-        sed -i "s/MORRISLAN_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cloudflared.nix
+        sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cloudflared.nix
         sed -i "s/TP_GH_CLIENT_ID/${{ secrets.TP_GH_CLIENT_ID }}/" ./nix/modules/teleport.nix
         sed -i "s/TP_GH_CLIENT_SECRET/${{ secrets.TP_GH_CLIENT_SECRET }}/" ./nix/modules/teleport.nix
     - name: "Setup Nix"
