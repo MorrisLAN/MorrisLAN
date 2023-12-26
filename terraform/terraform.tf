@@ -26,6 +26,4 @@ provider "digitalocean" {
   spaces_secret_key = var.do_spaces_secret_key
 }
 
-provider "github" {
-  token = var.github_token
-}
+provider "github" {}
