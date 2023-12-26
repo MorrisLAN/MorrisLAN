@@ -37,7 +37,7 @@ jobs:
           --option sandbox false
     - name: Prepare image
       run : |
-        mv ./result/sd-image/*.img ./result/sd-image/nixos-srv-access-01.img
+        sudo mv ./result/sd-image/*.img ./result/sd-image/nixos-srv-access-01.img
     - name: Upload image
       uses: shallwefootball/s3-upload-action@master
       with:
