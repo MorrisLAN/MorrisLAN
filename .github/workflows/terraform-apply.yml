@@ -36,7 +36,6 @@ jobs:
         shell: bash
         working-directory: ./terraform
     steps:
-      - run: echo $TF_VAR_github_token
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
         with:
@@ -49,7 +48,7 @@ jobs:
       - name: Initialize Terraform
         id: init
         run: terraform init
-
+      - run: echo $TF_VAR_github_token
       - name: Validate
         id: validate
         run: terraform validate -no-color
