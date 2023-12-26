@@ -45,12 +45,6 @@ variable "gh_client_secret" {
   sensitive   = true
 }
 
-variable "github_token" {
-  description = "GitHub Token (for Actions, etc)"
-  type        = string
-  sensitive   = true
-}
-
 variable "nixos_bucket" {
   description = "Bucket used for NixOS image uploads"
   type        = string
