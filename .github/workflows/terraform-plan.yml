@@ -1,8 +1,5 @@
 name: "Terraform Plan"
 
-permissions:
-  actions: write
-
 on:
   workflow_dispatch:
   pull_request:
