@@ -28,4 +28,5 @@ provider "digitalocean" {
 
 provider "github" {
   token = var.github_token
+  owner = "MorrisLAN"
 }
