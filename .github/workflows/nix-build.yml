@@ -12,6 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3.5.3
     - name: Inject secrets
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       run: |
         sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/home-tunnel.nix
     - name: "Setup Nix"
@@ -36,7 +37,8 @@ jobs:
     - name: Prepare image
       run : |
         sudo mv ./result/sd-image/*.img.zst ./result/sd-image/srv-access-01.img.zst
-    - name: Upload image
+    - name: Upload image (secure)
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       uses: shallwefootball/s3-upload-action@master
       with:
         aws_key_id: ${{ secrets.DOSPACES_ACCESS_KEY }}
@@ -45,6 +47,13 @@ jobs:
         endpoint: https://fra1.digitaloceanspaces.com
         source_dir: ./result/sd-image
         destination_dir: .
+    - name: Upload image (Artifact)
+      if: (github.event_name == 'push' && github.ref != 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')
+      uses: actions/upload-artifact@v4
+      with:
+        name: srv-access-01
+        path: ./result/sd-image
+
 
   build-vm-maxmbp:
     name: Build NixOS for `vm-maxmbp`
@@ -73,7 +82,8 @@ jobs:
     - name: Prepare image
       run : |
         sudo mv ./result/sd-image/*.img.zst ./result/sd-image/vm-maxmbp.img.zst
-    - name: Upload image
+    - name: Upload image (secure)
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       uses: shallwefootball/s3-upload-action@master
       with:
         aws_key_id: ${{ secrets.DOSPACES_ACCESS_KEY }}
@@ -82,3 +92,9 @@ jobs:
         endpoint: https://fra1.digitaloceanspaces.com
         source_dir: ./result/sd-image
         destination_dir: .
+    - name: Upload image (Artifact)
+      if: (github.event_name == 'push' && github.ref != 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')
+      uses: actions/upload-artifact@v4
+      with:
+        name: vm-maxmbp
+        path: ./result/sd-image
