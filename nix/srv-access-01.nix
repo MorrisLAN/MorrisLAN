@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }: {
   imports = [
     <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
-    ../base.nix
-    ../modules/cloudflared.nix
+    ./modules/base.nix
+    ./modules/cloudflared.nix
   ];
 
   boot = {
@@ -81,10 +81,8 @@
   };
   swapDevices = [ { device = "/swapfile"; size = 1024; } ];
 
-  networking.firewall.enable = true;
   networking = {
     hostName = "srv-access-01";
-    domain = "morrislan.net";
     interfaces.eth0 = {
       useDHCP = false;
       ipv4.addresses = [{
@@ -92,8 +90,6 @@
        prefixLength = 24;
       }];
     };
-    defaultGateway = "10.1.240.1";
-    nameservers = [ "10.1.240.3" ];
   };
 
   system.stateVersion = "23.11";
