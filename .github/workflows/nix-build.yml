@@ -44,5 +44,5 @@ jobs:
         aws_key_id: ${{ secrets.DOSPACES_ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.DOSPACES_SECRET_KEY }}
         aws_bucket: "morrislan-nixos-images"
-        endpoint: https://${{ secrets.NIXOS_BUCKET }}.fra1.digitaloceanspaces.com
+        endpoint: https://${{ secrets.NIXOS_BUCKET }}-nixos.fra1.digitaloceanspaces.com
         source_dir: ./result/sd-image/nixos-srv-access-01.img
