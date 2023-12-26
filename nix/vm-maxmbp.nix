@@ -6,6 +6,7 @@
 
   boot = {
     consoleLogLevel = lib.mkDefault 7;
+    growPartition = true;
     loader.grub = {
       enable = true;
       efiSupport = true;
