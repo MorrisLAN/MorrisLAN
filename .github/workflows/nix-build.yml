@@ -47,3 +47,4 @@ jobs:
         aws_bucket: ${{ secrets.NIXOS_BUCKET }}-nixos
         endpoint: https://fra1.digitaloceanspaces.com
         source_dir: ./result/sd-image
+        destination_dir: .
