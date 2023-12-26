@@ -1,7 +1,8 @@
 name: "Terraform Apply"
 
 permissions:
-  actions: read
+  contents: read
+  actions: write
 
 on:
   workflow_dispatch:
@@ -34,10 +35,6 @@ jobs:
       run:
         shell: bash
         working-directory: ./terraform
-    permissions:
-      contents: read
-      actions: write
-
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
