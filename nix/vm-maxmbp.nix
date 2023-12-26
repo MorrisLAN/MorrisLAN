@@ -6,9 +6,11 @@
 
   boot = {
     consoleLogLevel = lib.mkDefault 7;
-    loader = {
-      grub.enable = false;
-      generic-extlinux-compatible.enable = true;
+    loader.grub = {
+      enable = true;
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+      device = "nodev";
     };
     kernelParams = [ "console=ttyAMA0,115200n8" "console=tty0" ];
   };
