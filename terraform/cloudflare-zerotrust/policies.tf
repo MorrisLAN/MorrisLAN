@@ -114,8 +114,8 @@ resource "cloudflare_access_policy" "device_policy_macos_unifi" {
   }
 }
 
-resource "cloudflare_access_policy" "device_policy_windows_ssh_srv_access_01" {
-  application_id   = module.access_app_ssh_srv_access_01.id
+resource "cloudflare_access_policy" "device_policy_windows_srv_access_01_ssh" {
+  application_id   = module.access_app_srv_access_01_ssh.id
   zone_id          = var.cloudflare_zone_id
   name             = "srv-access-01 SSH Device Policy (Windows)"
   precedence       = "1"
@@ -135,8 +135,8 @@ resource "cloudflare_access_policy" "device_policy_windows_ssh_srv_access_01" {
   }
 }
 
-resource "cloudflare_access_policy" "device_policy_macos_ssh_srv_access_01" {
-  application_id   = module.access_app_ssh_srv_access_01.id
+resource "cloudflare_access_policy" "device_policy_macos_srv_access_01_ssh" {
+  application_id   = module.access_app_srv_access_01_ssh.id
   zone_id          = var.cloudflare_zone_id
   name             = "srv-access-01 SSH Device Policy (macOS)"
   precedence       = "2"

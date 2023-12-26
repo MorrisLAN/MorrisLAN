@@ -47,7 +47,7 @@ module "access_app_unifi" {
   enable_managed_policy = false
 }
 
-module "access_app_ssh_srv_access_01" {
+module "access_app_srv_access_01_ssh" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
   name                  = "srv-access-01 SSH"

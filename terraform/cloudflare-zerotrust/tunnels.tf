@@ -1,11 +1,11 @@
-resource "cloudflare_tunnel" "clancy" {
+resource "cloudflare_tunnel" "home" {
   account_id = var.cloudflare_account_id
-  name       = "MorrisLAN"
+  name       = "Home Tunnel"
   secret     = base64sha256(random_password.tunnel_secret.result)
   config_src = "cloudflare"
 }
 
-resource "cloudflare_tunnel_config" "clancy" {
+resource "cloudflare_tunnel_config" "home" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.clancy.id
   config {

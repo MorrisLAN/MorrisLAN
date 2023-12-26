@@ -3,9 +3,14 @@ terraform {
     cloudflare = {
       source = "cloudflare/cloudflare"
     }
+    github = {
+      source = "integrations/github"
+    }
   }
 }
 
 provider "cloudflare" {
   api_token = var.cloudflare_token
 }
+
+provider "github" {}
