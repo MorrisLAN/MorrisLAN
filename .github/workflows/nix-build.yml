@@ -54,11 +54,12 @@ jobs:
         path: ./result/sd-image
 
   vm-maxmbp:
+    if: (github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
     - name: Inject secrets
-      if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+      if: (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       run: |
         sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/home-tunnel.nix
     - name: "Setup Nix"
