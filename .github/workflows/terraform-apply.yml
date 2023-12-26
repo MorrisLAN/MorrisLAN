@@ -1,5 +1,8 @@
 name: "Terraform Apply"
 
+permissions:
+  actions: write
+
 on:
   workflow_dispatch:
   push:
