@@ -9,7 +9,7 @@ data "github_repository" "morrislan" {
 
 resource "github_actions_organization_secret" "cfzt_home_tunnel_token" {
   secret_name             = "CFZT_HOME_TUNNEL_TOKEN"
-  visibility              = private
+  visibility              = "private"
   selected_repository_ids = [data.github_repository.morrislan]
   plaintext_value         = cloudflare_tunnel.home.tunnel_token
 }
