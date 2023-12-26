@@ -2,6 +2,13 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [ vim curl htop lsof wget nano neofetch ];
 
+  networking = {
+    firewall.enable = true;
+    domain = "morrislan.net";
+    defaultGateway = lib.mkDefault "10.1.240.1";
+    nameservers = lib.mkDefault [ "10.1.240.3" ];
+  };
+
   services.openssh = {
       enable = true;
       ports = [ 4022 ];

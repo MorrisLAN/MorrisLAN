@@ -1,36 +1,39 @@
-{ config, lib, pkgs, ... }: {
-  sdImage.compressImage = true;
-  nixpkgs.localSystem.system = "aarch64-linux";
+{ config, pkgs, lib, ... }: {
   imports = [
     <nixpkgs/nixos/modules/installer/sd-card/sd-image.nix>
-    ./configuration.nix
+    ./modules/base.nix
+    ./modules/home-tunnel.nix
   ];
-  boot.kernelPackages = pkgs.linuxPackages_rpi4;
-  boot.loader.grub.enable = false;
-  boot.loader.generic-extlinux-compatible.enable = true;
 
-  boot.consoleLogLevel = lib.mkDefault 7;
- 
-  boot.kernelParams =
-    [ "console=ttyS0,115200n8" "console=ttyAMA0,115200n8" "console=tty0" ];
-
-  boot.initrd.availableKernelModules = [
+  boot = {
+    kernelPackages = pkgs.linuxPackages_rpi4;
+    consoleLogLevel = lib.mkDefault 7;
+    loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
+    kernelParams = [ "console=ttyS0,115200n8" "console=ttyAMA0,115200n8" "console=tty0" ];
+    initrd.availableKernelModules = [
     "vc4"
     "bcm2835_dma"
     "i2c_bcm2835"
     "sun4i_drm"
     "sun8i_drm_hdmi"
     "sun8i_mixer"
-  ];
+    ];
+  };
 
-  nixpkgs.overlays = [
-    (final: super: {
-      makeModulesClosure = x:
-        super.makeModulesClosure (x // { allowMissing = true; });
-    })
-  ];
-
+  nixpkgs = {
+    localSystem.system = "aarch64-linux";
+    overlays = [
+      (final: super: {
+        makeModulesClosure = x:
+          super.makeModulesClosure (x // { allowMissing = true; });
+      })
+    ];
+  };
   sdImage = {
+    compressImage = true;
     populateFirmwareCommands = let
       configTxt = pkgs.writeText "config.txt" ''
         [pi3]
@@ -70,4 +73,24 @@
     '';
   };
 
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/NIXOS_SD";
+      fsType = "ext4";
+    };
+  };
+  swapDevices = [ { device = "/swapfile"; size = 1024; } ];
+
+  networking = {
+    hostName = "srv-access-01";
+    interfaces.eth0 = {
+      useDHCP = false;
+      ipv4.addresses = [{
+       address = "10.1.240.5";
+       prefixLength = 24;
+      }];
+    };
+  };
+
+  system.stateVersion = "23.11";
 }
