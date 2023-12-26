@@ -23,16 +23,3 @@ resource "cloudflare_device_dex_test" "ha" {
     method = "GET"
   }
 }
-
-resource "cloudflare_device_dex_test" "unifi" {
-  account_id  = var.cloudflare_account_id
-  name        = "UniFi"
-  description = ""
-  interval    = "0h30m0s"
-  enabled     = true
-  data {
-    host   = "https://unifi.morrislan.net"
-    kind   = "http"
-    method = "GET"
-  }
-}

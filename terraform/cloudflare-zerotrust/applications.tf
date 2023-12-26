@@ -47,12 +47,12 @@ module "access_app_unifi" {
   enable_managed_policy = false
 }
 
-module "access_app_teleport" {
+module "access_app_srv_access_01_ssh" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
-  name                  = "Teleport"
-  logo                  = "https://www.pomerium.com/wp-content/uploads/2023/09/teleport-thumb.png"
-  domain                = "access.morrislan.net"
+  name                  = "srv-access-01 SSH"
+  logo                  = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Terminalicon2.png/768px-Terminalicon2.png"
+  domain                = "srv-access-01-ssh.morrislan.net"
   type                  = "self_hosted"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true

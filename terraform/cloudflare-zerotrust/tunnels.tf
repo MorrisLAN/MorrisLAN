@@ -1,13 +1,13 @@
-resource "cloudflare_tunnel" "clancy" {
+resource "cloudflare_tunnel" "home" {
   account_id = var.cloudflare_account_id
-  name       = "MorrisLAN"
+  name       = "Home Tunnel"
   secret     = base64sha256(random_password.tunnel_secret.result)
   config_src = "cloudflare"
 }
 
-resource "cloudflare_tunnel_config" "clancy" {
+resource "cloudflare_tunnel_config" "home" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.clancy.id
+  tunnel_id  = cloudflare_tunnel.home.id
   config {
     ingress_rule {
       hostname = "status.morrislan.net"
@@ -34,16 +34,8 @@ resource "cloudflare_tunnel_config" "clancy" {
       }
     }
     ingress_rule {
-      hostname = "access.morrislan.net"
-      service  = "https://127.0.0.1"
-      origin_request {
-        connect_timeout = "2m0s"
-        no_tls_verify   = true
-      }
-    }
-    ingress_rule {
-      hostname = "access.morrislan.net"
-      service  = "tcp://127.0.0.1:3025"
+      hostname = "srv-access-01-ssh.morrislan.net"
+      service  = "ssh://127.0.0.1:4022"
       origin_request {
         connect_timeout = "2m0s"
       }
