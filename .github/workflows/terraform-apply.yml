@@ -36,6 +36,7 @@ jobs:
         shell: bash
         working-directory: ./terraform
     steps:
+      - run: echo $TF_VAR_github_token
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
         with:
