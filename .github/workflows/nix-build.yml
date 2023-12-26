@@ -35,11 +35,14 @@ jobs:
           -I nixos-config=./nix/srv-access-01/configuration.sdImage.nix \
           --argstr system aarch64-linux \
           --option sandbox false
+    - name: Prepare image
+      run : |
+        mv ./result/sd-image/*.img ./result/sd-image/nixos-srv-access-01.img
     - name: Upload image
       uses: shallwefootball/s3-upload-action@master
       with:
         aws_key_id: ${{ secrets.DOSPACES_ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.DOSPACES_SECRET_KEY }}
         aws_bucket: "morrislan-nixos-images"
-        endpoint: https://morrislan-nixos-images.fra1.digitaloceanspaces.com
-        source_dir: ./result/sd-image/*.img*
+        endpoint: https://${{ secrets.NIXOS_BUCKET }}.fra1.digitaloceanspaces.com
+        source_dir: ./result/sd-image/nixos-srv-access-01.img

@@ -44,3 +44,9 @@ variable "gh_client_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "nixos_bucket" {
+  description = "Bucket used for NixOS image uploads"
+  type        = string
+  sensitive   = true
+}

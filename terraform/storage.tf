@@ -1,5 +1,5 @@
 resource "digitalocean_spaces_bucket" "nixos" {
-  name   = "morrislan-nixos-images"
+  name   = var.nixos_bucket
   region = "fra1"
   versioning { enabled = "true" }
   acl = "private"
