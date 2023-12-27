@@ -1,9 +1,9 @@
 resource "cloudflare_device_managed_networks" "home" {
   account_id = var.cloudflare_account_id
-  name       = "home"
+  name       = "Home"
   type       = "tls"
   config {
-    tls_sockaddr = "srv-access-01:8123"
+    tls_sockaddr = "10.1.240.5:8123"
     sha256       = sha256(tls_self_signed_cert.cfzt_home.cert_pem)
   }
 }
