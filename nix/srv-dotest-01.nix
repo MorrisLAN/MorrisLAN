@@ -6,12 +6,12 @@
 
   nixpkgs = {
     localSystem.system = "x86_64-linux";
-    overlays = [
-      (final: super: {
-        makeModulesClosure = x:
-          super.makeModulesClosure (x // { allowMissing = true; });
-      })
-    ];
+    # overlays = [
+    #   (final: super: {
+    #     makeModulesClosure = x:
+    #       super.makeModulesClosure (x // { allowMissing = true; });
+    #   })
+    # ];
   };
 
   networking = {
