@@ -13,7 +13,7 @@ jobs:
     - name: Inject secrets
       if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       run: |
-        sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/home-tunnel.nix
+        sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/tunnel-home.nix
         sed -i "s/SECRET_CFZT_BEACON_HOME_KEY/${{ secrets.CFZT_BEACON_HOME_KEY }}/" ./nix/modules/cfzt/beacon-home.nix
         sed -i "s/SECRET_CFZT_BEACON_HOME_CERT/${{ secrets.CFZT_BEACON_HOME_CERT }}/" ./nix/modules/cfzt/beacon-home.nix
     - name: "Setup Nix"
