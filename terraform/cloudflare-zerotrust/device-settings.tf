@@ -1,12 +1,25 @@
-resource "cloudflare_device_settings_policy" "morrislan_settings" {
+resource "cloudflare_device_settings_policy" "remote" {
   account_id        = var.cloudflare_account_id
-  name              = "MorrisLAN WARP Profile"
-  description       = "Default WARP profile for accessing MorrisLAN resources"
+  name              = "Remote Profile"
+  description       = "Remote WARP profile for accessing MorrisLAN resources"
   default           = true
+  enabled           = true
+  allow_mode_switch = false
+  switch_locked     = true
+  allowed_to_leave  = false
+  allow_updates     = false
+  auto_connect      = 120
+}
+
+resource "cloudflare_device_settings_policy" "home" {
+  account_id        = var.cloudflare_account_id
+  name              = "Home Profile"
+  description       = "Home WARP profile for accessing MorrisLAN resources"
+  match             = "network is Home"
   enabled           = true
   allow_mode_switch = false
   switch_locked     = false
   allowed_to_leave  = true
   allow_updates     = true
-  auto_connect      = 1200
+  auto_connect      = 1500
 }
