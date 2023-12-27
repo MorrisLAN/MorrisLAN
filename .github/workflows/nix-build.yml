@@ -26,6 +26,7 @@ jobs:
           -I nixos-config=./nix/${{ github.job }}.nix \
           --argstr system aarch64-linux \
           --option sandbox false
-    - name: Prepare image
+    - name: Export image
       run : |
-        mv ./result/sd-image/*.img.zst -t /build/nixos/${{ github.job }}.img.zst
+        mkdir -p /build/nixos
+        mv ./result/sd-image/*.img.zst /build/nixos/${{ github.job }}.img.zst
