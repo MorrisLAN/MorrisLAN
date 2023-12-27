@@ -115,12 +115,12 @@ resource "cloudflare_access_policy" "device_policy_macos_unifi" {
 }
 
 resource "cloudflare_access_policy" "device_policy_windows_srv_access_01_ssh" {
-  application_id   = module.access_app_srv_access_01_ssh.id
-  zone_id          = var.cloudflare_zone_id
-  name             = "srv-access-01 SSH Device Policy (Windows)"
-  precedence       = "1"
-  decision         = "allow"
-  session_duration = "0h"
+  application_id                 = module.access_app_srv_access_01_ssh.id
+  zone_id                        = var.cloudflare_zone_id
+  name                           = "srv-access-01 SSH Device Policy (Windows)"
+  precedence                     = "1"
+  decision                       = "allow"
+  session_duration               = "0h"
   purpose_justification_required = true
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
@@ -137,12 +137,12 @@ resource "cloudflare_access_policy" "device_policy_windows_srv_access_01_ssh" {
 }
 
 resource "cloudflare_access_policy" "device_policy_macos_srv_access_01_ssh" {
-  application_id   = module.access_app_srv_access_01_ssh.id
-  zone_id          = var.cloudflare_zone_id
-  name             = "srv-access-01 SSH Device Policy (macOS)"
-  precedence       = "2"
-  decision         = "allow"
-  session_duration = "0h"
+  application_id                 = module.access_app_srv_access_01_ssh.id
+  zone_id                        = var.cloudflare_zone_id
+  name                           = "srv-access-01 SSH Device Policy (macOS)"
+  precedence                     = "2"
+  decision                       = "allow"
+  session_duration               = "0h"
   purpose_justification_required = true
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
