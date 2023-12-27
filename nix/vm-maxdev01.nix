@@ -6,8 +6,13 @@
 
   networking = {
     hostName = "vm-maxdev01";
-    useDHCP = true;
+    useDHCP = false;
+    interfaces.enp0s1.useDHCP = true;
   };
+
+  services.xserver.enable = true;
+  services.xserver.layout = "us";
+  services.xserver.desktopManager.gnome.enable = true;
 
   system.stateVersion = "23.11";
 }
