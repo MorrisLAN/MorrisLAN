@@ -3,6 +3,7 @@
     ./hardware/rpi4.nix
     ./modules/base.nix
     ./modules/cfzt/home-tunnel.nix
+    ./modules/cfzt/home-managed-network.nix
   ];
 
   networking = {
