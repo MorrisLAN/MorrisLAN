@@ -45,7 +45,7 @@
   };
 
   system.build.image = import <nixpkgs/nixos/lib/make-disk-image.nix> {
-    diskSize = 2000;
+    diskSize = 7000;
     format = "qcow2-compressed";
     installBootLoader = true;
     partitionTableType = "efi";
