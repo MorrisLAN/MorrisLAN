@@ -1,17 +1,22 @@
-{ config, pkgs, lib, ... }: {
-  imports = [
+{ pkgs ? import <nixpkgs> { } }:
+let config = {
+  imports = [ 
     <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix>
     ./modules/base.nix
   ];
-
+};
+in
+(pkgs.nixos config).digitalOceanImage
+  
+{ config, pkgs, lib, ... }: {
   nixpkgs = {
     localSystem.system = "x86_64-linux";
-    # overlays = [
-    #   (final: super: {
-    #     makeModulesClosure = x:
-    #       super.makeModulesClosure (x // { allowMissing = true; });
-    #   })
-    # ];
+    overlays = [
+      (final: super: {
+        makeModulesClosure = x:
+          super.makeModulesClosure (x // { allowMissing = true; });
+      })
+    ];
   };
 
   networking = {
