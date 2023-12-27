@@ -30,3 +30,5 @@ provider "github" {
   token = var.gh_morrislan_actions
   owner = "MorrisLAN"
 }
+
+provider "tls" {}
