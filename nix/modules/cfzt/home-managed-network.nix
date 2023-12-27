@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }: {
-  environment.systemPackages = with pkgs; [ nmap ];
+  environment.systemPackages = with pkgs; [ socat ];
   users.users = {
     cfzt-home-mn-tls = {
       group = "cfzt-home-mn-tls";
@@ -29,8 +29,8 @@
     echo "$CERTIFICATE" > "$CERT_FILE"
     echo "$PRIVATE_KEY" > "$PRIVATE_KEY_FILE"
 
-    ${pkgs.nmap}/bin/ncat --ssl --ssl-cert "$CERT_FILE" --ssl-key "$PRIVATE_KEY_FILE" -l -p 8123 --exec "/bin/cat" &
-    echo $! > /var/run/cfzt-home-mn-tls.pid
+    ${pkgs.socat}/bin/socat OPENSSL-LISTEN:8123,cert=$CERT_FILE,key=$PRIVATE_KEY_FILE,verify=0,reuseaddr,fork SYSTEM:"echo 'HTTP/1.1 200 OK'; echo 'Content-Type: text/plain'; echo; echo 'Cloudflare Zero Trust Beacon - Home'" &
+    echo $! > /tmp/cfzt-home-mn-tls.pid
 
     rm "$CERT_FILE" "$PRIVATE_KEY_FILE"
 
