@@ -1,14 +1,7 @@
-{ pkgs ? import <nixpkgs> { } }:
-let config = {
-  imports = [ 
-    <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix>
+{ config, pkgs, lib, ... }: {
+  imports = [
     ./modules/base.nix
   ];
-};
-in
-(pkgs.nixos config).digitalOceanImage
-  
-{ config, pkgs, lib, ... }: {
   nixpkgs = {
     localSystem.system = "x86_64-linux";
     overlays = [
@@ -28,3 +21,10 @@ in
 
   system.stateVersion = "23.11";
 }
+
+{ pkgs ? import <nixpkgs> { } }:
+let config = {
+  imports = [ <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix> ];
+};
+in
+(pkgs.nixos config).digitalOceanImage
