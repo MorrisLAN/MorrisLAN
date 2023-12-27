@@ -4,6 +4,7 @@
     ./modules/base.nix
     ./modules/cfzt/tunnel-home.nix
     ./modules/cfzt/beacon-home.nix
+    ./modules/github-runners/home-aarch64.nix
   ];
 
   networking = {

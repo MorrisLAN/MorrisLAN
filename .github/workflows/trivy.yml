@@ -9,7 +9,7 @@ permissions:
   security-events: write
 
 jobs:
-  scan:
+  trivy-scan:
     name: Vulnerability Scan
     runs-on: ubuntu-20.04
     steps:
