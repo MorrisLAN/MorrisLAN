@@ -24,6 +24,8 @@ jobs:
           extra-platforms = aarch64-linux
     - name: Update nixpkgs
       run: nix-channel --update
+    - name: Debug
+      run: pwd ; sleep 30
     - name: Build image
       run: |
         nix-build '<nixpkgs/nixos>' \
