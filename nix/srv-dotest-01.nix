@@ -1,11 +1,13 @@
 { pkgs ? import <nixpkgs> { } }:
-let config = {
-  imports = [ <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix> ];
-};
+let
+  config = {
+    imports = [ <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix> ];
+  };
 in
 (pkgs.nixos config).digitalOceanImage
 
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+{
   imports = [
     ./modules/base.nix
   ];
