@@ -9,14 +9,14 @@ resource "github_actions_secret" "cfzt_home_tunnel_token" {
   plaintext_value = cloudflare_tunnel.home.tunnel_token
 }
 
-resource "github_actions_secret" "cfzt_home_mn_key" {
+resource "github_actions_secret" "cfzt_beacon_home_key" {
   repository      = "morrislan"
-  secret_name     = "CFZT_HOME_MN_KEY"
-  plaintext_value = base64encode(tls_private_key.cfzt_home.private_key_pem)
+  secret_name     = "CFZT_BEACON_HOME_KEY"
+  plaintext_value = base64encode(tls_private_key.cfzt_beacon_home.private_key_pem)
 }
 
-resource "github_actions_secret" "cfzt_home_mn_cert" {
+resource "github_actions_secret" "cfzt_beacon_home_cert" {
   repository      = "morrislan"
-  secret_name     = "CFZT_HOME_MN_CERT"
-  plaintext_value = base64encode(tls_self_signed_cert.cfzt_home.cert_pem)
+  secret_name     = "CFZT_BEACON_HOME_CERT"
+  plaintext_value = base64encode(tls_self_signed_cert.cfzt_beacon_home.cert_pem)
 }

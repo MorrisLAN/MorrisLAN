@@ -4,17 +4,17 @@ resource "cloudflare_device_managed_networks" "home" {
   type       = "tls"
   config {
     tls_sockaddr = "10.1.240.5:8123"
-    sha256       = sha256(tls_self_signed_cert.cfzt_home.cert_pem)
+    sha256       = sha256(tls_self_signed_cert.cfzt_beacon_home.cert_pem)
   }
 }
 
-resource "tls_private_key" "cfzt_home" {
+resource "tls_private_key" "cfzt_beacon_home" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
-resource "tls_self_signed_cert" "cfzt_home" {
-  private_key_pem = tls_private_key.cfzt_home.private_key_pem
+resource "tls_self_signed_cert" "cfzt_beacon_home" {
+  private_key_pem = tls_private_key.cfzt_beacon_home.private_key_pem
   subject {
     common_name  = "cfzt-home"
     organization = "MorrisLAN"

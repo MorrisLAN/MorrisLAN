@@ -3,11 +3,11 @@
     ./hardware/rpi4.nix
     ./modules/base.nix
     ./modules/cfzt/home-tunnel.nix
-    ./modules/cfzt/home-managed-network.nix
+    ./modules/cfzt/beacon-home.nix
   ];
 
   networking = {
-    hostName = "srv-access-01";
+    hostName = "srv-cfzt-01";
     interfaces.eth0 = {
       useDHCP = false;
       ipv4.addresses = [{
