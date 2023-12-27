@@ -5,10 +5,10 @@ resource "cloudflare_device_settings_policy" "remote" {
   default           = true
   enabled           = true
   allow_mode_switch = false
-  switch_locked     = true
-  allowed_to_leave  = false
+  switch_locked     = false
+  allowed_to_leave  = true
   allow_updates     = false
-  auto_connect      = 120
+  auto_connect      = 900
 }
 
 resource "cloudflare_device_settings_policy" "home" {
@@ -22,5 +22,5 @@ resource "cloudflare_device_settings_policy" "home" {
   switch_locked     = false
   allowed_to_leave  = true
   allow_updates     = true
-  auto_connect      = 1500
+  auto_connect      = 900
 }
