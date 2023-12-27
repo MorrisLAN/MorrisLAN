@@ -14,6 +14,8 @@ jobs:
       if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       run: |
         sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/home-tunnel.nix
+        sed -i "s/SECRET_CFZT_HOME_MN_KEY/${{ secrets.CFZT_HOME_MN_KEY }}/" ./nix/modules/cfzt/home-managed-network.nix
+        sed -i "s/SECRET_CFZT_HOME_MN_CERT/${{ secrets.CFZT_HOME_MN_CERT }}/" ./nix/modules/cfzt/home-managed-network.nix
     - name: "Setup Nix"
       uses: cachix/install-nix-action@v24
       with:
