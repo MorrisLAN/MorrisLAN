@@ -28,4 +28,4 @@ jobs:
           --option sandbox false
     - name: Prepare image
       run : |
-        sudo mv ./result/sd-image/*.img.zst /tmp/github-runner/nix-build/${{ github.job }}.img.zst
+        mv ./result/sd-image/*.img.zst -t /build/nixos/${{ github.job }}.img.zst
