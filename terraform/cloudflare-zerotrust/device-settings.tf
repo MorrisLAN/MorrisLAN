@@ -15,6 +15,7 @@ resource "cloudflare_device_settings_policy" "home" {
   account_id        = var.cloudflare_account_id
   name              = "Home Profile"
   description       = "Home WARP profile for accessing MorrisLAN resources"
+  precedence        = 1
   match             = "network is Home"
   enabled           = true
   allow_mode_switch = false

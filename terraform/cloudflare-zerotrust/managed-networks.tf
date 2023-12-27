@@ -15,7 +15,7 @@ resource "tls_private_key" "cfzt_beacon_home" {
 
 resource "tls_self_signed_cert" "cfzt_beacon_home" {
   private_key_pem = tls_private_key.cfzt_beacon_home.private_key_pem
-  dns_names = [ "srv-cfzt-01.morrislan.net" ]
+  dns_names       = ["srv-cfzt-01.morrislan.net"]
   subject {
     common_name  = "cfzt-beacon-home"
     organization = "MorrisLAN"
