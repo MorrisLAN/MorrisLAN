@@ -2,7 +2,7 @@
   imports = [
     ./hardware/rpi4.nix
     ./modules/base.nix
-    ./modules/cfzt/home-tunnel.nix
+    ./modules/cfzt/tunnel-home.nix
     ./modules/cfzt/beacon-home.nix
   ];
 
