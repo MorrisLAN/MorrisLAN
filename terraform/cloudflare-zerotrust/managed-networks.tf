@@ -4,7 +4,7 @@ resource "cloudflare_device_managed_networks" "home" {
   type       = "tls"
   config {
     tls_sockaddr = "srv-access-01:8123"
-    sha256       = data.tls_cert_info.cfzt_home.subject_key_identifier
+    sha256       = sha256(tls_self_signed_cert.cfzt_home.cert_pem)
   }
 }
 
@@ -14,7 +14,6 @@ resource "tls_private_key" "cfzt_home" {
 }
 
 resource "tls_self_signed_cert" "cfzt_home" {
-  key_algorithm   = "RSA"
   private_key_pem = tls_private_key.cfzt_home.private_key_pem
   subject {
     common_name  = "cfzt-home"
@@ -25,8 +24,4 @@ resource "tls_self_signed_cert" "cfzt_home" {
     "key_encipherment",
     "server_auth",
   ]
-}
-
-data "tls_cert_info" "cfzt_home" {
-  certificate = tls_self_signed_cert.cfzt_home.cert_pem
 }
