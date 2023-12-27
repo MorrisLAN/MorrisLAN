@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [ git github-runner ];
   environment.etc.gh-runner-token = {
     text = "SECRET_GH_RUNNER_TOKEN";
-    mode = 0644;
+    mode = "0644";
   };
   services.github-runners = {
     home-aarch64 = {
