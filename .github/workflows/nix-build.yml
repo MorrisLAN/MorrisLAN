@@ -5,6 +5,9 @@ on:
     - main
   workflow_dispatch:
 
+env:
+  NIX_PATH: "nixpkgs=channel:nixos-23.11"
+      
 jobs:
   srv-cfzt-01:
     runs-on: self-hosted
@@ -22,13 +25,9 @@ jobs:
         nix_path: nixpkgs=channel:nixos-23.11
         extra_nix_config: |
           extra-platforms = aarch64-linux
-    - name: Update nixpkgs
-      run: nix-channel --update
-    - name: Debug
-      run: pwd ; sleep 30
     - name: Build image
       run: |
-        nix-build '<nixpkgs/nixos>' \
+        nix-build '<nixpkgs/nixos>'  \
           -A config.system.build.sdImage \
           -I nixos-config=./nix/${{ github.job }}.nix \
           --argstr system aarch64-linux \
