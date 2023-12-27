@@ -52,39 +52,3 @@ jobs:
       with:
         name: ${{ github.job }}
         path: ./result/sd-image
-
-  srv-dotest-01:
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v4
-    - name: "Setup Nix"
-      uses: cachix/install-nix-action@v24
-      with:
-        nix_path: nixpkgs=channel:nixos-23.11
-        extra_nix_config: |
-          extra-platforms = x86_64-linux
-    - name: Build image
-      run: |
-        nix-build \
-          ./nix/${{ github.job }}.nix \
-          --argstr system x86_64-linux \
-          --option sandbox false
-    - name: Prepare image
-      run : |
-        sudo mv ./result/nixos.qcow2.gz ./result/${{ github.job }}.qcow2.gz
-    - name: Upload image (secure)
-      if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
-      uses: shallwefootball/s3-upload-action@master
-      with:
-        aws_key_id: ${{ secrets.DOSPACES_ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.DOSPACES_SECRET_KEY }}
-        aws_bucket: ${{ secrets.NIXOS_BUCKET }}-nixos
-        endpoint: https://fra1.digitaloceanspaces.com
-        source_dir: ./result
-        destination_dir: .
-    - name: Upload image (Artifact)
-      if: (github.event_name == 'push' && github.ref != 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ github.job }}
-        path: ./result

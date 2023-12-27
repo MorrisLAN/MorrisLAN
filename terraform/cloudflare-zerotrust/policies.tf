@@ -120,7 +120,7 @@ resource "cloudflare_access_policy" "device_policy_windows_srv_access_01_ssh" {
   name             = "srv-access-01 SSH Device Policy (Windows)"
   precedence       = "1"
   decision         = "allow"
-  session_duration = "6h"
+  session_duration = "2h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
@@ -141,7 +141,7 @@ resource "cloudflare_access_policy" "device_policy_macos_srv_access_01_ssh" {
   name             = "srv-access-01 SSH Device Policy (macOS)"
   precedence       = "2"
   decision         = "allow"
-  session_duration = "6h"
+  session_duration = "2h"
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
