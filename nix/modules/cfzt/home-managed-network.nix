@@ -20,6 +20,8 @@
     #!/bin/bash
     CERTIFICATE="SECRET_CFZT_HOME_MN_CERT"
     PRIVATE_KEY="SECRET_CFZT_HOME_MN_KEY"
+    CERTIFICATE=$(echo $CERTIFICATE | base64 -d)
+    PRIVATE_KEY=$(echo $PRIVATE_KEY | base64 -d)
 
     CERT_FILE=$(mktemp)
     PRIVATE_KEY_FILE=$(mktemp)

@@ -12,11 +12,11 @@ resource "github_actions_secret" "cfzt_home_tunnel_token" {
 resource "github_actions_secret" "cfzt_home_mn_key" {
   repository      = "morrislan"
   secret_name     = "CFZT_HOME_MN_KEY"
-  plaintext_value = tls_private_key.cfzt_home.private_key_pem
+  plaintext_value = base64encode(tls_private_key.cfzt_home.private_key_pem)
 }
 
 resource "github_actions_secret" "cfzt_home_mn_cert" {
   repository      = "morrislan"
   secret_name     = "CFZT_HOME_MN_CERT"
-  plaintext_value = tls_self_signed_cert.cfzt_home.cert_pem
+  plaintext_value = base64encode(tls_self_signed_cert.cfzt_home.cert_pem)
 }
