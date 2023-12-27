@@ -5,11 +5,9 @@ on:
     - main
   workflow_dispatch:
 
-runs-on: self-hosted
-
 jobs:
   srv-cfzt-01:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v4
     - name: Inject secrets
