@@ -83,7 +83,7 @@ jobs:
           --option sandbox false
     - name: Prepare image
       run : |
-        sudo mv ./result/sd-image/*.img.zst ./result/sd-image/${{ github.job }}.img.zst
+        sudo mv ./result/*disk-image ./result/${{ github.job }}.img.zst
     - name: Upload image (secure)
       if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
       uses: shallwefootball/s3-upload-action@master
