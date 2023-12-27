@@ -54,3 +54,31 @@ jobs:
       with:
         name: ${{ github.job }}
         path: ./result/sd-image
+
+  vm-maxdev01:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - name: "Setup Nix"
+      uses: cachix/install-nix-action@v24
+      with:
+        nix_path: nixpkgs=channel:nixos-23.11
+        extra_nix_config: |
+          extra-platforms = aarch64-linux
+    - name: "Setup QEMU"
+      run: sudo apt -y install qemu-user-static
+    - name: Test aarch64 binfmt emulation
+      run: |
+        cat /proc/sys/fs/binfmt_misc/qemu-aarch64
+        /usr/bin/qemu-aarch64-static --version
+    - name: Build image
+      run: |
+        nix-build -I\ 
+        "nixpkgs=channel:nixos-23.11,nixos-config=./nix/${{ github.job }}.nix" \
+        '<nixpkgs>/nixos' \
+        -A config.system.build.image
+    - name: Upload image (Artifact)
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ github.job }}
+        path: ./result/
