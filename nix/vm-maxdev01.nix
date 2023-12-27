@@ -6,9 +6,7 @@
 
   networking = {
     hostName = "vm-maxdev01";
-    interfaces.eth0 = {
-      useDHCP = true;
-    };
+    useDHCP = true;
   };
 
   system.stateVersion = "23.11";
