@@ -4,7 +4,7 @@ resource "cloudflare_device_managed_networks" "home" {
   type       = "tls"
   config {
     tls_sockaddr = "10.1.240.5:8123"
-    sha256       = sha256(tls_self_signed_cert.cfzt_beacon_home.cert_pem)
+    sha256       = "46bb014b26217f7924d2cd0873cf18240259ba3e3a6e4318bc2f2730d2164a02"
   }
 }
 
