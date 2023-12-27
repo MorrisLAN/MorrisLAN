@@ -56,7 +56,7 @@ module "access_app_srv_access_01_ssh" {
   type                  = "ssh"
   allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible  = true
-  session_duration      = "2h"
+  session_duration      = "0s"
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_token      = var.cloudflare_token
   cloudflare_zone_id    = var.cloudflare_zone_id
