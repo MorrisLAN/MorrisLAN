@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
       
 jobs:
-  srv-access-01:
+  srv-cfzt-01:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
@@ -15,7 +15,7 @@ jobs:
       run: |
         sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/home-tunnel.nix
         sed -i "s/SECRET_CFZT_BEACON_HOME_KEY/${{ secrets.CFZT_BEACON_HOME_KEY }}/" ./nix/modules/cfzt/home-managed-network.nix
-        sed -i "s/SECRET_CFZT_BEACON_HOME_CERT/${{ secrets.CFZT_BEACON_HOME_CERT }}/" ./nix/modules/cfzt/home-managed-network.nix
+        sed -i "s/SECRET_CFZT_BEACON_HOME_CERT/${{ secrets.CFZT_BEACON_HOME_CERT }}/" ./nix/modules/cfzt/beacon-home.nix
     - name: "Setup Nix"
       uses: cachix/install-nix-action@v24
       with:
