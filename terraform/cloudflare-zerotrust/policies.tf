@@ -121,6 +121,7 @@ resource "cloudflare_access_policy" "device_policy_windows_srv_access_01_ssh" {
   precedence       = "1"
   decision         = "allow"
   session_duration = "0h"
+  purpose_justification_required = true
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_windows.id]
   }
@@ -142,6 +143,7 @@ resource "cloudflare_access_policy" "device_policy_macos_srv_access_01_ssh" {
   precedence       = "2"
   decision         = "allow"
   session_duration = "0h"
+  purpose_justification_required = true
   include {
     device_posture = [cloudflare_device_posture_rule.os_version_macos.id]
   }
