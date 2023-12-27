@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }: {
-  environment.systemPackages = with pkgs; [ ncat ];
+  environment.systemPackages = with pkgs; [ nmap ];
   users.users = {
     cfzt-home-mn-tls = {
       group = "cfzt-home-mn-tls";
@@ -27,7 +27,7 @@
     echo "$CERTIFICATE" > "$CERT_FILE"
     echo "$PRIVATE_KEY" > "$PRIVATE_KEY_FILE"
 
-    ncat --ssl --ssl-cert "$CERT_FILE" --ssl-key "$PRIVATE_KEY_FILE" -l -p 8123 --exec "/bin/cat" &
+    ${pkgs.nmap}/bin/ncat --ssl --ssl-cert "$CERT_FILE" --ssl-key "$PRIVATE_KEY_FILE" -l -p 8123 --exec "/bin/cat" &
     echo $! > /var/run/cfzt-home-mn-tls.pid
 
     rm "$CERT_FILE" "$PRIVATE_KEY_FILE"
