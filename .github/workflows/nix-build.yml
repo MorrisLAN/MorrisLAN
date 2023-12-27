@@ -22,6 +22,8 @@ jobs:
         nix_path: nixpkgs=channel:nixos-23.11
         extra_nix_config: |
           extra-platforms = aarch64-linux
+    - name: Update nixpkgs
+      run: nix-channel update
     - name: Build image
       run: |
         nix-build '<nixpkgs/nixos>'  \
