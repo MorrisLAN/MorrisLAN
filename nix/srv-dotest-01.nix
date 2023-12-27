@@ -1,3 +1,10 @@
+{ pkgs ? import <nixpkgs> { } }:
+let config = {
+  imports = [ <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix> ];
+};
+in
+(pkgs.nixos config).digitalOceanImage
+
 { config, pkgs, lib, ... }: {
   imports = [
     ./modules/base.nix
@@ -21,10 +28,3 @@
 
   system.stateVersion = "23.11";
 }
-
-{ pkgs ? import <nixpkgs> { } }:
-let config = {
-  imports = [ <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix> ];
-};
-in
-(pkgs.nixos config).digitalOceanImage
