@@ -16,6 +16,7 @@ jobs:
         sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/tunnel-home.nix
         sed -i "s/SECRET_CFZT_BEACON_HOME_KEY/${{ secrets.CFZT_BEACON_HOME_KEY }}/" ./nix/modules/cfzt/beacon-home.nix
         sed -i "s/SECRET_CFZT_BEACON_HOME_CERT/${{ secrets.CFZT_BEACON_HOME_CERT }}/" ./nix/modules/cfzt/beacon-home.nix
+        sed -i "s/SECRET_GH_RUNNER_TOKEN/${{ secrets.GH_RUNNER_TOKEN }}/" ./nix/modules/github-runners/home-aarch64.nix
     - name: Build image
       env:
         NIX_PATH: "nixpkgs=channel:nixos-23.11"
