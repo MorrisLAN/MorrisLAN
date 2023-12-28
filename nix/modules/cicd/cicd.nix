@@ -17,7 +17,7 @@
     virtualHosts."builds.morrislan.net" = {
       listen = [ { addr = "0.0.0.0"; port = 8080; } ];
       locations."/" = {
-        root = "/build/outputs";
+        root = "/build/output";
         extraConfig = "autoindex on;";
       };
     };
