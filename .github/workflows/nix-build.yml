@@ -16,6 +16,23 @@ jobs:
         sed -i "s/SECRET_CFZT_HOME_TUNNEL_TOKEN/${{ secrets.CFZT_HOME_TUNNEL_TOKEN }}/" ./nix/modules/cfzt/tunnel-home.nix
         sed -i "s/SECRET_CFZT_BEACON_HOME_KEY/${{ secrets.CFZT_BEACON_HOME_KEY }}/" ./nix/modules/cfzt/beacon-home.nix
         sed -i "s/SECRET_CFZT_BEACON_HOME_CERT/${{ secrets.CFZT_BEACON_HOME_CERT }}/" ./nix/modules/cfzt/beacon-home.nix
+    - name: Build image
+      env:
+        NIX_PATH: "nixpkgs=channel:nixos-23.11"
+      run: |
+        nix-build '<nixpkgs/nixos>'  \
+          -A config.system.build.sdImage \
+          -I nixos-config=./nix/${{ github.job }}.nix \
+          --argstr system aarch64-linux \
+          --option sandbox false
+
+  vm-maxdev01:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v4
+    - name: Inject secrets
+      if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+      run: |
         sed -i "s/SECRET_GH_RUNNER_TOKEN/${{ secrets.GH_RUNNER_TOKEN }}/" ./nix/modules/github-runners/home-aarch64.nix
     - name: Build image
       env:
