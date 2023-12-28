@@ -29,4 +29,4 @@ jobs:
     - name: Export image
       run : |
         mkdir -p /build/result/nixos
-        mv ./result/sd-image/*.img.zst /build/result/nixos/${{ github.job }}.img.zst
+        cp ./result/sd-image/*.img.zst /build/result/nixos/${{ github.job }}.img.zst
