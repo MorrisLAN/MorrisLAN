@@ -11,7 +11,8 @@
 
   environment.etc.gh-runner-token = {
     text = "SECRET_GH_RUNNER_TOKEN";
-    mode = "0644";
+    mode = "0600";
+    user = "github-runner";
   };
   services.github-runners = {
     home-aarch64 = {
@@ -26,7 +27,7 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /build 0600 github-runner github-runner -"
+    "d /build 0700 github-runner github-runner -"
   ];
 
 }

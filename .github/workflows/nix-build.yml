@@ -7,7 +7,7 @@ on:
       
 jobs:
   srv-cfzt-01:
-    runs-on: self-hosted
+    runs-on: [self-hosted, Linux, ARM64]
     steps:
     - uses: actions/checkout@v4
     - name: Inject secrets
@@ -23,7 +23,6 @@ jobs:
         nix-build '<nixpkgs/nixos>'  \
           -A config.system.build.sdImage \
           -I nixos-config=./nix/${{ github.job }}.nix \
-          --argstr system aarch64-linux \
           --option sandbox false
     - name: Export image
       run : |
@@ -33,7 +32,7 @@ jobs:
       run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.img.zst
 
   vm-maxdev01:
-    runs-on: self-hosted
+    runs-on: [self-hosted, Linux, ARM64]
     steps:
     - uses: actions/checkout@v4
     - name: Inject secrets
@@ -47,7 +46,6 @@ jobs:
         nix-build '<nixpkgs/nixos>'  \
           -A config.system.build.image \
           -I nixos-config=./nix/${{ github.job }}.nix \
-          --argstr system aarch64-linux \
           --option sandbox false
     - name: Export image
       run : |
