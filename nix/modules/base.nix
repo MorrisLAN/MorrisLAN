@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: {
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ vim curl htop lsof wget nano neofetch subversion ];
+  environment.systemPackages = with pkgs; [ vim curl htop lsof wget nano neofetch subversion outils ];
 
   networking = {
     firewall.enable = true;
