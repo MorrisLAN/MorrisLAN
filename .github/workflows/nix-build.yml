@@ -26,10 +26,9 @@ jobs:
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Export image
-      continue-on-error: true
       run : |
         /run/current-system/sw/bin/mkdir -p /build/output/nix
-        /run/current-system/sw/bin/cp ./result/sd-image/*.img.zst /build/output/nix/${{ github.job }}.img.zst
+        /run/current-system/sw/bin/cp -f ./result/sd-image/*.img.zst /build/output/nix/${{ github.job }}.img.zst
     - name: Get image hash
       run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.img.zst
 
@@ -51,9 +50,8 @@ jobs:
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Export image
-      continue-on-error: true
       run : |
         /run/current-system/sw/bin/mkdir -p /build/output/nix
-        /run/current-system/sw/bin/cp ./result/nixos.qcow2 /build/output/nix/${{ github.job }}.qcow2
+        /run/current-system/sw/bin/cp -f ./result/nixos.qcow2 /build/output/nix/${{ github.job }}.qcow2
     - name: Get image hash
       run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.qcow2
