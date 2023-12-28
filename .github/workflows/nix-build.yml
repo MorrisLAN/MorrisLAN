@@ -26,9 +26,12 @@ jobs:
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Export image
+      continue-on-error: true
       run : |
         mkdir -p /build/result/nixos
         cp ./result/sd-image/*.img /build/result/nixos/${{ github.job }}.img
+    - name: Get image hash
+      run : sha256 /build/result/nixos/${{ github.job }}.img
 
   vm-maxdev01:
     runs-on: self-hosted
@@ -48,6 +51,9 @@ jobs:
           --argstr system aarch64-linux \
           --option sandbox false
     - name: Export image
+      continue-on-error: true
       run : |
         mkdir -p /build/result/nixos
         cp ./result/nixos.qcow2 /build/result/nixos/${{ github.job }}.qcow2
+    - name: Get image hash
+      run : sha256 /build/result/nixos/${{ github.job }}.qcow2
