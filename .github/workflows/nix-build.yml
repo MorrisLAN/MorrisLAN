@@ -21,7 +21,6 @@ jobs:
       env:
         NIX_PATH: "nixpkgs=channel:nixos-23.11"
       run: |
-        whoami
         nix-build '<nixpkgs/nixos>'  \
           -A config.system.build.sdImage \
           -I nixos-config=./nix/${{ github.job }}.nix \
@@ -29,5 +28,5 @@ jobs:
           --option sandbox false
     - name: Export image
       run : |
-        mkdir -p /build/nixos
-        mv ./result/sd-image/*.img.zst /build/nixos/${{ github.job }}.img.zst
+        mkdir -p /build/result/nixos
+        mv ./result/sd-image/*.img.zst /build/result/nixos/${{ github.job }}.img.zst
