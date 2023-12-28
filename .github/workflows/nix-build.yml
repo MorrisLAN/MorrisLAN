@@ -29,7 +29,7 @@ jobs:
       continue-on-error: true
       run : |
         /run/current-system/sw/bin/mkdir -p /build/output/nix
-        /run/current-system/sw/bin/zstd -6 ./result/sd-image/*.img -o /build/output/nix/${{ github.job }}.img.zst
+        /run/current-system/sw/bin/cp ./result/sd-image/*.img.zst /build/output/nix/${{ github.job }}.img.zst
     - name: Get image hash
       run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.img.zst
 
@@ -54,6 +54,6 @@ jobs:
       continue-on-error: true
       run : |
         /run/current-system/sw/bin/mkdir -p /build/output/nix
-        /run/current-system/sw/bin/zstd -6 ./result/nixos.qcow2 -o /build/output/nix/${{ github.job }}.qcow2.zst
+        /run/current-system/sw/bin/cp ./result/nixos.qcow2 /build/output/nix/${{ github.job }}.qcow2
     - name: Get image hash
-      run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.qcow2.zst
+      run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.qcow2
