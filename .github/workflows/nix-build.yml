@@ -21,6 +21,7 @@ jobs:
       env:
         NIX_PATH: "nixpkgs=channel:nixos-23.11"
       run: |
+        whoami
         nix-build '<nixpkgs/nixos>'  \
           -A config.system.build.sdImage \
           -I nixos-config=./nix/${{ github.job }}.nix \
