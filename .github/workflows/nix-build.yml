@@ -31,7 +31,7 @@ jobs:
         mkdir -p /build/result/nixos
         cp ./result/sd-image/*.img /build/result/nixos/${{ github.job }}.img
     - name: Get image hash
-      run : sha256 /build/result/nixos/${{ github.job }}.img
+      run : /run/current-system/sw/bin/sha256 /build/result/nixos/${{ github.job }}.img
 
   vm-maxdev01:
     runs-on: self-hosted
@@ -56,4 +56,4 @@ jobs:
         mkdir -p /build/result/nixos
         cp ./result/nixos.qcow2 /build/result/nixos/${{ github.job }}.qcow2
     - name: Get image hash
-      run : sha256 /build/result/nixos/${{ github.job }}.qcow2
+      run : /run/current-system/sw/bin/sha256 /build/result/nixos/${{ github.job }}.qcow2
