@@ -2,6 +2,7 @@
   imports = [
     ./hardware/qemu-aarch64.nix
     ./modules/base.nix
+    ./modules/github-runners/home-aarch64.nix
   ];
 
   networking = {
