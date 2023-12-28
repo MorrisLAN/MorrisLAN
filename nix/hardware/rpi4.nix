@@ -30,7 +30,7 @@
     ];
   };
   sdImage = {
-    compressImage = true;
+    compressImage = false;
     populateFirmwareCommands = let
       configTxt = pkgs.writeText "config.txt" ''
         [pi3]
