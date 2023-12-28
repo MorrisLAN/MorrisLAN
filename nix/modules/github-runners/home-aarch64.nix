@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }: {
-  environment.systemPackages = with pkgs; [ git github-runner ];
+  environment.systemPackages = with pkgs; [ git github-runner outils ];
 
   users.users = {
     github-runner = {
