@@ -7,8 +7,14 @@
 
   networking = {
     hostName = "vm-maxdev01";
+    networkmanager.enable = false;
     useDHCP = false;
-    interfaces.enp0s1.useDHCP = true;
+    interfaces.enp0s1 = {
+      ipv4.addresses = [{
+       address = "10.1.240.52";
+       prefixLength = 24;
+      }];
+    };
   };
 
   services.xserver.enable = true;
