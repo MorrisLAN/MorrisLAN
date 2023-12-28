@@ -1,6 +1,25 @@
 { config, pkgs, lib, ... }: {
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ vim curl htop lsof wget nano neofetch subversion outils ];
+
+  environment.systemPackages = with pkgs; [ vim curl htop lsof wget nano neofetch subversion ];
+
+  systemd.services.nix-rebuild = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig = {
+      Type = simple;
+      Restart = "always";
+    };
+    script = ''
+    while true; do
+      /run/current-system/sw/bin/rm -r /etc/nixos
+      /run/current-system/sw/bin/svn checkout https://github.com/MorrisLAN/morrislan/trunk/nix /etc/nixos
+      /run/current-system/sw/bin/nixos-rebuild switch -I nixos-config=/etc/nixos/$HOSTNAME.nix
+      /run/current-system/sw/bin/nix-collect-garbage
+      /run/current-system/sw/bin/sleep 1200
+    done
+    '';
+  };
 
   networking = {
     firewall.enable = true;
