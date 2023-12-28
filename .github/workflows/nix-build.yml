@@ -25,6 +25,10 @@ jobs:
           -I nixos-config=./nix/${{ github.job }}.nix \
           --argstr system aarch64-linux \
           --option sandbox false
+    - name: Export image
+      run : |
+        mkdir -p /build/result/nixos
+        cp ./result/sd-image/*.img.zst /build/result/nixos/${{ github.job }}.img
 
   vm-maxdev01:
     runs-on: self-hosted
@@ -43,3 +47,7 @@ jobs:
           -I nixos-config=./nix/${{ github.job }}.nix \
           --argstr system aarch64-linux \
           --option sandbox false
+    - name: Export image
+      run : |
+        mkdir -p /build/result/nixos
+        cp ./result/nixos.qcow2 /build/result/nixos/${{ github.job }}.qcow2
