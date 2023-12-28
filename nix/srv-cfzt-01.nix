@@ -8,8 +8,9 @@
 
   networking = {
     hostName = "srv-cfzt-01";
+    networkmanager.enable = false;
+    useDHCP = false;
     interfaces.eth0 = {
-      useDHCP = false;
       ipv4.addresses = [{
        address = "10.1.240.5";
        prefixLength = 24;
