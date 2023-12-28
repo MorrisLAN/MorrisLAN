@@ -39,7 +39,7 @@ jobs:
         NIX_PATH: "nixpkgs=channel:nixos-23.11"
       run: |
         nix-build '<nixpkgs/nixos>'  \
-          -A config.system.build.sdImage \
+          -A config.system.build.image \
           -I nixos-config=./nix/${{ github.job }}.nix \
           --argstr system aarch64-linux \
           --option sandbox false
