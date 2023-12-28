@@ -28,7 +28,7 @@ jobs:
     - name: Export image
       run : |
         mkdir -p /build/result/nixos
-        cp ./result/sd-image/*.img.zst /build/result/nixos/${{ github.job }}.img
+        cp ./result/sd-image/*.img /build/result/nixos/${{ github.job }}.img
 
   vm-maxdev01:
     runs-on: self-hosted
