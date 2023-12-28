@@ -28,10 +28,10 @@ jobs:
     - name: Export image
       continue-on-error: true
       run : |
-        mkdir -p /build/output/nix
-        cp ./result/sd-image/*.img /build/output/nix/${{ github.job }}.img
+        /run/current-system/sw/bin/mkdir -p /build/output/nix
+        /run/current-system/sw/bin/zstd -6 ./result/sd-image/*.img -o /build/output/nix/${{ github.job }}.img.zst
     - name: Get image hash
-      run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.img
+      run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.img.zst
 
   vm-maxdev01:
     runs-on: self-hosted
@@ -53,7 +53,7 @@ jobs:
     - name: Export image
       continue-on-error: true
       run : |
-        mkdir -p /build/output/nix
-        cp ./result/nixos.qcow2 /build/output/nix/${{ github.job }}.qcow2
+        /run/current-system/sw/bin/mkdir -p /build/output/nix
+        /run/current-system/sw/bin/zstd -6 ./result/nixos.qcow2 -o /build/output/nix/${{ github.job }}.qcow2.zst
     - name: Get image hash
-      run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.qcow2
+      run : /run/current-system/sw/bin/sha256 /build/output/nix/${{ github.job }}.qcow2.zst
