@@ -34,6 +34,14 @@ resource "cloudflare_tunnel_config" "home" {
       }
     }
     ingress_rule {
+      hostname = "builds.morrislan.net"
+      service  = "http://127.0.0.1:8080"
+      origin_request {
+        connect_timeout = "2m0s"
+        no_tls_verify   = true
+      }
+    }
+    ingress_rule {
       hostname = "srv-access-01-ssh.morrislan.net"
       service  = "ssh://127.0.0.1:4022"
       origin_request {

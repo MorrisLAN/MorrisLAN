@@ -47,6 +47,22 @@ module "access_app_unifi" {
   enable_managed_policy = false
 }
 
+module "access_app_builds" {
+  source                = "m4xmorris/access-application/cloudflare"
+  version               = "3.2.0"
+  name                  = "CI/CD Builds"
+  logo                  = "https://cdn-icons-png.flaticon.com/512/569/569220.png"
+  domain                = "builds.morrislan.net"
+  type                  = "self_hosted"
+  allowed_idps          = [cloudflare_access_identity_provider.github.id, cloudflare_access_identity_provider.otp.id]
+  app_launcher_visible  = true
+  session_duration      = "2h"
+  cloudflare_account_id = var.cloudflare_account_id
+  cloudflare_token      = var.cloudflare_token
+  cloudflare_zone_id    = var.cloudflare_zone_id
+  enable_managed_policy = false
+}
+
 module "access_app_srv_access_01_ssh" {
   source                = "m4xmorris/access-application/cloudflare"
   version               = "3.2.0"
