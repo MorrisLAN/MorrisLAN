@@ -8,7 +8,6 @@
   networking = {
     hostName = "vm-maxdev01";
     networkmanager.enable = false;
-    useDHCP = false;
     interfaces.eth0 = {
       ipv4.addresses = [{
        address = "10.1.240.52";
