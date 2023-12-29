@@ -35,7 +35,7 @@ resource "cloudflare_tunnel_config" "home" {
     }
     ingress_rule {
       hostname = "builds.morrislan.net"
-      service  = "http://10.1.240.221:8080"
+      service  = "http://10.1.240.52:8080"
       origin_request {
         connect_timeout = "2m0s"
         no_tls_verify   = true
