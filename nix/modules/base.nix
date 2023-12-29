@@ -4,8 +4,10 @@
   environment.systemPackages = with pkgs; [ vim curl htop lsof wget nano neofetch subversion ];
 
   networking = {
+    use.DHCP = lib.mkDefault false;
     firewall.enable = true;
     domain = "morrislan.net";
+    usePredictableInterfaceNames = false;
     defaultGateway = lib.mkDefault "10.1.240.1";
     nameservers = lib.mkDefault [ "10.1.240.3" ];
   };
