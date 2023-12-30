@@ -5,7 +5,6 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_rpi4;
     consoleLogLevel = lib.mkDefault 7;
-    growPartition = true;
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
@@ -75,7 +74,6 @@
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
-      autoResize = true;
     };
   };
   swapDevices = [ { device = "/swapfile"; size = 1024; } ];

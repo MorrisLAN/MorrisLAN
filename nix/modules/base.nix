@@ -12,6 +12,9 @@
     nameservers = lib.mkDefault [ "10.1.240.3" ];
   };
 
+  boot.growPartition = true;
+  fileSystems."/".autoResize = true;
+
   services.openssh = {
       enable = true;
       ports = [ 4022 ];
