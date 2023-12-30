@@ -11,7 +11,6 @@
   boot = {
     kernelParams = ["console=ttyAMA0,115200n8" "console=tty0"];
     consoleLogLevel = lib.mkDefault 7;
-    growPartition = true;
     initrd.kernelModules = [ "nvme" ];
     loader.grub = {
       efiSupport = true;
@@ -28,7 +27,6 @@
     "/" = {
       device = "/dev/vda2";
       fsType = "ext4";
-      autoResize = true;
     };
   };
 
