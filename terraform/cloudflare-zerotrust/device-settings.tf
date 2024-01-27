@@ -11,7 +11,7 @@ resource "cloudflare_device_settings_policy" "default" {
   auto_connect      = 2700
 }
 
-resource "cloudflare_split_tunnel" "cloudflare" {
+resource "cloudflare_split_tunnel" "morrislan" {
   account_id = var.cloudflare_account_id
   policy_id  = cloudflare_device_settings_policy.default.id
   mode       = "include"
@@ -19,22 +19,12 @@ resource "cloudflare_split_tunnel" "cloudflare" {
     host        = "*.cloudflare.com"
     description = "Cloudflare"
   }
-}
 
-resource "cloudflare_split_tunnel" "cloudflare_access" {
-  account_id = var.cloudflare_account_id
-  policy_id  = cloudflare_device_settings_policy.default.id
-  mode       = "include"
   tunnels {
     host        = "*.cloudflareaccess.com"
     description = "Cloudflare Access"
   }
-}
 
-resource "cloudflare_split_tunnel" "morrislan" {
-  account_id = var.cloudflare_account_id
-  policy_id  = cloudflare_device_settings_policy.default.id
-  mode       = "include"
   tunnels {
     host        = "*.morrislan.net"
     description = "MorrisLAN"
