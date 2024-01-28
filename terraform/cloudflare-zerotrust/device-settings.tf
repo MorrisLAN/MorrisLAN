@@ -1,32 +1,26 @@
-resource "cloudflare_device_settings_policy" "default" {
+resource "cloudflare_device_settings_policy" "remote" {
   account_id        = var.cloudflare_account_id
-  name              = "Default"
-  description       = "Default WARP profile for accessing MorrisLAN resources"
+  name              = "Remote Profile"
+  description       = "Remote WARP profile for accessing MorrisLAN resources"
   default           = true
   enabled           = true
   allow_mode_switch = false
   switch_locked     = false
   allowed_to_leave  = true
-  allow_updates     = true
-  auto_connect      = 2700
+  allow_updates     = false
+  auto_connect      = 900
 }
 
-resource "cloudflare_split_tunnel" "morrislan" {
-  account_id = var.cloudflare_account_id
-  policy_id  = cloudflare_device_settings_policy.default.id
-  mode       = "include"
-  tunnels {
-    host        = "*.cloudflare.com"
-    description = "Cloudflare"
-  }
-
-  tunnels {
-    host        = "*.cloudflareaccess.com"
-    description = "Cloudflare Access"
-  }
-
-  tunnels {
-    host        = "*.morrislan.net"
-    description = "MorrisLAN"
-  }
+resource "cloudflare_device_settings_policy" "home" {
+  account_id        = var.cloudflare_account_id
+  name              = "Home Profile"
+  description       = "Home WARP profile for accessing MorrisLAN resources"
+  precedence        = 1
+  match             = "network == \"Home\""
+  enabled           = true
+  allow_mode_switch = false
+  switch_locked     = false
+  allowed_to_leave  = true
+  allow_updates     = true
+  auto_connect      = 900
 }
