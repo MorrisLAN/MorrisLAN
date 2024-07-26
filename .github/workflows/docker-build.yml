@@ -1,0 +1,19 @@
+name: "Docker Build"
+on:
+  push:
+   branches:
+    - main
+  workflow_dispatch:
+      
+jobs:
+  build-test:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build image
+      run: |
+        docker build -t test:latest ./docker/test
+
+    - name: Push Docker image to GitHub Packages
+      run: |
+        docker push test:latest
