@@ -23,4 +23,4 @@ jobs:
 
     - name: Push image to Gitea
       run: |
-        docker push git.morrislan.net/morrislan/test:latest
+        docker push git.morrislan.net/morrislan/test:v1.0
