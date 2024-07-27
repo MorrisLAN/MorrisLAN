@@ -1,0 +1,55 @@
+services:
+
+  server:
+    image: gitea/gitea:1.22.1
+    restart: unless-stopped
+    networks:
+      - gitea
+      - traefik_gitea
+    volumes:
+      - data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "5022:22"
+    labels:
+      traefik.enable: true
+      traefik.http.services.gitea.loadbalancer.server.port: 3000
+      traefik.http.routers.gitea.rule: Host(`git.morrislan.net`)
+      traefik.http.routers.gitea.entrypoints: websecure
+      traefik.http.services.gitea.loadbalancer.server.scheme: http
+      traefik.http.routers.gitea.tls.certresolver: myresolver
+      traefik.docker.network: traefik_gitea
+
+  runner:
+    networks:
+      gitea:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - runner-data:/data
+    environment:
+      - GITEA_INSTANCE_URL=server
+      - GITEA_RUNNER_REGISTRATION_TOKEN=fvNkgN7p4dQ2BuTrnzYDgRcokbHqwMoDVRDs3cZx
+      - GITEA_RUNNER_NAME=morrislan-runner
+    image: gitea/act_runner:latest
+
+networks:
+  gitea:
+    external: false
+  traefik_gitea:
+    external: true
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/gitea/data
+
+  runner-data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/gitea/runner-data
