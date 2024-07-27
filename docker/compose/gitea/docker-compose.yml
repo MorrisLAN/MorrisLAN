@@ -11,7 +11,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "7022:22"
+      - "5022:22"
     labels:
       traefik.enable: true
       traefik.http.services.gitea.loadbalancer.server.port: 3000
