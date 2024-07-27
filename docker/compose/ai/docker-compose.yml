@@ -1,0 +1,94 @@
+services:
+
+  #  ollama:
+  #    image: ollama/ollama
+  #    healthcheck:
+  #      test: ollama --version || exit 1
+  #    command: serve
+  #    restart: unless-stopped
+  
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    networks:
+      traefik_ai: null
+    environment:
+      OLLAMA_BASE_URL: http://10.1.240.16:11434
+      ENABLE_OAUTH_SIGNUP: true
+      ENABLE_SIGNUP: false
+      OAUTH_CLIENT_ID: ${{ secrets.OPENWEBUI_OUATH_ID }}
+      OAUTH_CLIENT_SECRET: ${{ secrets.OPENWEBUI_OUATH_SECRET }}
+      OPENID_PROVIDER_URL: https://auth.morrislan.net/application/o/ai/.well-known/openid-configuration
+      OAUTH_PROVIDER_NAME: MorrisLAN SSO
+    volumes:
+      - open-webui:/app/backend/data
+    #    depends_on:
+    #      - ollama
+    labels:
+      traefik.enable: true
+      traefik.http.services.ai.loadbalancer.server.port: 8080
+      traefik.http.routers.ai.rule: Host(`ai.morrislan.net`)
+      traefik.http.services.ai.loadbalancer.server.scheme: http
+      traefik.http.routers.ai.entrypoints: websecure
+      traefik.http.routers.ai.tls.certresolver: myresolver
+      traefik.docker.network: traefik_ai
+
+  faster-whisper:
+    image: lscr.io/linuxserver/faster-whisper:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - WHISPER_MODEL=base-int8
+    ports:
+      - 10300:10300
+    networks:
+      smart-home_ai: null
+    restart: unless-stopped
+
+  piper:
+    image: lscr.io/linuxserver/piper:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PIPER_VOICE=en_GB-northern_english_male-medium
+      - PIPER_LENGTH=0.95
+      - PIPER_NOISE=0.667
+      - PIPER_NOISEW=0.333
+      - PIPER_SPEAKER=0
+      - PIPER_PROCS=1
+    ports:
+      - 10200:10200
+    networks:
+      smart-home_ai: null
+    restart: unless-stopped
+
+  openwakeword:
+    image: rhasspy/wyoming-openwakeword
+    user: 1001:1001
+    networks:
+      smart-home_ai: null
+    volumes:
+      - ./wakeword:/data
+      - ./wakeword:/custom
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Europe/London
+    command: --preload-model 'ok_nabu' --custom-model-dir /custom
+    restart: unless-stopped
+
+volumes:
+  open-webui:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/ai/open-webui/data
+
+networks:
+  traefik_ai:
+    external: true
+  smart-home_ai:
+    external: false

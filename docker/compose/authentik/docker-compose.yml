@@ -1,0 +1,146 @@
+services:
+
+  postgresql:
+    image: docker.io/library/postgres:16-alpine
+    restart: unless-stopped
+    networks:
+      authentik: null
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${{ secrets.AUTHENTIK_DB_PASS }}
+      POSTGRES_USER: authentik
+      POSTGRES_DB: authentik
+
+  redis:
+    image: docker.io/library/redis:alpine
+    networks:
+      authentik: null
+    command: --save 60 1 --loglevel warning
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - redis-cli ping | grep PONG
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 3s
+    volumes:
+      - redis:/data
+
+  server:
+    image: ghcr.io/goauthentik/server:2024.6.1
+    restart: unless-stopped
+    command: server
+    environment:
+      AUTHENTIK_HOST: https://auth.morrislan.net/
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${{ secrets.AUTHENTIK_DB_PASS }}
+      AUTHENTIK_EMAIL__HOST: ${{ secrets.SMTP_HOST }}
+      AUTHENTIK_EMAIL__PORT: 587
+      AUTHENTIK_EMAIL__USE_TLS: true
+      AUTHENTIK_EMAIL__TIMEOUT: 10
+      AUTHENTIK_EMAIL__FROM: auth@morrislan.net
+      AUTHENTIK_EMAIL__USERNAME: ${{ secrets.SMTP_USERNAME }}
+      AUTHENTIK_EMAIL__PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      AUTHENTIK_SECRET_KEY: ${{ secrets.AUTHENTIK_SECRET_KEY }}
+    volumes:
+      - media:/media
+      - custom-templates:/templates
+    networks:
+      authentik: null
+      traefik_authentik: null
+    labels:
+      traefik.enable: true
+      traefik.http.services.authentik-server.loadbalancer.server.port: 9443
+      traefik.http.routers.authentik-server.rule: Host(`auth.morrislan.net`)
+      traefik.http.routers.authentik-rtr.entrypoints: websecure
+      traefik.http.services.authentik-server.loadbalancer.server.scheme: https
+      traefik.http.routers.authentik-server.entrypoints: websecure
+      traefik.http.routers.authentik-server.tls.certresolver: myresolver
+      traefik.docker.network: traefik_authentik
+    depends_on:
+      - postgresql
+      - redis
+
+  worker:
+    image: ghcr.io/goauthentik/server:2024.6.1
+    restart: unless-stopped
+    networks:
+      authentik: null
+    command: worker
+    environment:
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${{ secrets.AUTHENTIK_DB_PASS }}
+      AUTHENTIK_SECRET_KEY: ${{ secrets.AUTHENTIK_SECRET_KEY }}
+    user: root
+    volumes:
+      - media:/media
+      - certs:/certs
+      - custom-templates:/templates
+    depends_on:
+      - postgresql
+      - redis
+
+  proxy:
+    image: ghcr.io/goauthentik/proxy
+    networks:
+      authentik: null
+    environment:
+      AUTHENTIK_HOST: https://auth.morrislan.net
+      AUTHENTIK_INSECURE: "false"
+      AUTHENTIK_TOKEN: ${{ secrets.AUTHENTIK_PROXY_TOKEN }}
+    restart: unless-stopped
+
+volumes:
+  database:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/authentik/database
+  redis:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/authentik/redis
+  certs:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/authentik/certs
+  media:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/authentik/media
+  custom-templates:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/authentik/custom-templates
+
+networks:
+  authentik:
+    external: false
+  traefik_authentik:
+    external: true

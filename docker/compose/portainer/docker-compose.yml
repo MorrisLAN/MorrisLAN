@@ -1,0 +1,30 @@
+services:
+
+  portainer:
+    labels:
+      traefik.enable: true
+      traefik.http.services.portainer.loadbalancer.server.port: 9443
+      traefik.http.routers.portainer.rule: Host(`portainer.morrislan.net`)
+      traefik.http.services.portainer.loadbalancer.server.scheme: https
+      traefik.http.routers.portainer.entrypoints: websecure
+      traefik.http.routers.portainer.tls.certresolver: myresolver
+      traefik.docker.network: traefik_portainer
+    restart: always
+    networks:
+      traefik_portainer: null
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - data:/data
+    image: portainer/portainer-ce:latest
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
+      device: :/mnt/poseidon/apps/portainer
+
+networks:
+  traefik_portainer:
+    external: true

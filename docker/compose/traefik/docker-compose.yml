@@ -13,6 +13,10 @@ services:
       - CF_DNS_API_TOKEN=${{ secrets.CLOUDFLARE_TOKEN }}
     networks:
       traefik_adguard: null
+      traefik_ai: null
+      traefik_authentik: null
+      traefik_portainer: null
+      traefik_speedtest: null
 
 volumes:
   certs:
@@ -24,4 +28,12 @@ volumes:
 
 networks:
   traefik_adguard:
+    external: false
+  traefik_ai:
+    external: false
+  traefik_authentik:
+    external: false
+  traefik_portainer:
+    external: false
+  traefik_speedtest:
     external: false
