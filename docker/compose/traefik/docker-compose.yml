@@ -17,6 +17,7 @@ services:
       authentik: null
       portainer: null
       speedtest: null
+      unifi: null
 
 volumes:
   certs:
@@ -36,4 +37,6 @@ networks:
   portainer:
     external: false
   speedtest:
+    external: false
+  unifi:
     external: false
