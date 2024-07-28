@@ -10,9 +10,6 @@ terraform {
     digitalocean = {
       source = "digitalocean/digitalocean"
     }
-    github = {
-      source = "integrations/github"
-    }
   }
 }
 
@@ -21,14 +18,5 @@ provider "cloudflare" {
 }
 
 provider "digitalocean" {
-  token             = var.do_token
-  spaces_access_id  = var.do_spaces_access_key
-  spaces_secret_key = var.do_spaces_secret_key
+  token             = var.digitalocean_token
 }
-
-provider "github" {
-  token = var.gh_morrislan_actions
-  owner = "MorrisLAN"
-}
-
-provider "tls" {}

@@ -4,20 +4,8 @@ variable "cloudflare_token" {
   sensitive   = true
 }
 
-variable "do_token" {
+variable "digitalocean_token" {
   description = "DigitalOcean API Token"
-  type        = string
-  sensitive   = true
-}
-
-variable "do_spaces_access_key" {
-  description = "DigitalOcean Spaces Access Key"
-  type        = string
-  sensitive   = true
-}
-
-variable "do_spaces_secret_key" {
-  description = "DigitalOcean Spaces Secret Key"
   type        = string
   sensitive   = true
 }
@@ -31,28 +19,4 @@ variable "cloudflare_account_id" {
 variable "cloudflare_zone_id" {
   description = "Cloudflare Zone ID"
   type        = string
-}
-
-variable "gh_client_id" {
-  description = "GitHub Client ID"
-  type        = string
-  sensitive   = true
-}
-
-variable "gh_client_secret" {
-  description = "GitHub Client Secret"
-  type        = string
-  sensitive   = true
-}
-
-variable "gh_morrislan_actions" {
-  description = "GitHub API key to use for non-standard API calls"
-  type        = string
-  sensitive   = true
-}
-
-variable "nixos_bucket" {
-  description = "Bucket used for NixOS image uploads"
-  type        = string
-  sensitive   = true
 }
