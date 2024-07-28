@@ -29,8 +29,11 @@ jobs:
         shell: bash
         working-directory: ./terraform
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
         with:
           cli_config_credentials_token: ${{ secrets.TF_CLOUD_TOKEN }}
 
@@ -38,7 +41,7 @@ jobs:
         id: fmt-check
         run: terraform fmt -check
 
-      - name: Initialize Terraform
+      - name: Initialize
         id: init
         run: terraform init
 
