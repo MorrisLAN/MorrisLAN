@@ -1,13 +1,13 @@
 { config, pkgs, lib, ... }: {
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [ vim curl htop lsof wget nano neofetch subversion ];
+  environment.systemPackages = with pkgs; [ vim curl btop lsof wget nano fastfetch ];
 
   networking = {
     useDHCP = lib.mkDefault false;
     firewall.enable = true;
     domain = "morrislan.net";
-    usePredictableInterfaceNames = false;
+    usePredictableInterfaceNames = true;
     defaultGateway = lib.mkDefault "10.1.240.1";
     nameservers = lib.mkDefault [ "10.1.240.3" ];
   };
@@ -24,9 +24,11 @@
 
   programs.zsh = {
       enable = true;
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
       ohMyZsh = {
           enable = true;
-          theme = "agnoster";
+          theme = "risto";
           plugins = [ "git" ];
       };
   };
