@@ -1,12 +1,13 @@
 module "static_site" {
-  source      = "m4xmorris/static-site/digitalocean"
-  version     = "1.3.2"
-  site_name   = "morrislan"
-  description = "Webroot for MorrisLAN"
-  environment = "Production"
-  region      = "lon"
-  domain      = "morrislan.net"
-  source_repo = "MorrisLAN/morrislan"
+  source           = "m4xmorris/static-site/digitalocean"
+  version          = "1.3.2"
+  site_name        = "morrislan"
+  external_project = "27ecab9a-b47f-4e38-a3bf-7f43c886e3a3"
+  description      = "Webroot for MorrisLAN"
+  environment      = "Production"
+  region           = "lon"
+  domain           = "morrislan.net"
+  source_repo      = "MorrisLAN/morrislan"
   source_branches = {
     "main" = "/"
   }
