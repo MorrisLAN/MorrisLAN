@@ -8,6 +8,6 @@ resource "digitalocean_droplet" "pcdo-ch-1" {
   region = "lon1"
   size   = "s-2vcpu-2gb"
   backups = true
-  ssh_keys = [ digitalocean_ssh_key.morrislan.id ]
+  ssh_keys = [ data.digitalocean_ssh_key.morrislan.id ]
   graceful_shutdown = true
 }
