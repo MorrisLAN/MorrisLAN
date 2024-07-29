@@ -5,7 +5,7 @@
   
   environment.etc."morrislan".source = builtins.fetchGit {
     url = "https://ci:SECRETS.GIT_PAT@git.morrislan.net/MorrisLAN/morrislan.git";
-    rev = "main";
+    ref = "refs/heads/main";
   };
 
 }
