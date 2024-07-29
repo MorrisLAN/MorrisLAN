@@ -58,7 +58,6 @@
     };
     deploy = {
       uid = 1001;
-      group = "wheel";
       isNormalUser = true;
       shell = pkgs.bash;
       openssh.authorizedKeys.keys = [
@@ -74,7 +73,11 @@
         users = [ "deploy" ];
         commands = [
           {
-            command = "/nix/store/*-nixos-system-*/systemd/bin/systemd-run";
+            command = "/run/current-system/sw/bin/nix-env";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemd-run";
             options = [ "NOPASSWD" ];
           }
         ];
