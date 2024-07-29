@@ -2,11 +2,9 @@ services:
 
   server:
     image: gitea/gitea:1.22.1
-    restart: unless-stopped
     healthcheck:
-      test:
-        - CMD-SHELL
-        - curl http://localhost:3000
+      test: ["CMD-SHELL", "curl -f http://gitea-server-1:3000 || exit 1"]
+    restart: unless-stopped
     networks:
       - gitea
       - traefik_gitea
@@ -28,14 +26,15 @@ services:
 
   runner:
     depends_on:
-      - server
+      server:
+        condition: service_healthy
     networks:
       gitea:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - runner-data:/data
     environment:
-      - GITEA_INSTANCE_URL=server
+      - GITEA_INSTANCE_URL=http://gitea-server-1:3000
       - GITEA_RUNNER_REGISTRATION_TOKEN=${CI_RUNNER_TOKEN}
       - GITEA_RUNNER_NAME=morrislan-runner
     image: gitea/act_runner:latest
