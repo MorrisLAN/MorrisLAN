@@ -13,6 +13,7 @@
     description = "Traefik (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    restartIfChanged = true;
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/traefik/docker-compose.yml up";
       WorkingDirectory = "/etc/morrislan/docker/compose/traefik";
@@ -25,6 +26,7 @@
     description = "Gitea (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    restartIfChanged = true;
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
       WorkingDirectory = "/etc/morrislan/docker/compose/gitea";
@@ -37,6 +39,7 @@
     description = "Cloudflare Tunnel (pcdo1) (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    restartIfChanged = true;
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml up";
       WorkingDirectory = "/etc/morrislan/docker/compose/cloudflare-access/pcdo1";
