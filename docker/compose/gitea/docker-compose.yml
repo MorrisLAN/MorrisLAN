@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     healthcheck:
       test:
+        - CMD-SHELL
         - curl http://localhost:3000
     networks:
       - gitea
