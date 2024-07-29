@@ -32,5 +32,5 @@ jobs:
 
       - name: Deploy ${{ github.job }}
         run: |
-          nix-shell -p '(nixos{}).nixos-rebuild' --command "sudo nixos-rebuild --build-host localhost --target-host deploy@${{ github.job }}.morrislan.net -I nixos-config=./nix/pcdo-ch-1.nix switch"
+          nix-shell -p '(nixos{}).nixos-rebuild' --command "nixos-rebuild --build-host localhost --target-host deploy@${{ github.job }}.morrislan.net -I nixos-config=./nix/pcdo-ch-1.nix switch"
 
