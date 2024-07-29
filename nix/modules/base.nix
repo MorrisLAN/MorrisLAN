@@ -12,9 +12,6 @@
     nameservers = lib.mkDefault [ "10.1.240.3" ];
   };
 
-  boot.growPartition = true;
-  fileSystems."/".autoResize = true;
-
   services.openssh = {
       enable = true;
       ports = [ 4022 ];
@@ -62,6 +59,28 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjgkh0LyGVjWzYnCxrKC5dxQMHE3ky7s/vFpAyjfk5l"
       ];
     };
+    deploy = {
+      uid = 1001;
+      isNormalUser = true;
+      shell = pkgs.bash;
+      openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJNeaAALD5xSV/EDyhed2JyB8Qhr59QgrlEHuYJ8SZx3"
+      ];
+    };
+  };
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        users = [ "deploy" ];
+        commands = [
+          {
+            command = "${config.system.build.nixos-rebuild} *";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
   users.groups.admin = {};
   security.sudo.wheelNeedsPassword = false;

@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }: {
+{ modulesPath, config, pkgs, lib, ... }: {
   imports = [
-    <nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix>
+    (modulesPath + "/virtualisation/digital-ocean-config.nix")
     ./modules/base.nix
+    ./modules/ch.nix
   ];
 
   networking = {
     hostName = "pcdo-ch-1";
-    useDHCP = true;
   };
 
   system.stateVersion = "24.05";
