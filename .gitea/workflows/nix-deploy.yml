@@ -15,6 +15,7 @@ env:
 
 jobs:
   pcdo-ch-1:
+    name: Deploy NixOS for pcdo-ch-1
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

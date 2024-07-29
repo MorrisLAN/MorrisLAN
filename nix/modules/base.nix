@@ -76,7 +76,7 @@
         users = [ "deploy" ];
         commands = [
           {
-            command = "${config.system.build.nixos-rebuild} *";
+            command = "/run/current-system/sw/bin/nixos-rebuild *";
             options = [ "NOPASSWD" ];
           }
           {
