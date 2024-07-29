@@ -25,6 +25,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.NIX_DEPLOY_KEY }}
 
+      - name: Cache Nix Store
+        uses: actions/cache@v3
+        with:
+          path: /nix/store
+          key: nix-store
+          restore-keys: nix-store
+
       - name: Setup Nix
         uses: cachix/install-nix-action@v27
         with:
@@ -33,10 +40,3 @@ jobs:
       - name: Deploy pcdo-ch-1
         run: |
           nix-shell -p '(nixos{}).nixos-rebuild' --command "nixos-rebuild --use-remote-sudo --target-host deploy@pcdo-ch-1.morrislan.net -I nixos-config=./nix/pcdo-ch-1.nix switch"
-
-      - name: Cache Nix Store
-        uses: actions/cache@v3
-        with:
-          path: /nix/store
-          key: nix-store
-          restore-keys: nix-store
