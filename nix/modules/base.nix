@@ -76,6 +76,7 @@
         commands = [
           {
             command = "${config.system.build.nixos-rebuild} *";
+            command = "/nix/store/*/bin/switch-to-configuration";
             options = [ "NOPASSWD" ];
           }
         ];
