@@ -61,7 +61,7 @@
       isNormalUser = true;
       shell = pkgs.bash;
       openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJNeaAALD5xSV/EDyhed2JyB8Qhr59QgrlEHuYJ8SZx3"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYCwZSrRviTaFVOF8txcsBV4o3vBwvevFC8XSxsTvev MorrisLAN CI (NixOS Deploy Key)"
       ];
     };
   };
