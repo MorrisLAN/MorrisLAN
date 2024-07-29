@@ -1,7 +1,13 @@
 { config, pkgs, lib, ... }: {
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [ vim curl btop lsof wget nano fastfetch ];
+  environment = {
+    systemPackages = with pkgs; [ vim curl btop lsof wget nano fastfetch ];
+    etc."morrislan".source = builtins.fetchGit {
+      url = "https://ci:SECRETS.GIT_PAT@git.morrislan.net/MorrisLAN/morrislan.git";
+      ref = "refs/heads/main";
+    };
+  };
 
   networking = {
     firewall.enable = true;

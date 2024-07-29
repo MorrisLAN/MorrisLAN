@@ -7,6 +7,9 @@
 
   networking = {
     hostName = "pcdo-ch-1";
+    hosts = {
+      "127.0.0.1" = [ "git.morrislan.net" ];
+    };
   };
 
   systemd.services.traefik = {
