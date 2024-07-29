@@ -1,0 +1,20 @@
+log:
+  level: info
+
+runner:
+  capacity: 1
+  env_file: .env
+  timeout: 4h
+  insecure: false
+  fetch_timeout: 5s
+  fetch_interval: 2s
+
+cache:
+  enabled: true
+  dir: ""
+  host: ""
+  port: 0
+
+container:
+  network_mode: gitea_gitea
+  privileged: false

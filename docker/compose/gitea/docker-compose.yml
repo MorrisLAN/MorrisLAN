@@ -32,6 +32,7 @@ services:
       gitea:
     volumes:
       - runner-data:/data
+      - ./runner-config.yml:/config.yaml
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - GITEA_INSTANCE_URL=http://gitea-server-1:3000
