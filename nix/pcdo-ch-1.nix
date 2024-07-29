@@ -14,6 +14,7 @@
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     restartIfChanged = true;
+    restartTriggers = [ "/etc/morrislan/docker/compose/traefik/docker-compose.yml" ];
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/traefik/docker-compose.yml up";
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/traefik/docker-compose.yml down";
@@ -28,6 +29,7 @@
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     restartIfChanged = true;
+    restartTriggers = [ "/etc/morrislan/docker/compose/gitea/docker-compose.yml" ];
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml down";
@@ -42,6 +44,7 @@
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     restartIfChanged = true;
+    restartTriggers = [ "/etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml" ];
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml up";
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml down";
