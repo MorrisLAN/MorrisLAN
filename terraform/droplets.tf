@@ -1,4 +1,4 @@
-data "digitalocean_ssh_key" "onepassword" {
+resource "digitalocean_ssh_key" "onepassword" {
   name = "1Password"
   public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjgkh0LyGVjWzYnCxrKC5dxQMHE3ky7s/vFpAyjfk5l"
 }
@@ -9,6 +9,6 @@ resource "digitalocean_droplet" "pcdo-ch-1" {
   region = "lon1"
   size   = "s-2vcpu-2gb"
   backups = true
-  ssh_keys = [ data.digitalocean_ssh_key.onepassword.id ]
+  ssh_keys = [ digitalocean_ssh_key.onepassword.fingerprint ]
   graceful_shutdown = true
 }
