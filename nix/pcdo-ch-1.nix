@@ -17,6 +17,7 @@
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/traefik/docker-compose.yml up";
       WorkingDirectory = "/etc/morrislan/docker/compose/traefik";
       Restart = "always";
+      Environment = [ "CLOUDFLARE_TOKEN=SECRETS.CLOUDFLARE_TOKEN" ];
     };
   };
 
@@ -28,6 +29,7 @@
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
       WorkingDirectory = "/etc/morrislan/docker/compose/gitea";
       Restart = "always";
+      Environment = [ "CI_RUNNER_TOKEN=SECRETS.CI_RUNNER_TOKEN" ];
     };
   };
 

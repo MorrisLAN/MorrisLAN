@@ -10,7 +10,7 @@ services:
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - certs:/letsencrypt
     environment:
-      - CF_DNS_API_TOKEN=${SECRETS.CLOUDFLARE_TOKEN}
+      - CF_DNS_API_TOKEN=${CLOUDFLARE_TOKEN}
     networks:
       adguard: null
       ai: null
@@ -18,14 +18,11 @@ services:
       portainer: null
       speedtest: null
       unifi: null
+      gitea: null
 
 volumes:
   certs:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/traefik/certs
 
 networks:
   adguard:
@@ -39,4 +36,6 @@ networks:
   speedtest:
     external: false
   unifi:
+    external: false
+  gitea:
     external: false
