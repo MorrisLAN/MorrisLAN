@@ -68,6 +68,7 @@
       ];
     };
   };
+  nix.settings.trusted-users = [ "deploy" ];
   security.sudo = {
     enable = true;
     extraRules = [
