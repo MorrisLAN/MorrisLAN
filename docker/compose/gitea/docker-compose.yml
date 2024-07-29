@@ -29,7 +29,7 @@ services:
       - runner-data:/data
     environment:
       - GITEA_INSTANCE_URL=server
-      - GITEA_RUNNER_REGISTRATION_TOKEN=fvNkgN7p4dQ2BuTrnzYDgRcokbHqwMoDVRDs3cZx
+      - GITEA_RUNNER_REGISTRATION_TOKEN=${SECRETS.CI_RUNNER_TOKEN}
       - GITEA_RUNNER_NAME=morrislan-runner
     image: gitea/act_runner:latest
 
@@ -42,14 +42,6 @@ networks:
 volumes:
   data:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/gitea/data
 
   runner-data:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/gitea/runner-data

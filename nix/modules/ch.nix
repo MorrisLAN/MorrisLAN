@@ -7,5 +7,5 @@
     url = "https://ci:SECRETS.GIT_PAT@git.morrislan.net/MorrisLAN/morrislan.git";
     ref = "refs/heads/main";
   };
-
+  
 }

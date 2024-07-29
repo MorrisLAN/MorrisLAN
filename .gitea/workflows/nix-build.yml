@@ -38,3 +38,6 @@ jobs:
       - name: Build nixos-pcdo-ch-1
         run: |
           nix-shell -p '(nixos{}).nixos-rebuild' --command "nixos-rebuild --use-remote-sudo --target-host deploy@pcdo-ch-1.morrislan.net -I nixos-config=./nix/pcdo-ch-1.nix switch"
+        env:
+          SECRETS.CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+          SECRETS.CI_RUNNER_TOKEN: ${{ secrets.CI_RUNNER_TOKEN }}

@@ -10,7 +10,7 @@ services:
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - certs:/letsencrypt
     environment:
-      - CF_DNS_API_TOKEN=${{ secrets.CLOUDFLARE_TOKEN }}
+      - CF_DNS_API_TOKEN=${SECRETS.CLOUDFLARE_TOKEN}
     networks:
       adguard: null
       ai: null
