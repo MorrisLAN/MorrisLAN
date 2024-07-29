@@ -31,5 +31,5 @@ jobs:
 
       - name: Deploy pcdo-ch-1
         run: |
-          nix-shell -p '(nixos{}).nixos-rebuild' --command "nixos-rebuild -use-remote-sudo --target-host deploy@pcdo-ch-1.morrislan.net -I nixos-config=./nix/pcdo-ch-1.nix switch"
+          nix-shell -p '(nixos{}).nixos-rebuild' --command "nixos-rebuild --use-remote-sudo --target-host deploy@pcdo-ch-1.morrislan.net -I nixos-config=./nix/pcdo-ch-1.nix switch"
 
