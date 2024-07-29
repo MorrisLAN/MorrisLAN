@@ -4,12 +4,9 @@
   environment.systemPackages = with pkgs; [ vim curl btop lsof wget nano fastfetch ];
 
   networking = {
-#    useDHCP = lib.mkDefault false;
     firewall.enable = true;
     domain = "morrislan.net";
     usePredictableInterfaceNames = true;
-#    defaultGateway = lib.mkDefault "10.1.240.1";
-#    nameservers = lib.mkDefault [ "10.1.240.3" ];
   };
 
   services.openssh = {
@@ -61,6 +58,7 @@
     };
     deploy = {
       uid = 1001;
+      group = "wheel";
       isNormalUser = true;
       shell = pkgs.bash;
       openssh.authorizedKeys.keys = [
