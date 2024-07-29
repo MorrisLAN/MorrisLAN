@@ -6,7 +6,6 @@
 
   networking = {
     hostName = "pcdo-ch-1";
-    networkmanager.enable = true;
     useDHCP = true;
   };
 
