@@ -1,5 +1,5 @@
 data "digitalocean_ssh_key" "morrislan" {
-  id = "b3:57:07:56:0f:8b:88:eb:43:cd:f1:d7:38:59:a3:b5"  # Replace with the ID of your SSH key
+  id = "b3:57:07:56:0f:8b:88:eb:43:cd:f1:d7:38:59:a3:b5"
 }
 
 resource "digitalocean_droplet" "pcdo-ch-1" {
