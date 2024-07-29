@@ -38,3 +38,5 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /nix/store
+          key: nix-store
+          restore-keys: nix-store
