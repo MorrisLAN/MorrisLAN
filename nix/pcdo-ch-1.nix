@@ -28,8 +28,6 @@
     description = "Gitea (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
-    restartIfChanged = true;
-    restartTriggers = [ "/etc/morrislan/docker/compose/gitea/docker-compose.yml" ];
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml down";
