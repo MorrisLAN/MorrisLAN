@@ -17,6 +17,8 @@ jobs:
   nixos-pcdo-ch-1:
     name: Build NixOS for pcdo-ch-1
     runs-on: ubuntu-latest
+    container:
+     network_mode: gitea_gitea
     steps:
       - name: Checkout
         uses: actions/checkout@v4
