@@ -33,5 +33,17 @@
     };
   };
 
+  systemd.services.cloudflare-tunnel-pcdo1 = {
+    description = "Cloudflare Tunnel (pcdo1) (Docker Compose)";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml up";
+      WorkingDirectory = "/etc/morrislan/docker/compose/cloudflare-access/pcdo1";
+      Restart = "always";
+      Environment = [ "CLOUDFLARE_TUNNEL_PCDO1_TOKEN=SECRETS.CLOUDFLARE_TUNNEL_PCDO1_TOKEN" ];
+    };
+  };
+
   system.stateVersion = "24.05";
 }

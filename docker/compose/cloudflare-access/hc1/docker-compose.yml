@@ -1,0 +1,9 @@
+services:
+  cloudflare-tunnel:
+    restart: unless-stopped
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_HC1_TOKEN}
+    image: cloudflare/cloudflared
+    networks:
+      cloudflare_authentik: null
+    command: tunnel run

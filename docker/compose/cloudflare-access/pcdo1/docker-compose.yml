@@ -1,0 +1,14 @@
+services:
+
+  cloudflare-tunnel:
+    restart: unless-stopped
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_PCDO1_TOKEN}
+    image: cloudflare/cloudflared
+    networks:
+      cloudflare_gitea: null
+    command: tunnel run
+
+networks:
+  cloudflare_gitea:
+    external: false

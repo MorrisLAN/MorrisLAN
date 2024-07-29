@@ -10,6 +10,7 @@ services:
     networks:
       - gitea
       - traefik_gitea
+      - cloudflare_gitea
     volumes:
       - data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -43,6 +44,8 @@ networks:
   gitea:
     external: false
   traefik_gitea:
+    external: true
+  cloudflare_gitea:
     external: true
 
 volumes:

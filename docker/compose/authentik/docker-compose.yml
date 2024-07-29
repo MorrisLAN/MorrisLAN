@@ -16,7 +16,7 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: ${{ secrets.AUTHENTIK_DB_PASS }}
+      POSTGRES_PASSWORD: ${AUTHENTIK_DB_PASS}
       POSTGRES_USER: authentik
       POSTGRES_DB: authentik
 
@@ -47,21 +47,22 @@ services:
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: ${{ secrets.AUTHENTIK_DB_PASS }}
-      AUTHENTIK_EMAIL__HOST: ${{ secrets.SMTP_HOST }}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_DB_PASS}
+      AUTHENTIK_EMAIL__HOST: ${SMTP_HOST}
       AUTHENTIK_EMAIL__PORT: 587
       AUTHENTIK_EMAIL__USE_TLS: true
       AUTHENTIK_EMAIL__TIMEOUT: 10
       AUTHENTIK_EMAIL__FROM: auth@morrislan.net
-      AUTHENTIK_EMAIL__USERNAME: ${{ secrets.SMTP_USERNAME }}
-      AUTHENTIK_EMAIL__PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-      AUTHENTIK_SECRET_KEY: ${{ secrets.AUTHENTIK_SECRET_KEY }}
+      AUTHENTIK_EMAIL__USERNAME: ${SMTP_USERNAME}
+      AUTHENTIK_EMAIL__PASSWORD: ${SMTP_PASSWORD}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
     volumes:
       - media:/media
       - custom-templates:/templates
     networks:
       authentik: null
       traefik_authentik: null
+      cloudflare_authentik: null
     labels:
       traefik.enable: true
       traefik.http.services.authentik-server.loadbalancer.server.port: 9443
@@ -86,8 +87,8 @@ services:
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: ${{ secrets.AUTHENTIK_DB_PASS }}
-      AUTHENTIK_SECRET_KEY: ${{ secrets.AUTHENTIK_SECRET_KEY }}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_DB_PASS}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
     user: root
     volumes:
       - media:/media
@@ -104,43 +105,29 @@ services:
     environment:
       AUTHENTIK_HOST: https://auth.morrislan.net
       AUTHENTIK_INSECURE: "false"
-      AUTHENTIK_TOKEN: ${{ secrets.AUTHENTIK_PROXY_TOKEN }}
+      AUTHENTIK_TOKEN: ${AUTHENTIK_PROXY_TOKEN}
     restart: unless-stopped
 
 volumes:
   database:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/authentik/database
+
   redis:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/authentik/redis
+
   certs:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/authentik/certs
+
   media:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/authentik/media
+
   custom-templates:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/authentik/custom-templates
 
 networks:
   authentik:
     external: false
   traefik_authentik:
+    external: true
+  tunnel_authentik:
     external: true
