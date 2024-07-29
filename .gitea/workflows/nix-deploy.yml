@@ -25,13 +25,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.NIX_DEPLOY_KEY }}
 
-      - name: Cache Nix Store
-        uses: actions/cache@v3
-        with:
-          path: /nix/store
-          key: nix-store
-          restore-keys: nix-store
-
       - name: Setup Nix
         uses: cachix/install-nix-action@v27
         with:
