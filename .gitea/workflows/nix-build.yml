@@ -1,4 +1,4 @@
-name: "Nix Deploy"
+name: "Nix Build"
 
 permissions:
   contents: read
@@ -15,7 +15,7 @@ env:
 
 jobs:
   pcdo-ch-1:
-    name: Deploy NixOS for pcdo-ch-1
+    name: Build NixOS for pcdo-ch-1
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,6 +31,6 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-24.05
 
-      - name: Deploy pcdo-ch-1
+      - name: Build pcdo-ch-1
         run: |
           nix-shell -p '(nixos{}).nixos-rebuild' --command "nixos-rebuild --use-remote-sudo --target-host deploy@pcdo-ch-1.morrislan.net -I nixos-config=./nix/pcdo-ch-1.nix switch"

@@ -76,7 +76,7 @@
         users = [ "deploy" ];
         commands = [
           {
-            command = "/nix/store/*-nixos-system-*/systemd/bin/systemd-run * --unit=nixos-rebuild-switch-to-configuration *";
+            command = "/nix/store/*-nixos-system-*/systemd/bin/systemd-run";
             options = [ "NOPASSWD" ];
           }
         ];
