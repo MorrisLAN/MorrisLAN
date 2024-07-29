@@ -11,6 +11,7 @@ on:
 env:
   TF_IN_AUTOMATION: "true"
   TF_INPUT: "false"
+  NIX_SSHOPTS: "-p 4022"
 
 jobs:
   pcdo-ch-1:
@@ -33,3 +34,7 @@ jobs:
         run: |
           nix-shell -p '(nixos{}).nixos-rebuild' --command "nixos-rebuild --use-remote-sudo --target-host deploy@pcdo-ch-1.morrislan.net -I nixos-config=./nix/pcdo-ch-1.nix switch"
 
+      - name: Cache Nix Store
+        uses: actions/cache@v3
+        with:
+          path: /nix/store
