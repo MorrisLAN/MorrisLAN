@@ -16,6 +16,7 @@
     restartIfChanged = true;
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/traefik/docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/traefik/docker-compose.yml down";
       WorkingDirectory = "/etc/morrislan/docker/compose/traefik";
       Restart = "always";
       Environment = [ "CLOUDFLARE_TOKEN=SECRETS.CLOUDFLARE_TOKEN" ];
@@ -29,6 +30,7 @@
     restartIfChanged = true;
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml down";
       WorkingDirectory = "/etc/morrislan/docker/compose/gitea";
       Restart = "always";
       Environment = [ "CI_RUNNER_TOKEN=SECRETS.CI_RUNNER_TOKEN" ];
@@ -42,6 +44,7 @@
     restartIfChanged = true;
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml down";
       WorkingDirectory = "/etc/morrislan/docker/compose/cloudflare-access/pcdo1";
       Restart = "always";
       Environment = [ "CLOUDFLARE_TUNNEL_PCDO1_TOKEN=SECRETS.CLOUDFLARE_TUNNEL_PCDO1_TOKEN" ];
