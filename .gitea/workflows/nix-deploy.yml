@@ -11,7 +11,7 @@ on:
 env:
   TF_IN_AUTOMATION: "true"
   TF_INPUT: "false"
-  NIX_SSHOPTS: "-p 4022"
+  NIX_SSHOPTS: "-o StrictHostKeyChecking=no -p 4022"
 
 jobs:
   pcdo-ch-1:
