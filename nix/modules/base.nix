@@ -76,7 +76,7 @@
         users = [ "deploy" ];
         commands = [
           {
-            command = "/nix/store/*-nixos-system-*/bin/switch-to-configuration *";
+            command = "/nix/store/*-nixos-system-*/*";
             options = [ "NOPASSWD" ];
           }
           {
