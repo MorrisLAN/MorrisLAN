@@ -7,6 +7,20 @@
 
   networking = {
     hostName = "hc-ch-1";
+    bonds.bond0 = {
+      interfaces = [ "eno1" "eno2" ];
+      driverOptions = { mode = "lacp"; };
+    };
+    interfaces.bond0 = {
+      ipv4.addresses = [{
+       address = "10.1.240.5";
+
+       prefixLength = 24;
+      }];
+    };
+    defaultGateway = "10.1.240.1";
+    nameservers = [ "10.1.240.1" ];
+    };
   };
 
   systemd.services.traefik = {
