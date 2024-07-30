@@ -8,6 +8,7 @@ resource "digitalocean_droplet" "pcdo-ch-1" {
   name   = "pcdo-ch-1"
   region = "lon1"
   size   = "s-2vcpu-2gb"
+  # Remember to disable resizing disk on droplet resize so that when sized up to use the runner can be spun back down
   backups = true
   ssh_keys = [ digitalocean_ssh_key.onepassword.fingerprint ]
   graceful_shutdown = true
