@@ -11,8 +11,6 @@ runner:
 
 cache:
   enabled: true
-  host: "gitea-runner-1"
-  port: 8088
 
 container:
   network_mode: gitea_gitea
