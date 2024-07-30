@@ -33,7 +33,7 @@ jobs:
 
       - name: Inject secrets
         run: |
-          sed -i "s/SECRETS.GIT_PAT/${{ secrets.GIT_PAT }}/" ./nix/modules/ch.nix
+          sed -i "s/SECRETS.GIT_PAT/${{ secrets.GIT_PAT }}/" ./nix/modules/base.nix
           sed -i "s/SECRETS.CLOUDFLARE_TOKEN/${{ secrets.CLOUDFLARE_TOKEN }}/" ./nix/pcdo-ch-1.nix
           sed -i "s/SECRETS.CI_RUNNER_TOKEN/${{ secrets.CI_RUNNER_TOKEN }}/" ./nix/pcdo-ch-1.nix
           sed -i "s/SECRETS.CLOUDFLARE_TUNNEL_PCDO1_TOKEN/${{ secrets.CLOUDFLARE_TUNNEL_PCDO1_TOKEN }}/" ./nix/pcdo-ch-1.nix
