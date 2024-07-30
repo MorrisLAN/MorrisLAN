@@ -17,7 +17,7 @@ services:
     environment:
       - MONGO_DBNAME=UNIFI
       - MONGO_HOST=database
-      - MONGO_PASS=${{ secrets.UNIFI_DB_PASS }}
+      - MONGO_PASS=${UNIFI_DB_PASS}
       - MONGO_PORT=27017
       - MONGO_USER=UNIFI
       - TZ=Europe/London

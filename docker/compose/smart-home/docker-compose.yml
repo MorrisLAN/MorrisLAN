@@ -17,17 +17,20 @@ services:
       - traefik.enable=true
       - traefik.http.services.homeassistant.loadbalancer.server.port=8123
       - traefik.http.services.homeassistant.loadbalancer.server.scheme=http
-      - traefik.http.routers.to-haos-auth.rule=Host(`ha.morrislan.net`) && ((PathPrefix(`/auth/`) || PathPrefix(`/outpost.goauthentik.io/`)) && !(PathPrefix(`/auth/token`)) )
-      - traefik.http.routers.to-haos-auth.service=homeassistant
-      - traefik.http.routers.to-haos-auth.tls=true
-      - traefik.http.routers.to-haos-auth.entrypoints=websecure
-      - traefik.http.routers.to-haos-auth.middlewares=authentik@file
-      - traefik.http.routers.to-haos-auth.tls.certresolver=myresolver
-      - traefik.http.routers.to-haos.rule=Host(`ha.morrislan.net`)
-      - traefik.http.routers.to-haos.service=homeassistant
-      - traefik.http.routers.to-haos.tls=true
-      - traefik.http.routers.to-haos.entrypoints=websecure
-      - traefik.http.routers.to-haos.tls.certresolver=myresolver
+
+      - traefik.http.routers.homeassistant.rule=Host(`ha.morrislan.net`)
+      - traefik.http.routers.homeassistant.service=homeassistant
+      - traefik.http.routers.homeassistant.tls=true
+      - traefik.http.routers.homeassistant.entrypoints=websecure
+      - traefik.http.routers.homeassistant.tls.certresolver=myresolver
+
+      - traefik.http.routers.homeassistant-sso.rule=Host(`ha.morrislan.net`) && ((PathPrefix(`/auth/`) || PathPrefix(`/outpost.goauthentik.io/`)) && !(PathPrefix(`/auth/token`)) )
+      - traefik.http.routers.homeassistant-sso.service=homeassistant
+      - traefik.http.routers.homeassistant-sso.tls=true
+      - traefik.http.routers.homeassistant-sso.entrypoints=websecure
+      - traefik.http.routers.homeassistant-sso.middlewares=authentik@file
+      - traefik.http.routers.homeassistant-sso.tls.certresolver=myresolver
+
       - traefik.docker.network=traefik_smart-home
     restart: unless-stopped
 
@@ -72,28 +75,15 @@ services:
 volumes:
   homeassistant:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/smart-home/homeassistant/config
+
   mosquitto:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/smart-home/mosquitto
+
   esphome:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/smart-home/esphome/config
+
   assets:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/smart-home/assets
 
 networks:
   traefik_smart-home:
