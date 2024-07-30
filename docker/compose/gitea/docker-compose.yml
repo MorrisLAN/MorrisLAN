@@ -24,22 +24,22 @@ services:
       traefik.http.routers.gitea.tls.certresolver: myresolver
       traefik.docker.network: traefik_gitea
 
-  runner:
-    depends_on:
-      server:
-        condition: service_healthy
-    networks:
-      gitea:
-    volumes:
-      - runner-data:/data
-      - ./runner-config.yml:/config.yaml
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - CONFIG_FILE=/config.yaml
-      - GITEA_INSTANCE_URL=http://gitea-server-1:3000
-      - GITEA_RUNNER_REGISTRATION_TOKEN=${CI_RUNNER_TOKEN}
-      - GITEA_RUNNER_NAME=morrislan-runner
-    image: gitea/act_runner:latest
+  # runner:
+  #   depends_on:
+  #     server:
+  #       condition: service_healthy
+  #   networks:
+  #     gitea:
+  #   volumes:
+  #     - runner-data:/data
+  #     - ./runner-config.yml:/config.yaml
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   environment:
+  #     - CONFIG_FILE=/config.yaml
+  #     - GITEA_INSTANCE_URL=http://gitea-server-1:3000
+  #     - GITEA_RUNNER_REGISTRATION_TOKEN=${CI_RUNNER_TOKEN}
+  #     - GITEA_RUNNER_NAME=morrislan-runner
+  #   image: gitea/act_runner:latest
 
 networks:
   gitea:
