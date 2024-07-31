@@ -6,6 +6,7 @@ services:
     image: cloudflare/cloudflared
     networks:
       cloudflare_authentik: null
+      cloudflare_gitea: null
     command: tunnel run
 
 networks:
