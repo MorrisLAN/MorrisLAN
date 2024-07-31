@@ -23,16 +23,9 @@ services:
 volumes:
   conf:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/adguard/conf
+
   work:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/adguard/work
 
 networks:
   traefik_adguard:

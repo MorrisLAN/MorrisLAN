@@ -20,10 +20,6 @@ services:
 volumes:
   data:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/portainer
 
 networks:
   traefik_portainer:
