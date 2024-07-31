@@ -20,7 +20,7 @@ services:
       POSTGRES_PASSWORD: ${AUTHENTIK_DB_PASS}
       POSTGRES_USER: authentik
       POSTGRES_DB: authentik
-      AUTHENTIK_HOST: https://auth.morrislan.net/
+      AUTHENTIK_HOST: http://server:9000
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: authentik
@@ -58,7 +58,7 @@ services:
     restart: unless-stopped
     command: server
     environment:
-      AUTHENTIK_HOST: https://auth.morrislan.net/
+      AUTHENTIK_HOST: http://server:9000
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: authentik
@@ -101,7 +101,7 @@ services:
       authentik: null
     command: worker
     environment:
-      AUTHENTIK_HOST: https://auth.morrislan.net/
+      AUTHENTIK_HOST: http://server:9000
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: authentik
