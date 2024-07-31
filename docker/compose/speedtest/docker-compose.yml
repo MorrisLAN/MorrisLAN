@@ -16,8 +16,6 @@ services:
       traefik.http.routers.speedtest.entrypoints: websecure
       traefik.http.routers.speedtest.tls.certresolver: myresolver
       traefik.docker.network: traefik_speedtest
-    volumes:
-      - ./config:/config
     restart: unless-stopped
 networks:
   traefik_speedtest:
