@@ -62,7 +62,7 @@ services:
     networks:
       authentik: null
       traefik_authentik: null
-      cloudflare_authentik: null
+      hc1_cloudflare_authentik: null
     labels:
       traefik.enable: true
       traefik.http.services.authentik-server.loadbalancer.server.port: 9443
@@ -129,5 +129,5 @@ networks:
     external: false
   traefik_authentik:
     external: true
-  cloudflare_authentik:
+  hc1_cloudflare_authentik:
     external: true
