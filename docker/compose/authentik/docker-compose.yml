@@ -20,6 +20,20 @@ services:
       POSTGRES_PASSWORD: ${AUTHENTIK_DB_PASS}
       POSTGRES_USER: authentik
       POSTGRES_DB: authentik
+      AUTHENTIK_HOST: https://auth.morrislan.net/
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_DB_PASS}
+      AUTHENTIK_EMAIL__HOST: ${SMTP_HOST}
+      AUTHENTIK_EMAIL__PORT: 587
+      AUTHENTIK_EMAIL__USE_TLS: true
+      AUTHENTIK_EMAIL__TIMEOUT: 10
+      AUTHENTIK_EMAIL__FROM: auth@morrislan.net
+      AUTHENTIK_EMAIL__USERNAME: ${SMTP_USERNAME}
+      AUTHENTIK_EMAIL__PASSWORD: ${SMTP_PASSWORD}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
 
   redis:
     image: docker.io/library/redis:alpine
@@ -28,14 +42,14 @@ services:
       authentik: null
     command: --save 60 1 --loglevel warning
     restart: unless-stopped
-    # healthcheck:
-    #   test:
-    #     - CMD-SHELL
-    #     - redis-cli ping | grep PONG
-    #   start_period: 20s
-    #   interval: 30s
-    #   retries: 5
-    #   timeout: 3s
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - redis-cli ping | grep PONG
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 3s
     volumes:
       - redis:/data
 
@@ -87,18 +101,25 @@ services:
       authentik: null
     command: worker
     environment:
+      AUTHENTIK_HOST: https://auth.morrislan.net/
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_DB_PASS}
+      AUTHENTIK_EMAIL__HOST: ${SMTP_HOST}
+      AUTHENTIK_EMAIL__PORT: 587
+      AUTHENTIK_EMAIL__USE_TLS: true
+      AUTHENTIK_EMAIL__TIMEOUT: 10
+      AUTHENTIK_EMAIL__FROM: auth@morrislan.net
+      AUTHENTIK_EMAIL__USERNAME: ${SMTP_USERNAME}
+      AUTHENTIK_EMAIL__PASSWORD: ${SMTP_PASSWORD}
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
     user: root
     volumes:
       - media:/media
       - certs:/certs
       - custom-templates:/templates
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - postgresql
       - redis
