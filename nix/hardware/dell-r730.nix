@@ -19,21 +19,16 @@
 
   fileSystems = {
     "/boot" = {
-      device = "/dev/disk/by-uuid/87C7-BBB9";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-    "/boot2" = {
       device = "/dev/disk/by-uuid/880C-6445";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
     "/" = {
-      device = "hc-ch-1-data-1/root";
+      device = "hc-data1/root";
       fsType = "zfs";
     };
     "/nix" = {
-      device = "hc-ch-1-data-1/nix";
+      device = "hc-data1/nix";
       fsType = "zfs";
     };
   };
