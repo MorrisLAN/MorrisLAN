@@ -11,3 +11,5 @@ services:
 networks:
   cloudflare_authentik:
     external: false
+  cloudflare_gitea:
+    external: false
