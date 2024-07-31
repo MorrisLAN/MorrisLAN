@@ -19,6 +19,7 @@ services:
       speedtest: null
       unifi: null
       gitea: null
+      smart-home: null
 
 volumes:
   certs:
@@ -38,4 +39,6 @@ networks:
   unifi:
     external: false
   gitea:
+    external: false
+  smart-home:
     external: false
