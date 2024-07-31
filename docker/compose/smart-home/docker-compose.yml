@@ -39,7 +39,7 @@ services:
     ports:
       - 1883:1883
     networks:
-      smart-home_ai: null
+      ai: null
     volumes:
       - mosquitto:/mosquitto/config
 
@@ -47,7 +47,7 @@ services:
     image: ghcr.io/esphome/esphome
     networks:
       traefik_smart-home: null
-      smart-home_ai: null
+      ai: null
     environment:
       ESPHOME_DASHBOARD_USE_PING: true
     labels:
