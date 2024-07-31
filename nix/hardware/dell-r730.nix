@@ -6,6 +6,10 @@
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
     consoleLogLevel = lib.mkDefault 7;
     kernelModules = [ "kvm-intel" ];
     supportedFilesystems = [ "zfs" ];
