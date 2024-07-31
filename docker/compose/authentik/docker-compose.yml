@@ -129,5 +129,5 @@ networks:
     external: false
   traefik_authentik:
     external: true
-  tunnel_authentik:
+  cloudflare_authentik:
     external: true

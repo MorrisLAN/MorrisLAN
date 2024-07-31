@@ -7,3 +7,7 @@ services:
     networks:
       cloudflare_authentik: null
     command: tunnel run
+
+networks:
+  cloudflare_authentik:
+    external: false

@@ -86,5 +86,7 @@ volumes:
     driver: local
 
 networks:
+  ai:
+    external: false
   traefik_smart-home:
     external: true
