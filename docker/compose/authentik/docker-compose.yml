@@ -32,10 +32,10 @@ services:
     #   test:
     #     - CMD-SHELL
     #     - redis-cli ping | grep PONG
-      start_period: 20s
-      interval: 30s
-      retries: 5
-      timeout: 3s
+    #   start_period: 20s
+    #   interval: 30s
+    #   retries: 5
+    #   timeout: 3s
     volumes:
       - redis:/data
 
