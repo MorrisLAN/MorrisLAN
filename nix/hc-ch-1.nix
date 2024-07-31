@@ -31,6 +31,7 @@
     description = "Traefik (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     restartIfChanged = true;
     restartTriggers = [ "/etc/morrislan/docker/compose/traefik/docker-compose.yml" ];
     serviceConfig = {
@@ -46,6 +47,7 @@
     description = "Gitea (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml down";
@@ -59,6 +61,7 @@
     description = "Cloudflare Tunnel (hc1) (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     restartIfChanged = true;
     restartTriggers = [ "/etc/morrislan/docker/compose/cloudflare-access/hc1/docker-compose.yml" ];
     serviceConfig = {
@@ -74,6 +77,7 @@
     description = "AdGuard (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     restartIfChanged = true;
     restartTriggers = [ "/etc/morrislan/docker/compose/adguard/docker-compose.yml" ];
     serviceConfig = {
@@ -88,6 +92,7 @@
     description = "AI Stack (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     restartIfChanged = true;
     restartTriggers = [ "/etc/morrislan/docker/compose/ai/docker-compose.yml" ];
     serviceConfig = {
@@ -106,6 +111,7 @@
     description = "Authentik (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     restartIfChanged = true;
     restartTriggers = [ "/etc/morrislan/docker/compose/authentik/docker-compose.yml" ];
     serviceConfig = {
@@ -128,6 +134,7 @@
     description = "Smart Home (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     restartIfChanged = true;
     restartTriggers = [ "/etc/morrislan/docker/compose/smart-home/docker-compose.yml" ];
     serviceConfig = {
@@ -142,6 +149,7 @@
     description = "Speedtest (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     restartIfChanged = true;
     restartTriggers = [ "/etc/morrislan/docker/compose/speedtest/docker-compose.yml" ];
     serviceConfig = {
@@ -156,6 +164,7 @@
     description = "UniFi (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/unifi/docker-compose.yml up";
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/unifi/docker-compose.yml down";
