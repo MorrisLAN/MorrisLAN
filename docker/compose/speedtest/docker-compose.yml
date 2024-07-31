@@ -1,5 +1,6 @@
 services:
-  librespeed:
+
+  server:
     image: lscr.io/linuxserver/librespeed:latest
     environment:
       - PUID=1000
@@ -19,6 +20,11 @@ services:
     volumes:
       - config:/config
     restart: unless-stopped
+
 networks:
   traefik_speedtest:
     external: true
+
+volumes:
+  config:
+    driver: local
