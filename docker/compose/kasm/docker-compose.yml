@@ -29,5 +29,5 @@ volumes:
 networks:
   traefik_kasm:
     external: true
-  hc1_cloudflare_kasm: null:
+  hc1_cloudflare_kasm:
     external: true
