@@ -124,16 +124,17 @@ services:
       - postgresql
       - redis
 
-  # proxy:
-  #   image: ghcr.io/goauthentik/proxy
-  #   networks:
-  #     default: null
-  #     authentik: null
-  #   environment:
-  #     AUTHENTIK_HOST: https://auth.morrislan.net
-  #     AUTHENTIK_INSECURE: "false"
-  #     AUTHENTIK_TOKEN: ${AUTHENTIK_PROXY_TOKEN}
-  #   restart: unless-stopped
+  proxy:
+    image: ghcr.io/goauthentik/proxy:2024.4
+    networks:
+      default: null
+      authentik: null
+      traefik_authentik: null
+    environment:
+      AUTHENTIK_HOST: http://server:9000
+      AUTHENTIK_INSECURE: "false"
+      AUTHENTIK_TOKEN: ${AUTHENTIK_PROXY_TOKEN}
+    restart: unless-stopped
 
 volumes:
   database:
