@@ -61,7 +61,7 @@ services:
       traefik.docker.network: traefik_smart-home
     volumes:
       - esphome:/config
-      - ./esphome-tmp:/config/.esphome
+      - esphome-tmp:/config/.esphome
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     
