@@ -17,7 +17,6 @@ services:
       traefik.http.routers.kasm.rule: Host(`kasm.morrislan.net`)
       traefik.http.routers.kasm.entrypoints: websecure
       traefik.http.services.kasm.loadbalancer.server.scheme: https
-      traefik.http.routers.kasm.entrypoints: websecure
       traefik.http.routers.kasm.tls.certresolver: myresolver
       traefik.docker.network: traefik_kasm
     restart: unless-stopped
