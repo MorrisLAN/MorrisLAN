@@ -136,6 +136,9 @@ services:
       AUTHENTIK_HOST_BROWSER: https://auth.morrislan.net
       AUTHENTIK_INSECURE: "false"
       AUTHENTIK_TOKEN: ${AUTHENTIK_PROXY_TOKEN}
+    labels:
+      traefik.enable: true
+      traefik.docker.network: traefik_authentik
     restart: unless-stopped
 
 volumes:
