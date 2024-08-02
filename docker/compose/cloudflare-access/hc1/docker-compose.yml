@@ -7,10 +7,13 @@ services:
     networks:
       cloudflare_authentik: null
       cloudflare_gitea: null
+      cloudflare_kasm: null
     command: tunnel run
 
 networks:
   cloudflare_authentik:
     external: false
   cloudflare_gitea:
+    external: false
+  cloudflare_kasm:
     external: false
