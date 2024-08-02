@@ -36,7 +36,7 @@ http:
   middlewares:
     authentik:
       forwardAuth:
-        address: "https://authentik-proxy-1:9443/outpost.goauthentik.io/auth/traefik"
+        address: "https://auth.morrislan.net/outpost.goauthentik.io/auth/traefik"
         trustForwardHeader: true
         tls:
           insecureSkipVerify: true
