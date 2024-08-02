@@ -1,6 +1,6 @@
 services:
   kasm:
-    image: lscr.io/linuxserver/kasm:latest
+    image: lscr.io/linuxserver/kasm:1.15.0
     privileged: true
     environment:
       - KASM_PORT=8443
