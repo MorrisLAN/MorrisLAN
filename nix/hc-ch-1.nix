@@ -43,20 +43,6 @@
     };
   };
 
-  systemd.services.gitea = {
-    description = "Gitea (Docker Compose)";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
-      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml down";
-      WorkingDirectory = "/etc/morrislan/docker/compose/gitea";
-      Restart = "always";
-      Environment = [ "CI_RUNNER_TOKEN=SECRETS.CI_RUNNER_TOKEN" ];
-    };
-  };
-
   systemd.services.cloudflare-tunnel-hc1 = {
     description = "Cloudflare Tunnel (hc1) (Docker Compose)";
     after = [ "network-online.target" ];

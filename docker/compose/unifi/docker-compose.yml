@@ -9,7 +9,7 @@ services:
     volumes:
       - database:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-  app:
+  server:
     depends_on:
       database:
         condition: service_started
@@ -58,16 +58,10 @@ services:
 volumes:
   database:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/unifi/database
+
   config:
     driver: local
-    driver_opts:
-      type: nfs
-      o: nfsvers=4,addr=10.1.240.2,rw,retry=1,soft,nolock
-      device: :/mnt/poseidon/apps/unifi/config
+
 networks:
   unifi:
     external: false
