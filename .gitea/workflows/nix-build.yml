@@ -47,7 +47,7 @@ jobs:
           sed -i "s/SECRETS.SMTP_PASSWORD/${{ secrets.SMTP_PASSWORD }}/" ./nix/hc-ch-1.nix
           sed -i "s/SECRETS.UNIFI_DB_PASS/${{ secrets.UNIFI_DB_PASS }}/" ./nix/hc-ch-1.nix
 
-      - name: Build nixos-pcdo-ch-1
+      - name: Build nixos-hc-ch-1
         run: |
           nix-shell -p '(nixos{}).nixos-rebuild' --command "nixos-rebuild --use-remote-sudo --target-host deploy@hc-ch-1.morrislan.net -I nixos-config=./nix/hc-ch-1.nix switch"
 

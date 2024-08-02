@@ -82,6 +82,9 @@ volumes:
   esphome:
     driver: local
 
+  esphome-tmp:
+    driver: local
+
   assets:
     driver: local
 
