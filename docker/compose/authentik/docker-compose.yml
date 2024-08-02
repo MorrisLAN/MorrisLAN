@@ -132,13 +132,9 @@ services:
       authentik: null
       traefik_authentik: null
     environment:
-      AUTHENTIK_HOST: http://server:9000
-      AUTHENTIK_HOST_BROWSER: https://auth.morrislan.net
-      AUTHENTIK_INSECURE: "false"
+      AUTHENTIK_HOST: https://auth.morrislan.net
+      AUTHENTIK_INSECURE: "true"
       AUTHENTIK_TOKEN: ${AUTHENTIK_PROXY_TOKEN}
-    labels:
-      traefik.enable: true
-      traefik.docker.network: traefik_authentik
     restart: unless-stopped
 
 volumes:
