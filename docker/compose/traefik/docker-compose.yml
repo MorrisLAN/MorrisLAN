@@ -20,6 +20,7 @@ services:
       unifi: null
       gitea: null
       smart-home: null
+      kasm: null
 
 volumes:
   certs:
@@ -41,4 +42,6 @@ networks:
   gitea:
     external: false
   smart-home:
+    external: false
+  kasm:
     external: false

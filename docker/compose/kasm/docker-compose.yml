@@ -1,0 +1,33 @@
+services:
+  kasm:
+    image: lscr.io/linuxserver/kasm:latest
+    privileged: true
+    environment:
+      - KASM_PORT=8443
+    volumes:
+      - data:/opt
+    networks:
+      traefik_kasm: null
+      hc1_cloudflare_authentik: null
+    ports:
+      - 3000:3000
+    labels:
+      traefik.enable: true
+      traefik.http.services.kasm.loadbalancer.server.port: 8443
+      traefik.http.routers.kasm.rule: Host(`kasm.morrislan.net`)
+      traefik.http.routers.kasm.entrypoints: websecure
+      traefik.http.services.kasm.loadbalancer.server.scheme: https
+      traefik.http.routers.kasm.entrypoints: websecure
+      traefik.http.routers.kasm.tls.certresolver: myresolver
+      traefik.docker.network: traefik_kasm
+    restart: unless-stopped
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  traefik_kasm:
+    external: true
+  hc1_cloudflare_kasm: null:
+    external: true

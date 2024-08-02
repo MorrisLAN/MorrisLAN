@@ -132,7 +132,8 @@ services:
       authentik: null
       traefik_authentik: null
     environment:
-      AUTHENTIK_HOST: https://auth.morrislan.net
+      AUTHENTIK_HOST: http://server:9000
+      AUTHENTIK_HOST_BROWSER: https://auth.morrislan.net
       AUTHENTIK_INSECURE: "false"
       AUTHENTIK_TOKEN: ${AUTHENTIK_PROXY_TOKEN}
     restart: unless-stopped
