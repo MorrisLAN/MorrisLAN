@@ -1,5 +1,7 @@
 services:
   runner:
+    networks:
+      gitea:
     volumes:
       - runner-data:/data
       - ./runner-config.yml:/config.yaml
@@ -10,6 +12,10 @@ services:
       - GITEA_RUNNER_REGISTRATION_TOKEN=${CI_HC_RUNNER_TOKEN}
       - GITEA_RUNNER_NAME=hc-runner
     image: gitea/act_runner:latest
+
+networks:
+  gitea:
+    external: false
 
 volumes:
   runner-data:
