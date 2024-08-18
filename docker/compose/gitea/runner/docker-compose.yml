@@ -7,7 +7,7 @@ services:
     environment:
       - CONFIG_FILE=/config.yaml
       - GITEA_INSTANCE_URL=https://git.morrislan.net
-      - GITEA_RUNNER_REGISTRATION_TOKEN=${CI_RUNNER_TOKEN}
+      - GITEA_RUNNER_REGISTRATION_TOKEN=${CI_HC_RUNNER_TOKEN}
       - GITEA_RUNNER_NAME=hc-runner
     image: gitea/act_runner:latest
 
