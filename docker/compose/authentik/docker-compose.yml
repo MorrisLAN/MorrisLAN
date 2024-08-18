@@ -54,7 +54,7 @@ services:
       - redis:/data
 
   server:
-    image: ghcr.io/goauthentik/server:2024.4
+    image: ghcr.io/goauthentik/server:2024.4.6
     restart: unless-stopped
     command: server
     environment:
@@ -94,7 +94,7 @@ services:
       - redis
 
   worker:
-    image: ghcr.io/goauthentik/server:2024.4
+    image: ghcr.io/goauthentik/server:2024.4.6
     restart: unless-stopped
     networks:
       default: null
@@ -125,7 +125,7 @@ services:
       - redis
 
   proxy:
-    image: ghcr.io/goauthentik/proxy:2024.4
+    image: ghcr.io/goauthentik/proxy:2024.4.6
     networks:
       default: null
       authentik: null
