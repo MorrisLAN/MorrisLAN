@@ -168,11 +168,11 @@
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     restartIfChanged = true;
-    restartTriggers = [ "/etc/morrislan/docker/compose/gitea/" ];
+    restartTriggers = [ "/etc/morrislan/docker/compose/gitea/runner" ];
     serviceConfig = {
-      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
-      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml down";
-      WorkingDirectory = "/etc/morrislan/docker/compose/gitea";
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/runner/docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/runner/docker-compose.yml down";
+      WorkingDirectory = "/etc/morrislan/docker/compose/gitea/runner";
       Restart = "always";
       Environment = [ "CI_RUNNER_TOKEN=SECRETS.CI_RUNNER_TOKEN" ];
     };
