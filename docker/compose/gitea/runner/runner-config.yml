@@ -13,5 +13,5 @@ cache:
   enabled: true
 
 container:
-  network_mode: gitea_gitea
+  network_mode: runner_gitea
   privileged: false
