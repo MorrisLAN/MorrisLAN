@@ -162,20 +162,5 @@
     };
   };
 
-  systemd.services.kasm = {
-    description = "Kasm (Docker Compose)";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    restartIfChanged = true;
-    restartTriggers = [ "/etc/morrislan/docker/compose/kasm/" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/kasm/docker-compose.yml up";
-      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/kasm/docker-compose.yml down";
-      WorkingDirectory = "/etc/morrislan/docker/compose/kasm";
-      Restart = "always";
-    };
-  };
-
   system.stateVersion = "24.05";
 }
