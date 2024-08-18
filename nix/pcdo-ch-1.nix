@@ -36,7 +36,6 @@
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml down";
       WorkingDirectory = "/etc/morrislan/docker/compose/gitea";
       Restart = "always";
-      Environment = [ "CI_RUNNER_TOKEN=SECRETS.CI_RUNNER_TOKEN" ];
     };
   };
 

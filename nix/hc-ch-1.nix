@@ -162,5 +162,21 @@
     };
   };
 
+  systemd.services.gitea-runner = {
+    description = "Gitea Runner (Docker Compose)";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    restartIfChanged = true;
+    restartTriggers = [ "/etc/morrislan/docker/compose/gitea/" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/gitea/docker-compose.yml down";
+      WorkingDirectory = "/etc/morrislan/docker/compose/gitea";
+      Restart = "always";
+      Environment = [ "CI_RUNNER_TOKEN=SECRETS.CI_RUNNER_TOKEN" ];
+    };
+  };
+
   system.stateVersion = "24.05";
 }
