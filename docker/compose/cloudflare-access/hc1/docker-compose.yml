@@ -10,6 +10,7 @@ services:
       cloudflare_kasm: null
       cloudflare_ai: null
       cloudflare_smart-home: null
+      cloudflare_traefik: null
     command: tunnel run
 
 networks:
@@ -22,4 +23,6 @@ networks:
   cloudflare_ai:
     external: false
   cloudflare_smart-home:
+    external: false
+  cloudflare_traefik:
     external: false
