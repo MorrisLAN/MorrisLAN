@@ -12,6 +12,7 @@ services:
     restart: unless-stopped
     networks:
       traefik_ai: null
+      hc1_cloudflare_ai: null
     environment:
       OLLAMA_BASE_URL: http://10.1.240.16:11434
       ENABLE_OAUTH_SIGNUP: true
@@ -89,6 +90,8 @@ volumes:
 
 networks:
   traefik_ai:
+    external: true
+  hc1_cloudflare_ai:
     external: true
   smart-home_ai:
     external: false
