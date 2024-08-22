@@ -16,8 +16,8 @@ services:
       OLLAMA_BASE_URL: http://10.1.240.16:11434
       ENABLE_OAUTH_SIGNUP: true
       ENABLE_SIGNUP: false
-      OAUTH_CLIENT_ID: ${OPENWEBUI_OUATH_ID}
-      OAUTH_CLIENT_SECRET: ${OPENWEBUI_OUATH_SECRET}
+      OAUTH_CLIENT_ID: ${OPENWEBUI_OAUTH_ID}
+      OAUTH_CLIENT_SECRET: ${OPENWEBUI_OAUTH_SECRET}
       OPENID_PROVIDER_URL: https://auth.morrislan.net/application/o/ai/.well-known/openid-configuration
       OAUTH_PROVIDER_NAME: MorrisLAN SSO
     volumes:
