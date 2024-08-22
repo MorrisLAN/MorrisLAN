@@ -94,5 +94,5 @@ networks:
     external: false
   traefik_smart-home:
     external: true
-  cloudflare_smart-home:
+  hc1_cloudflare_smart-home:
     external: true
