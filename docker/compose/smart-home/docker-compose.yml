@@ -1,7 +1,7 @@
 services:
 
   homeassistant:
-    image: ghcr.io/home-assistant/home-assistant:stable
+    image: ghcr.io/home-assistant/home-assistant:2024.8.2
     volumes:
       - homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
