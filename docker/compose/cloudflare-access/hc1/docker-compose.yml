@@ -9,6 +9,7 @@ services:
       cloudflare_gitea: null
       cloudflare_kasm: null
       cloudflare_ai: null
+      cloudflare_smart-home: null
     command: tunnel run
 
 networks:
