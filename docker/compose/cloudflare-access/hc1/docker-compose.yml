@@ -20,3 +20,5 @@ networks:
     external: false
   cloudflare_ai:
     external: false
+  cloudflare_smart-home:
+    external: false
