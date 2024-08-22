@@ -70,8 +70,8 @@ services:
     networks:
       smart-home_ai: null
     volumes:
-      - ./wakeword:/data
-      - ./wakeword:/custom
+      - wakeword-data:/data
+      - wakeword-custom:/custom
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     environment:
@@ -81,6 +81,10 @@ services:
 
 volumes:
   open-webui:
+    driver: local
+  wakeword-data:
+    driver: local
+  wakeword-custom:
     driver: local
 
 networks:
