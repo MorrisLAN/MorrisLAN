@@ -72,8 +72,8 @@ services:
     volumes:
       - wakeword-data:/data
       - wakeword-custom:/custom
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
+#      - /etc/timezone:/etc/timezone:ro
+#      - /etc/localtime:/etc/localtime:ro
     environment:
       - TZ=Europe/London
     command: --preload-model 'ok_nabu' --custom-model-dir /custom
