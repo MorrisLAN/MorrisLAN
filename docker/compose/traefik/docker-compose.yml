@@ -21,6 +21,7 @@ services:
       gitea: null
       smart-home: null
       kasm: null
+      filebrowser: null
       hc1_cloudflare_traefik: null
 
 volumes:
@@ -45,6 +46,8 @@ networks:
   smart-home:
     external: false
   kasm:
+    external: false
+  filebrowser:
     external: false
   hc1_cloudflare_traefik:
     external: true
