@@ -7,7 +7,7 @@ permissions:
 on:
   pull_request:
     branches:
-      - main
+      - prod
 
 env:
   TF_IN_AUTOMATION: "true"
