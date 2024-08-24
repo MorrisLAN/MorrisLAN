@@ -15,6 +15,7 @@ services:
       traefik.http.routers.filebrowser.tls.certresolver: myresolver
       traefik.http.routers.filebrowser.middlewares: authentik@file
       traefik.docker.network: traefik_proxy
+    restart: unless-stopped
 
 volumes:
   root:

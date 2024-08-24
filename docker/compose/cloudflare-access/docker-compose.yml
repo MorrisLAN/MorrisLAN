@@ -8,6 +8,14 @@ services:
       tunnel: null
     command: tunnel run
 
+  cloudflare-mnet-server:
+    image: ghcr.io/route1337/cloudflare-mnet-server:latest
+    environment:
+      NETWORK_NAME: MorrisLAN
+    ports:
+      - "8127:8443"
+    restart: unless-stopped
+
 networks:
   tunnel:
     external: false
