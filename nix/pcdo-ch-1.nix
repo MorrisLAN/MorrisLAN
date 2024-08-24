@@ -39,18 +39,18 @@
     };
   };
 
-  systemd.services.cloudflare-tunnel-pcdo1 = {
-    description = "Cloudflare Tunnel (pcdo1) (Docker Compose)";
+  systemd.services.cloudflare-tunnel = {
+    description = "Cloudflare Tunnel (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     restartIfChanged = true;
-    restartTriggers = [ "/etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml" ];
+    restartTriggers = [ "/etc/morrislan/docker/compose/cloudflare-access/docker-compose.yml" ];
     serviceConfig = {
-      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml up";
-      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/pcdo1/docker-compose.yml down";
-      WorkingDirectory = "/etc/morrislan/docker/compose/cloudflare-access/pcdo1";
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/cloudflare-access/docker-compose.yml down";
+      WorkingDirectory = "/etc/morrislan/docker/compose/cloudflare-access";
       Restart = "always";
-      Environment = [ "CLOUDFLARE_TUNNEL_PCDO1_TOKEN=SECRETS.CLOUDFLARE_TUNNEL_PCDO1_TOKEN" ];
+      Environment = [ "CLOUDFLARE_TUNNEL_TOKEN=SECRETS.CLOUDFLARE_TUNNEL_PCDO1_TOKEN" ];
     };
   };
 
