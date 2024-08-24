@@ -46,6 +46,7 @@ jobs:
           sed -i "s/SECRETS.SMTP_USERNAME/${{ secrets.SMTP_USERNAME }}/" ./nix/hc-ch-1.nix
           sed -i "s/SECRETS.SMTP_PASSWORD/${{ secrets.SMTP_PASSWORD }}/" ./nix/hc-ch-1.nix
           sed -i "s/SECRETS.UNIFI_DB_PASS/${{ secrets.UNIFI_DB_PASS }}/" ./nix/hc-ch-1.nix
+          sed -i "s/SECRETS.UNIFI_DB_ROOT_PASS/${{ secrets.UNIFI_DB_ROOT_PASS }}/" ./nix/hc-ch-1.nix
 
       - name: Build nixos-hc-ch-1
         run: |

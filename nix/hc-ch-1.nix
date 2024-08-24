@@ -159,6 +159,7 @@
       WorkingDirectory = "/etc/morrislan/docker/compose/unifi";
       Restart = "always";
       Environment = [ "UNIFI_DB_PASS=SECRETS.UNIFI_DB_PASS" ];
+      Environment = [ "UNIFI_DB_PASS=SECRETS.UNIFI_DB_ROOT_PASS" ];
     };
   };
 
