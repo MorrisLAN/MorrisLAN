@@ -44,7 +44,6 @@ services:
     ports:
       - 10300:10300
     networks:
-      smart-home_ai: null
     restart: unless-stopped
 
   piper:
@@ -61,15 +60,11 @@ services:
       - PIPER_PROCS=1
     ports:
       - 10200:10200
-    networks:
-      smart-home_ai: null
     restart: unless-stopped
 
   openwakeword:
     image: rhasspy/wyoming-openwakeword
     user: 1001:1001
-    networks:
-      smart-home_ai: null
     volumes:
       - wakeword-data:/data
       - wakeword-custom:/custom

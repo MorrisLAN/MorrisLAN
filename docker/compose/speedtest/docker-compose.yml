@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
 
 networks:
-  traefik_speedtest:
+  traefik_proxy:
     external: true
 
 volumes:
