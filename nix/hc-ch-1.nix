@@ -158,8 +158,10 @@
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/unifi/docker-compose.yml down";
       WorkingDirectory = "/etc/morrislan/docker/compose/unifi";
       Restart = "always";
-      Environment = [ "UNIFI_DB_PASS=SECRETS.UNIFI_DB_PASS" ];
-      Environment = [ "UNIFI_DB_PASS=SECRETS.UNIFI_DB_ROOT_PASS" ];
+      Environment = [ 
+        "UNIFI_DB_PASS=SECRETS.UNIFI_DB_PASS"
+        "UNIFI_DB_PASS=SECRETS.UNIFI_DB_ROOT_PASS"
+      ];
     };
   };
 
