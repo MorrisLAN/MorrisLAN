@@ -43,7 +43,6 @@ services:
       - WHISPER_MODEL=base-int8
     ports:
       - 10300:10300
-    networks:
     restart: unless-stopped
 
   piper:
