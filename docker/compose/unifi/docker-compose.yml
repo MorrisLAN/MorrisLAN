@@ -48,13 +48,13 @@ services:
       traefik.http.services.unifi.loadbalancer.server.scheme: https
       traefik.http.routers.unifi.entrypoints: websecure
       traefik.http.routers.unifi.tls.certresolver: myresolver
-      traefik.docker.network: traefik_unifi
+      traefik.docker.network: traefik_proxy
     restart: unless-stopped
     volumes:
       - config:/config
     networks:
       - unifi
-      - traefik_unifi
+      - traefik_proxy
 volumes:
   database:
     driver: local
@@ -65,5 +65,5 @@ volumes:
 networks:
   unifi:
     external: false
-  traefik_unifi:
+  traefik_proxy:
     external: true

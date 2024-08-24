@@ -6,8 +6,8 @@ services:
       test: ["CMD-SHELL", "curl -f http://gitea-server-1:3000 || exit 1"]
     restart: unless-stopped
     networks:
-      - traefik_gitea
-      - hc1_cloudflare_gitea
+      - traefik_proxy
+      - cloudflare-access_tunnel
     volumes:
       - data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -21,12 +21,12 @@ services:
       traefik.http.routers.gitea.entrypoints: websecure
       traefik.http.services.gitea.loadbalancer.server.scheme: http
       traefik.http.routers.gitea.tls.certresolver: myresolver
-      traefik.docker.network: traefik_gitea
+      traefik.docker.network: traefik_proxy
 
 networks:
-  traefik_gitea:
+  traefik_proxy:
     external: true
-  hc1_cloudflare_gitea:
+  cloudflare-access_tunnel:
     external: true
 
 volumes:

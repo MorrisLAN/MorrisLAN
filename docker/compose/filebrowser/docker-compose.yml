@@ -5,7 +5,7 @@ services:
       - /svc/filebrowser/database.db:/database.db
     image: filebrowser/filebrowser
     networks:
-      traefik_filebrowser: null
+      traefik_proxy: null
     labels:
       traefik.enable: true
       traefik.http.services.filebrowser.loadbalancer.server.port: 80
@@ -14,12 +14,12 @@ services:
       traefik.http.routers.filebrowser.entrypoints: websecure
       traefik.http.routers.filebrowser.tls.certresolver: myresolver
       traefik.http.routers.filebrowser.middlewares: authentik@file
-      traefik.docker.network: traefik_filebrowser
+      traefik.docker.network: traefik_proxy
 
 volumes:
   root:
     driver: local
 
 networks:
-  traefik_filebrowser:
+  traefik_proxy:
     external: true

@@ -1,14 +1,13 @@
 services:
-
   cloudflare-tunnel:
     restart: unless-stopped
     environment:
-      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_PCDO1_TOKEN}
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
     image: cloudflare/cloudflared
     networks:
-      cloudflare_gitea: null
+      tunnel: null
     command: tunnel run
 
 networks:
-  cloudflare_gitea:
+  tunnel:
     external: false

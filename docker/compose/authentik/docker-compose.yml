@@ -78,8 +78,8 @@ services:
     networks:
       default: null
       authentik: null
-      traefik_authentik: null
-      hc1_cloudflare_authentik: null
+      traefik_proxy: null
+      cloudflare-access_tunnel: null
     labels:
       traefik.enable: true
       traefik.http.services.authentik-server.loadbalancer.server.port: 9443
@@ -88,7 +88,7 @@ services:
       traefik.http.services.authentik-server.loadbalancer.server.scheme: https
       traefik.http.routers.authentik-server.entrypoints: websecure
       traefik.http.routers.authentik-server.tls.certresolver: myresolver
-      traefik.docker.network: traefik_authentik
+      traefik.docker.network: traefik_proxy
     depends_on:
       - postgresql
       - redis
@@ -129,7 +129,7 @@ services:
     networks:
       default: null
       authentik: null
-      traefik_authentik: null
+      traefik_proxy: null
     environment:
       AUTHENTIK_HOST: https://auth.morrislan.net
       AUTHENTIK_INSECURE: "true"
@@ -155,7 +155,7 @@ volumes:
 networks:
   authentik:
     external: false
-  traefik_authentik:
+  traefik_proxy:
     external: true
-  hc1_cloudflare_authentik:
+  cloudflare-access_tunnel:
     external: true

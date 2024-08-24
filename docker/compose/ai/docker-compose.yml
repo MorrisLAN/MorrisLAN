@@ -11,8 +11,8 @@ services:
     image: ghcr.io/open-webui/open-webui:main
     restart: unless-stopped
     networks:
-      traefik_ai: null
-      hc1_cloudflare_ai: null
+      traefik_proxy: null
+      cloudflare-access_tunnel: null
     environment:
       OLLAMA_BASE_URL: http://10.1.240.16:11434
       ENABLE_OAUTH_SIGNUP: true
@@ -32,7 +32,7 @@ services:
       traefik.http.services.ai.loadbalancer.server.scheme: http
       traefik.http.routers.ai.entrypoints: websecure
       traefik.http.routers.ai.tls.certresolver: myresolver
-      traefik.docker.network: traefik_ai
+      traefik.docker.network: traefik_proxy
 
   faster-whisper:
     image: lscr.io/linuxserver/faster-whisper:latest
@@ -89,9 +89,7 @@ volumes:
     driver: local
 
 networks:
-  traefik_ai:
+  traefik_proxy:
     external: true
-  hc1_cloudflare_ai:
+  cloudflare-access_tunnel:
     external: true
-  smart-home_ai:
-    external: false

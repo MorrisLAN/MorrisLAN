@@ -12,42 +12,15 @@ services:
     environment:
       - CF_DNS_API_TOKEN=${CLOUDFLARE_TOKEN}
     networks:
-      adguard: null
-      ai: null
-      authentik: null
-      portainer: null
-      speedtest: null
-      unifi: null
-      gitea: null
-      smart-home: null
-      kasm: null
-      filebrowser: null
-      hc1_cloudflare_traefik: null
+      proxy: null
+      cloudflare-access_tunnel: null
 
 volumes:
   certs:
     driver: local
 
 networks:
-  adguard:
+  proxy:
     external: false
-  ai:
-    external: false
-  authentik:
-    external: false
-  portainer:
-    external: false
-  speedtest:
-    external: false
-  unifi:
-    external: false
-  gitea:
-    external: false
-  smart-home:
-    external: false
-  kasm:
-    external: false
-  filebrowser:
-    external: false
-  hc1_cloudflare_traefik:
+  cloudflare-access_tunnel:
     external: true

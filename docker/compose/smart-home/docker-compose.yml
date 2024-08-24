@@ -7,9 +7,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     networks:
-      traefik_smart-home: null
-      hc1_cloudflare_smart-home: null
-      ai: null
+      traefik_proxy: null
+      cloudflare-access_tunnel: null
     ports:
       - 21063:21063
     devices:
@@ -32,7 +31,7 @@ services:
       - traefik.http.routers.homeassistant-sso.middlewares=authentik@file
       - traefik.http.routers.homeassistant-sso.tls.certresolver=myresolver
 
-      - traefik.docker.network=traefik_smart-home
+      - traefik.docker.network=traefik_proxy
     restart: unless-stopped
 
   mosquitto:
@@ -59,7 +58,7 @@ services:
       traefik.http.routers.esphome.entrypoints: websecure
       traefik.http.routers.esphome.tls.certresolver: myresolver
       traefik.http.routers.esphome.middlewares: authentik@file
-      traefik.docker.network: traefik_smart-home
+      traefik.docker.network: traefik_proxy
     volumes:
       - esphome:/config
       - esphome-tmp:/config/.esphome
@@ -90,9 +89,7 @@ volumes:
     driver: local
 
 networks:
-  ai:
-    external: false
-  traefik_smart-home:
+  traefik_proxy:
     external: true
-  hc1_cloudflare_smart-home:
+  cloudflare-access_tunnel:
     external: true
