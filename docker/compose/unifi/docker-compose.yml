@@ -1,7 +1,7 @@
 name: unifi
 services:
   database:
-    image: docker.io/mongo:latest
+    image: docker.io/mongo:7.0
     command: mongod
     environment:
       - UNIFI_DB_PASS=${UNIFI_DB_PASS}
