@@ -160,7 +160,7 @@
       Restart = "always";
       Environment = [ 
         "UNIFI_DB_PASS=SECRETS.UNIFI_DB_PASS"
-        "UNIFI_DB_PASS=SECRETS.UNIFI_DB_ROOT_PASS"
+        "UNIFI_DB_ROOT_PASS=SECRETS.UNIFI_DB_ROOT_PASS"
       ];
     };
   };
