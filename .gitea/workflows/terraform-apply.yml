@@ -6,10 +6,10 @@ permissions:
 on:
   push:
     branches:
-      - main
+      - prod
   pull_request:
     branches:
-      - main
+      - prod
 
 env:
   TF_IN_AUTOMATION: "true"
