@@ -47,7 +47,7 @@ http:
     nextcloud:
       loadBalancer:
         servers:
-          - url: "http://10.1.240.5:11000"
+          - url: "http://host.docker.internal:11000"
   middlewares:
     nextcloud-secure-headers:
       headers:
