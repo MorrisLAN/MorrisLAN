@@ -25,7 +25,7 @@
     };
     defaultGateway = "10.1.240.1";
     nameservers = [ "10.1.240.1" ];
-    firewall.allowedTCPPorts = [ 11000 ]; # Needed for Nextcloud
+    firewall.allowedTCPPorts = [ 80 443 11000 ]; # Needed for Nextcloud
   };
 
   systemd.services.traefik = {
