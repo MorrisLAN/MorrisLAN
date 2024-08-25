@@ -33,7 +33,37 @@ serversTransport:
   insecureSkipVerify: true
 
 http:
+  routers:
+    nextcloud:
+      rule: "Host(`cloud.morrislan.net`)"
+      entrypoints:
+        - "https"
+      service: nextcloud
+      middlewares:
+        - nextcloud-chain
+      tls:
+        certresolver: "myresolver"
+  services:
+    nextcloud:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.240.5:11000"
   middlewares:
+    nextcloud-secure-headers:
+      headers:
+        hostsProxyHeaders:
+          - "X-Forwarded-Host"
+        referrerPolicy: "same-origin"
+
+    https-redirect:
+      redirectscheme:
+        scheme: https 
+
+    nextcloud-chain:
+      chain:
+        middlewares:
+          - https-redirect
+          - nextcloud-secure-headers
     authentik:
       forwardAuth:
         address: "https://authentik-proxy-1:9443/outpost.goauthentik.io/auth/traefik"
