@@ -26,9 +26,6 @@ services:
       - TZ=Europe/London
     image: lscr.io/linuxserver/unifi-network-application:latest
     ports:
-      - target: 3478
-        published: "3478"
-        protocol: udp
       - target: 10001
         published: "10001"
         protocol: udp
