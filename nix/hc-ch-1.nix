@@ -196,5 +196,20 @@
     };
   };
 
+  systemd.services.nextcloud = {
+    description = "Nextcloud (Docker Compose)";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    restartIfChanged = true;
+    restartTriggers = [ "/etc/morrislan/docker/compose/nextcloud" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/nextcloud/docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/nextcloud/docker-compose.yml down";
+      WorkingDirectory = "/etc/morrislan/docker/compose/nextcloud";
+      Restart = "always";
+    };
+  };
+
   system.stateVersion = "24.05";
 }
