@@ -15,6 +15,7 @@
         miimon = "100";
         lacp_rate = "fast";
       };
+    allowedTCPPorts = [ 11000 ];
     };
     interfaces.bond0 = {
       ipv4.addresses = [{
