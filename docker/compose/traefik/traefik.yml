@@ -37,7 +37,7 @@ http:
     nextcloud:
       rule: "Host(`cloud.morrislan.net`)"
       entrypoints:
-        - "https"
+        - "websecure"
       service: nextcloud
       middlewares:
         - nextcloud-chain
