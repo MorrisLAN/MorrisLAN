@@ -15,7 +15,6 @@
         miimon = "100";
         lacp_rate = "fast";
       };
-    allowedTCPPorts = [ 11000 ];
     };
     interfaces.bond0 = {
       ipv4.addresses = [{
@@ -26,6 +25,7 @@
     };
     defaultGateway = "10.1.240.1";
     nameservers = [ "10.1.240.1" ];
+    firewall.allowedTCPPorts = [ 11000 ]; # Needed for Nextcloud
   };
 
   systemd.services.traefik = {
