@@ -33,16 +33,6 @@
     };
   };
 
-  power.ups = {
-    enable = true;
-    mode = "netserver";
-    openFirewall = true;
-    ups."officeups" = {
-      driver = "apcsmart";
-      port = "auto";
-    };
-  };
-
   # systemd.services."sync-esp" = {
   #   description = "Synchronize ESP partitions";
   #   after = [ "boot.mount" ];
