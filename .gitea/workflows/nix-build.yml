@@ -42,6 +42,7 @@ jobs:
           sed -i "s/SECRETS.AUTHENTIK_DB_PASS/${{ secrets.AUTHENTIK_DB_PASS }}/" ./nix/hc-ch-1.nix
           sed -i "s/SECRETS.AUTHENTIK_SECRET_KEY/${{ secrets.AUTHENTIK_SECRET_KEY }}/" ./nix/hc-ch-1.nix
           sed -i "s/SECRETS.AUTHENTIK_PROXY_TOKEN/${{ secrets.AUTHENTIK_PROXY_TOKEN }}/" ./nix/hc-ch-1.nix
+          sed -i "s/SECRETS.AUTHENTIK_LDAP_TOKEN/${{ secrets.AUTHENTIK_LDAP_TOKEN }}/" ./nix/hc-ch-1.nix
           sed -i "s/SECRETS.SMTP_HOST/${{ secrets.SMTP_HOST }}/" ./nix/hc-ch-1.nix
           sed -i "s/SECRETS.SMTP_USERNAME/${{ secrets.SMTP_USERNAME }}/" ./nix/hc-ch-1.nix
           sed -i "s/SECRETS.SMTP_PASSWORD/${{ secrets.SMTP_PASSWORD }}/" ./nix/hc-ch-1.nix
