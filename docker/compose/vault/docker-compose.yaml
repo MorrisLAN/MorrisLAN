@@ -1,0 +1,27 @@
+services:
+  vault:
+    image: hashicorp/vault
+    environment:
+      VAULT_ADDR: "https://vault.morrislan.net"
+      VAULT_API_ADDR: "https://vault.morrislan.net"
+      VAULT_ADDRESS: "https://vault.morrislan.net"
+      VAULT_UI: true
+    restart: unless-stopped
+    networks:
+      cloudflare-access_tunnel: null
+    volumes:
+      - logs:/vault/logs/:rw
+      - data:/vault/data/:rw
+      - ./config.json:/vault/config.json:rw
+    cap_add:
+      - IPC_LOCK
+    entrypoint: vault server -config /vault/config.json
+
+volumes:
+  logs:
+  data:
+  config:
+
+networks:
+  cloudflare-access_tunnel:
+    external: true
