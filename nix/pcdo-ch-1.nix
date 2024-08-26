@@ -54,5 +54,19 @@
     };
   };
 
+  systemd.services.vault = {
+    description = "Vault (Docker Compose)";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    restartIfChanged = true;
+    restartTriggers = [ "/etc/morrislan/docker/compose/vault/docker-compose.yml" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/vault/docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/vault/docker-compose.yml down";
+      WorkingDirectory = "/etc/morrislan/docker/compose/vault";
+      Restart = "always";
+    };
+  };
+
   system.stateVersion = "24.05";
 }
