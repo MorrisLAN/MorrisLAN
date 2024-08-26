@@ -136,6 +136,18 @@ services:
       AUTHENTIK_TOKEN: ${AUTHENTIK_PROXY_TOKEN}
     restart: unless-stopped
 
+  ldap:
+    image: ghcr.io/goauthentik/ldap:2024.6
+    networks:
+      default: null
+      authentik: null
+      traefik_proxy: null
+    environment:
+      AUTHENTIK_HOST: https://auth.morrislan.net
+      AUTHENTIK_INSECURE: "true"
+      AUTHENTIK_TOKEN: ${AUTHENTIK_PROXY_TOKEN}
+    restart: unless-stopped
+
 volumes:
   database:
     driver: local
