@@ -7,7 +7,7 @@ resource "digitalocean_droplet" "pcdo-ch-1" {
   image  = "161584796" # NixOS 24.05
   name   = "pcdo-ch-1"
   region = "lon1"
-  size   = "s-2vcpu-2gb"
+  size   = "s-2vcpu-4gb-amd"
   # Remember to disable resizing disk on droplet resize so that when sized up to use the runner can be spun back down
   backups           = true
   ssh_keys          = [digitalocean_ssh_key.onepassword.fingerprint]

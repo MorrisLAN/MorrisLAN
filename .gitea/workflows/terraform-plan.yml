@@ -5,9 +5,6 @@ permissions:
   pull-requests: write
 
 on:
-  push:
-    branches:
-      - prod
   pull_request:
     branches:
       - prod
