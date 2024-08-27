@@ -15,7 +15,7 @@
 
   services.kubernetes = {
     roles = ["master" "node"];
-    masterAddress = "hc-ch-api.morrislan.net";
+    masterAddress = "hc-ch-1.morrislan.net";
     apiserverAddress = "https://hc-ch-api.morrislan.net:6443";
     easyCerts = true;
     addons.dns.enable = true;

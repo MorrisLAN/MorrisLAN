@@ -3,7 +3,7 @@
     ./hardware/dell-r730.nix
     ./modules/base.nix
     ./modules/ch.nix
-    ./modules/k8s/node.nix
+#    ./modules/k8s/node.nix
   ];
 
   networking = {
@@ -27,7 +27,7 @@
     };
     defaultGateway = "10.1.240.1";
     nameservers = [ "10.1.240.1" ];
-    firewall.allowedTCPPorts = [ 80 443 11000 6443 ]; # Needed for Nextcloud
+    firewall.allowedTCPPorts = [ 80 443 11000 6443 ]; # 11000 Needed for Nextcloud
   };
 
   systemd.services.traefik = {
