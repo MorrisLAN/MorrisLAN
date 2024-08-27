@@ -7,7 +7,11 @@
 
   services.kubernetes = {
     roles = ["master" "node"];
-    masterAddress = "10.1.240.5";
+      apiserver = {
+        securePort = 8443;
+        advertiseAddress = "10.1.240.5";
+      };
+    masterAddress = "api.kube";
     easyCerts = true;
     kubelet.extraOpts = "--fail-swap-on=false";
   };

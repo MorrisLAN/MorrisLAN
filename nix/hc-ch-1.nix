@@ -8,6 +8,7 @@
 
   networking = {
     hostName = "hc-ch-1";
+    extraHosts = "10.1.240.5 api.kube";
     hostId = "c1a068ae";
     bonds.bond0 = {
       interfaces = [ "eno1" "eno2" ];
@@ -26,7 +27,7 @@
     };
     defaultGateway = "10.1.240.1";
     nameservers = [ "10.1.240.1" ];
-    firewall.allowedTCPPorts = [ 80 443 11000 ]; # Needed for Nextcloud
+    firewall.allowedTCPPorts = [ 80 443 11000 8443 ]; # Needed for Nextcloud
   };
 
   systemd.services.traefik = {
