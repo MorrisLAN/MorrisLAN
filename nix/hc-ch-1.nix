@@ -75,8 +75,8 @@
     };
   };
 
-  systemd.services.ai-stack = {
-    description = "AI Stack (Docker Compose)";
+  systemd.services.ai = {
+    description = "AI (Docker Compose)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
