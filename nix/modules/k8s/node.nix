@@ -17,7 +17,7 @@
     addons.dns.enable = true;
     kubelet.extraOpts = "--fail-swap-on=false";
     apiserver = {
-      securePort = "6443";
+      securePort = 6443;
       advertiseAddress = "10.1.240.5";
     };
   };
