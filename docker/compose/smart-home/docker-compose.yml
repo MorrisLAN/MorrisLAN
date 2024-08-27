@@ -3,7 +3,7 @@ services:
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant:2024.8.2
     volumes:
-      - homeassistant:/config
+      - /svc/smart-home/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     networks:
@@ -39,7 +39,7 @@ services:
     ports:
       - 1883:1883
     volumes:
-      - mosquitto:/mosquitto/config
+      - /svc/smart-home/mosquitto:/mosquitto/config
 
   esphome:
     image: ghcr.io/esphome/esphome
@@ -57,8 +57,8 @@ services:
       traefik.http.routers.esphome.middlewares: authentik@file
       traefik.docker.network: traefik_proxy
     volumes:
-      - esphome:/config
-      - esphome-tmp:/config/.esphome
+      - /svc/smart-home/esphome:/config
+      - /svc/smart-home/esphome-tmp:/config/.esphome
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     
@@ -67,7 +67,7 @@ services:
     ports:
       - 8880:80
     volumes:
-      - assets:/usr/share/nginx/html:ro
+      - /svc/smart-home/assets:/usr/share/nginx/html:ro
 
 volumes:
   homeassistant:

@@ -22,7 +22,7 @@ services:
       OPENID_PROVIDER_URL: https://auth.morrislan.net/application/o/ai/.well-known/openid-configuration
       OAUTH_PROVIDER_NAME: MorrisLAN SSO
     volumes:
-      - open-webui:/app/backend/data
+      - /svc/ai/open-webui:/app/backend/data
     #    depends_on:
     #      - ollama
     labels:
@@ -65,10 +65,8 @@ services:
     image: rhasspy/wyoming-openwakeword
     user: 1001:1001
     volumes:
-      - wakeword-data:/data
-      - wakeword-custom:/custom
-#      - /etc/timezone:/etc/timezone:ro
-#      - /etc/localtime:/etc/localtime:ro
+      - /svc/ai/wakeword-data:/data
+      - /svc/ai/wakeword-custom:/custom
     environment:
       - TZ=Europe/London
     command: --preload-model 'ok_nabu' --custom-model-dir /custom

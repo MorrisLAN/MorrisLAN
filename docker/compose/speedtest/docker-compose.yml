@@ -19,7 +19,7 @@ services:
       traefik.http.routers.speedtest.tls.certresolver: myresolver
       traefik.docker.network: traefik_proxy
     volumes:
-      - config:/config
+      - /svc/speedtest/config:/config
     restart: unless-stopped
 
 networks:

@@ -5,7 +5,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
-      - certs:/letsencrypt
+      - /svc/traefik/certs:/letsencrypt
     environment:
       - CF_DNS_API_TOKEN=${CLOUDFLARE_TOKEN}
     networks:

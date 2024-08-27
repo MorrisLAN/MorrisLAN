@@ -15,7 +15,7 @@ services:
       retries: 5
       timeout: 5s
     volumes:
-      - database:/var/lib/postgresql/data
+      - /svc/authentik/database:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: ${AUTHENTIK_DB_PASS}
       POSTGRES_USER: authentik
@@ -51,7 +51,7 @@ services:
       retries: 5
       timeout: 3s
     volumes:
-      - redis:/data
+      - /svc/authentik/redis:/data
 
   server:
     image: ghcr.io/goauthentik/server:2024.6
@@ -73,8 +73,8 @@ services:
       AUTHENTIK_EMAIL__PASSWORD: ${SMTP_PASSWORD}
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
     volumes:
-      - media:/media
-      - custom-templates:/templates
+      - /svc/authentik/media:/media
+      - /svc/authentik/custom-templates:/templates
     networks:
       default: null
       authentik: null
@@ -117,9 +117,9 @@ services:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
     user: root
     volumes:
-      - media:/media
-      - certs:/certs
-      - custom-templates:/templates
+      - /svc/authentik/media:/media
+      - /svc/authentik/certs:/certs
+      - /svc/authentik/custom-templates:/templates
     depends_on:
       - postgresql
       - redis

@@ -10,7 +10,7 @@ services:
     networks:
       unifi:
     volumes:
-      - database:/data/db
+      - /svc/unifi/database:/data/db
       - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
   server:
     depends_on:
@@ -51,7 +51,7 @@ services:
       traefik.docker.network: traefik_proxy
     restart: unless-stopped
     volumes:
-      - config:/config
+      - /svc/unifi/config:/config
     networks:
       - unifi
       - traefik_proxy
