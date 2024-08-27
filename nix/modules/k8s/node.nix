@@ -9,7 +9,7 @@
     roles = ["master" "node"];
       apiserver = {
         securePort = 8443;
-        advertiseAddress = "10.1.240.5";
+        advertiseAddress = "api.kube";
       };
     masterAddress = "api.kube";
     easyCerts = true;
