@@ -7,6 +7,10 @@
       url = "https://ci:SECRETS.GIT_PAT@git.morrislan.net/MorrisLAN/morrislan.git";
       ref = "refs/heads/prod";
     };
+
+    etc."vault_ssh/public_key".source = builtins.fetchurl {
+      url = "https://vault.morrislan.net/v1/ssh/public_key";
+    };
   };
 
   networking = {
@@ -19,7 +23,10 @@
       enable = true;
       ports = [ 4022 ];
       openFirewall = true;
-      settings.PasswordAuthentication = false;
+      settings = {
+        PasswordAuthentication = false;
+        TrustedUserCAKeys = "/etc/vault_ssh/public_key";
+      };
   };
 
   programs.zsh = {
