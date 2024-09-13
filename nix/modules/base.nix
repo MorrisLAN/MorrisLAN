@@ -8,9 +8,9 @@
       ref = "refs/heads/prod";
     };
 
-    etc."vault_ssh/public_key".source = builtins.fetchurl {
-      url = "https://vault.morrislan.net/v1/ssh/public_key";
-    };
+    # etc."vault_ssh/public_key".source = builtins.fetchurl {
+    #   url = "https://vault.morrislan.net/v1/ssh/public_key";
+    # };
   };
 
   networking = {
