@@ -22,7 +22,7 @@
     kubelet = {
       extraOpts = "--fail-swap-on=false";
       cni = {
-        packages = [ calico-cni-plugin ];
+        packages = [ pkgs.calico-cni-plugin ];
       };
     };
     apiserver = {
