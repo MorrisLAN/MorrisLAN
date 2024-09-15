@@ -19,7 +19,12 @@
     apiserverAddress = "https://hc-ch-api.morrislan.net:6443";
     easyCerts = true;
     addons.dns.enable = true;
-    kubelet.extraOpts = "--fail-swap-on=false";
+    kubelet = {
+      extraOpts = "--fail-swap-on=false";
+      cni = {
+        packages = [ calico-cni-plugin ];
+      };
+    };
     apiserver = {
       securePort = 6443;
       advertiseAddress = "10.1.240.5";
