@@ -29,5 +29,6 @@
       securePort = 6443;
       advertiseAddress = "10.1.240.5";
     };
+    flannel.enable = false;
   };
 }
