@@ -3,12 +3,11 @@
     ./hardware/dell-r730.nix
     ./modules/base.nix
     ./modules/ch.nix
-#    ./modules/k8s/hc/master-node.nix
+    ./modules/k8s/hc/master-node.nix
   ];
 
   networking = {
     hostName = "hc-ch-1";
-    extraHosts = "10.1.240.5 api.kube";
     hostId = "c1a068ae";
     bonds.bond0 = {
       interfaces = [ "eno1" "eno2" ];
