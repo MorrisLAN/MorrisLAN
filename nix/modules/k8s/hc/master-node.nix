@@ -1,19 +1,50 @@
 { config, pkgs, ... }:
 {
   
-  networking.extraHosts = 
-  ''
-    10.1.240.5 hc-ch-1.morrislan.net
-    10.1.240.5 hc-ch-api.morrislan.net
-  '';
+  networking = {
+    extraHosts = 
+    ''
+      10.1.240.5 hc-ch-1.morrislan.net
+      10.1.240.5 hc-ch-api.morrislan.net
+    '';
+    dhcpcd.denyInterfaces = [ "cali*" "tunl*" "vxlan.calico" ];
+  };
 
   environment.systemPackages = with pkgs; [
     kompose
     kubectl
-    kubernetes
-    calico-cni-plugin
     calicoctl
   ];
+
+  environment.etc."cni/.net.d.wrapped/10-calico.conflist" = {
+    text = builtins.toJSON {
+      name = "k8s-pod-network";
+      cniVersion = "0.3.1";
+      type = "calico";
+      plugins = [
+        {
+          type = "calico";
+          log_level = "info";
+          log_file_path = "/var/log/calico/cni/cni.log";
+          datastore_type = "kubernetes";
+          mtu = 1500;
+          nodename = config.networking.hostName;
+          ipam.type = "calico-ipam";
+          policy.type = "k8s";
+          kubernetes.kubeconfig = "/var/lib/cni/net.d/calico-kubeconfig";
+        }
+        {
+          type = "portmap";
+          capabilities.portMappings = true;
+          snat = true;
+        }
+        {
+          type = "bandwidth";
+          capabilities.bandwidth = true;
+        }
+      ];
+    };
+  };
 
   services.kubernetes = {
     roles = ["master" "node"];
@@ -24,7 +55,7 @@
     kubelet = {
       extraOpts = "--fail-swap-on=false";
       cni = {
-        packages = [ pkgs.calico-cni-plugin ];
+        packages = with pkgs; [ calico-cni-plugin calico-ipam-cni-plugin ];
       };
     };
     apiserver = {
