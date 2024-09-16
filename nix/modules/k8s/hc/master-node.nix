@@ -14,6 +14,7 @@
     kompose
     kubectl
     calicoctl
+    calico-kube-controllers
   ];
 
   services.kubernetes = {
