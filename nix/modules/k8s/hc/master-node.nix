@@ -73,6 +73,7 @@
       };
     };
     apiserver = {
+      allowPrivileged = true;
       securePort = 6443;
       advertiseAddress = "10.1.240.5";
     };
