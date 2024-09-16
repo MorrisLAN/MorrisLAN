@@ -55,7 +55,7 @@
     kubelet = {
       extraOpts = "--fail-swap-on=false";
       cni = {
-        packages = with pkgs; [ calico-cni-plugin calico-ipam-cni-plugin ];
+        packages = with pkgs; [ calico-cni-plugin ];
       };
     };
     apiserver = {
