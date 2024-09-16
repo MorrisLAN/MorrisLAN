@@ -31,7 +31,7 @@
           nodename = config.networking.hostName;
           ipam.type = "calico-ipam";
           policy.type = "k8s";
-          kubernetes.kubeconfig = "/var/lib/cni/net.d/calico-kubeconfig";
+          kubernetes.kubeconfig = "/etc/kubernetes/cluster-admin.kubeconfig";
         }
         {
           type = "portmap";
