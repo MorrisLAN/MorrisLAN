@@ -11,6 +11,8 @@
     kompose
     kubectl
     kubernetes
+    calico-cni-plugin
+    calicoctl
   ];
 
   services.kubernetes = {
