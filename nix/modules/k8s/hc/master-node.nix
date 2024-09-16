@@ -16,7 +16,7 @@
     calicoctl
   ];
 
-  environment.etc."cni/.net.d.wrapped/10-calico.conflist" = {
+  environment.etc."cni/net.d/10-calico.conflist" = {
     text = builtins.toJSON {
       name = "k8s-pod-network";
       cniVersion = "0.3.1";
