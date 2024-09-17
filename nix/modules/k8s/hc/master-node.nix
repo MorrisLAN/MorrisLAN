@@ -34,4 +34,10 @@
       advertiseAddress = "10.1.240.5";
     };
   };
+
+  fileSystems."/etc/cni/net.d" = {
+    device = "/var/lib/cni/net.d";
+    options = ["bind"];
+  };
+
 }
