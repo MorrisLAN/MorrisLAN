@@ -21,7 +21,7 @@
     apiserverAddress = "https://hc-ch-api.morrislan.net:6443";
     easyCerts = true;
     addons.dns.enable = true;
-    clusterCidr = "	10.2.0.0/16";
+    clusterCidr = "10.0.20.0/23";
     kubelet = {
       extraOpts = "--fail-swap-on=false";
     };
