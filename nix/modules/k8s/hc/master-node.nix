@@ -24,6 +24,9 @@
     clusterCidr = "10.0.20.0/23";
     kubelet = {
       extraOpts = "--fail-swap-on=false";
+      cni = {
+        packages = with pkgs; [ calico-cni-plugin ];
+      };
     };
     apiserver = {
       allowPrivileged = true;
