@@ -25,15 +25,11 @@
     addons.dns.enable = true;
     kubelet = {
       extraOpts = "--fail-swap-on=false";
-      cni = {
-        packages = with pkgs; [ calico-cni-plugin ];
-      };
     };
     apiserver = {
       allowPrivileged = true;
       securePort = 6443;
       advertiseAddress = "10.1.240.5";
     };
-    flannel.enable = false;
   };
 }
