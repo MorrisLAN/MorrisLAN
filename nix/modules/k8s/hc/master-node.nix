@@ -13,8 +13,6 @@
   environment.systemPackages = with pkgs; [
     kompose
     kubectl
-    calicoctl
-    calico-kube-controllers
   ];
 
   services.kubernetes = {
