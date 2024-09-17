@@ -27,49 +27,6 @@
       extraOpts = "--fail-swap-on=false";
       cni = {
         packages = with pkgs; [ calico-cni-plugin ];
-        config = [
-          {
-            "cniVersion" = "0.3.1";
-            "name" = "k8s-pod-network";
-            "type" = "calico";
-            "plugins" = [
-              {
-                "type" = "calico";
-                "log_level" = "info";
-                "log_file_path" = "/var/log/calico/cni/cni.log";
-                "datastore_type" = "kubernetes";
-                "mtu" = 1500;
-                "nodename" = config.networking.hostName;
-                "ipam" = {
-                  "type" = "calico";
-                };
-                "policy" = {
-                  "type" = "k8s";
-                };
-                "kubernetes" = {
-                  "kubeconfig" = "/etc/kubernetes/cluster-admin.kubeconfig";
-                };
-              }
-              {
-                "type" = "portmap";
-                "capabilities" = {
-                  "portMappings" = true;
-                };
-                "snat" = true;
-              }
-              {
-                "type" = "bandwidth";
-                "capabilities" = {
-                  "bandwidth" = true;
-                };
-              }
-            ];
-          }
-          {
-            "cniVersion" = "0.3.1";
-            "type" = "loopback";
-          }
-        ];
       };
     };
     apiserver = {
