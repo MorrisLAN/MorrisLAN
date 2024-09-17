@@ -35,9 +35,6 @@
     };
   };
 
-  fileSystems."/etc/cni/net.d" = {
-    device = "/var/lib/cni/net.d";
-    options = ["bind"];
-  };
+  environment.etc."cni/net.d/calico-kubeconfig".source = "/tmp/calico-kubeconfig";
 
 }
