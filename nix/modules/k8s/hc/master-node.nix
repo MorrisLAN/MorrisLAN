@@ -34,7 +34,4 @@
       advertiseAddress = "10.1.240.5";
     };
   };
-
-  environment.etc."cni/net.d/calico-kubeconfig".source = "/tmp/calico-kubeconfig";
-
 }
