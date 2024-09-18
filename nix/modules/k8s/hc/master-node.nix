@@ -28,6 +28,7 @@
       cni = {
         packages = with pkgs; [ calico-cni-plugin ];
         configDir = "/var/lib/cni/net.d";
+      };
     };
     clusterCidr = "10.55.0.0/16";
     apiserver = {
