@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: metallb-config
+  name: config
   namespace: metallb-system
 data:
   config: |
