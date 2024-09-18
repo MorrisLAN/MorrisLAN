@@ -3,7 +3,7 @@
     ./hardware/dell-r730.nix
     ./modules/base.nix
     ./modules/ch.nix
-    ./modules/k8s/hc/master-node.nix
+#    ./modules/k8s/hc/master-node.nix
   ];
 
   networking = {

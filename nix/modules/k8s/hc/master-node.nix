@@ -13,6 +13,8 @@
   environment.systemPackages = with pkgs; [
     kompose
     kubectl
+    calicoctl
+    calico-kube-controllers
   ];
 
   services.kubernetes = {
@@ -21,17 +23,18 @@
     apiserverAddress = "https://hc-ch-api.morrislan.net:6443";
     easyCerts = true;
     addons.dns.enable = true;
-    clusterCidr = "10.0.20.0/23";
     kubelet = {
       extraOpts = "--fail-swap-on=false";
       cni = {
         packages = with pkgs; [ calico-cni-plugin ];
-      };
+        configDir = "/var/lib/cni/net.d";
     };
+    clusterCidr = "10.55.0.0/16";
     apiserver = {
       allowPrivileged = true;
       securePort = 6443;
       advertiseAddress = "10.1.240.5";
     };
+    flannel.enable = false;
   };
 }
