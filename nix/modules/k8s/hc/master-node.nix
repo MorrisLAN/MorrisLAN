@@ -22,6 +22,7 @@
     enable = true;
     name = config.networking.hostName;
   };
+  virtualisation.docker.logDriver = "json-file";
 
   services.kubernetes = {
     roles = ["master" "node"];
