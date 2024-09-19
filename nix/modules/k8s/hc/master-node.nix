@@ -7,7 +7,6 @@
       10.1.240.5 hc-ch-api.morrislan.net
       10.1.240.5 hc-ch-1.morrislan.net
     '';
-    firewall.trustedInterfaces = [ "flannel.1" ];
   };
 
   environment.systemPackages = with pkgs; [
