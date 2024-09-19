@@ -12,6 +12,7 @@
   environment.systemPackages = with pkgs; [
     kompose
     kubectl
+    k9s
   ];
 
   services.kubernetes = {
@@ -23,11 +24,13 @@
     kubelet = {
       extraOpts = "--fail-swap-on=false";
     };
-    clusterCidr = "10.55.0.0/16";
     apiserver = {
       allowPrivileged = true;
       securePort = 6443;
       advertiseAddress = "10.1.240.5";
+    };
+    proxy = {
+      extraOpts = "--ipvs-strict-arp=false";
     };
   };
 }

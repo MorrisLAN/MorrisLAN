@@ -1,12 +1,17 @@
-apiVersion: v1
-kind: ConfigMap
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
 metadata:
-  name: config
+  name: morrislan
   namespace: metallb-system
-data:
-  config: |
-    address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-      - 10.1.240.200-10.1.240.230
+spec:
+  addresses:
+  - 10.1.240.230-10.1.240.240
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: morrislan
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - morrislan
