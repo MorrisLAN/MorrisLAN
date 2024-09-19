@@ -7,6 +7,7 @@
       10.1.240.5 hc-ch-api.morrislan.net
       10.1.240.5 hc-ch-1.morrislan.net
     '';
+    firewall.trustedInterfaces = [ "flannel.1" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -15,6 +16,7 @@
     openiscsi # Needed for Longhorn
     jq # Needed for Longhorn
     k9s
+    kubernetes-helm
   ];
 
   # Needed for Longhorn
