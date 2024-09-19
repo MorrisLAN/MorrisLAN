@@ -17,6 +17,12 @@
     k9s
   ];
 
+  # Needed for Longhorn
+  services.openiscsi = {
+    enable = true;
+    name = config.networking.hostName;
+  };
+
   services.kubernetes = {
     roles = ["master" "node"];
     masterAddress = "hc-ch-api.morrislan.net";
