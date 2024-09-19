@@ -12,6 +12,7 @@
   environment.systemPackages = with pkgs; [
     kompose
     kubectl
+    openiscsi # Needed for Longhorn
     k9s
   ];
 
