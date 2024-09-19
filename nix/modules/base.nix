@@ -13,6 +13,11 @@
     # };
   };
 
+  # Needed for Longhorn (but just generally not bad either)
+  systemd.tmpfiles.rules = [
+    "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
+  ];
+
   networking = {
     firewall.enable = true;
     domain = "morrislan.net";
