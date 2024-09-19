@@ -19,7 +19,7 @@
   ];
 
   networking = {
-    firewall.enable = true;
+    firewall.enable = false;
     domain = "morrislan.net";
     usePredictableInterfaceNames = true;
   };
