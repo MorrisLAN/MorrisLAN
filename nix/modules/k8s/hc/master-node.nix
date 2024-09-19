@@ -30,7 +30,7 @@
       advertiseAddress = "10.1.240.5";
     };
     proxy = {
-      extraOpts = "--ipvs-strict-arp=false";
+      extraOpts = "--ipvs-strict-arp=true";
     };
   };
 }
