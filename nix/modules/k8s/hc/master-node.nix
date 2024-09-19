@@ -13,6 +13,7 @@
     kompose
     kubectl
     openiscsi # Needed for Longhorn
+    jq # Needed for Longhorn
     k9s
   ];
 
