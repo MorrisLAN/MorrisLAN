@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: hc-argocd.morrislan.net
+  - host: hc-argocd-prod.morrislan.net
     http:
       paths:
       - path: /
