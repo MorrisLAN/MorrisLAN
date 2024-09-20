@@ -16,6 +16,9 @@
     jq # Needed for Longhorn
     k9s
     kubernetes-helm
+    ceph
+    ceph-client
+    ceph-csi
   ];
 
   # Needed for Longhorn
