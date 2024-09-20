@@ -25,5 +25,5 @@ spec:
               name: https
   tls:
   - hosts:
-    - hc-argocd.morrislan.net
+    - hc-argocd-prod.morrislan.net
     secretName: argocd-server-tls # as expected by argocd-server
