@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     helm:
-      valuesFiles:
+      valueFiles:
         - ../../rook-ceph/hc/rook-ceph-hc-values.yaml
     repoURL: https://charts.rook.io/release
     chart: rook-ceph-cluster
