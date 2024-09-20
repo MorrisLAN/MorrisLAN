@@ -8,7 +8,7 @@ spec:
   source:
     helm:
       valueFiles:
-        - ../rook-ceph/rook-ceph-values.yaml
+        - /k8s/rook-ceph/rook-ceph-values.yaml
     repoURL: https://charts.rook.io/release
     chart: rook-ceph
     targetRevision: 1.15.2
