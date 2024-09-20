@@ -1,7 +1,7 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: morrislan
+  name: hc
   namespace: metallb-system
 spec:
   addresses:
@@ -10,8 +10,8 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: morrislan
+  name: hc
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - morrislan
+  - hc
