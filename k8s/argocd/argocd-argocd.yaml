@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/MorrisLAN/morrislan'
+    repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
     targetRevision: prod
     path: 'k8s/argocd'
   destination:
