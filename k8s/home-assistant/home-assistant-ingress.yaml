@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: ha.morrislan.net
+  - host: ha-test.morrislan.net
     http:
       paths:
       - path: /
@@ -20,5 +20,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    - ha.morrislan.net
+    - ha-test.morrislan.net
     secretName: home-assistant-tls
