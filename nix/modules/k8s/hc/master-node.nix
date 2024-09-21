@@ -21,10 +21,9 @@
     ceph-csi
   ];
 
-  # https://github.com/rook/rook/issues/4133#issuecomment-544093078
+  # Needed as NixOS uses /var/lib/kubernetes as kubelet root-dir but I can't be bothered to change that in everything that expects it to be /var/lib/kubelet
   systemd.tmpfiles.rules = [
-    "d /var/lib/kubelet/pods 0755 root root -"
-    "d /var/lib/kubelet/plugin_registry 0755 root root -"
+    "L+ /var/lib/kubelet - - - - /var/lib/kubernetes"
   ];
 
   # Needed for Longhorn
