@@ -15,6 +15,9 @@ spec:
             value: "true"
           - name: "crds.keep"
             value: "true"
+    - repoURL: https://git.morrislan.net/MorrisLAN/morrislan
+      targetRevision: prod
+      path: 'k8s/cert-manager'
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
