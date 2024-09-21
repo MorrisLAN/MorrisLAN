@@ -12,11 +12,9 @@ spec:
       helm:
         valueFiles:
           - $values/k8s/rook-ceph/rook-ceph-values.yaml
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       ref: values
-
   destination:
     server: https://kubernetes.default.svc
     namespace: rook-ceph
