@@ -1,7 +1,8 @@
 #!/bin/bash
 
-if [[ $HOST =~ ^hc-ch-[0-9]+\.morrislan\.net$ ]]; then
-  kubectl apply -f argocd
+if [[ $HOSTNAME =~ ^hc-ch-[0-9]+$ ]]; then
+  kubectl create namespace argocd
+  kubectl apply -n argocd -f argocd -f argocd/hc
   sleep 1m
-  kubectl apply -f argocd/hc
+  kubectl apply -n argocd -f argocd -f argocd/hc
 fi
