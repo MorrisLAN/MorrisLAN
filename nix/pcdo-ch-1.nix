@@ -3,6 +3,7 @@
     (modulesPath + "/virtualisation/digital-ocean-config.nix")
     ./modules/base.nix
     ./modules/ch.nix
+#    ./modules/k8s/pcdo/master-node.nix
   ];
 
   networking = {
