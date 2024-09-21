@@ -23,7 +23,7 @@
 
   programs.zsh.shellAliases = 
   {
-    k = "kubectl -o wide";
+    k = "kubectl";
   };
 
   # Needed as NixOS uses /var/lib/kubernetes as kubelet root-dir but I can't be bothered to change that in everything that expects it to be /var/lib/kubelet
