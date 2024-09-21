@@ -19,4 +19,4 @@ metadata:
   namespace: argocd
 data:
   policy.csv: |
-    g, admins, role:admin
+    g, Admins, role:admin
