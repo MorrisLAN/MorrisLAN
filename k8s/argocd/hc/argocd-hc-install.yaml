@@ -21341,7 +21341,7 @@ data:
   url: https://hc-argocd.morrislan.net
   oidc.config: |
     name: MorrisLAN SSO
-    issuer: https://auth.morrislan.net/application/o/hc-argocd-prod
+    issuer: https://auth.morrislan.net/application/o/hc-argocd-prod/
     clientID: $oidc.morrislansso.clientID
     clientSecret: $oidc.morrislansso.clientSecret
     requestedScopes: ["openid", "profile", "email", "groups"]
