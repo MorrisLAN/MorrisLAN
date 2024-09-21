@@ -5,13 +5,18 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    helm:
-      valueFiles:
-        - k8s/rook-ceph/rook-ceph-values.yaml
-    repoURL: https://charts.rook.io/release
-    chart: rook-ceph
-    targetRevision: 1.15.2
+  sources:
+    - repoURL: https://charts.rook.io/release
+      chart: rook-ceph
+      targetRevision: 1.15.2
+      helm:
+        valueFiles:
+          - $values/k8s/rook-ceph/rook-ceph-values.yaml
+
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      ref: values
+
   destination:
     server: https://kubernetes.default.svc
     namespace: rook-ceph
