@@ -21333,6 +21333,22 @@ subjects:
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: argocd-cm
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  url: https://hc-argocd-prod.morrislan.net
+  oidc.config: |
+    name: MorrisLAN SSO
+    issuer: https://auth.morrislan.net/application/o/hc-argocd-prod
+    clientID: $oidc.morrislansso.clientID
+    clientSecret: $oidc.morrislansso.clientSecret
+    requestedScopes: ["openid", "profile", "email", "groups"]
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
   labels:
     app.kubernetes.io/name: argocd-cmd-params-cm
     app.kubernetes.io/part-of: argocd
@@ -21358,10 +21374,14 @@ metadata:
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: argocd-rbac-cm
   labels:
     app.kubernetes.io/name: argocd-rbac-cm
     app.kubernetes.io/part-of: argocd
-  name: argocd-rbac-cm
+    app.kubernetes.io/instance: argocd
+data:
+  policy.csv: |
+    g, Admins, role:admin
 ---
 apiVersion: v1
 data:
