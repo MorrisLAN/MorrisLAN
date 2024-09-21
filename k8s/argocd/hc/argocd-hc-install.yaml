@@ -21338,7 +21338,7 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  url: https://hc-argocd.morrislan.net
+  url: https://hc-argocd1.morrislan.net
   oidc.config: |
     name: MorrisLAN SSO
     issuer: https://auth.morrislan.net/application/o/hc-argocd-prod/
