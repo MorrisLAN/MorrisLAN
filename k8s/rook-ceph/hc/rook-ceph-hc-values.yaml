@@ -7,7 +7,7 @@ operatorNamespace: rook-ceph
 
 # -- The metadata.name of the CephCluster CR
 # @default -- The same as the namespace
-clusterName: rook-ceph-hc
+clusterName: rook-ceph
 
 # -- Optional override of the target kubernetes version
 kubeVersion:
