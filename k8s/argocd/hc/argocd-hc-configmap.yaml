@@ -6,6 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/instance: argocd
 data:
   url: https://hc-argocd-prod.morrislan.net
   oidc.config: |
@@ -23,6 +24,7 @@ metadata:
   labels:
     app.kubernetes.io/name: argocd-rbac-cm
     app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/instance: argocd
 data:
   policy.csv: |
     g, Admins, role:admin
