@@ -21,6 +21,12 @@
     ceph-csi
   ];
 
+  # https://github.com/rook/rook/issues/4133#issuecomment-544093078
+  systemd.tmpfiles.rules = [
+    "d /var/lib/kubelet/pods 0755 root root -"
+    "d /var/lib/kubelet/plugin_registry 0755 root root -"
+  ];
+
   # Needed for Longhorn
   services.openiscsi = {
     enable = true;
