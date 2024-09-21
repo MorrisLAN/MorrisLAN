@@ -9,6 +9,8 @@
     '';
   };
 
+  boot.kernelModules = [ rbd ceph overlay br_netfilter ]
+
   environment.systemPackages = with pkgs; [
     kompose
     kubectl
