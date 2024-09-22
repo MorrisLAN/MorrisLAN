@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metrics-server
+  name: prometheus
   namespace: argocd
 spec:
   project: default
   sources:
-    - repoURL: https://kubernetes-sigs.github.io/metrics-server/
-      chart: metrics-server
-      targetRevision: 3.12.1
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: prometheus
+      targetRevision: 25.27.0
   destination:
     server: https://kubernetes.default.svc
-    namespace: metrics-server
+    namespace: prometheus
   syncPolicy:
     automated:
       prune: true
