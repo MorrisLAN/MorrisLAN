@@ -512,7 +512,7 @@ cephFileSystems:
         replicated:
           size: 1
       dataPools:
-        - failureDomain: host
+        - failureDomain: osd
           replicated:
             size: 1
           # Optional and highly recommended, 'data0' by default, see https://github.com/rook/rook/blob/master/Documentation/CRDs/Shared-Filesystem/ceph-filesystem-crd.md#pools
