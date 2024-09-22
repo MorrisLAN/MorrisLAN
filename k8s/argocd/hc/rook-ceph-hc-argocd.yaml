@@ -14,6 +14,7 @@ spec:
           - $values/k8s/rook-ceph/hc/rook-ceph-hc-values.yaml
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
+      path: 'k8s/rook-ceph/hc'
       ref: values
   destination:
     server: https://kubernetes.default.svc

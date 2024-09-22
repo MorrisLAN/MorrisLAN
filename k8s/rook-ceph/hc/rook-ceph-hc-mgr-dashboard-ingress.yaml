@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rook-ceph-mgr-dashboard
+  namespace: rook-ceph
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: hc1-ceph-mgr.morrislan.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rook-ceph-mgr-dashboard
+            port:
+              number: 8443
+  tls:
+  - hosts:
+    - hc1-ceph-mgr.morrislan.net
+    secretName: rook-ceph-mgr-dashboard-tls
