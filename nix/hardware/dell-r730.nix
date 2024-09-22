@@ -12,26 +12,20 @@
     };
     consoleLogLevel = lib.mkDefault 7;
     kernelModules = [ "kvm-intel" ];
-    supportedFilesystems = [ "zfs" ];
     initrd.kernelModules = [];
     initrd.availableKernelModules = [ "ahci" "xhci_pci" "ehci_pci" "megaraid_sas" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
   };
 
-  fileSystems = {
-    "/boot" = {
-      device = "/dev/disk/by-uuid/880C-6445";
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/a7a755da-54e5-4adc-a57a-2e7572031de6";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/D876-A395";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
-    "/" = {
-      device = "hc-data1/root";
-      fsType = "zfs";
-    };
-    "/nix" = {
-      device = "hc-data1/nix";
-      fsType = "zfs";
-    };
-  };
 
   # systemd.services."sync-esp" = {
   #   description = "Synchronize ESP partitions";
