@@ -2,7 +2,6 @@
   imports = [
     ./hardware/dell-r730.nix
     ./modules/base.nix
-    ./modules/ch.nix
     ./modules/k8s/hc/master-node.nix
   ];
 
@@ -29,19 +28,5 @@
     firewall.allowedTCPPorts = [ 80 443 11000 6443 10250 ]; # 11000 Needed for Nextcloud 10250 Needed for metrics-server
   };
 
-  systemd.services.adguard = {
-    description = "AdGuard (Docker Compose)";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    restartIfChanged = true;
-    restartTriggers = [ "/etc/morrislan/docker/compose/adguard/" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/adguard/docker-compose.yml up";
-      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /etc/morrislan/docker/compose/adguard/docker-compose.yml down";
-      WorkingDirectory = "/etc/morrislan/docker/compose/adguard";
-      Restart = "always";
-    };
-  };
   system.stateVersion = "24.05";
 }
