@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: hc1-ceph-mgr.morrislan.net
+  - host: hc-ceph-mgr.morrislan.net
     http:
       paths:
       - path: /
@@ -20,5 +20,5 @@ spec:
               number: 8443
   tls:
   - hosts:
-    - hc1-ceph-mgr.morrislan.net
+    - hc-ceph-mgr.morrislan.net
     secretName: rook-ceph-mgr-dashboard-tls
