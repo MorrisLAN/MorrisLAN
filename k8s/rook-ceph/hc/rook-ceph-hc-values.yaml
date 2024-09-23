@@ -149,7 +149,6 @@ cephClusterSpec:
   # enable the ceph dashboard for viewing cluster status
   dashboard:
     enabled: true
-    prometheusEndpoint: https://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local
     # serve the dashboard under a subpath (useful when you are accessing the dashboard via a reverse proxy)
     # urlPrefix: /ceph-dashboard
     # serve the dashboard at the given port.
