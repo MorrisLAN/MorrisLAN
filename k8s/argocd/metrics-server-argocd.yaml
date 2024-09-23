@@ -10,11 +10,9 @@ spec:
       chart: metrics-server
       targetRevision: 3.12.1
       helm:
-        # parameters:
-        #   - name: "containerPort"
-        #     value: "10255"
-        #   - name: "hostNetwork.enabled"
-        #     value: "true"
+        parameters:
+          - name: "args"
+            value: "{--kubelet-certificate-authority=/var/lib/kubernetes/secrets/ca.pem}"
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
