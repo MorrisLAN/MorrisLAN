@@ -26,6 +26,7 @@
   programs.zsh.shellAliases = 
   {
     k = "kubectl";
+    "who-owns-port" = "ss -lptn 'sport = :${PORT}'"
   };
 
   # Needed as NixOS uses /var/lib/kubernetes as kubelet root-dir but I can't be bothered to change that in everything that expects it to be /var/lib/kubelet
