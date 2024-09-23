@@ -10,14 +10,14 @@ spec:
       chart: metrics-server
       targetRevision: 3.12.1
       helm:
-        parameters:
-          - name: "containerPort"
-            value: "10255"
-          - name: "hostNetwork.enabled"
-            value: "true"
+        # parameters:
+        #   - name: "containerPort"
+        #     value: "10255"
+        #   - name: "hostNetwork.enabled"
+        #     value: "true"
   destination:
     server: https://kubernetes.default.svc
-    namespace: metrics-server
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true
