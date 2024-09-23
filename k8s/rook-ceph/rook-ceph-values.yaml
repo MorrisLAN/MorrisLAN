@@ -138,7 +138,7 @@ csi:
   # -- Enable adding volume metadata on the CephFS subvolumes and RBD images.
   # Not all users might be interested in getting volume/snapshot details as metadata on CephFS subvolume and RBD images.
   # Hence enable metadata is false by default
-  enableMetadata: false
+  enableMetadata: true
 
   # -- Set replicas for csi provisioner deployment
   provisionerReplicas: 2
