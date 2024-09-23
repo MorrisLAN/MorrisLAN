@@ -2,7 +2,7 @@
 
 REPO_DIR="/tmp/morrislan"
 rm -r ${REPO_DIR}
-nix-shell -p git --command "git clone https://git.morrislan.net ${REPO_DIR}"
+nix-shell -p git --command "git clone https://git.morrislan.net/MorrisLAN/morrislan ${REPO_DIR}"
 
 if [[ $HOSTNAME =~ ^hc-ch-[0-9]+$ ]]; then
   kubectl create namespace argocd
