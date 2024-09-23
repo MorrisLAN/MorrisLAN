@@ -11,7 +11,7 @@ spec:
       targetRevision: 62.7.0
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
-      path: 'k8s/grafana/grafana-ingress.yaml'
+      path: 'k8s/grafana'
   destination:
     server: https://kubernetes.default.svc
     namespace: prometheus
