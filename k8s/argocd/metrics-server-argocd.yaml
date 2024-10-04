@@ -13,6 +13,8 @@ spec:
         parameters:
           - name: "args"
             value: "{--kubelet-insecure-tls}"
+          - name: "hostNetwork.enabled"
+            value: "true"
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
