@@ -12,7 +12,7 @@ spec:
       helm:
         parameters:
           - name: "args"
-            value: "{--kubelet-certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt}"
+            value: "{--kubelet-certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt}{--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname}{--kubelet-use-node-status-port}"
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
