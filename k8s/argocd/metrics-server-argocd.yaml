@@ -15,7 +15,7 @@ spec:
             value: "{--kubelet-insecure-tls}"
   destination:
     server: https://kubernetes.default.svc
-    namespace: metrics-server
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true
