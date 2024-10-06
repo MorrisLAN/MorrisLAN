@@ -19,6 +19,8 @@ spec:
               replicas: 3
             ingress:
               enabled: true
+              annotations:
+                cert-manager.io/cluster-issuer: "letsencrypt"
               hosts:
                 - host: vault.morrislan.net
                   paths:
