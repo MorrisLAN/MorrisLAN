@@ -9,9 +9,18 @@ spec:
     - repoURL: https://helm.releases.hashicorp.com
       chart: vault
       targetRevision: 0.28.1
-    - repoURL: https://git.morrislan.net/MorrisLAN/morrislan
-      targetRevision: prod
-      path: 'k8s/vault'
+      helm:
+        values: |
+          ingress:
+            enabled: true
+            hosts:
+              - host: vault.morrislan.net
+                paths:
+                  - /
+            tls:
+              - hosts:
+                  - vault.morrislan.net
+                secretName: vault-tls
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
