@@ -1,40 +1,40 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: vault
-  namespace: argocd
-spec:
-  project: default
-  sources:
-    - repoURL: https://helm.releases.hashicorp.com
-      chart: vault
-      targetRevision: 0.28.1
-      helm:
-        valuesObject:
-          ui:
-            enabled: true
-          server:
-            # ha:
-            #   enabled: true
-            #   replicas: 3
-            ingress:
-              enabled: true
-              annotations:
-                cert-manager.io/cluster-issuer: "letsencrypt"
-              hosts:
-                - host: vault.morrislan.net
-                  paths:
-                    - /
-              tls:
-                - secretName: vault-tls
-                  hosts:
-                    - vault.morrislan.net
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: vault
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: vault
+#   namespace: argocd
+# spec:
+#   project: default
+#   sources:
+#     - repoURL: https://helm.releases.hashicorp.com
+#       chart: vault
+#       targetRevision: 0.28.1
+#       helm:
+#         valuesObject:
+#           ui:
+#             enabled: true
+#           server:
+#             # ha:
+#             #   enabled: true
+#             #   replicas: 3
+#             ingress:
+#               enabled: true
+#               annotations:
+#                 cert-manager.io/cluster-issuer: "letsencrypt"
+#               hosts:
+#                 - host: vault.morrislan.net
+#                   paths:
+#                     - /
+#               tls:
+#                 - secretName: vault-tls
+#                   hosts:
+#                     - vault.morrislan.net
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: vault
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
