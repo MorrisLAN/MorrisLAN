@@ -19,9 +19,9 @@ spec:
               replicas: 3
             ingress:
               enabled: true
-              path: /
               hosts:
-                - vault.morrislan.net
+                - host: vault.morrislan.net
+                  path: /
               tls:
                 - secretName: vault-tls
                   hosts:
