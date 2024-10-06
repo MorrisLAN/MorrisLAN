@@ -21338,10 +21338,10 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  url: https://hc-argocd1.morrislan.net
+  url: https://rke-argocd.morrislan.net
   oidc.config: |
     name: MorrisLAN SSO
-    issuer: https://auth.morrislan.net/application/o/hc-argocd-prod/
+    issuer: https://auth.morrislan.net/application/o/rke-argocd/
     clientID: $oidc.morrislansso.clientID
     clientSecret: $oidc.morrislansso.clientSecret
     requestedScopes: ["openid", "profile", "email", "groups"]
