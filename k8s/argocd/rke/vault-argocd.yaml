@@ -11,15 +11,21 @@ spec:
       targetRevision: 0.28.1
       helm:
         valuesObject:
-          ingress:
+          ui:
             enabled: true
-            path: /
-            hosts:
-              - vault.morrislan.net
-            tls:
-              - secretName: vault-tls
-                hosts:
-                  - vault.morrislan.net
+          server:
+            ha:
+              enabled: true
+              replicas: 3
+            ingress:
+              enabled: true
+              path: /
+              hosts:
+                - vault.morrislan.net
+              tls:
+                - secretName: vault-tls
+                  hosts:
+                    - vault.morrislan.net
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
