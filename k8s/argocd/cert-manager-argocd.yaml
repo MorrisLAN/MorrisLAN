@@ -16,7 +16,7 @@ spec:
           - name: "crds.keep"
             value: "true"
           - name: "extraArgs"
-            value: "{--dns01-self-check-nameservers='1.1.1.1:53'}"
+            value: "{--dns01-recursive-nameservers-only=true,--dns01-recursive-nameservers=1.1.1.1:53}"
     - repoURL: https://git.morrislan.net/MorrisLAN/morrislan
       targetRevision: prod
       path: 'k8s/cert-manager'
