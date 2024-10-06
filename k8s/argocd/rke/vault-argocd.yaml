@@ -22,9 +22,7 @@ spec:
               hosts:
                 - host: vault.morrislan.net
                   paths:
-                    - path: /
-                      serviceName: vault-ui
-                      servicePort: 8200
+                    - /
               tls:
                 - secretName: vault-tls
                   hosts:
