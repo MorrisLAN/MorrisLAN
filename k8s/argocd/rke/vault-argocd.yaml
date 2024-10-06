@@ -14,9 +14,9 @@ spec:
           ui:
             enabled: true
           server:
-            ha:
-              enabled: true
-              replicas: 3
+            # ha:
+            #   enabled: true
+            #   replicas: 3
             ingress:
               enabled: true
               annotations:
