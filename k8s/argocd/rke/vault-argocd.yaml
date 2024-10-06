@@ -21,7 +21,8 @@ spec:
               enabled: true
               hosts:
                 - host: vault.morrislan.net
-                  path: /
+                  paths:
+                    - path: /
               tls:
                 - secretName: vault-tls
                   hosts:
