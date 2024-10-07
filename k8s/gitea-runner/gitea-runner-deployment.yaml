@@ -20,7 +20,7 @@ spec:
         vault.hashicorp.com/role: "gitea-runner"
         vault.hashicorp.com/agent-inject-template-rke-metal-token: |
           {{ with secret "secrets/gitea-runner" }}
-          {{ index .Data.data "rke-metal-token"}}
+          export GITEA_RUNNER_REGISTRATION_TOKEN={{ index .Data.data "rke-metal-token"}}
           {{ end }}
     spec:
       serviceAccountName: gitea-runner
@@ -33,8 +33,9 @@ spec:
         fsGroup: 1000
       containers:
       - name: runner
-        image: alpine:latest
-        command: ["sleep", "infinity"]  
+        image: gitea/act_runner:nightly-dind-rootless
+        args:
+            ['source /vault/secrets/config']
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
@@ -45,8 +46,6 @@ spec:
           value: "1"
         - name: GITEA_INSTANCE_URL
           value: https://git.morrislan.net
-        - name: GITEA_RUNNER_REGISTRATION_TOKEN
-          value: $(cat /vault/secrets/rke-metal-token)
         securityContext:
           privileged: true
         volumeMounts:
