@@ -26,17 +26,17 @@ spec:
     spec:
       serviceAccountName: gitea-runner
       restartPolicy: Always
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       volumes:
       - name: runner-data
         persistentVolumeClaim:
           claimName: gitea-runner-data
       securityContext:
         fsGroup: 1000
-      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: runner
         image: gitea/act_runner:latest-dind-rootless
-        # command: ["sh", "-c", "source /vault/secrets/config && /usr/local/bin/dockerd-entrypoint.sh & /opt/act/rootless.sh"]
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
@@ -45,9 +45,6 @@ spec:
           value: /certs/client
         - name: DOCKER_TLS_VERIFY
           value: "1"
-        - name: DOCKER_DAEMON_CONFIG
-          value: |
-            { "dns" : [ "8.8.8.8", "8.8.4.4" ]}
         - name: GITEA_INSTANCE_URL
           value: https://git.morrislan.net
         - name: GITEA_RUNNER_REGISTRATION_TOKEN_FILE
