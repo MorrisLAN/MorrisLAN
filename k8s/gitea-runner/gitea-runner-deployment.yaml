@@ -33,7 +33,7 @@ spec:
         fsGroup: 1000
       containers:
       - name: runner
-        image: gitea/act_runner:nightly
+        image: gitea/act_runner:latest-dind-rootless
         command: ["sh", "-c", "source /vault/secrets/config && /opt/act/rootless.sh"]
         imagePullPolicy: Always
         env:
