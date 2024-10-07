@@ -33,7 +33,8 @@ spec:
         fsGroup: 1000
       containers:
       - name: runner
-        image: debian
+        image: alpine:latest
+        command: ["sleep", "infinity"]  
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
