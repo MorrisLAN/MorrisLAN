@@ -11,8 +11,6 @@ spec:
       targetRevision: 0.28.1
       helm:
         valuesObject:
-          ui:
-            enabled: true
           server:
             ha:
               enabled: true
