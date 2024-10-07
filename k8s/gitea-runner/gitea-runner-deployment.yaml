@@ -26,8 +26,6 @@ spec:
     spec:
       serviceAccountName: gitea-runner
       restartPolicy: Always
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       volumes:
       - name: runner-data
         persistentVolumeClaim:
