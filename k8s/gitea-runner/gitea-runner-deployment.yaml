@@ -34,8 +34,7 @@ spec:
       containers:
       - name: runner
         image: alpine:latest
-        command: ["sleep", "infinity"]  
-        command: ["sh", "-c", "source /vault/secrets/config &&", "while ! nc -z localhost 2376 </dev/null; do echo 'waiting for docker daemon...'; sleep 5; done; /sbin/tini -- /opt/act/run.sh"]
+        command: ["sh", "-c", "source /vault/secrets/config"]
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
