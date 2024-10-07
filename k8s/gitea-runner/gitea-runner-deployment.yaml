@@ -33,7 +33,7 @@ spec:
         fsGroup: 1000
       containers:
       - name: runner
-        image: gitea/act_runner:nightly
+        image: gitea/act_runner:nightly-dind-rootless
         command: ["sh", "-c", "source /vault/secrets/config && while ! nc -z localhost 2376 </dev/null; do echo 'waiting for docker daemon...'; sleep 5; done; /sbin/tini -- /opt/act/run.sh"]
         imagePullPolicy: Always
         env:
