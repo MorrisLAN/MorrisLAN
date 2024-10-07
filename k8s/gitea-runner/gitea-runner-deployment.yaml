@@ -29,8 +29,8 @@ spec:
       - name: runner-data
         persistentVolumeClaim:
           claimName: gitea-runner-data
-      securityContext:
-        fsGroup: 1000
+      # securityContext:
+      #   fsGroup: 1000
       containers:
       - name: runner
         image: gitea/act_runner:latest-dind-rootless
