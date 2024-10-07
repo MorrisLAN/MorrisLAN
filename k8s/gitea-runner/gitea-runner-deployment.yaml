@@ -48,7 +48,7 @@ spec:
         - name: GITEA_RUNNER_REGISTRATION_TOKEN_FILE
           value: /vault/secrets/rke-metal-token
         securityContext:
-          privileged: false
+          privileged: true
         volumeMounts:
         - name: runner-data
           mountPath: /data
