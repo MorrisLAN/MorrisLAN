@@ -33,7 +33,8 @@ spec:
         fsGroup: 1000
       containers:
       - name: runner
-        image: gitea/act_runner:nightly-dind-rootless
+        image: alpine:latest
+        command: ["sleep", "infinity"]  
         args:
             ['source /vault/secrets/config']
         imagePullPolicy: Always
