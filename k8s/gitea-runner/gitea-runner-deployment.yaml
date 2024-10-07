@@ -34,7 +34,7 @@ spec:
       containers:
       - name: runner
         image: gitea/act_runner:nightly-dind-rootless
-        command: ["sh", "-c", "source /vault/secrets/config && /sbin/tini -- /opt/act/run.sh"]
+        command: ["sh", "-c", "source /vault/secrets/config && /opt/act/run.sh"]
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
