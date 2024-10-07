@@ -32,6 +32,7 @@ spec:
           claimName: gitea-runner-data
       securityContext:
         fsGroup: 1000
+      dnsPolicy: Default
       containers:
       - name: runner
         image: gitea/act_runner:latest-dind-rootless
