@@ -17,6 +17,7 @@ spec:
             ha:
               enabled: true
               replicas: 3
+              raft: enabled
             ingress:
               enabled: true
               annotations:
