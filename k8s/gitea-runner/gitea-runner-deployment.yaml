@@ -22,6 +22,9 @@ spec:
           {{ with secret "secrets/gitea-runner" }}
           export GITEA_RUNNER_REGISTRATION_TOKEN={{ index .Data.data "rke-metal-token"}}
           {{ end }}
+        container.apparmor.security.beta.kubernetes.io/buildkitd: unconfined
+        container.seccomp.security.alpha.kubernetes.io/buildkitd: unconfined
+
     spec:
       serviceAccountName: gitea-runner
       restartPolicy: Always
