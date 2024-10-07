@@ -37,7 +37,7 @@ spec:
       containers:
       - name: runner
         image: gitea/act_runner:latest-dind-rootless
-        command: ["sh", "-c", "source /vault/secrets/config && /opt/act/run.sh"]
+        command: ["sh", "-c", "source /vault/secrets/config && /usr/local/bin/dockerd-entrypoint.sh & /opt/act/run.sh"]
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
