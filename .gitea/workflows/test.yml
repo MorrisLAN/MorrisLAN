@@ -1,9 +1,7 @@
 name: Upload Authentik Secret Key
 
 on:
-  push:
-    branches:
-      - main  # Change this to the branch you want to trigger on
+  workflow_dispatch:
 
 jobs:
   upload-secret:
