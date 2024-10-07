@@ -34,7 +34,7 @@ spec:
       containers:
       - name: runner
         image: alpine:latest
-        command: ["sh", "-c", "source /vault/secrets/config"]
+        command: ["sh", "-c", "source /vault/secrets/config", "sleep infinity"]
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
