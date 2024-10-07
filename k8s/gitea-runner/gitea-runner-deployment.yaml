@@ -19,9 +19,9 @@ spec:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/role: "gitea-runner"
         vault.hashicorp.com/agent-inject-template-rke-metal-token: |
-          {{- with secret "secrets/gitea-runner" -}}
-          export GITEA_RUNNER_REGISTRATION_TOKEN={{ .Data.rke-metal-token }}
-          {{- end }}
+          {{ with secret "secrets/gitea-runner" }}
+          {{ index .Data.data "rke-metal-token"}}
+          {{ end }}
     spec:
       serviceAccountName: gitea-runner
       restartPolicy: Always
@@ -44,6 +44,8 @@ spec:
           value: "1"
         - name: GITEA_INSTANCE_URL
           value: https://git.morrislan.net
+        - name: GITEA_RUNNER_REGISTRATION_TOKEN
+          value: $(cat /vault/secrets/rke-metal-token)
         securityContext:
           privileged: true
         volumeMounts:
