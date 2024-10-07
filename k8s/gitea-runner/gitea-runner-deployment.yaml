@@ -43,6 +43,11 @@ spec:
           value: /certs/client
         - name: DOCKER_TLS_VERIFY
           value: "1"
+        - name: DOCKER_DAEMON_CONFIG
+          value: |
+            {
+              "dns": ["1.1.1.1", "1.0.0.1", "8.8.8.8", "8.8.4.4"]
+            }   
         - name: GITEA_INSTANCE_URL
           value: https://git.morrislan.net
         - name: GITEA_RUNNER_REGISTRATION_TOKEN_FILE
