@@ -14,11 +14,11 @@ spec:
           ui:
             enabled: true
           server:
-            ha:
-              enabled: true
-              replicas: 3
-              raft: 
-                enabled: true
+            # ha:
+            #   enabled: true
+            #   replicas: 3
+            #   raft: 
+            #     enabled: true
             ingress:
               enabled: true
               activeService: false
