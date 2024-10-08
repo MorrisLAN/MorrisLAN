@@ -21343,13 +21343,24 @@ data:
     - name: argocd-vault-plugin
       generate:
         command: ["argocd-vault-plugin"]
-        args: ["generate", "./"]
+        args: ["generate", "-s", "NAMESPACE:argocd-vault-plugin-credentials", "./"]
   oidc.config: |
     name: MorrisLAN SSO
     issuer: https://auth.morrislan.net/application/o/rke-argocd/
     clientID: $oidc.morrislansso.clientID
     clientSecret: $oidc.morrislansso.clientSecret
     requestedScopes: ["openid", "profile", "email", "groups"]
+---
+apiVersion: v1
+metadata:
+  name: argocd-vault-plugin-credentials
+stringData:
+  AVP_AUTH_TYPE: k8s
+  AVP_TYPE: vault
+  AVP_K8S_ROLE: argocd
+  VAULT_ADDR: https://vault.morrislan.net
+kind: Secret
+type: Opaque
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -22305,6 +22316,9 @@ spec:
           value: /helm-working-dir
         - name: HELM_DATA_HOME
           value: /helm-working-dir
+        envFrom:
+        - secretRef:
+            name: argocd-vault-plugin-credentials
         image: quay.io/argoproj/argocd:v2.12.3
         imagePullPolicy: Always
         livenessProbe:
@@ -22351,7 +22365,26 @@ spec:
           name: helm-working-dir
         - mountPath: /home/argocd/cmp-server/plugins
           name: plugins
+        - mountPath: /usr/local/bin/argocd-vault-plugin
+          name: custom-tools
+          subPath: argocd-vault-plugin
       initContainers:
+      - args:
+        - |-
+          wget -O argocd-vault-plugin https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v1.13.0/argocd-vault-plugin_1.13.0_linux_amd64
+          chmod +x argocd-vault-plugin && mv argocd-vault-plugin /custom-tools/
+        command:
+        - sh
+        - -c
+        image: alpine:3.8
+        imagePullPolicy: IfNotPresent
+        name: download-tools
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
       - command:
         - /bin/cp
         - -n
@@ -22403,6 +22436,8 @@ spec:
         name: var-files
       - emptyDir: {}
         name: plugins
+      - emptyDir: {}
+        name: custom-tools
 ---
 apiVersion: apps/v1
 kind: Deployment
