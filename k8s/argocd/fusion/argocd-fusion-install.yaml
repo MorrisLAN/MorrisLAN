@@ -22385,7 +22385,7 @@ spec:
       initContainers:
       - args:
         - |-
-          wget -O argocd-vault-plugin https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v1.18.0/argocd-vault-plugin_1.13.0_linux_amd64
+          wget -O argocd-vault-plugin https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v1.18.0/argocd-vault-plugin_1.18.0_linux_amd64
           chmod +x argocd-vault-plugin && mv argocd-vault-plugin /custom-tools/
         command:
         - sh
