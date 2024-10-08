@@ -32,7 +32,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: vault
+    namespace: authentik
   syncPolicy:
     automated:
       prune: true
