@@ -6,11 +6,11 @@ metadata:
 spec:
   project: default
   sources:
-    - plugin:
-        name: argocd-vault-plugin
     - repoURL: https://charts.goauthentik.io
       chart: authentik
       targetRevision: 2024.8.3
+      plugin:
+        name: argocd-vault-plugin
       helm:
         parameters:
           - name: redis.enabled
