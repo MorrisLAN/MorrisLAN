@@ -21343,7 +21343,7 @@ data:
     - name: argocd-vault-plugin
       generate:
         command: ["argocd-vault-plugin"]
-        args: ["generate", "./"]
+        args: ["generate", "-s", "argocd:argocd-vault-plugin-credentials", "./"]
   oidc.config: |
     name: MorrisLAN SSO
     issuer: https://auth.morrislan.net/application/o/rke-argocd/
