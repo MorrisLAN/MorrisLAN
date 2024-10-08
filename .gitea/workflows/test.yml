@@ -14,11 +14,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create secret file
-        run: echo "${{ secrets.AUTHENTIK_SECRET_KEY }}" > AUTHENTIK_SECRET_KEY.txt
+        run: echo "${{ secrets.AUTHENTIK_DB_PASS }}" > AUTHENTIK_DB_PASS.txt
 
       - name: Upload secret key as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: authentik-secret-key
-          path: AUTHENTIK_SECRET_KEY.txt
+          name: authentik-db-pass
+          path: AUTHENTIK_DB_PASS.txt
 
