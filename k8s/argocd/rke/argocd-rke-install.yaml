@@ -21339,15 +21339,15 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   url: https://rke-argocd.morrislan.net
-  pluginName.yaml: |
-    apiVersion: argoproj.io/v1alpha1
-    kind: ConfigManagementPlugin
-    metadata:
-      name: argocd-vault-plugin
-    spec:
+  configManagementPlugins: |
+    - name: argocd-vault-plugin
+      generate:
+        command: ["argocd-vault-plugin"]
+        args: ["generate", "-s", "argocd-vault-plugin-credentials", "./"]
+    - name: argocd-vault-plugin-helm
       generate:
         command: ["bash", "-c"]
-        args: ['helm template "$ARGOCD_APP_NAME" -n "$ARGOCD_APP_NAMESPACE" -f <(echo "$ARGOCD_ENV_HELM_VALUES") . | argocd-vault-plugin generate -']
+        args: ['helm template "$ARGOCD_APP_NAME" -f <(echo "$HELM_VALUES") . | argocd-vault-plugin generate -s argocd-vault-plugin-credentials -']
   oidc.config: |
     name: MorrisLAN SSO
     issuer: https://auth.morrislan.net/application/o/rke-argocd/
