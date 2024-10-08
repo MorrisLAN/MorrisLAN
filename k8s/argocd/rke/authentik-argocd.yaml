@@ -11,18 +11,17 @@ spec:
       targetRevision: 2024.8.3
       plugin:
         name: argocd-vault-plugin-helm
-      helm:
-        parameters:
-          - name: redis.enabled
-            value: "true"
-          - name: postgresql.enabled
-            value: "true"
-          - name: authentik.secret_key
-            value: <path:secrets/authentik#secret-key>
-          - name: authentik.postgresql.password
-            value: <path:secrets/authentik#db-pass>
-          - name: postgresql.auth.password
-            value: <path:secrets/authentik#db-pass>
+        env:
+          - name: HELM_VALUES
+            value: |
+              authentik:
+                secret_key: <path:secrets/authentik#secret-key>
+                postgresql.password: <path:secrets/authentik#db-pass>
+              postgresql:
+                enabled: true
+                auth.password: <path:secrets/authentik#db-pass>
+              redis:
+                enabled: true
 
   destination:
     server: https://kubernetes.default.svc
