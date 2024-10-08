@@ -22357,8 +22357,6 @@ spec:
           name: helm-working-dir
         - mountPath: /home/argocd/cmp-server/plugins
           name: plugins
-        - mountPath: /custom-tools
-          name: custom-tools
       - name: avp-helm
         command: [/var/run/argocd/argocd-cmp-server]
         image: quay.io/argoproj/argocd:v2.7.9
