@@ -21339,6 +21339,11 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   url: https://rke-argocd.morrislan.net
+  configManagementPlugins: |-
+  - name: argocd-vault-plugin
+    generate:
+      command: ["argocd-vault-plugin"]
+      args: ["generate", "-s", "NAMESPACE:argocd-vault-plugin-credentials", "./"]
   oidc.config: |
     name: MorrisLAN SSO
     issuer: https://auth.morrislan.net/application/o/rke-argocd/
