@@ -1,7 +1,9 @@
 name: Upload Authentik Secret Key
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - prod
 
 jobs:
   upload-secret:
