@@ -21339,6 +21339,12 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   url: https://rke-argocd.morrislan.net
+  oidc.config: |
+    name: MorrisLAN SSO
+    issuer: https://auth.morrislan.net/application/o/rke-argocd/
+    clientID: $oidc.morrislansso.clientID
+    clientSecret: $oidc.morrislansso.clientSecret
+    requestedScopes: ["openid", "profile", "email", "groups"]
   configManagementPlugins: |
     - name: argocd-vault-plugin
       generate:
@@ -21348,12 +21354,6 @@ data:
       generate:
         command: ["bash", "-c"]
         args: ['helm template "$ARGOCD_APP_NAME" -f <(echo "$HELM_VALUES") . | argocd-vault-plugin generate -']
-  oidc.config: |
-    name: MorrisLAN SSO
-    issuer: https://auth.morrislan.net/application/o/rke-argocd/
-    clientID: $oidc.morrislansso.clientID
-    clientSecret: $oidc.morrislansso.clientSecret
-    requestedScopes: ["openid", "profile", "email", "groups"]
 ---
 apiVersion: v1
 metadata:
