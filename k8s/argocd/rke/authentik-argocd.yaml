@@ -10,7 +10,6 @@ spec:
       chart: authentik
       targetRevision: 2024.8.3
       plugin:
-        name: argocd-vault-plugin-helm
         env:
           - name: HELM_VALUES
             value: |
