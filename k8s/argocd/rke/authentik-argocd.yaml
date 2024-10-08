@@ -14,9 +14,9 @@ spec:
       helm:
         parameters:
           - name: redis.enabled
-            value: true
+            value: "true"
           - name: postgresql.enabled
-            value: true
+            value: "true"
           - name: authentik.secret_key
             value: <path:secrets/authentik#secret-key>
           - name: authentik.postgresql.password
