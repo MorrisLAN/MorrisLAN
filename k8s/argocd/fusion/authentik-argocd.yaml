@@ -23,10 +23,12 @@ spec:
             value: |
               authentik:
                 secret_key: <path:secrets/data/authentik#secret-key>
-                postgresql.password: <path:secrets/data/authentik#db-pass>
+                postgresql:
+                  password: <path:secrets/data/authentik#db-pass>
               postgresql:
                 enabled: true
-                auth.password: <path:secrets/data/authentik#db-pass>
+                auth:
+                  password: <path:secrets/data/authentik#db-pass>
               redis:
                 enabled: true
 
