@@ -7,7 +7,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applications_argoproj_i
         "app.kubernetes.io/name" = "applications.argoproj.io"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "applications.argoproj.io"
     }
     "spec" = {
@@ -5876,7 +5875,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
         "app.kubernetes.io/name" = "applicationsets.argoproj.io"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "applicationsets.argoproj.io"
     }
     "spec" = {
@@ -29458,7 +29456,6 @@ resource "kubernetes_manifest" "customresourcedefinition_appprojects_argoproj_io
         "app.kubernetes.io/name" = "appprojects.argoproj.io"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "appprojects.argoproj.io"
     }
     "spec" = {
@@ -30387,7 +30384,6 @@ resource "kubernetes_manifest" "clusterrole_argocd_application_controller" {
         "app.kubernetes.io/name" = "argocd-application-controller"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-application-controller"
     }
     "rules" = [
