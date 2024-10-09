@@ -30887,38 +30887,6 @@ resource "kubernetes_manifest" "configmap_argocd_cm" {
   }
 }
 
-resource "kubernetes_manifest" "configmap_argocd_cmp_plugin" {
-  manifest = {
-    "apiVersion" = "v1"
-    "data" = {
-      "avp.yaml" = <<-EOT
-      ---
-      apiVersion: argoproj.io/v1alpha1
-      kind: ConfigManagementPlugin
-      metadata:
-        name: argocd-vault-plugin
-      spec:
-        allowConcurrency: true
-        discover:
-          find:
-            command:
-              - sh
-              - "-c"
-              - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
-        generate:
-          command: ["bash", "-c"]
-          args: ['helm template "$ARGOCD_APP_NAME" -n "$ARGOCD_APP_NAMESPACE" -f <(echo "$ARGOCD_ENV_HELM_VALUES") . | argocd-vault-plugin generate -']
-        lockRepo: false
-      EOT
-    }
-    "kind" = "ConfigMap"
-    "metadata" = {
-      "name" = "cmp-plugin"
-      "namespace" = "argocd"
-    }
-  }
-}
-
 resource "kubernetes_manifest" "configmap_argocd_cmd_params_cm" {
   manifest = {
     "apiVersion" = "v1"
@@ -32628,7 +32596,7 @@ resource "kubernetes_manifest" "deployment_argocd_repo_server" {
                 "/var/run/argocd/argocd-cmp-server",
               ]
               "image" = "quay.io/argoproj/argocd:v2.7.9"
-              "name" = "avp-helm"
+              "name" = "avp"
               "securityContext" = {
                 "runAsNonRoot" = true
                 "runAsUser" = 999
