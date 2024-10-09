@@ -40,9 +40,9 @@ jobs:
         id: init
         run: terraform init
 
-      - name: Apply ArgoCD CRDs
-        id: apply-argocd-crds
-        run: terraform apply --auto-approve -no-color -target="module.vapor.kubernetes_manifest.customresourcedefinition_applications_argoproj_io" -target="module.vapor.kubernetes_manifest.customresourcedefinition_applicationsets_argoproj_io" -target="module.vapor.kubernetes_manifest.customresourcedefinition_appprojects_argoproj_io"
+      - name: Setup ArgoCD
+        id: setup-argocd
+        run: terraform apply --auto-approve -no-color -target="module.vapor.kubernetes_namespace.argocd" -target="module.vapor.kubernetes_manifest.customresourcedefinition_applications_argoproj_io" -target="module.vapor.kubernetes_manifest.customresourcedefinition_applicationsets_argoproj_io" -target="module.vapor.kubernetes_manifest.customresourcedefinition_appprojects_argoproj_io"
 
       - name: Apply
         id: aply
