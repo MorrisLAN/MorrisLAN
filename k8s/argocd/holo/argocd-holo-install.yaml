@@ -227,7 +227,7 @@ spec:
                                 type: array
                             type: object
                           recurse:
-                            description: Recurse specifies whether to scan a directory
+                            description: Recurse specifies whholo to scan a directory
                               recursively for manifests
                             type: boolean
                         type: object
@@ -21338,10 +21338,10 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  url: https://ether-argocd.morrislan.net
+  url: https://holo-argocd.morrislan.net
   oidc.config: |
     name: MorrisLAN SSO
-    issuer: https://auth.morrislan.net/application/o/ether-argocd/
+    issuer: https://auth.morrislan.net/application/o/holo-argocd/
     clientID: $oidc.morrislansso.clientID
     clientSecret: $oidc.morrislansso.clientSecret
     requestedScopes: ["openid", "profile", "email", "groups"]
