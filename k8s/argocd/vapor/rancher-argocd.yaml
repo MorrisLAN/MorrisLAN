@@ -13,6 +13,12 @@ spec:
         parameters:
           - name: "hostname"
             value: "rancher.morrislan.net"
+          - name: "ingress.tls.source"
+            value: "letsEncrypt"
+          - name: "letsEncrypt.email"
+            value: "le@morrislan.net"
+          - name: "letsEncrypt.ingress.class"
+            value: "nginx"
 
   destination:
     server: https://kubernetes.default.svc
