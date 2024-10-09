@@ -1,3 +1,14 @@
+terraform {
+  required_providers {
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+    }
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+    }
+  }
+}
+
 provider "kubernetes" {
   config_path = "${path.module}/kubeconfig.yaml"
 }
