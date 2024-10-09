@@ -16,7 +16,7 @@ data:
           command:
             - sh
             - "-c"
-            - 'grep -rl "<path:secrets" .'
+            - "echo $VAULT_ADDR"
       generate:
         command: ["bash", "-c"]
         args: ['helm template "$ARGOCD_APP_NAME" -n "$ARGOCD_APP_NAMESPACE" -f <(echo "$ARGOCD_ENV_HELM_VALUES") . | argocd-vault-plugin generate -']
