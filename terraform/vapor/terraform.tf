@@ -1,8 +1,5 @@
 terraform {
   required_providers {
-    cloudflare = {
-      source = "cloudflare/cloudflare"
-    }
     digitalocean = {
       source = "digitalocean/digitalocean"
     }
@@ -10,13 +7,21 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path = "${path.module}/kubeconfig.yaml"
+  host  = digitalocean_kubernetes_cluster.vapor.endpoint
+  token = digitalocean_kubernetes_cluster.vapor.kube_config[0].token
+  cluster_ca_certificate = base64decode(
+    ddigitalocean_kubernetes_cluster.vapor.kube_config[0].cluster_ca_certificate
+  )
 }
+
 
 provider "helm" {
   kubernetes {
-    config_path = "${path.module}/kubeconfig.yaml"
-  }
+    host  = digitalocean_kubernetes_cluster.vapor.endpoint
+    token = digitalocean_kubernetes_cluster.vapor.kube_config[0].token
+    cluster_ca_certificate = base64decode(
+      ddigitalocean_kubernetes_cluster.vapor.kube_config[0].cluster_ca_certificate
+    }
 }
 
 provider "digitalocean" {
