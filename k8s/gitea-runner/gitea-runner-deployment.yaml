@@ -18,8 +18,8 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/role: "gitea-runner"
-        vault.hashicorp.com/agent-inject-template-rke-metal-token: |
-          {{ with secret "secrets/gitea-runner" }}{{ index .Data.data "rke-metal-token"}}{{ end }}
+        vault.hashicorp.com/agent-inject-template-holo-token: |
+          {{ with secret "secrets/gitea-runner" }}{{ index .Data.data "holo-token"}}{{ end }}
         container.apparmor.security.beta.kubernetes.io/runner: unconfined
         container.seccomp.security.alpha.kubernetes.io/runner: unconfined
 
@@ -46,7 +46,7 @@ spec:
         - name: GITEA_INSTANCE_URL
           value: https://git.morrislan.net
         - name: GITEA_RUNNER_REGISTRATION_TOKEN_FILE
-          value: /vault/secrets/rke-metal-token
+          value: /vault/secrets/holo-token
         securityContext:
           privileged: true
         volumeMounts:
