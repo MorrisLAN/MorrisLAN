@@ -19,6 +19,8 @@ spec:
             value: "le@morrislan.net"
           - name: "letsEncrypt.ingress.class"
             value: "nginx"
+          - name: "bootstrapPassword"
+            value: "admin"
 
   destination:
     server: https://kubernetes.default.svc
