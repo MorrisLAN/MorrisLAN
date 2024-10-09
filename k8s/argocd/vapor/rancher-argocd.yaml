@@ -21,6 +21,8 @@ spec:
             value: "nginx"
           - name: "bootstrapPassword"
             value: "admin"
+          - name: "replicas"
+            value: "-1"
 
   destination:
     server: https://kubernetes.default.svc
