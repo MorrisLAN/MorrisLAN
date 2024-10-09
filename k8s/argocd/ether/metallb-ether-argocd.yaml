@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metallb-fusion
+  name: metallb-ether
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
     targetRevision: prod
-    path: 'k8s/metallb/fusion'
+    path: 'k8s/metallb/ether'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: metallb-system

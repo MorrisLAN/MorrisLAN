@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-fusion
+  name: argocd-ether
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
     targetRevision: prod
-    path: 'k8s/argocd/fusion'
+    path: 'k8s/argocd/ether'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
