@@ -84,7 +84,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applications_argoproj_i
                 "metadata" = {
                   "type" = "object"
                 }
-    "namespace" = "argocd",
                 "operation" = {
                   "description" = "Operation contains information about a requested or running operation"
                   "properties" = {
@@ -5914,7 +5913,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                 "metadata" = {
                   "type" = "object"
                 }
-    "namespace" = "argocd",
                 "spec" = {
                   "properties" = {
                     "applyNestedSelectors" = {
@@ -5979,7 +5977,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -6888,7 +6885,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -7802,7 +7798,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -8685,7 +8680,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -9600,7 +9594,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -10509,7 +10502,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -11423,7 +11415,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -12306,7 +12297,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -13202,7 +13192,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -14370,7 +14359,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -15532,7 +15520,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -16441,7 +16428,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -17359,7 +17345,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -18268,7 +18253,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -19182,7 +19166,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -20065,7 +20048,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -20961,7 +20943,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -22129,7 +22110,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -23291,7 +23271,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                                   "additionalProperties" = {
                                                     "type" = "string"
                                                   }
-    "namespace" = "argocd",
                                                   "type" = "object"
                                                 }
                                                 "finalizers" = {
@@ -24206,7 +24185,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -25100,7 +25078,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -26268,7 +26245,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -27430,7 +27406,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
-    "namespace" = "argocd",
                                         "type" = "object"
                                       }
                                       "finalizers" = {
@@ -28457,7 +28432,6 @@ resource "kubernetes_manifest" "customresourcedefinition_applicationsets_argopro
                               "additionalProperties" = {
                                 "type" = "string"
                               }
-    "namespace" = "argocd",
                               "type" = "object"
                             }
                             "finalizers" = {
@@ -29516,7 +29490,6 @@ resource "kubernetes_manifest" "customresourcedefinition_appprojects_argoproj_io
                 "metadata" = {
                   "type" = "object"
                 }
-    "namespace" = "argocd",
                 "spec" = {
                   "description" = "AppProjectSpec is the specification of an AppProject"
                   "properties" = {
@@ -31334,7 +31307,6 @@ resource "kubernetes_manifest" "deployment_argocd_applicationset_controller" {
         "app.kubernetes.io/name" = "argocd-applicationset-controller"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-applicationset-controller"
       "namespace" = "argocd"
     }
@@ -31697,7 +31669,6 @@ resource "kubernetes_manifest" "deployment_argocd_dex_server" {
         "app.kubernetes.io/name" = "argocd-dex-server"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-dex-server"
       "namespace" = "argocd"
     }
@@ -31877,7 +31848,6 @@ resource "kubernetes_manifest" "deployment_argocd_notifications_controller" {
         "app.kubernetes.io/name" = "argocd-notifications-controller"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-notifications-controller"
       "namespace" = "argocd"
     }
@@ -32027,7 +31997,6 @@ resource "kubernetes_manifest" "deployment_argocd_redis" {
         "app.kubernetes.io/name" = "argocd-redis"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-redis"
       "namespace" = "argocd"
     }
@@ -32161,7 +32130,6 @@ resource "kubernetes_manifest" "deployment_argocd_repo_server" {
         "app.kubernetes.io/name" = "argocd-repo-server"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-repo-server"
       "namespace" = "argocd"
     }
@@ -32801,7 +32769,6 @@ resource "kubernetes_manifest" "deployment_argocd_server" {
         "app.kubernetes.io/name" = "argocd-server"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-server"
       "namespace" = "argocd"
     }
@@ -33399,7 +33366,6 @@ resource "kubernetes_manifest" "statefulset_argocd_application_controller" {
         "app.kubernetes.io/name" = "argocd-application-controller"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-application-controller"
       "namespace" = "argocd"
     }
@@ -33849,8 +33815,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_application_controller_netw
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-application-controller-network-policy"
-    "namespace" = "argocd",
-    "namespace" = "argocd",
+      "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -33885,8 +33850,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_applicationset_controller_n
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-applicationset-controller-network-policy"
-    "namespace" = "argocd",
-    "namespace" = "argocd",
+      "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -33926,8 +33890,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_dex_server_network_policy" 
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-dex-server-network-policy"
-    "namespace" = "argocd",
-    "namespace" = "argocd",
+      "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -33988,7 +33951,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_notifications_controller_ne
         "app.kubernetes.io/name" = "argocd-notifications-controller"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
+      "namespace" = "argocd",
       "name" = "argocd-notifications-controller-network-policy"
     }
     "spec" = {
@@ -34025,8 +33988,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_redis_network_policy" {
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-redis-network-policy"
-    "namespace" = "argocd",
-    "namespace" = "argocd",
+      "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -34080,8 +34042,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_repo_server_network_policy"
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-repo-server-network-policy"
-    "namespace" = "argocd",
-    "namespace" = "argocd",
+      "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -34154,8 +34115,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_server_network_policy" {
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-server-network-policy"
-    "namespace" = "argocd",
-    "namespace" = "argocd",
+      "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -34183,8 +34143,6 @@ resource "kubernetes_manifest" "application_argocd_argocd_vapor" {
     "kind" = "Application"
     "metadata" = {
       "name" = "argocd-vapor"
-    "namespace" = "argocd",
-    "namespace" = "argocd",
       "namespace" = "argocd"
     }
     "spec" = {
@@ -34221,8 +34179,6 @@ resource "kubernetes_manifest" "application_argocd_argocd" {
     "kind" = "Application"
     "metadata" = {
       "name" = "argocd"
-    "namespace" = "argocd",
-    "namespace" = "argocd",
       "namespace" = "argocd"
     }
     "spec" = {
