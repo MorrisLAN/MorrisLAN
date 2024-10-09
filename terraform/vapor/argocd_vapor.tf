@@ -30420,7 +30420,6 @@ resource "kubernetes_manifest" "clusterrole_argocd_applicationset_controller" {
         "app.kubernetes.io/name" = "argocd-applicationset-controller"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-applicationset-controller"
     }
     "rules" = [
@@ -30559,7 +30558,6 @@ resource "kubernetes_manifest" "clusterrole_argocd_server" {
         "app.kubernetes.io/name" = "argocd-server"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-server"
     }
     "rules" = [
@@ -30811,7 +30809,6 @@ resource "kubernetes_manifest" "clusterrolebinding_argocd_application_controller
         "app.kubernetes.io/name" = "argocd-application-controller"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-application-controller"
     }
     "roleRef" = {
@@ -30839,7 +30836,6 @@ resource "kubernetes_manifest" "clusterrolebinding_argocd_applicationset_control
         "app.kubernetes.io/name" = "argocd-applicationset-controller"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-applicationset-controller"
     }
     "roleRef" = {
@@ -30867,7 +30863,6 @@ resource "kubernetes_manifest" "clusterrolebinding_argocd_server" {
         "app.kubernetes.io/name" = "argocd-server"
         "app.kubernetes.io/part-of" = "argocd"
       }
-    "namespace" = "argocd",
       "name" = "argocd-server"
     }
     "roleRef" = {
