@@ -1,6 +1,6 @@
 resource "helm_release" "rancher" {
   name       = "rancher"
-  repository = "https://charts.rancher.io/stable"
+  repository = "https://releases.rancher.com/server-charts/stable"
   chart      = "rancher"
   namespace  = "cattle-system"
 
