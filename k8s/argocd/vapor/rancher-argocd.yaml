@@ -22,7 +22,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: rancher
+    namespace: cattle-system
   syncPolicy:
     automated:
       prune: true
