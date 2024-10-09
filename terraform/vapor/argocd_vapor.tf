@@ -34164,6 +34164,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_server_network_policy" {
   }
 }
 resource "kubernetes_manifest" "application_argocd_argocd_vapor" {
+  depends_on = [kubernetes_manifest.customresourcedefinition_applications_argoproj_io]
   manifest = {
     "apiVersion" = "argoproj.io/v1alpha1"
     "kind" = "Application"
@@ -34197,6 +34198,7 @@ resource "kubernetes_manifest" "application_argocd_argocd_vapor" {
   }
 }
 resource "kubernetes_manifest" "application_argocd_argocd" {
+  depends_on = [kubernetes_manifest.customresourcedefinition_applications_argoproj_io]
   manifest = {
     "apiVersion" = "argoproj.io/v1alpha1"
     "kind" = "Application"
