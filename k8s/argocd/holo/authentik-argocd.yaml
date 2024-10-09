@@ -31,6 +31,17 @@ spec:
                   password: <path:secrets/data/authentik#db-pass>
               redis:
                 enabled: true
+              server:
+                ingress:
+                  enabled: true
+                  hosts:
+                    - host: auth.morrislan.net
+                      paths:
+                        - /
+                  tls:
+                    - secretName: authentik-tls
+                      hosts:
+                        - auth.morrislan.net
 
   destination:
     server: https://kubernetes.default.svc
