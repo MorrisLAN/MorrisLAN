@@ -8,7 +8,7 @@ data:
     apiVersion: argoproj.io/v1alpha1
     kind: ConfigManagementPlugin
     metadata:
-      name: argocd-vault-plugin-helm
+      name: argocd-vault-plugin
     spec:
       allowConcurrency: true
       discover:
