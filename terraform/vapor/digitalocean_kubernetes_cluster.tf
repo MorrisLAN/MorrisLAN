@@ -5,6 +5,6 @@ resource "digitalocean_kubernetes_cluster" "vapor" {
   node_pool {
     name       = "vapor-node"
     size       = "s-2vcpu-2gb"
-    node_count = 1
+    node_count = 2
   }
 }
