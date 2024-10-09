@@ -23,3 +23,8 @@ module "static_site" {
     "DEPLOYMENT_FAILED"
   ]
 }
+
+module "vapor" {
+  source             = "./vapor"
+  digitalocean_token = var.digitalocean_token
+}

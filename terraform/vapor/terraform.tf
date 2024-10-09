@@ -7,3 +7,7 @@ provider "helm" {
     config_path = "${path.module}/kubeconfig.yaml"
   }
 }
+
+provider "digitalocean" {
+  token = var.digitalocean_token
+}

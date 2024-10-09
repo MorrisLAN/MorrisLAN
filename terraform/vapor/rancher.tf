@@ -3,7 +3,7 @@ resource "helm_release" "rancher" {
   repository = "https://charts.rancher.io/stable"
   chart      = "rancher"
   namespace  = "cattle-system"
-  
+
   set {
     name  = "hostname"
     value = "rancher.morrislan.net"
