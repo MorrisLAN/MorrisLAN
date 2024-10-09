@@ -33762,6 +33762,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_application_controller_netw
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-application-controller-network-policy"
+    "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -33796,6 +33797,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_applicationset_controller_n
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-applicationset-controller-network-policy"
+    "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -33835,6 +33837,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_dex_server_network_policy" 
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-dex-server-network-policy"
+    "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -33931,6 +33934,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_redis_network_policy" {
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-redis-network-policy"
+    "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -33984,6 +33988,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_repo_server_network_policy"
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-repo-server-network-policy"
+    "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -34056,6 +34061,7 @@ resource "kubernetes_manifest" "networkpolicy_argocd_server_network_policy" {
     "kind" = "NetworkPolicy"
     "metadata" = {
       "name" = "argocd-server-network-policy"
+    "namespace" = "argocd",
     }
     "spec" = {
       "ingress" = [
@@ -34078,6 +34084,7 @@ resource "kubernetes_manifest" "application_argocd_argocd_vapor" {
     "kind" = "Application"
     "metadata" = {
       "name" = "argocd-vapor"
+    "namespace" = "argocd",
       "namespace" = "argocd"
     }
     "spec" = {
@@ -34109,6 +34116,7 @@ resource "kubernetes_manifest" "application_argocd_argocd" {
     "kind" = "Application"
     "metadata" = {
       "name" = "argocd"
+    "namespace" = "argocd",
       "namespace" = "argocd"
     }
     "spec" = {
