@@ -1,3 +1,12 @@
+resource "kubernetes_namespace" "argocd" {
+  metadata {
+    name = "argocd"
+  }
+  lifecycle {
+    ignore_changes = [metadata]
+  }
+}
+
 resource "kubernetes_manifest" "customresourcedefinition_applications_argoproj_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
