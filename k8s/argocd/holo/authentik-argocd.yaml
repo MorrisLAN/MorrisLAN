@@ -51,6 +51,10 @@ spec:
                     persistentVolumeClaim:
                       claimName: authentik-media
 
+    - repoURL: https://git.morrislan.net
+      targetRevision: prod
+      path: 'k8s/authentik'
+
   destination:
     server: https://kubernetes.default.svc
     namespace: authentik
