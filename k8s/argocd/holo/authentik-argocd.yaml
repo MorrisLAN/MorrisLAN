@@ -32,13 +32,6 @@ spec:
               redis:
                 enabled: true
               server:
-                initContainers:
-                  - name: volume-permissions
-                    image: busybox
-                    command: ["sh", "-c", "chown -R 1000:1000 /media"]
-                    volumeMounts:
-                      - name: media
-                        mountPath: /media
                 ingress:
                   enabled: true
                   annotations:
@@ -49,14 +42,6 @@ spec:
                     - secretName: authentik-tls
                       hosts:
                         - auth.morrislan.net
-              global:
-                volumeMounts:
-                  - mountPath: /media
-                    name: media
-                volumes:
-                  - name: media
-                    persistentVolumeClaim:
-                      claimName: authentik-media
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
