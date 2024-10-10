@@ -32,6 +32,14 @@ spec:
               redis:
                 enabled: true
               server:
+                initContainers:
+                  volume-permissions:
+                    name: volume-permissions
+                    image: busybox
+                    command: ["sh", "-c", "chown -R 1000:1000 /media"]
+                    volumeMounts:
+                      - name: media
+                        mountPath: /media
                 ingress:
                   enabled: true
                   annotations:
