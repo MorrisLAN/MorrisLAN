@@ -19,34 +19,27 @@ spec:
             value: k8s
           - name: AVP_K8S_ROLE
             value: authentik
-          # - name: HELM_VALUES
-          #   value: |
-          #     authentik:
-          #       secret_key: <path:secrets/data/authentik#secret-key>
-          #       postgresql:
-          #         password: <path:secrets/data/authentik#db-pass>
-          #     postgresql:
-          #       enabled: true
-          #       auth:
-          #         password: <path:secrets/data/authentik#db-pass>
-          #     redis:
-          #       enabled: true
-          #     server:
-          #       ingress:
-          #         enabled: true
-          #         hosts:
-          #           - auth.morrislan.net
-          #         tls:
-          #           - secretName: authentik-tls
-          #             hosts:
-          #               - auth.morrislan.net
-          #     volumeMounts:
-          #       - mountPath: /media
-          #         name: media
-          #     volumes:
-          #       - name: media
-          #         persistentVolumeClaim:
-          #           claimName: authentik-media
+          - name: HELM_VALUES
+            value: |
+              authentik:
+                secret_key: <path:secrets/data/authentik#secret-key>
+                postgresql:
+                  password: <path:secrets/data/authentik#db-pass>
+              postgresql:
+                enabled: true
+                auth:
+                  password: <path:secrets/data/authentik#db-pass>
+              redis:
+                enabled: true
+              server:
+                ingress:
+                  enabled: true
+                  hosts:
+                    - auth.morrislan.net
+                  tls:
+                    - secretName: authentik-tls
+                      hosts:
+                        - auth.morrislan.net
 
   destination:
     server: https://kubernetes.default.svc
