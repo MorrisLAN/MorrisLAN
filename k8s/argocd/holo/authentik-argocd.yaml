@@ -43,10 +43,6 @@ spec:
                       hosts:
                         - auth.morrislan.net
 
-    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
-      path: 'k8s/authentik'
-
   destination:
     server: https://kubernetes.default.svc
     namespace: authentik
