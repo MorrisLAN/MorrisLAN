@@ -36,7 +36,8 @@ spec:
                 hosts:
                   - host: auth.morrislan.net
                     paths:
-                      - /
+                      - path: "/"
+                        pathType: Prefix
                 tls:
                   - secretName: authentik-tls
                     hosts:
