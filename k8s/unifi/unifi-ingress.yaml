@@ -4,8 +4,8 @@ metadata:
   name: unifi
   namespace: unifi
 annotations:
-#    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-    cert-manager.io/cluster-issuer: "letsencrypt"
+  #nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+  cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   ingressClassName: nginx
   rules:
