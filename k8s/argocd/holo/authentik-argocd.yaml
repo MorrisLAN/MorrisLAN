@@ -34,12 +34,22 @@ spec:
               server:
                 ingress:
                   enabled: true
+                  annotations:
+                    cert-manager.io/cluster-issuer: "letsencrypt"
                   hosts:
                     - auth.morrislan.net
                   tls:
                     - secretName: authentik-tls
                       hosts:
                         - auth.morrislan.net
+              global:
+                volumeMounts:
+                  - mountPath: /media
+                    name: media
+                volumes:
+                  - name: media
+                    persistentVolumeClaim:
+                      claimName: authentik-media
 
   destination:
     server: https://kubernetes.default.svc
