@@ -51,7 +51,7 @@ spec:
                     persistentVolumeClaim:
                       claimName: authentik-media
 
-    - repoURL: https://git.morrislan.net
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'k8s/authentik'
 
