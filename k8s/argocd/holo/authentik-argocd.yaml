@@ -40,6 +40,13 @@ spec:
                     - secretName: authentik-tls
                       hosts:
                         - auth.morrislan.net
+              volumeMounts:
+                - mountPath: /media
+                  name: media
+              volumes:
+                - name: media
+                  persistentVolumeClaim:
+                    claimName: authentik-media
 
   destination:
     server: https://kubernetes.default.svc
