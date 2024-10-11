@@ -18,9 +18,16 @@ spec:
         image: cloudflare/cloudflared:2024.10.0
         args:
           - tunnel
+          - --config 
+          - /etc/cloudflared/config/config.yaml
           - run
-          - --token
-          - <path:secrets/data/cloudflare/access/tunnels#holo-token>
+        volumes:
+          - name: config
+            configMap:
+              name: cloudflared-config
+              items:
+              - key: config.yaml
+                path: config.yaml
         livenessProbe:
           httpGet:
             path: /ready
