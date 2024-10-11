@@ -28,7 +28,11 @@ spec:
               postgresql:
                 enabled: true
                 primary:
-                  command: "sleep 9000"
+                  persistence:
+                      enabled: true
+                    initdb:
+                      user: authentik
+                      password: <path:secrets/data/authentik#db-pass>
                 image:
                   registry: docker.io
                   repository: bitnami/postgresql
