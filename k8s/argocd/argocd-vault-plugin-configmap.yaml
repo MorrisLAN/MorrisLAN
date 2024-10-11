@@ -16,7 +16,7 @@ data:
           command:
             - sh
             - "-c"
-            - 'find . -name "*.yaml" -exec grep -l "<path" {} \;'
+            - 'find . -maxdepth 1 -name "*-deployment.yaml" ! -name "argocd-vault-plugin-configmap.yaml" ! -name "*HELM*" -exec grep -l "<path" {} \;'
       generate:
         command:
           - argocd-vault-plugin
