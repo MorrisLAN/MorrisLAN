@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudflare-access-holo
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+    targetRevision: prod
+    path: 'k8s/cloudflare-access/holo'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: cloudflare-access
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
