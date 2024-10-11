@@ -23,7 +23,8 @@ spec:
           - run
         volumeMounts:
           - name: config
-            mountPath: /etc/cloudflared/config
+            mountPath: /etc/cloudflared/config/config.yaml
+            subPath: config.yaml
         livenessProbe:
           httpGet:
             path: /ready
@@ -33,5 +34,5 @@ spec:
           periodSeconds: 10
       volumes:
         - name: config
-            configMap:
-              name: cloudflared-config
+          configMap:
+            name: cloudflared-config
