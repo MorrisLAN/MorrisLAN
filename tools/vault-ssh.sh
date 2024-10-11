@@ -14,4 +14,4 @@ if [ $? -ne 0 ]; then
     echo "Attempting to log in with OIDC..."
     vault login --method oidc
 fi
-vault ssh -mode ca -role ssh -mount-point ${CLUSTER}-ssh ubuntu@${HOST} -o IdentityAgent=null -o StrictHostKeyChecking=no
+vault ssh -strict-host-key-checking=no -mode ca -role ssh -mount-point ${CLUSTER}-ssh ubuntu@${HOST} -o IdentityAgent=null
