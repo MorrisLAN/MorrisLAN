@@ -5,10 +5,11 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-    targetRevision: prod
-    path: 'k8s/argocd'
+  sources:
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'k8s/argocd'
+      plugin: {}
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
