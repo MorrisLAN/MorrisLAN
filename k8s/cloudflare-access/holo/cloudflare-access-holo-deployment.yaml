@@ -23,9 +23,7 @@ spec:
       - name: cloudflared
         image: cloudflare/cloudflared:2024.10.0
         command: ["/bin/sh"]
-        args:
-        - -c
-        - 'sleep infinity'
+        args: ["-c", "sleep infinity"]
         livenessProbe:
           httpGet:
             path: /ready
