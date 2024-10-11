@@ -3,13 +3,14 @@ kind: Application
 metadata:
   name: argocd
   namespace: argocd
+  annotations:
+    avp.kubernetes.io/ignore: "true"
 spec:
   project: default
   sources:
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'k8s/argocd'
-      plugin: {}
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
