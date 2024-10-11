@@ -27,10 +27,12 @@ spec:
                   password: <path:secrets/data/authentik#db-pass>
               postgresql:
                 enabled: true
+                primary:
+                  command: "sh -c 'sleep infinity'"
                 image:
                   registry: docker.io
-                  repository: library/postgres
-                  tag: 16-alpine
+                  repository: bitnami/postgresql
+                  tag: 16.4.0
                 auth:
                   password: <path:secrets/data/authentik#db-pass>
               redis:
