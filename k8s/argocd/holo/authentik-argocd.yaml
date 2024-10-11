@@ -28,6 +28,8 @@ spec:
               postgresql:
                 enabled: true
                 primary:
+                  podSecurityContext:
+                    enabled: false
                   command: 
                     - sh 
                     - -c 
