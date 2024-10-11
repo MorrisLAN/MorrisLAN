@@ -28,7 +28,10 @@ spec:
               postgresql:
                 enabled: true
                 primary:
-                  command: "sh -c 'sleep infinity'"
+                  command: 
+                    - sh 
+                    - -c 
+                    - 'sleep infinity'
                 image:
                   registry: docker.io
                   repository: bitnami/postgresql
