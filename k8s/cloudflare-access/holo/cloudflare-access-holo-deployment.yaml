@@ -24,7 +24,8 @@ spec:
         image: cloudflare/cloudflared:2024.10.0
         args:
         - tunnel
-        - run
+        - --url
+        - "http://localhost"
         livenessProbe:
           httpGet:
             path: /ready
