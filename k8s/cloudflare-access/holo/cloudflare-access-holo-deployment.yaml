@@ -18,6 +18,7 @@ spec:
         vault.hashicorp.com/agent-inject-template-config: |
           export={{ with secret "secrets/cloudflare/access/tunnels" }}{{ index .Data.data "holo-token"}}{{ end }}
     spec:
+      serviceAccountName: cloudflare-access-holo
       containers:
       - name: cloudflared
         image: cloudflare/cloudflared:2024.10.0
