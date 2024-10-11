@@ -33,10 +33,6 @@ spec:
                   initdb:
                     user: authentik
                     password: <path:secrets/data/authentik#db-pass>
-                  command: 
-                    - sh 
-                    - -c 
-                    - 'sleep 300'
                 image:
                   registry: docker.io
                   repository: bitnami/postgresql
