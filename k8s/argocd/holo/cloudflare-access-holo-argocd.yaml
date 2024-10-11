@@ -5,10 +5,20 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-    targetRevision: prod
-    path: 'k8s/cloudflare-access/holo'
+  sources:
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'k8s/cloudflare-access/holo'
+      plugin:
+        env:
+          - name: AVP_TYPE
+            value: vault
+          - name: VAULT_ADDR
+            value: http://vault.vault.svc:8200
+          - name: AVP_AUTH_TYPE
+            value: k8s
+          - name: AVP_K8S_ROLE
+            value: cloudflare-access-holo
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cloudflare-access

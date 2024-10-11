@@ -12,20 +12,15 @@ spec:
     metadata:
       labels:
         app: cloudflare-access
-      annotations:
-        vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/role: "cloudflare-access-holo"
-        vault.hashicorp.com/agent-inject-template-config: |
-          export={{ with secret "secrets/cloudflare/access/tunnels" }}{{ index .Data.data "holo-token"}}{{ end }}
     spec:
-      serviceAccountName: cloudflare-access-holo
       containers:
       - name: cloudflared
         image: cloudflare/cloudflared:2024.10.0
         args:
-        - tunnel
-        - --url
-        - "http://localhost"
+          - tunnel
+          - run
+          - --token
+          - <path:secrets/data/cloudflare/access/tunnels#holo-token>
         livenessProbe:
           httpGet:
             path: /ready
