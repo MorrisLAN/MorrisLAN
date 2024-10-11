@@ -4,6 +4,15 @@ packages:
   - qemu-guest-agent
   - iptables
   - btop
+write_files:
+  - path: /etc/sysctl.d/99-apparmor.conf
+    content: |
+      kernel.apparmor_restrict_unprivileged_userns = 0
+  - path: /etc/ssh/trusted-user-ca-keys.pem
+    content: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDN21KtkRTUwZsS/iTpplpAq8u/Ask6PN2E5S5TS9ERoPF5/Qlpar0oSCvtWZG5ttKqlZl6ecw40geNEc0ANFWdLaRiE1b6U6erfsXqiRRaT4t+BZCPrwsvS0rVJzi/2aipHjO1zXXnmP8wrXgS8oYD/SLajmmEMWwIgzinEXhgDybPl0jVTH5A22SrR+O3Qww4NrBQoKPa4eTkBhX+ayfUfRzcth/JF1cflOgG888qruDSL72ynqyA8o0BqrDDyl55Glt0+Bi4FyZNZvLE7UznU36Uv9x3MVrVc2Lcxpcr5cNKJ//gwQZB0ZVUzxalhtS1hmq8eORi4WiNhAJMK4AnJMzGdf0VkxTDaXzhgW94+fjdv5LmFf8xDWUeE8bTNzopTVbTtuNmq+TLKy5d1nKqLd0rmABj0fJDQ1DKsY1/H7txXx7x/jgGRNZjmz3uc3IOuxd+CLtTXRTKT9fdEG8jGz1mPgCrP3yo+6JDCfJH30eZsTXTLmH7R5QPx+YVjxAQFCcVdzbCxRXJypojYLL8/wlw5lkZY5cLEbuD757X/guHir0JTkH69Fz6lWT7PXoQR9pg/gkdBtIVrp1CnkDJpUt4Tf0sEvbKuvlTUINgqcyvwpf3DlgSz4+zKClm4AxRzUI7YDaZgTQt1AIfiSG4e6HraOZ/ciBmJ8Uti/4izw==
 runcmd:
+  - echo "TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem" >> /etc/ssh/sshd_config
+  - systemctl restart sshd
   - systemctl enable '--now' qemu-guest-agent.service
   - echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
