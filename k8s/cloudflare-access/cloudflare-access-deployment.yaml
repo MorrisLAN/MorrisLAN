@@ -21,13 +21,9 @@ spec:
           - --config 
           - /etc/cloudflared/config/config.yaml
           - run
-        volumes:
+        volumeMounts:
           - name: config
-            configMap:
-              name: cloudflared-config
-              items:
-              - key: config.yaml
-                path: /etc/cloudflared/config/config.yaml
+            mountPath: /etc/cloudflared/config
         livenessProbe:
           httpGet:
             path: /ready
@@ -35,3 +31,7 @@ spec:
           failureThreshold: 1
           initialDelaySeconds: 10
           periodSeconds: 10
+      volumes:
+        - name: config
+            configMap:
+              name: cloudflared-config
