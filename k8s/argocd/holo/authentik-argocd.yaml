@@ -28,8 +28,9 @@ spec:
               postgresql:
                 enabled: true
                 primary:
-                  podSecurityContext:
-                    enabled: false
+                  initdb:
+                    user: authentik
+                    password: <path:secrets/data/authentik#db-pass>
                   command: 
                     - sh 
                     - -c 
