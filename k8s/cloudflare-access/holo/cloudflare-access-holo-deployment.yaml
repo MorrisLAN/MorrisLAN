@@ -22,10 +22,3 @@ spec:
         env:
         - name: TUNNEL_TOKEN
           value: "<path:secrets/data/cloudflare/access/tunnels#holo-token>"
-        livenessProbe:
-          httpGet:
-            path: /ready
-            port: 2000
-          failureThreshold: 1
-          initialDelaySeconds: 10
-          periodSeconds: 10
