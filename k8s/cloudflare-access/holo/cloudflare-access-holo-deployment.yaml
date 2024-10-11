@@ -22,10 +22,10 @@ spec:
       containers:
       - name: cloudflared
         image: cloudflare/cloudflared:2024.10.0
-        command: ["sleep infinity"]
-        # args:
-        # - sleep
-        # - infinity
+        command: ["/bin/sh"]
+        args:
+        - -c
+        - 'sleep infinity'
         livenessProbe:
           httpGet:
             path: /ready
