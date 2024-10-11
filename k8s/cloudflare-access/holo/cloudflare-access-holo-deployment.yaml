@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: cloudflare-access
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       labels:
@@ -22,9 +22,10 @@ spec:
       containers:
       - name: cloudflared
         image: cloudflare/cloudflared:2024.10.0
-        args:
-        - sleep
-        - infinity
+        command: ["sleep infinity"]
+        # args:
+        # - sleep
+        # - infinity
         livenessProbe:
           httpGet:
             path: /ready
