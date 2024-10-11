@@ -42,6 +42,7 @@ spec:
               redis:
                 enabled: true
               server:
+                replicas: 2
                 ingress:
                   enabled: true
                   annotations:
@@ -52,6 +53,8 @@ spec:
                     - secretName: authentik-tls
                       hosts:
                         - auth.morrislan.net
+              worker:
+                replicas: 3
 
   destination:
     server: https://kubernetes.default.svc
