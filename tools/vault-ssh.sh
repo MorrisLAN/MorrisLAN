@@ -2,7 +2,7 @@
 # Helper script for SSHing to nodes via Vault
 if [ -z "$1" ]; then
     echo "Usage: vssh <host>"
-    return 1
+    exit 1
 fi
 
 VAULT_ADDR="https://vault.morrislan.net"
