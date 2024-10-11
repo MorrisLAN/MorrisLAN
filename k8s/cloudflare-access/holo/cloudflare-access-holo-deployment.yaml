@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflare-access
+  namespace: cloudflare-access
+spec:
+  selector:
+    matchLabels:
+      app: cloudflare-access
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cloudflare-access
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "cloudflare-access-holo"
+        vault.hashicorp.com/agent-inject-template-config: |
+          export={{ with secret "secrets/cloudflare/access/tunnels" }}{{ index .Data.data "holo-token"}}{{ end }}
+    spec:
+      containers:
+      - name: cloudflared
+        image: cloudflare/cloudflared:2024.10.0
+        args:
+        - sleep
+        - infinity
+        livenessProbe:
+          httpGet:
+            path: /ready
+            port: 2000
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
