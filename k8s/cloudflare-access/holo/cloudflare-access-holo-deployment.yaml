@@ -18,13 +18,10 @@ spec:
         image: cloudflare/cloudflared:2024.10.0
         args:
           - tunnel
-          - --config 
-          - /etc/cloudflared/config/config.yaml
           - run
-        volumeMounts:
-          - name: config
-            mountPath: /etc/cloudflared/config/config.yaml
-            subPath: config.yaml
+        env:
+        - name: TUNNEL_TOKEN
+          value: "<path:secrets/data/cloudflare/access/tunnels#holo-token>"
         livenessProbe:
           httpGet:
             path: /ready
@@ -32,7 +29,3 @@ spec:
           failureThreshold: 1
           initialDelaySeconds: 10
           periodSeconds: 10
-      volumes:
-        - name: config
-          configMap:
-            name: cloudflared-config
