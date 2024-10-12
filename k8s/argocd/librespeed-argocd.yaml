@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: home-assistant
+  name: librespeed
   namespace: argocd
 spec:
   project: default
-  sources:
-     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-       targetRevision: prod
-       path: 'k8s/home-assistant'
+  source:
+    repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+    targetRevision: prod
+    path: 'k8s/librespeed'
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: home-assistant
+    namespace: librespeed
   syncPolicy:
     automated:
       prune: true

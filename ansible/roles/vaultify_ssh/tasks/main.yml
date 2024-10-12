@@ -1,0 +1,40 @@
+---
+- name: Write the Vault SSH key to /etc/ssh/trusted-user-ca-keys.pem
+  ansible.builtin.copy:
+    dest: /etc/ssh/trusted-user-ca-keys.pem
+    content: "{{ vault_ssh_public_key }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure TrustedUserCAKeys is set in sshd_config
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^TrustedUserCAKeys'
+    line: 'TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem'
+    state: present
+    backup: yes
+
+- name: Disable password authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+    state: present
+    backup: yes
+
+- name: Disable challenge-response authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?ChallengeResponseAuthentication'
+    line: 'ChallengeResponseAuthentication no'
+    state: present
+    backup: yes
+
+- name: Ensure PubkeyAuthentication is enabled
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PubkeyAuthentication'
+    line: 'PubkeyAuthentication yes'
+    state: present
+    backup: yes
