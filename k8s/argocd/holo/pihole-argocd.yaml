@@ -25,12 +25,6 @@ spec:
                 hosts:
                   - pihole.morrislan.net
 
-          serviceWeb:
-            type: LoadBalancer
-            loadBalancerIP: 10.1.240.232
-            annotations:
-              metallb.universe.tf/allow-shared-ip: pihole-svc
-
           serviceDns:
             type: LoadBalancer
             loadBalancerIP: 10.1.240.232
