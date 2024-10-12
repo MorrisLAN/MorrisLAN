@@ -11,10 +11,10 @@ spec:
       targetRevision: 2.26.1
       helm:
         valuesObject:
-          dnsmasq:
           persistentVolumeClaim:
             enabled: true
             size: 1Gi
+
           ingress:
             enabled: true
             annotations:
@@ -25,9 +25,18 @@ spec:
               - secretName: pihole-tls
                 hosts:
                   - pihole.morrislan.net
-          serviceDns:
-            loadBalancerIP: 10.1.240.232
+
+          serviceWeb:
             type: LoadBalancer
+            loadBalancerIP: 10.1.240.232
+            annotations:
+              metallb.universe.tf/allow-shared-ip: pihole-svc
+
+          serviceDns:
+            type: LoadBalancer
+            loadBalancerIP: 10.1.240.232
+            annotations:
+              metallb.universe.tf/allow-shared-ip: pihole-svc
 
   destination:
     server: https://kubernetes.default.svc
