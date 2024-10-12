@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pihole
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://mojo2600.github.io/pihole-kubernetes
+      chart: mojo2600/pihole
+      targetRevision: 2.26.1
+      helm:
+        valuesObject:
+          dnsmasq:
+          persistentVolumeClaim:
+            enabled: true
+            size: 1Gi
+          ingress:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: "letsencrypt"
+            hosts:
+              - pihole.morrislan.net
+            tls:
+              - secretName: pihole-tls
+                hosts:
+                  - pihole.morrislan.net
+          serviceDns:
+            loadBalancerIP: 10.1.240.232
+            type: LoadBalancer
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pihole
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
