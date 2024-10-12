@@ -11,6 +11,16 @@ spec:
       targetRevision: 2.26.1
       helm:
         valuesObject:
+          podDnsConfig:
+            enabled: true
+            policy: "None"
+            nameservers:
+            - 127.0.0.1
+            - 10.1.240.1
+          DNS1: "10.1.240.1"
+          admin.enabled: false
+          persistentVolumeClaim:
+            enabled: true
           ingress:
             enabled: true
             annotations:
