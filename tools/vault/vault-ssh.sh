@@ -18,5 +18,5 @@ else
     USER="ubuntu"
 fi
 
-source ./vault-check-token.sh
-vault ssh -strict-host-key-checking=no -mode ca -role ssh -mount-point ${CLUSTER}-ssh ${USER}@${HOST} -o IdentityAgent=null -t "sudo -i"
+source /usr/bin/vault-check-token.sh
+/usr/bin/vault ssh -strict-host-key-checking=no -mode ca -role ssh -mount-point ${CLUSTER}-ssh ${USER}@${HOST} -o IdentityAgent=null -t "sudo -i"
