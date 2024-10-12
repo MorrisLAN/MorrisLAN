@@ -16,8 +16,10 @@ spec:
             policy: "None"
             nameservers:
             - 127.0.0.1
+            - 1.1.1.1
             - 10.1.240.1
-          DNS1: "10.1.240.1"
+          DNS1: "1.1.1.1"
+          DNS2: "10.1.240.1"
           persistentVolumeClaim:
             enabled: true
           ingress:
