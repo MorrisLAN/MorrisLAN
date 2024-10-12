@@ -11,9 +11,6 @@ spec:
       targetRevision: 2.26.1
       helm:
         valuesObject:
-          persistentVolumeClaim:
-            enabled: true
-            size: 1Gi
           ingress:
             enabled: true
             annotations:
