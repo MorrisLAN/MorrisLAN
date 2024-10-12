@@ -34,8 +34,10 @@ spec:
           serviceDns:
             type: LoadBalancer
             loadBalancerIP: 10.1.240.232
-            annotations:
-              metallb.universe.tf/allow-shared-ip: pihole-svc
+            mixedService: true
+          
+          serviceDhcp:
+            enabled: false
 
   destination:
     server: https://kubernetes.default.svc
