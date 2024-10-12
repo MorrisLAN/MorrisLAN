@@ -22,6 +22,10 @@ spec:
           - name: HELM_VALUES
             value: |
               authentik:
+                events:
+                  context_processors:
+                    geoip: "/tmp/non-existent-file"
+                    asn: "/tmp/non-existent-file"
                 secret_key: <path:secrets/data/authentik#secret-key>
                 postgresql:
                   password: <path:secrets/data/authentik#db-pass>
