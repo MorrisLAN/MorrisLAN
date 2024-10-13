@@ -19,14 +19,19 @@ spec:
       - name: pihole
         image: pihole/pihole
         env:
-          - name: DNS1
-            value: 1.1.1.1
-          - name: DNS2
-            value: 1.0.0.1
           - name: WEBPASSWORD
             value: ireallydontcare
           - name: DNSMASQ_LISTENING
             value: 0.0.0.0
+        volumeMounts:
+          - mountPath: /etc/dnsmasq.d/99-custom-entries.conf
+            name: custom-dnsmasq
+            subPath: 99-custom-entries.conf
         ports:
         - containerPort: 53
         - containerPort: 80
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: pihole-custom-dnsmasq
+          name: custom-dnsmasq
