@@ -22,7 +22,7 @@ data:
     cache-size=10000
     server=1.1.1.1
 
-    address=/morrislan.net/::
+    server=/morrislan.net/10.1.240.1
 
     domain-needed
     expand-hosts
