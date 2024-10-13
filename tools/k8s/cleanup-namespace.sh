@@ -2,7 +2,7 @@
 
 NAMESPACE=$1
 
-kubectl get namespace "$NAMESPACE" -o json \
+kubectl get pv "$NAMESPACE" -o json \
   | tr -d "\n" \
   | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/" \
-  | kubectl replace --raw "/api/v1/namespaces/$NAMESPACE/finalize" -f -
+  | kubectl replace --raw "/api/v1/persistentvolume/$NAMESPACE/finalize" -f -
