@@ -21,8 +21,6 @@ data:
 
     cache-size=10000
     server=1.1.1.1
-    address=/auth.morrislan.net./10.1.240.230
-    address=/auth.morrislan.net/::
     domain-needed
     expand-hosts
     bogus-priv
