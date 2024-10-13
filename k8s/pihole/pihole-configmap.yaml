@@ -21,21 +21,10 @@ data:
 
     cache-size=10000
     server=1.1.1.1
-    address=/auth.morrislan.net/10.1.240.230
-    server=/morrislan.net/#
+
+    address=/morrislan.net/::
+
     domain-needed
     expand-hosts
     bogus-priv
     interface=eth0
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: pihole-addn-hosts
-  namespace: pihole
-  labels:
-    app: pihole
-data:
-  addn-hosts: |
-    address=/auth.morrislan.net/10.1.240.230
-    server=/morrislan.net/#
