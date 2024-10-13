@@ -38,7 +38,3 @@ spec:
             defaultMode: 420
             name: pihole-dnsmasq
           name: dnsmasq
-        - configMap:
-            defaultMode: 420
-            name: pihole-addn-hosts
-          name: addn-hosts
