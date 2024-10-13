@@ -24,14 +24,21 @@ spec:
           - name: DNSMASQ_LISTENING
             value: 0.0.0.0
         volumeMounts:
-          - mountPath: /etc/dnsmasq.d/99-custom-entries.conf
-            name: custom-dnsmasq
-            subPath: 99-custom-entries.conf
+          - mountPath: /etc/dnsmasq.d/01-pihole.conf
+            name: dnsmasq
+            subPath: 01-pihole.conf
+          - mountPath: /etc/addn-hosts
+            name: addn-hosts
+            subPath: addn-hosts
         ports:
         - containerPort: 53
         - containerPort: 80
       volumes:
         - configMap:
             defaultMode: 420
-            name: pihole-custom-dnsmasq
-          name: custom-dnsmasq
+            name: pihole-dnsmasq
+          name: dnsmasq
+        - configMap:
+            defaultMode: 420
+            name: pihole-addn-hosts
+          name: addn-hosts
