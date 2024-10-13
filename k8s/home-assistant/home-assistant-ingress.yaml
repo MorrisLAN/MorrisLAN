@@ -32,7 +32,7 @@ spec:
     http:
       paths:
       - path: /outpost.goauthentik.io
-        pathType: Exact
+        pathType: ImplementationSpecific
         backend:
           service:
             name: ak-outpost-authentik-embedded-outpost
