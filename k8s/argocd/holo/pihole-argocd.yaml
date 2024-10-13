@@ -7,37 +7,8 @@ spec:
   project: default
   sources:
     - repoURL: https://mojo2600.github.io/pihole-kubernetes
-      chart: pihole
-      targetRevision: 2.26.1
-      helm:
-        valuesObject:
-          podDnsConfig:
-            enabled: true
-            policy: "None"
-            nameservers:
-              - 127.0.0.1
-              - 1.1.1.1
-              - 10.1.240.1
-          DNS1: "1.1.1.1"
-          DNS2: "10.1.240.1"
-          ingress:
-            enabled: true
-            annotations:
-              cert-manager.io/cluster-issuer: "letsencrypt"
-            hosts:
-              - pihole.morrislan.net
-            tls:
-              - secretName: pihole-tls
-                hosts:
-                  - pihole.morrislan.net
-
-          serviceDns:
-            type: LoadBalancer
-            loadBalancerIP: 10.1.240.232
-            mixedService: true
-          
-          serviceDhcp:
-            enabled: false
+      targetRevision: prod
+      path: 'k8s/pihole'
 
   destination:
     server: https://kubernetes.default.svc
