@@ -27,9 +27,6 @@ spec:
           - mountPath: /etc/dnsmasq.d/01-pihole.conf
             name: dnsmasq
             subPath: 01-pihole.conf
-          - mountPath: /etc/addn-hosts
-            name: addn-hosts
-            subPath: addn-hosts
         ports:
         - containerPort: 53
         - containerPort: 80
