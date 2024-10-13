@@ -13,6 +13,8 @@ spec:
       parameters:
         - name: controller.ingressClassResource.default
           value: "true"
+        - name: controller.allowSnippetAnnotations
+          value: "true"
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
