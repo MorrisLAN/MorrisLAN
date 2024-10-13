@@ -25,3 +25,4 @@ spec:
             value: 1.0.0.1
         ports:
         - containerPort: 53
+        - containerPort: 80
