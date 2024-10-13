@@ -28,6 +28,16 @@ spec:
             name: home-assistant
             port:
               number: 80
+  - host: ha.morrislan.net
+    http:
+      paths:
+      - path: /outpost.goauthentik.io
+        pathType: Prefix
+        backend:
+          service:
+            name: ak-outpost-authentik-embedded-outpost
+            port:
+              number: 9000
   tls:
   - hosts:
     - ha.morrislan.net
