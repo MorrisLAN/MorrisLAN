@@ -21,6 +21,8 @@ data:
 
     cache-size=10000
     server=1.1.1.1
+    server=/morrislan.net/#
+    server=/morrislan.net/#
     domain-needed
     expand-hosts
     bogus-priv
@@ -35,4 +37,4 @@ metadata:
     app: pihole
 data:
   addn-hosts: |
-    address=/auth.morrislan.net/10.1.240.230
+    server=/morrislan.net/#
