@@ -8,3 +8,4 @@ metadata:
 data:
   server.yml: |
     base-url: https://ntfy.morrislan.net
+    upstream-base-url: "https://ntfy.sh"
