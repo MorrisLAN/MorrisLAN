@@ -19,6 +19,8 @@ data:
     log-facility=/var/log/pihole/pihole.log
     log-async
 
+    address=/morrislan.net/::
+
     cache-size=10000
     server=1.1.1.1
     domain-needed
