@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ntfy
+  namespace: ntfy
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ntfy.morrislan.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ntfy
+            port:
+              number: 80
+
+  tls:
+  - hosts:
+    - ntfy.morrislan.net
+    secretName: ntfy-tls

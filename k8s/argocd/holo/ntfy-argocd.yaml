@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ntfy
+  namespace: argocd
+spec:
+  project: default
+  sources:
+     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+       targetRevision: prod
+       path: 'k8s/ntfy'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: ntfy
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

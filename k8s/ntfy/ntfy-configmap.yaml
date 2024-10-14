@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ntfy
+  namespace: ntfy
+  labels:
+    app: ntfy
+data:
+  server.yml: |
+    base-url: https://ntfy.morrislan.net
