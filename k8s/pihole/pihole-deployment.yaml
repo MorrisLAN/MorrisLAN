@@ -23,8 +23,6 @@ spec:
             value: ireallydontcare
           - name: DNSMASQ_LISTENING
             value: 0.0.0.0
-          - name: DNSMASQ_OPTS
-            value: "--filter-AAAA"
         volumeMounts:
           - mountPath: /etc/dnsmasq.d/01-pihole.conf
             name: dnsmasq
