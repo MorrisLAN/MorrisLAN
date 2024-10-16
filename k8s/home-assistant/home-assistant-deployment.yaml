@@ -6,7 +6,6 @@ metadata:
   labels:
     app: home-assistant
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: home-assistant
