@@ -4,7 +4,7 @@ metadata:
   name: authentik
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd
+    notifications.argoproj.io/subscribe.on-sync-running.slack: argocd
 spec:
   project: default
   sources:
