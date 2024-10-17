@@ -24,6 +24,8 @@ spec:
           - name: HELM_VALUES
             value: |
               authentik:
+                error_reporting:
+                  enabled: true
                 events:
                   context_processors:
                     geoip: "/tmp/non-existent-file"
