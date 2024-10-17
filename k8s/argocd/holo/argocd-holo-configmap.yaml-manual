@@ -24,6 +24,6 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-notifications-cm
   namespace: argocd
-  data:
-    service.slack: |
-      token: $slack-token
+data:
+  service.slack: |
+    token: $slack-token
