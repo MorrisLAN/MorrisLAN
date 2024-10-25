@@ -53,16 +53,6 @@ spec:
                 enabled: true
               server:
                 replicas: 2
-                ingress:
-                  enabled: true
-                  annotations:
-                    cert-manager.io/cluster-issuer: "letsencrypt"
-                  hosts:
-                    - auth.morrislan.net
-                  tls:
-                    - secretName: authentik-tls
-                      hosts:
-                        - auth.morrislan.net
               worker:
                 replicas: 3
 
