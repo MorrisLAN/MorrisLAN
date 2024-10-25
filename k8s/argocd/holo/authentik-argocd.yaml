@@ -35,6 +35,8 @@ spec:
                   password: <path:secrets/data/authentik#db-pass>
               postgresql:
                 enabled: true
+                volumePermissions:
+                  enabled: true
                 primary:
                   livenessProbe:
                     enabled: false
