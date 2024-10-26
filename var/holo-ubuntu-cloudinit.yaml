@@ -1,0 +1,18 @@
+#cloud-config
+package_update: true
+packages:
+  - qemu-guest-agent
+  - iptables
+  - btop
+write_files:
+  - path: /etc/sysctl.d/99-apparmor.conf
+    content: |
+      kernel.apparmor_restrict_unprivileged_userns = 0
+runcmd:
+  - systemctl enable '--now' qemu-guest-agent.service
+  - echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
+  - curl -o /etc/ssh/trusted-user-ca-keys.pem https://vault.morrislan.net/v1/holo-ssh/public_key
+  - chmod 0644 /etc/ssh/trusted-user-ca-keys.pem
+  - chown root:root /etc/ssh/trusted-user-ca-keys.pem
+  - echo "TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem" >> /etc/ssh/sshd_config
+  - systemctl restart sshd
