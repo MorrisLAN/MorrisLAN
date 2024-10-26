@@ -1,11 +1,12 @@
 ---
 - name: Write the Vault SSH key to /etc/ssh/trusted-user-ca-keys.pem
-  ansible.builtin.copy:
+  ansible.builtin.get_url:
+    url: https://vault.morrislan.net/v1/metal-ssh/public_key
     dest: /etc/ssh/trusted-user-ca-keys.pem
-    content: "{{ vault_ssh_public_key }}"
     owner: root
     group: root
     mode: '0644'
+    force: yes
 
 - name: Ensure TrustedUserCAKeys is set in sshd_config
   ansible.builtin.lineinfile:
@@ -38,3 +39,8 @@
     line: 'PubkeyAuthentication yes'
     state: present
     backup: yes
+
+- name: Restart SSH service
+  ansible.builtin.systemd:
+    name: sshd
+    state: restarted
