@@ -5,8 +5,6 @@ metadata:
   namespace: home-assistant
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
-    # This should be the in-cluster DNS name for the authentik outpost service
-    # as when the external URL is specified here, nginx will overwrite some crucial headers
     nginx.ingress.kubernetes.io/auth-url: |-
         http://ak-outpost-proxy.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
     nginx.ingress.kubernetes.io/auth-signin: |-
@@ -28,16 +26,6 @@ spec:
             name: home-assistant
             port:
               number: 80
-  - host: ha.morrislan.net
-    http:
-      paths:
-      - path: /outpost.goauthentik.io
-        pathType: Prefix
-        backend:
-          service:
-            name: ak-outpost-proxy
-            port:
-              number: 9000
   tls:
   - hosts:
     - ha.morrislan.net

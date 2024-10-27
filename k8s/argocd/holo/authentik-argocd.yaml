@@ -55,6 +55,9 @@ spec:
                 replicas: 2
               worker:
                 replicas: 3
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'k8s/authentik'
 
   destination:
     server: https://kubernetes.default.svc
