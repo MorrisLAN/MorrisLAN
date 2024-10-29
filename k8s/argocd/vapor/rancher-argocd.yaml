@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://releases.rancher.com/server-charts/stable
       chart: rancher
-      targetRevision: 2.9.3
+      targetRevision: 2.9.2
       helm:
         parameters:
           - name: "hostname"
