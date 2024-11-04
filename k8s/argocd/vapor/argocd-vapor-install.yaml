@@ -227,7 +227,7 @@ spec:
                                 type: array
                             type: object
                           recurse:
-                            description: Recurse specifies whether to scan a directory
+                            description: Recurse specifies whholo to scan a directory
                               recursively for manifests
                             type: boolean
                         type: object
@@ -21349,15 +21349,6 @@ metadata:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  labels:
-    app.kubernetes.io/component: notifications-controller
-    app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/part-of: argocd
-  name: argocd-notifications-cm
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
   name: argocd-rbac-cm
   labels:
     app.kubernetes.io/name: argocd-rbac-cm
@@ -22347,6 +22338,29 @@ spec:
           # Register plugins into sidecar
           - mountPath: /home/argocd/cmp-server/config/plugin.yaml
             subPath: avp.yaml
+            name: cmp-plugin
+
+          # Important: Mount tools into $PATH
+          - name: custom-tools
+            subPath: argocd-vault-plugin
+            mountPath: /usr/local/bin/argocd-vault-plugin
+      - name: avp-helm
+        command: [/var/run/argocd/argocd-cmp-server]
+        image: quay.io/argoproj/argocd:v2.7.9
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: tmp
+
+          # Register plugins into sidecar
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: avp-helm.yaml
             name: cmp-plugin
 
           # Important: Mount tools into $PATH
