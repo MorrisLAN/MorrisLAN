@@ -35,7 +35,7 @@ data:
           command:
             - sh
             - "-c"
-            - 'if find . -maxdepth 1 -name "*.yaml" -exec grep -l "<path" {} \; | grep -q "."; then find . -name "Chart.yaml"; find . -name "values.yaml"; fi'
+            - 'find . -maxdepth 1 -name "*.yaml" ! -name "argocd-vault-plugin-configmap.yaml" | xargs grep -l "<path"'
       generate:
         command: ["bash", "-c"]
         args: ['helm template "$ARGOCD_APP_NAME" -n "$ARGOCD_APP_NAMESPACE" -f <(echo "$ARGOCD_ENV_HELM_VALUES") . | argocd-vault-plugin generate -']
