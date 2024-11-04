@@ -4,7 +4,7 @@
   environment = {
     systemPackages = with pkgs; [ vim curl btop lsof wget nano fastfetch ];
     etc."morrislan".source = builtins.fetchGit {
-      url = "https://ci:SECRETS.GIT_PAT@git.morrislan.net/MorrisLAN/morrislan.git";
+      url = "https://git.morrislan.net/MorrisLAN/morrislan.git";
       ref = "refs/heads/prod";
     };
 
