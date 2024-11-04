@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflare-access
+  namespace: cloudflare-access
+spec:
+  selector:
+    matchLabels:
+      app: cloudflare-access
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: cloudflare-access
+    spec:
+      containers:
+      - name: cloudflared
+        image: cloudflare/cloudflared:2024.10.0
+        args:
+          - tunnel
+          - run
+        env:
+        - name: TUNNEL_TOKEN
+          value: "<path:secrets/data/cloudflare/access/tunnels#vapor-token>"
