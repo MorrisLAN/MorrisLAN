@@ -22323,7 +22323,7 @@ spec:
           name: plugins
       - name: avp
         command: [/var/run/argocd/argocd-cmp-server]
-        image: quay.io/argoproj/argocd:v2.7.9
+        image: quay.io/argoproj/argocd:v2.12.3
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
@@ -22346,7 +22346,7 @@ spec:
             mountPath: /usr/local/bin/argocd-vault-plugin
       - name: avp-helm
         command: [/var/run/argocd/argocd-cmp-server]
-        image: quay.io/argoproj/argocd:v2.7.9
+        image: quay.io/argoproj/argocd:v2.12.3
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
