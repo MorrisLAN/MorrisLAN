@@ -19,6 +19,8 @@ spec:
           value: "true"
         - name: "controller.replicaCount"
           value: "3"
+        - name: "controller.service.type"
+          value: "ClusterIP"
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
