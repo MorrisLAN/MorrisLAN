@@ -14,20 +14,20 @@ spec:
           ui:
             enabled: true
           server:
-            ingress:
-              enabled: true
-              activeService: false
-              annotations:
-                kubernetes.io/ingress.class: nginx
-                cert-manager.io/cluster-issuer: "letsencrypt"
-              hosts:
-                - host: vault.morrislan.net
-                  paths:
-                    - /
-              tls:
-                - secretName: vault-tls
-                  hosts:
-                    - vault.morrislan.net
+            # ingress:
+            #   enabled: true
+            #   activeService: false
+            #   annotations:
+            #     kubernetes.io/ingress.class: nginx
+            #     cert-manager.io/cluster-issuer: "letsencrypt"
+            #   hosts:
+            #     - host: vault.morrislan.net
+            #       paths:
+            #         - /
+            #   tls:
+            #     - secretName: vault-tls
+            #       hosts:
+            #         - vault.morrislan.net
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
