@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rook-ceph
+  name: metrics-server
   namespace: argocd
 spec:
   project: default
   sources:
-    - repoURL: https://charts.rook.io/release
-      chart: rook-ceph
-      targetRevision: 1.15.4
+    - repoURL: https://kubernetes-sigs.github.io/metrics-server
+      chart: metrics-server
+      targetRevision: 3.12.2
       helm: {}
   destination:
     server: https://kubernetes.default.svc
-    namespace: rook-ceph
+    namespace: metrics-server
   syncPolicy:
     automated:
       prune: true
