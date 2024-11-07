@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudflare-access-metal
+  name: cloudflare-access-holo
   namespace: argocd
 spec:
   project: default
   sources:
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
-      path: 'k8s/cloudflare-access/metal'
+      path: 'k8s/cloudflare-access/holo'
       plugin:
         env:
           - name: AVP_TYPE
@@ -18,7 +18,7 @@ spec:
           - name: AVP_AUTH_TYPE
             value: k8s
           - name: AVP_K8S_ROLE
-            value: cloudflare-access-metal
+            value: cloudflare-access-holo
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cloudflare-access

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rook-ceph-cluster-metal
+  name: rook-ceph-cluster-holo
   namespace: argocd
 spec:
   project: default
@@ -11,17 +11,12 @@ spec:
       targetRevision: 1.15.4
       helm:
         valuesObject:
-          clusterName: rook-ceph-cluster-metal
+          clusterName: rook-ceph-cluster-holo
           monitoring:
             enabled: true
             createPrometheusRules: true
           cephClusterSpec:
-            mon:
-              count: 1
-              allowMultiplePerNode: true
             mgr:
-              count: 1
-              allowMultiplePerNode: true
               modules:
                 - name: rook
                   enabled: true

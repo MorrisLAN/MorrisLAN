@@ -1,19 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-metal
+  name: metallb-holo
   namespace: argocd
-  annotations:
-    notifications.argoproj.io/subscribe.on-sync-running.slack: argocd
 spec:
   project: default
   source:
     repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
     targetRevision: prod
-    path: 'k8s/argocd/metal'
+    path: 'k8s/metallb/holo'
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: argocd
+    namespace: metallb-system
   syncPolicy:
     automated:
       prune: true
