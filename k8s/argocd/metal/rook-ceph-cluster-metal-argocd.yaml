@@ -17,6 +17,10 @@ spec:
             value: "true"
           - name: "monitoring.createPrometheusRules"
             value: "true"
+          - name: "cephClusterSpec.mon.count"
+            value: "1"
+          - name: "cephClusterSpec.mgr.count"
+            value: "1"
   destination:
     server: https://kubernetes.default.svc
     namespace: rook-ceph
