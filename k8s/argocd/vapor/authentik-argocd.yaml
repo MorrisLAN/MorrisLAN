@@ -52,9 +52,9 @@ spec:
               redis:
                 enabled: true
               server:
-                replicas: 2
+                replicas: 1
               worker:
-                replicas: 3
+                replicas: 2
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'k8s/authentik'
