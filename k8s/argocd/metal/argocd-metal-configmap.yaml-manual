@@ -7,10 +7,10 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  url: https://holo-argocd.morrislan.net
+  url: https://metal-argocd.morrislan.net
   oidc.config: |
     name: MorrisLAN SSO
-    issuer: https://auth.morrislan.net/application/o/holo-argocd/
+    issuer: https://auth.morrislan.net/application/o/metal-argocd/
     clientID: $oidc.morrislansso.clientID
     clientSecret: $oidc.morrislansso.clientSecret
     requestedScopes: ["openid", "profile", "email", "groups"]

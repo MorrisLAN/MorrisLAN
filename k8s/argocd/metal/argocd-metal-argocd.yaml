@@ -1,17 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: librespeed-holo
+  name: argocd-metal
   namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-running.slack: argocd
 spec:
   project: default
   source:
     repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
     targetRevision: prod
-    path: 'k8s/librespeed/holo'
+    path: 'k8s/argocd/metal'
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: librespeed
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true

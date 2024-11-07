@@ -11,7 +11,7 @@ write_files:
 runcmd:
   - systemctl enable '--now' qemu-guest-agent.service
   - echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
-  - curl -o /etc/ssh/trusted-user-ca-keys.pem https://vault.morrislan.net/v1/holo-ssh/public_key
+  - curl -o /etc/ssh/trusted-user-ca-keys.pem https://vault.morrislan.net/v1/metal-ssh/public_key
   - chmod 0644 /etc/ssh/trusted-user-ca-keys.pem
   - chown root:root /etc/ssh/trusted-user-ca-keys.pem
   - echo "TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem" >> /etc/ssh/sshd_config
