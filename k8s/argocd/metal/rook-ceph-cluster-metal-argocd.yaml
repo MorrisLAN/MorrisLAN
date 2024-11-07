@@ -10,17 +10,24 @@ spec:
       chart: rook-ceph-cluster
       targetRevision: 1.15.4
       helm:
-        parameters:
-          - name: "clusterName"
-            value: "rook-ceph-cluster-metal"
-          - name: "monitoring.enabled"
-            value: "true"
-          - name: "monitoring.createPrometheusRules"
-            value: "true"
-          - name: "cephClusterSpec.mon.count"
-            value: "1"
-          - name: "cephClusterSpec.mgr.count"
-            value: "1"
+        valuesObject:
+          clusterName: rook-ceph-cluster-metal
+          monitoring:
+            enabled: true
+            createPrometheusRules: true
+          cephClusterSpec:
+            mon:
+              count: 1
+              allowMultiplePerNode: true
+            mgr:
+              count: 1
+              allowMultiplePerNode: true
+              modules:
+                - name: rook
+                  enabled: true
+            storage:
+              useAllNodes: true
+              useAllDevices: true
   destination:
     server: https://kubernetes.default.svc
     namespace: rook-ceph
