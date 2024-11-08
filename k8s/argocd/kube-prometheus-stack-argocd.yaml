@@ -12,6 +12,8 @@ spec:
       helm:
         valuesObject:
           prometheus:
+            annotations:
+              argocd.argoproj.io/skip-health-check: 'true'
             prometheusSpec:
               storageSpec:
                 volumeClaimTemplate:
