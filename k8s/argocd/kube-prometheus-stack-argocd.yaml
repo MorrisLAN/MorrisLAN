@@ -9,7 +9,17 @@ spec:
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
       targetRevision: 65.8.1
-      helm: {}
+      helm:
+        valuesObject:
+          prometheus:
+            prometheusSpec:
+              storageSpec:
+                volumeClaimTemplate:
+                  spec:
+                    accessModes: ["ReadWriteOnce"]
+                    resources:
+                      requests:
+                        storage: 50Gi
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-prometheus-stack
