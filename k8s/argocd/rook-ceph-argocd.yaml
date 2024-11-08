@@ -9,7 +9,10 @@ spec:
     - repoURL: https://charts.rook.io/release
       chart: rook-ceph
       targetRevision: 1.15.4
-      helm: {}
+      helm:
+        valuesObject:
+          monitoring:
+            enabled: true
   destination:
     server: https://kubernetes.default.svc
     namespace: rook-ceph
