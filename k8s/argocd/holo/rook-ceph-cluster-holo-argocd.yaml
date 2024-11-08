@@ -12,9 +12,9 @@ spec:
       helm:
         valuesObject:
           clusterName: rook-ceph-cluster-holo
-          monitoring:
-            enabled: true
-            createPrometheusRules: true
+          #          monitoring:
+          #            enabled: true
+          #            createPrometheusRules: true
           cephClusterSpec:
             mgr:
               modules:
