@@ -13,7 +13,7 @@ spec:
         valuesObject:
           ui:
             enabled: true
-          server:
+          # server:
             # ingress:
             #   enabled: true
             #   activeService: false
