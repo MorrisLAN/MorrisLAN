@@ -14,7 +14,7 @@ spec:
           grafana:
             grafana.ini:
               server:
-                root_url: https://holo-metrics.morrislan.net:%(http_port)s/
+                root_url: https://holo-metrics.morrislan.net/
             persistence:
               enabled: true
               type: pvc
