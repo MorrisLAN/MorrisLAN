@@ -12,6 +12,10 @@ spec:
       helm:
         valuesObject:
           grafana:
+            grafana.ini:
+              server:
+                http_port: 80
+                root_url: https://holo-metrics.morrislan.net
             persistence:
               enabled: true
               type: pvc
