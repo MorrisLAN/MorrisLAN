@@ -15,6 +15,7 @@ spec:
           monitoring:
             enabled: true
             createPrometheusRules: true
+            rulesNamespaceOverride: kube-prometheus-stack
           cephClusterSpec:
             mgr:
               modules:
