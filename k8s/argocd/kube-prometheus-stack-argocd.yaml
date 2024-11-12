@@ -25,6 +25,8 @@ spec:
             annotations:
               argocd.argoproj.io/skip-health-check: 'true'
             prometheusSpec:
+              podMonitorSelectorNilUsesHelmValues: false
+              serviceMonitorSelectorNilUsesHelmValues: false
               serviceMonitorNamespaceSelector:
                 matchExpressions:
                   - key:
