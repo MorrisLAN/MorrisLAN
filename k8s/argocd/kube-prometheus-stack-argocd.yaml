@@ -25,6 +25,15 @@ spec:
             annotations:
               argocd.argoproj.io/skip-health-check: 'true'
             prometheusSpec:
+              serviceMonitorNamespaceSelector:
+              matchExpressions:
+                - key:
+                    kubernetes.io/metadata.name
+                  operator: In
+                  values:
+                    - rook-ceph
+                    - kube-prometheus-stack
+                    - default
               storageSpec:
                 volumeClaimTemplate:
                   spec:
