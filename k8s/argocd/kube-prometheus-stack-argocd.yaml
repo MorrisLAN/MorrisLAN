@@ -27,16 +27,7 @@ spec:
             prometheusSpec:
               podMonitorSelectorNilUsesHelmValues: false
               serviceMonitorSelectorNilUsesHelmValues: false
-              serviceMonitorNamespaceSelector:
-                matchExpressions:
-                  - key:
-                      kubernetes.io/metadata.name
-                    operator: In
-                    values:
-                      - rook-ceph
-                      - argocd
-                      - vault
-                      - kube-prometheus-stack
+              serviceMonitorSelector: {}
               storageSpec:
                 volumeClaimTemplate:
                   spec:
