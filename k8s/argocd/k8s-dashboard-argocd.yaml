@@ -33,7 +33,7 @@ spec:
               extraArgs:
                 provider: oidc
                 provider-display-name: "MorrisLAN SSO"
-                redirect-url: https://k8s-dashboard.morrislan.net/callback
+                redirect-url: https://k8s-dashboard.morrislan.net/oauth2/callback
                 cookie-secure: false
                 oidc-issuer-url: "https://auth.morrislan.net/application/o/k8s-dashboard/"
                 allowed-group: Admins
