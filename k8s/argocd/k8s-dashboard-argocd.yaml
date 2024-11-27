@@ -11,6 +11,32 @@ spec:
       targetRevision: 7.10.0
       helm:
         valuesObject: {}
+    - repoURL: https://oauth2-proxy.github.io/manifests
+      chart: kubernetes-dashboard
+      targetRevision: 7.8.0
+      plugin:
+        env:
+          - name: AVP_TYPE
+            value: vault
+          - name: VAULT_ADDR
+            value: http://vault.vault.svc:8200
+          - name: AVP_AUTH_TYPE
+            value: k8s
+          - name: AVP_K8S_ROLE
+            value: k8s-dashboard
+          - name: HELM_VALUES
+            value: |
+              config:
+                clientID: "<path:secrets/data/k8s-dashboard#oidc-client-id>"
+                clientSecret: "<path:secrets/data/k8s-dashboard#oidc-client-secret>"
+                provider: "oidc"
+                provider-display-name: "MorrisLAN SSO"
+                pass-authorization-header: "true"
+                oidcIssuerURL: "https://auth.morrislan.net"
+                cookieSecret: "<path:secrets/data/k8s-dashboard#oidc-cookie-secret>"
+                configFile: |-
+                  email_domains = [ "*" ]
+                  upstreams = [ "http://k8s-dashboard.morrislan.net" ]
   destination:
     server: https://kubernetes.default.svc
     namespace: k8s-dashboard
