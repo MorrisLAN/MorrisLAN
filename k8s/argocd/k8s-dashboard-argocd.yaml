@@ -29,11 +29,12 @@ spec:
               config:
                 clientID: "<path:secrets/data/k8s-dashboard#oidc-client-id>"
                 clientSecret: "<path:secrets/data/k8s-dashboard#oidc-client-secret>"
-                provider: "oidc"
-                provider-display-name: "MorrisLAN SSO"
-                pass-authorization-header: "true"
-                oidcIssuerURL: "https://auth.morrislan.net"
                 cookieSecret: "<path:secrets/data/k8s-dashboard#oidc-cookie-secret>"
+                extraArgs:
+                  provider: "oidc"
+                  provider-display-name: "MorrisLAN SSO"
+                  pass-authorization-header: "true"
+                  oidcIssuerURL: "https://auth.morrislan.net/application/o/k8s-dashboard/"
                 configFile: |-
                   email_domains = [ "*" ]
                   upstreams = [ "http://k8s-dashboard.morrislan.net" ]
