@@ -34,13 +34,11 @@ spec:
                 provider: oidc
                 provider-display-name: "MorrisLAN SSO"
                 redirect-url: https://k8s-dashboard.morrislan.net/oauth2/callback
-                cookie-secure: false
                 oidc-issuer-url: "https://auth.morrislan.net/application/o/k8s-dashboard/"
-                allowed-group: Admins
                 upstream: "http://k8s-dashboard-kubernetes-dashboard-web.k8s-dashboard.svc:8000"
-                email-domain: "*"
+                pass-access-token: true
                 set-authorization-header: true
-                pass-authorization-header: true
+                pass-user-headers: true
   destination:
     server: https://kubernetes.default.svc
     namespace: k8s-dashboard
