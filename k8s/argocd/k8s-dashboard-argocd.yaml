@@ -37,7 +37,7 @@ spec:
                 cookie-secure: false
                 oidc-issuer-url: "https://auth.morrislan.net/application/o/k8s-dashboard/"
                 allowed-group: Admins
-                upstreams = [ "http://k8s-dashboard.morrislan.net" ]
+                upstream: "http://k8s-dashboard.morrislan.net"
                 email-domain: "*"
                 set-authorization-header: true
   destination:
