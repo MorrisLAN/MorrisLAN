@@ -40,6 +40,7 @@ spec:
                 upstream: "http://k8s-dashboard-kubernetes-dashboard-web.k8s-dashboard.svc:8000"
                 email-domain: "*"
                 set-authorization-header: true
+                pass-authorization-header: true
   destination:
     server: https://kubernetes.default.svc
     namespace: k8s-dashboard
