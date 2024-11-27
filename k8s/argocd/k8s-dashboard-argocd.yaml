@@ -12,7 +12,7 @@ spec:
       helm:
         valuesObject: {}
     - repoURL: https://oauth2-proxy.github.io/manifests
-      chart: kubernetes-dashboard
+      chart: oauth2-proxy
       targetRevision: 7.8.0
       plugin:
         env:
