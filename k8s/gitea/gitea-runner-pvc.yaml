@@ -2,7 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: gitea-runner-data
-  namespace: gitea-runner
+  namespace: gitea
   labels:
     app: gitea-runner
 spec:
