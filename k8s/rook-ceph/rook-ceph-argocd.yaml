@@ -1,22 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rook-ceph-cluster-vapor
+  name: rook-ceph
   namespace: argocd
 spec:
   project: default
   sources:
     - repoURL: https://charts.rook.io/release
-      chart: rook-ceph-cluster
-      targetRevision: 1.15.4
+      chart: rook-ceph
+      targetRevision: 1.15.6
       helm:
-        parameters:
-          - name: "clusterName"
-            value: "rook-ceph-cluster-vapor"
-          - name: "monitoring.enabled"
-            value: "true"
-          - name: "monitoring.createPrometheusRules"
-            value: "true"
+        valuesObject:
+          monitoring:
+            enabled: true
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'k8s/rook-ceph'
   destination:
     server: https://kubernetes.default.svc
     namespace: rook-ceph

@@ -35,6 +35,9 @@ spec:
                     resources:
                       requests:
                         storage: 50Gi
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'k8s/kube-prometheus-stack'
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-prometheus-stack

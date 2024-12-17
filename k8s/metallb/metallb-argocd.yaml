@@ -10,6 +10,9 @@ spec:
       chart: metallb
       targetRevision: 0.14.8
       helm: {}
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'k8s/metallb'
   destination:
     server: https://kubernetes.default.svc
     namespace: metallb-system
