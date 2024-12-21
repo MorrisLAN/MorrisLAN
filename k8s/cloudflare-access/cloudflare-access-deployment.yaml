@@ -21,4 +21,4 @@ spec:
           - run
         env:
         - name: TUNNEL_TOKEN
-          value: "<path:secrets/data/cloudflare/access/tunnels#k8s-prod>"
+          value: "<path:secrets/data/cloudflare-access/tunnels#k8s-prod>"

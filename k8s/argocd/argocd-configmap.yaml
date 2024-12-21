@@ -11,8 +11,8 @@ data:
   oidc.config: |
     name: MorrisLAN SSO
     issuer: https://auth.morrislan.net/application/o/holo-argocd/
-    clientID: $oidc.morrislansso.clientID
-    clientSecret: $oidc.morrislansso.clientSecret
+    clientID: <path:secrets/data/argocd#oidc-client-id>
+    clientSecret: <path:secrets/data/argocd#oidc-client-secret>
     requestedScopes: ["openid", "profile", "email", "groups"]
 ---
 apiVersion: v1
