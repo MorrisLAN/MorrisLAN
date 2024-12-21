@@ -1,40 +1,16 @@
-kind: Deployment
-apiVersion: apps/v1
+apiVersion: v1
+kind: Pod
 metadata:
-  name: unifi
-  namespace: unifi
+  name: busybox-sleeper
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: unifi
-  template:
-    metadata:
-      name: unifi
-      namespace: unifi
-      labels:
-        app: unifi
-    spec:
-      volumes:
-        - name: unifi
-          persistentVolumeClaim:
-            claimName: unifi
-      containers:
-        - name: unifi-controller
-          image: 'jacobalberty/unifi:v8.5'
-          ports:
-            - containerPort: 3478
-              protocol: UDP
-            - containerPort: 8080
-              protocol: TCP
-            - containerPort: 8443
-              protocol: TCP
-            - containerPort: 8843
-              protocol: TCP
-            - containerPort: 8880
-              protocol: TCP
-            - containerPort: 6789
-              protocol: TCP
-          volumeMounts:
-            - name: unifi
-              mountPath: /unifi
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["sleep", "infinity"]
+    volumeMounts:
+    - mountPath: "/unifi"
+      name: data-volume
+  volumes:
+  - name: data-volume
+    persistentVolumeClaim:
+      claimName: unifi
