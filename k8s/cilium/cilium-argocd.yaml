@@ -11,6 +11,23 @@ spec:
       targetRevision: 1.16.5
       helm:
         valuesObject:
+          operator:
+            prometheus:
+              enabled: true
+          prometheus:
+            enabled: true
+          hubble:
+            enabled: true
+            metrics:
+              enableOpenMetrics: true
+              enabled:
+                - dns
+                - drop
+                - tcp
+                - flow
+                - port-distribution
+                - icmp
+                - httpv2
           ipam:
             mode: Kubernetes
           kubeProxyReplacement: true
