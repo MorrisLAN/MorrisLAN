@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cillium
+  name: cilium
   namespace: argocd
 spec:
   project: default
   sources:
     - repoURL: https://helm.cilium.io/
-      chart: cillium
+      chart: cilium
       targetRevision: 1.16.5
       helm:
         valuesObject:
@@ -26,7 +26,7 @@ spec:
           k8sServicePort: 7445
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
-      path: 'k8s/cillium'
+      path: 'k8s/cilium'
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
