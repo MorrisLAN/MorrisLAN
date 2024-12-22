@@ -11,6 +11,8 @@ spec:
       targetRevision: 0.25.0
       helm:
         valuesObject:
+          trivy:
+            ignoreUnfixed: true
           service:
             headless: false
           serviceMonitor:
@@ -28,4 +30,6 @@ spec:
     syncOptions:
       - CreateNamespace=true
   ignoreDifferences:
-  - kind: ClusterComplianceReport
+    - group: aquasecurity.github.io
+      kind: ClusterComplianceReport
+      jsonPointers: []
