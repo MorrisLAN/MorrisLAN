@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hoopdev
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://releases.hoop.dev/release/1.31.10/hoop-chart-1.31.10.tgz
+      chart: hoop
+      targetRevision: 1.31.10
+      plugin:
+        env:
+          - name: AVP_TYPE
+            value: vault
+          - name: VAULT_ADDR
+            value: http://vault.vault.svc:8200
+          - name: AVP_AUTH_TYPE
+            value: k8s
+          - name: AVP_K8S_ROLE
+            value: hoopdev
+          - name: HELM_VALUES
+            value: |
+              config:
+                POSTGRES_DB_URI: 'postgres://root:<path:secrets/data/hoopdev#db-pass>@hoopdev-db.hoopdev:5432/hoopdev-db?sslmode=disable'
+                API_URL: 'https://hoop.morrislan.net'
+                JWT_SECRET_KEY: <path:secrets/data/hoopdev#jwt-secret-key>
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'k8s/hoopdev'
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hoopdev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
