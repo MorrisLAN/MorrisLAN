@@ -11,8 +11,8 @@ spec:
       targetRevision: 0.23.0
       helm:
         valuesObject:
-          # service:
-          #   headless: false
+          service:
+            headless: false
           serviceMonitor:
             enabled: true
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
