@@ -9,7 +9,10 @@ spec:
     - repoURL: https://aquasecurity.github.io/helm-charts/
       chart: trivy-operator
       targetRevision: 0.23.0
-      helm: {}
+      helm:
+        valuesObject:
+          serviceMonitor:
+            enabled: true
   destination:
     server: https://kubernetes.default.svc
     namespace: trivy-system
