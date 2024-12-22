@@ -26,7 +26,7 @@ spec:
               argocd.argoproj.io/skip-health-check: 'true'
             prometheusSpec:
               podMonitorSelectorNilUsesHelmValues: false
-              serviceMonitorSelectorNilUsesHelmValues: true
+              serviceMonitorSelectorNilUsesHelmValues: false
               serviceMonitorSelector: {}
               serviceMonitorNamespaceSelector: {}
               storageSpec:
