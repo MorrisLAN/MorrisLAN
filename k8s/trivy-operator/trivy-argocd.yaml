@@ -28,5 +28,4 @@ spec:
     syncOptions:
       - CreateNamespace=true
   ignoreDifferences:
-  - group: aquasecurity.github.io/v1alpha1
-    kind: ClusterComplianceReport
+  - kind: ClusterComplianceReport
