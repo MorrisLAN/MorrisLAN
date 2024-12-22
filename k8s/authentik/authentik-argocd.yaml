@@ -54,7 +54,7 @@ spec:
               server:
                 replicas: 1
               worker:
-                replicas: 2
+                replicas: 1
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
