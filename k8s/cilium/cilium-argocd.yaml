@@ -28,6 +28,8 @@ spec:
                 - port-distribution
                 - icmp
                 - httpv2
+            ui:
+              enabled: true
           ipam:
             mode: Kubernetes
           kubeProxyReplacement: true
