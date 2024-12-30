@@ -29,8 +29,8 @@ spec:
       - name: runner-data
         persistentVolumeClaim:
           claimName: gitea-runner-data
-      # securityContext:
-      #   fsGroup: 1000
+        securityContext:
+          privileged: true
       containers:
       - name: daemon
         image: docker:27-dind-rootless
@@ -51,8 +51,8 @@ spec:
           value: https://git.morrislan.net
         - name: GITEA_RUNNER_REGISTRATION_TOKEN_FILE
           value: /vault/secrets/gitea-runner-token
-        # securityContext:
-        #   privileged: true
+        securityContext:
+          privileged: true
         volumeMounts:
         - name: runner-data
           mountPath: /data
