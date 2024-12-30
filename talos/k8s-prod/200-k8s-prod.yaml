@@ -1,0 +1,22 @@
+cluster:
+  extraManifests:
+    - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+    - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+  apiServer:
+    admissionControl:
+    - name: PodSecurity
+      configuration:
+        exemptions:
+          namespaces:
+          - rook-ceph
+          - argocd
+          - metrics
+          - gitea
+          - authentik
+machine:
+  network:
+    kubespan:
+      enabled: true
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: true

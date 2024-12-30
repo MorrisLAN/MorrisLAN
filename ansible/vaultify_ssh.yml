@@ -1,5 +1,0 @@
-- name: Vaultify SSH
-  hosts: all
-  become: true
-  roles:
-    - vaultify_ssh
