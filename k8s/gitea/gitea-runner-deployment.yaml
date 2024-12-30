@@ -29,11 +29,16 @@ spec:
       - name: runner-data
         persistentVolumeClaim:
           claimName: gitea-runner-data
-      securityContext:
-        fsGroup: 1000
+      # securityContext:
+      #   fsGroup: 1000
       containers:
+      - name: daemon
+        image: docker:27.4.1-dind
+        env:
+        - name: DOCKER_TLS_CERTDIR
+          value: /certs
       - name: runner
-        image: gitea/act_runner:latest-dind-rootless
+        image: gitea/act_runner:latest
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
