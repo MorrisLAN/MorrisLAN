@@ -19,7 +19,7 @@ spec:
             enabled: true
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
-      path: 'k8s/trivy-operator'
+      path: 'apps/trivy-operator'
   destination:
     server: https://kubernetes.default.svc
     namespace: trivy-system

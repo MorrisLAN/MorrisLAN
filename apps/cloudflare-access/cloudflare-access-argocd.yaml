@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: cloudflare-access
   namespace: argocd
 spec:
   project: default
   sources:
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
-      path: 'k8s/argocd'
+      path: 'apps/cloudflare-access'
       plugin:
         env:
           - name: AVP_TYPE
@@ -18,10 +18,10 @@ spec:
           - name: AVP_AUTH_TYPE
             value: k8s
           - name: AVP_K8S_ROLE
-            value: argocd
+            value: cloudflare-access
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: argocd
+    namespace: cloudflare-access
   syncPolicy:
     automated:
       prune: true

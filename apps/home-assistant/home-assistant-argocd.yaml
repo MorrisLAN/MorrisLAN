@@ -8,7 +8,7 @@ spec:
   sources:
      - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
        targetRevision: prod
-       path: 'k8s/home-assistant'
+       path: 'apps/home-assistant'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: home-assistant

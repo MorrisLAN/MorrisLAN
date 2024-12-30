@@ -1,21 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metallb
+  name: rook-ceph
   namespace: argocd
 spec:
   project: default
   sources:
-    - repoURL: https://metallb.github.io/metallb
-      chart: metallb
-      targetRevision: 0.14.8
-      helm: {}
+    - repoURL: https://charts.rook.io/release
+      chart: rook-ceph
+      targetRevision: 1.16.0
+      helm:
+        valuesObject:
+          monitoring:
+            enabled: true
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
-      path: 'k8s/metallb'
+      path: 'apps/rook-ceph'
   destination:
     server: https://kubernetes.default.svc
-    namespace: metallb-system
+    namespace: rook-ceph
   syncPolicy:
     automated:
       prune: true

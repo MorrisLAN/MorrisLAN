@@ -1,19 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: unifi
+  name: librespeed
   namespace: argocd
-  annotations:
-    notifications.argoproj.io/subscribe.on-sync-running.slack: argocd
 spec:
   project: default
   source:
     repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
     targetRevision: prod
-    path: 'k8s/unifi'
+    path: 'apps/librespeed'
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: unifi
+    namespace: librespeed
   syncPolicy:
     automated:
       prune: true

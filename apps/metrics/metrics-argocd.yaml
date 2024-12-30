@@ -38,7 +38,7 @@ spec:
                         storage: 50Gi
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
-      path: 'k8s/metrics'
+      path: 'apps/metrics'
   destination:
     server: https://kubernetes.default.svc
     namespace: metrics
