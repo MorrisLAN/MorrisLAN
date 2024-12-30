@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitlab
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.gitlab.io/
+      chart: gitlab
+      targetRevision: 8.7.2
+      helm:
+        parameters:
+          - name: "global.hosts.domain"
+            value: "git.morrislan.net"
+    - repoURL: https://git.morrislan.net/MorrisLAN/morrislan
+      targetRevision: prod
+      path: 'k8s/gitlab'
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitlab
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
