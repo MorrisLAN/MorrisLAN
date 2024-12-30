@@ -15,6 +15,8 @@ spec:
             value: "gitlab.morrislan.net"
           - name: "certmanager-issuer.email"
             value: "ssl@morrislan.net"
+          - name: "certmanager.install"
+            value: "false"
     - repoURL: https://git.morrislan.net/MorrisLAN/morrislan
       targetRevision: prod
       path: 'k8s/gitlab'
