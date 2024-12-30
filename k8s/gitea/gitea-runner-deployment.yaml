@@ -19,8 +19,8 @@ spec:
         vault.hashicorp.com/role: "gitea-runner"
         vault.hashicorp.com/agent-inject-template-gitea-runner-token: |
           {{ with secret "secrets/gitea-runner" }}{{ index .Data.data "token"}}{{ end }}
-        # container.apparmor.security.beta.kubernetes.io/runner: unconfined
-        # container.seccomp.security.alpha.kubernetes.io/runner: unconfined
+        container.apparmor.security.beta.kubernetes.io/runner: unconfined
+        container.seccomp.security.alpha.kubernetes.io/runner: unconfined
 
     spec:
       serviceAccountName: gitea-runner
@@ -29,8 +29,8 @@ spec:
       - name: runner-data
         persistentVolumeClaim:
           claimName: gitea-runner-data
-      # securityContext:
-      #   fsGroup: 1000
+      securityContext:
+        fsGroup: 1000
       containers:
       - name: runner
         image: gitea/act_runner:latest-dind-rootless
@@ -46,8 +46,8 @@ spec:
           value: https://git.morrislan.net
         - name: GITEA_RUNNER_REGISTRATION_TOKEN_FILE
           value: /vault/secrets/gitea-runner-token
-        # securityContext:
-        #   privileged: true
+        securityContext:
+          privileged: true
         volumeMounts:
         - name: runner-data
           mountPath: /data
