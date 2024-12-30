@@ -38,7 +38,7 @@ spec:
         - name: DOCKER_TLS_CERTDIR
           value: /certs
       - name: runner
-        image: gitea/act_runner:latest
+        image: gitea/act_runner:latest-dind-rootless
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
