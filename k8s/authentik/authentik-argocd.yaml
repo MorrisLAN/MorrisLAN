@@ -58,8 +58,6 @@ spec:
               prometheus:
                 serviceMonitor:
                   create: true
-                rules:
-                  create: true
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
