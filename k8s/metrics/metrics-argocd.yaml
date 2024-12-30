@@ -32,7 +32,7 @@ spec:
                       name: MorrisLAN SSO
                       enabled: true
                       client_id: "<path:secrets/data/metrics#oidc-client-id>"
-                      client_secret: "<path:secrets/data/argocd#oidc-client-secret>"
+                      client_secret: "<path:secrets/data/metrics#oidc-client-secret>"
                       scopes: "openid profile email"
                       auth_url: "https://auth.morrislan.net/application/o/authorize/"
                       token_url: "https://auth.morrislan.net/application/o/token/"
