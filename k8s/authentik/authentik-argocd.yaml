@@ -53,13 +53,15 @@ spec:
                 enabled: true
               server:
                 replicas: 1
+                metrics:
+                  enabled: true
+                  serviceMonitor:
+                    enabled: true
               worker:
                 replicas: 1
               prometheus:
-                serviceMonitor:
-                  create: true
                 rules:
-                  create: true
+                  enabled: true
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
