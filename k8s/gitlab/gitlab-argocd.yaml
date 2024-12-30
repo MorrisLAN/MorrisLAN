@@ -12,7 +12,9 @@ spec:
       helm:
         parameters:
           - name: "global.hosts.domain"
-            value: "git.morrislan.net"
+            value: "gitlab.morrislan.net"
+          - name: "certmanager-issuer.email"
+            value: "ssl@morrislan.net"
     - repoURL: https://git.morrislan.net/MorrisLAN/morrislan
       targetRevision: prod
       path: 'k8s/gitlab'
