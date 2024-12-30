@@ -33,12 +33,12 @@ spec:
       - name: daemon
         securityContext:
           privileged: true
-        image: docker:27-dind-rootless
+        image: docker:27-dind
         env:
         - name: DOCKER_TLS_CERTDIR
           value: /certs
       - name: runner
-        image: gitea/act_runner:latest-dind-rootless
+        image: gitea/act_runner:latest
         imagePullPolicy: Always
         env:
         - name: DOCKER_HOST
