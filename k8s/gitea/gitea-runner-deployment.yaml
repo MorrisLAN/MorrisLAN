@@ -33,7 +33,7 @@ spec:
       #   fsGroup: 1000
       containers:
       - name: daemon
-        image: docker:27.4.1-dind
+        image: docker:27-dind-rootless
         env:
         - name: DOCKER_TLS_CERTDIR
           value: /certs
