@@ -9,56 +9,33 @@ spec:
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
       targetRevision: 67.5.0
-      plugin:
-        env:
-          - name: AVP_TYPE
-            value: vault
-          - name: VAULT_ADDR
-            value: http://vault.vault.svc:8200
-          - name: AVP_AUTH_TYPE
-            value: k8s
-          - name: AVP_K8S_ROLE
-            value: metrics
-          - name: HELM_VALUES
-            value: |
-              grafana:
-                grafana.ini:
-                  server:
-                    root_url: https://metrics.morrislan.net/
-                  auth:
-                    signout_redirect_url: https://auth.morrislan.net/application/o/metrics/end-session
-                    oauth_auto_login: true
-                    generic_oauth:
-                      name: MorrisLAN SSO
-                      enabled: true
-                      client_id: "<path:secrets/data/metrics#oidc-client-id>"
-                      client_secret: "<path:secrets/data/metrics#oidc-client-secret>"
-                      scopes: "openid profile email"
-                      auth_url: "https://auth.morrislan.net/application/o/authorize/"
-                      token_url: "https://auth.morrislan.net/application/o/token/"
-                      api_url: "https://auth.morrislan.net/application/o/userinfo/"
-                      role_attribute_path: contains(groups, 'Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
-                persistence:
-                  enabled: true
-                  type: pvc
-                  accessModes:
-                    - ReadWriteOnce
-                  size: 5Gi
-              prometheus:
-                annotations:
-                  argocd.argoproj.io/skip-health-check: 'true'
-                prometheusSpec:
-                  podMonitorSelectorNilUsesHelmValues: false
-                  serviceMonitorSelectorNilUsesHelmValues: false
-                  serviceMonitorSelector: {}
-                  serviceMonitorNamespaceSelector: {}
-                  storageSpec:
-                    volumeClaimTemplate:
-                      spec:
-                        accessModes: ["ReadWriteOnce"]
-                        resources:
-                          requests:
-                            storage: 50Gi
+      helm:
+        valuesObject:
+          grafana:
+            grafana.ini:
+              server:
+                root_url: https://metrics.morrislan.net/
+            persistence:
+              enabled: true
+              type: pvc
+              accessModes:
+                - ReadWriteOnce
+              size: 5Gi
+          prometheus:
+            annotations:
+              argocd.argoproj.io/skip-health-check: 'true'
+            prometheusSpec:
+              podMonitorSelectorNilUsesHelmValues: false
+              serviceMonitorSelectorNilUsesHelmValues: false
+              serviceMonitorSelector: {}
+              serviceMonitorNamespaceSelector: {}
+              storageSpec:
+                volumeClaimTemplate:
+                  spec:
+                    accessModes: ["ReadWriteOnce"]
+                    resources:
+                      requests:
+                        storage: 50Gi
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'k8s/metrics'
