@@ -55,6 +55,9 @@ spec:
                 replicas: 1
               worker:
                 replicas: 1
+              prometheus:
+                rules:
+                  enabled: true
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
