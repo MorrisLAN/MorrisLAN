@@ -29,10 +29,10 @@ spec:
       - name: runner-data
         persistentVolumeClaim:
           claimName: gitea-runner-data
-        securityContext:
-          privileged: true
       containers:
       - name: daemon
+        securityContext:
+          privileged: true
         image: docker:27-dind-rootless
         env:
         - name: DOCKER_TLS_CERTDIR
