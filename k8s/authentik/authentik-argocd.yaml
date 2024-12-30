@@ -23,6 +23,8 @@ spec:
             value: authentik
           - name: HELM_VALUES
             value: |
+              global:
+                addPrometheusAnnotations: true
               authentik:
                 error_reporting:
                   enabled: true
