@@ -23,8 +23,6 @@ spec:
             value: authentik
           - name: HELM_VALUES
             value: |
-              global:
-                addPrometheusAnnotations: true
               authentik:
                 error_reporting:
                   enabled: true
@@ -58,8 +56,10 @@ spec:
               worker:
                 replicas: 1
               prometheus:
+                serviceMonitor:
+                  create: true
                 rules:
-                  enabled: true
+                  create: true
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
