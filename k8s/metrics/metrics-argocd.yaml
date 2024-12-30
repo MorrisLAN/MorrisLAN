@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack
+  name: metrics
   namespace: argocd
 spec:
   project: default
@@ -38,10 +38,10 @@ spec:
                         storage: 50Gi
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
-      path: 'k8s/kube-prometheus-stack'
+      path: 'k8s/metrics'
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-prometheus-stack
+    namespace: metrics
   syncPolicy:
     automated:
       prune: true
