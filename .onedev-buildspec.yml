@@ -42,6 +42,19 @@ jobs:
       value: '@secret:tf-token@'
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: terraform-plan
+    runInContainer: true
+    image: hashicorp/terraform:1.10
+    interpreter: !DefaultInterpreter
+      commands: |
+        cd terraform
+        terraform plan
+    envVars:
+    - name: TF_TOKEN_app_terraform_io
+      value: '@secret:tf-token@'
+    useTTY: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
