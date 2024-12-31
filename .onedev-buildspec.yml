@@ -77,7 +77,7 @@ jobs:
 
         cd terraform
         terraform init &&
-        terraform apply -auto-approce
+        terraform apply -auto-approve
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
