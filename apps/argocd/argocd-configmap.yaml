@@ -9,7 +9,7 @@ metadata:
 data:
   url: https://argocd.morrislan.net
   oidc.config: |
-    name: MorrisLAN SSO
+    name: authentik
     issuer: https://auth.morrislan.net/application/o/argocd/
     clientID: <path:secrets/data/argocd#oidc-client-id>
     clientSecret: <path:secrets/data/argocd#oidc-client-secret>
