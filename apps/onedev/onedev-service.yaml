@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: onedev-dind
+  namespace: onedev
+  labels:
+    app: onedev-dind
+spec:
+  selector:
+    app: onedev-dind
+  ports:
+    - protocol: TCP
+      port: 2376
+      targetPort: 2376
