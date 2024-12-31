@@ -35,3 +35,15 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
+- name: terraform-plan
+  steps:
+  - !CheckoutStep
+    name: checkout
+    cloneCredential: !DefaultCredential {}
+    withLfs: true
+    withSubmodules: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
