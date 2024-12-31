@@ -24,6 +24,13 @@ spec:
           - name: HELM_VALUES
             value: |
               authentik:
+                email:
+                  host: "mail.smtp2go.com"
+                  port: 587
+                  use_tls: true
+                  username: "<path:secrets/data/authentik#smtp-user>"
+                  password: "<path:secrets/data/authentik#smtp-pass>"
+                  from: "auth@morrislan.net"
                 error_reporting:
                   enabled: true
                 events:
