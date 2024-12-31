@@ -21,3 +21,8 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
+services:
+- name: test
+  image: busybox
+  arguments: sleep infinity
+  readinessCheckCommand: echo hi
