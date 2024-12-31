@@ -1,26 +1,5 @@
 version: 38
 jobs:
-- name: deploy-html
-  steps:
-  - !CheckoutStep
-    name: checkout
-    cloneCredential: !DefaultCredential {}
-    withLfs: true
-    withSubmodules: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !PublishSiteStep
-    name: deploy-html
-    sourcePath: html
-    artifacts: '*'
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    branches: prod
-    paths: html/*
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
 - name: github-mirror
   steps:
   - !CheckoutStep
