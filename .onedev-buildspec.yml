@@ -36,6 +36,10 @@ jobs:
     interpreter: !DefaultInterpreter
       commands: |
         terraform plan
+        echo "LS is"
+        echo
+        ls -al
+        echo "PWD is $(pwd)"
     envVars:
     - name: TF_TOKEN
       value: '@secret:tf-token@'
