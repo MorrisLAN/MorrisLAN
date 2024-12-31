@@ -23210,4 +23210,3 @@ spec:
       app.kubernetes.io/name: argocd-server
   policyTypes:
   - Ingress
-
