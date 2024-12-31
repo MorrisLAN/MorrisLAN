@@ -9,7 +9,7 @@
 - [OneDev](https://onedev.io/) - GitOps/CI platform
 - [Kubernetes (k8s)](https://kubernetes.io/) - workload/container orchestrator
 - [Talos Linux](https://www.talos.dev/) - API-managed OS that is purpose built for running k8s
-- [Omni](https://github.com/siderolabs/omni) - centralised machine & cluster management for Talos
+- [Omni](https://omni.siderolabs.com/) - centralised machine & cluster management for Talos
 - [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) - GitOps for k8s
 - [Authentik](https://goauthentik.io/) - Identity provider/user management for SSO
 - [Cloudflare Access/Tunnels](https://www.cloudflare.com/en-gb/zero-trust/products/access/) - Secure access to services & apps
