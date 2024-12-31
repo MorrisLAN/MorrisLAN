@@ -96,6 +96,7 @@ jobs:
   retryDelay: 30
   timeout: 14400
 - name: docker-build-html
+  jobExecutor: onedev-dind
   steps:
   - !CheckoutStep
     name: checkout
@@ -103,15 +104,11 @@ jobs:
     withLfs: true
     withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !CommandStep
+  - !BuildImageStep
     name: docker-build-html
-    runInContainer: true
-    image: quay.io/buildah/stable
-    interpreter: !DefaultInterpreter
-      commands: |
-        cd html
-        buildah bud -t git.morrislan.net/morrislan/html:prod .
-    useTTY: true
+    buildPath: html/
+    output: !RegistryOutput
+      tags: html:prod
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger
