@@ -47,6 +47,9 @@ jobs:
         terraform plan
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    paths: terraform/*
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
