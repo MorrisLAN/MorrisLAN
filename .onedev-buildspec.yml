@@ -109,6 +109,13 @@ jobs:
     output: !RegistryOutput
       tags: html:prod
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    paths: html/*
+  - !BranchUpdateTrigger
+    branches: prod
+  - !PullRequestUpdateTrigger
+    branches: prod
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
