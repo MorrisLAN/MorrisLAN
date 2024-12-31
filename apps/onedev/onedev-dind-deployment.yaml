@@ -2,28 +2,51 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: onedev-dind
-  name: onedev-dind
+    app: onedev-agent
+  name: onedev-agent
   namespace: onedev
 spec:
   selector:
     matchLabels:
-      app: onedev-dind
+      app: onedev-agent
   strategy: {}
   template:
     metadata:
       labels:
-        app: onedev-dind
+        app: onedev-agent
       annotations:
-        container.apparmor.security.beta.kubernetes.io/runner: unconfined
-        container.seccomp.security.alpha.kubernetes.io/runner: unconfined
+        container.apparmor.security.beta.kubernetes.io/docker-daemon: unconfined
+        container.seccomp.security.alpha.kubernetes.io/docker-daemon: unconfined
     spec:
+      volumes:
+      - name: docker-certs
+        emptyDir: {}
       restartPolicy: Always
       containers:
-      - name: daemon
+      - name: docker-daemon
         image: docker:23.0.6-dind
+        volumeMounts:
+        - name: docker-certs
+          mountPath: /certs
+        env:
+        - name: DOCKER_CERT_PATH
+          value: /certs/client
+        - name: DOCKER_TLS_VERIFY
+          value: "1"
         securityContext:
           privileged: true
+      - name: onedev-agent
+        image: docker:23.0.6-dind
+        volumeMounts:
+        - name: docker-certs
+          mountPath: /certs
+        env:
+        - name: DOCKER_CERT_PATH
+          value: /certs/client
+        - name: DOCKER_TLS_VERIFY
+          value: "1"
+        - name: DOCKER_HOST
+          value: tcp://localhost:2376
         command: ["docker"]
         args:
           - "run"
@@ -31,7 +54,7 @@ spec:
           - "-v"
           - "/var/run/docker.sock:/var/run/docker.sock"
           - "-v"
-          - "$(pwd)/agent/work:/agent/work"
+          - "work:/agent/work"
           - "-e"
           - "serverUrl=https://git.morrislan.net"
           - "-e"
