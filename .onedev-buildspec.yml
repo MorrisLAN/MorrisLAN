@@ -96,7 +96,6 @@ jobs:
   retryDelay: 30
   timeout: 14400
 - name: docker-build-html
-  jobExecutor: onedev-dind
   steps:
   - !CheckoutStep
     name: checkout
