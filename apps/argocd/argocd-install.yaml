@@ -21409,6 +21409,9 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-secret
 type: Opaque
+stringData:
+  webhook.github.secret: <path:secrets/data/argocd#onedev-webhook-secret>
+
 ---
 apiVersion: v1
 kind: Service
