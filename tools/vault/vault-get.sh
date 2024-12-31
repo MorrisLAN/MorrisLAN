@@ -11,7 +11,7 @@ fi
 IFS='#' read -r VAULT_PATH VAULT_KEY <<< "$1"
 
 source /usr/bin/vault-check-token
-VAULT_JSON=$(/usr/bin/vault kv get -format=json "${VAULT_PATH}")
+VAULT_JSON=$(/usr/bin/vault kv get -mount="secrets" -format=json "${VAULT_PATH}")
 
 if [ -n "${VAULT_KEY}" ]; then
     VALUE=$(echo "${VAULT_JSON}" | /usr/bin/jq -r ".data.data[\"$VAULT_KEY\"]")
