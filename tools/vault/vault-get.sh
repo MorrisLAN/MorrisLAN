@@ -4,7 +4,7 @@ set -e
 VAULT_ADDR="https://vault.morrislan.net"
 
 if [ -z "$1" ]; then
-    echo "Usage: $0 <path[#key]>"
+    echo "Usage: vault-get <path[#key]>"
     exit 1
 fi
 

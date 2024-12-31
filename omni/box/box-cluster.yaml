@@ -4,21 +4,26 @@ kubernetes:
   version: v1.30.8
 talos:
   version: v1.9.1
+features:
+  enableWorkloadProxy: true
+  useEmbeddedDiscoveryService: true
+  backupConfiguration:
+    interval: 1h
 patches:
   - name: pod-security-exemptions
     inline:
       cluster:
         apiServer:
           admissionControl:
-          - name: PodSecurity
-            configuration:
-              exemptions:
-                namespaces:
-                - rook-ceph
-                - argocd
-                - metrics
-                - gitea
-                - authentik
+            - name: PodSecurity
+              configuration:
+                exemptions:
+                  namespaces:
+                  - rook-ceph
+                  - argocd
+                  - metrics
+                  - gitea
+                  - authentik
   - name: kubelet-serving-cert-approver
     inline:
       cluster:
