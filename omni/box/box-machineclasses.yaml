@@ -1,0 +1,7 @@
+metadata:
+  namespace: default
+  type: MachineClasses.omni.sidero.dev
+  id: desired-box
+spec:
+  matchlabels:
+    - cluster-desired = box
