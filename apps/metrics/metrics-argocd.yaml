@@ -36,7 +36,7 @@ spec:
                     resources:
                       requests:
                         storage: 50Gi
-    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+    - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
       path: 'apps/metrics'
   destination:

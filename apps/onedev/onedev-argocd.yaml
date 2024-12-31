@@ -11,7 +11,7 @@ spec:
       targetRevision: 11.6.9
       helm:
         valuesObject: {}
-    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+    - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
       path: 'apps/onedev'
   destination:

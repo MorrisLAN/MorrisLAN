@@ -13,7 +13,7 @@ spec:
         valuesObject:
           monitoring:
             enabled: true
-    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+    - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
       path: 'apps/rook-ceph'
   destination:

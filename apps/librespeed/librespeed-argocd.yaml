@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+    repoURL: 'https://git.morrislan.net/morrislan'
     targetRevision: prod
     path: 'apps/librespeed'
   destination:
