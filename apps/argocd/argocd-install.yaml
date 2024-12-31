@@ -21410,7 +21410,7 @@ metadata:
   name: argocd-secret
 type: Opaque
 stringData:
-  webhook.github.secret: <path:secrets/data/argocd#onedev-webhook-secret>
+  webhook.gitlab.secret: <path:secrets/data/argocd#onedev-webhook-secret>
 
 ---
 apiVersion: v1
