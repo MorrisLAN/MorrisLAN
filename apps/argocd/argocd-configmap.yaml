@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   url: https://argocd.morrislan.net
+  timeout.reconciliation: 45s
   oidc.config: |
     name: authentik
     issuer: https://auth.morrislan.net/application/o/argocd/
