@@ -107,11 +107,15 @@ jobs:
     withLfs: true
     withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !BuildImageStep
+  - !CommandStep
     name: docker-build-html
-    buildPath: html
-    output: !RegistryOutput
-      tags: html:prod
+    runInContainer: true
+    image: docker:23.0.6-dind
+    interpreter: !DefaultInterpreter
+      commands: |
+        cd html
+        docker build -t git.morrislan.net/morrislan/html:prod .
+    useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger
