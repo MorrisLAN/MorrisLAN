@@ -54,6 +54,10 @@ jobs:
     branches: prod
   - !PullRequestUpdateTrigger
     branches: prod
+  jobDependencies:
+  - jobName: terraform
+    requireSuccessful: true
+    artifacts: '**'
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
@@ -116,6 +120,11 @@ jobs:
     branches: prod
   - !PullRequestUpdateTrigger
     branches: prod
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: terraform
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
