@@ -22,7 +22,7 @@ patches:
                   - rook-ceph
                   - argocd
                   - metrics
-                  - gitea
+                  - onedev
                   - authentik
   - name: kubelet-serving-cert-approver
     inline:
