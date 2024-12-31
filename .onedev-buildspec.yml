@@ -13,6 +13,10 @@ jobs:
     sourcePath: html
     artifacts: '*'
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    branches: prod
+    paths: html/*
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
@@ -31,6 +35,9 @@ jobs:
     passwordSecret: github-pat
     force: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    branches: prod
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
