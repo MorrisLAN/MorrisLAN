@@ -50,6 +50,8 @@ jobs:
   triggers:
   - !BranchUpdateTrigger
     paths: terraform/*
+  - !BranchUpdateTrigger
+    branches: prod
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
@@ -83,7 +85,6 @@ jobs:
   triggers:
   - !BranchUpdateTrigger
     branches: prod
-    paths: terraform/*
   jobDependencies:
   - jobName: terraform-plan
     requireSuccessful: true
