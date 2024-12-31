@@ -107,7 +107,7 @@ jobs:
     name: docker-build-homepage
     buildPath: apps/homepage
     output: !RegistryOutput
-      tags: homepage:latest
+      tags: '@server_url@/morrislan/homepage:latest'
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger
