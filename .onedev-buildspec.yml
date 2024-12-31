@@ -40,7 +40,7 @@ jobs:
     envVars:
     - name: TF_TOKEN_app_terraform_io
       value: '@secret:tf-token@'
-    useTTY: true
+    useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
     name: terraform-plan
