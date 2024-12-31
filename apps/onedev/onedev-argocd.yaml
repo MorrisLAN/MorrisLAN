@@ -9,6 +9,16 @@ spec:
     - repoURL: https://dl.cloudsmith.io/public/onedev/onedev/helm/charts
       chart: onedev
       targetRevision: 11.6.9
+      plugin:
+        env:
+          - name: AVP_TYPE
+            value: vault
+          - name: VAULT_ADDR
+            value: http://vault.vault.svc:8200
+          - name: AVP_AUTH_TYPE
+            value: k8s
+          - name: AVP_K8S_ROLE
+            value: onedev
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
       path: 'apps/onedev'
