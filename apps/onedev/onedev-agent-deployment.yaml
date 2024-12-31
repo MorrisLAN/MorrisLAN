@@ -60,5 +60,5 @@ spec:
           - "-e"
           - "agentToken=<path:secrets/data/onedev#agent-token>"
           - "-h"
-          - "onedev-dind"
+          - "onedev-agent"
           - "1dev/agent"
