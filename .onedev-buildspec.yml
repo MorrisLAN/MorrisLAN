@@ -37,6 +37,7 @@ jobs:
       commands: |
         cd terraform
         terraform init
+        echo "TOKEN - $TF_TOKEN_app_terraform_io"
     envVars:
     - name: TF_TOKEN_app_terraform_io
       value: '@secret:tf-token@'
