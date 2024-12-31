@@ -54,10 +54,6 @@ jobs:
     branches: prod
   - !PullRequestUpdateTrigger
     branches: prod
-  jobDependencies:
-  - jobName: terraform
-    requireSuccessful: true
-    artifacts: '**'
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
@@ -110,7 +106,7 @@ jobs:
   - !CommandStep
     name: docker-build-html
     runInContainer: true
-    image: docker:23.0.6-dind
+    image: docker:23.0.6-dind-rootless
     interpreter: !DefaultInterpreter
       commands: |
         cd html
@@ -124,11 +120,6 @@ jobs:
     branches: prod
   - !PullRequestUpdateTrigger
     branches: prod
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
-- name: terraform
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
