@@ -95,3 +95,28 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
+- name: docker-build-html
+  steps:
+  - !CheckoutStep
+    name: checkout
+    cloneCredential: !DefaultCredential {}
+    withLfs: true
+    withSubmodules: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !BuildImageStep
+    name: docker-build-html
+    buildPath: html/
+    output: !RegistryOutput
+      tags: html:prod
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    paths: html/*
+  - !BranchUpdateTrigger
+    branches: prod
+  - !PullRequestUpdateTrigger
+    branches: prod
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
