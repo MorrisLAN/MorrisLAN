@@ -15,8 +15,8 @@ spec:
       labels:
         app: onedev-dind
       annotations:
-        container.apparmor.security.beta.kubernetes.io/runner: unconfined
-        container.seccomp.security.alpha.kubernetes.io/runner: unconfined
+        container.apparmor.security.beta.kubernetes.io/daemin: unconfined
+        container.seccomp.security.alpha.kubernetes.io/daemon: unconfined
     spec:
       restartPolicy: Always
       containers:
