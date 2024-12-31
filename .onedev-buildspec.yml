@@ -35,12 +35,10 @@ jobs:
     image: hashicorp/terraform:1.10
     interpreter: !DefaultInterpreter
       commands: |
+        export TF_TOKEN_app_terraform_io="@secret:tf-token@"
         cd terraform
         terraform init
         echo "TOKEN - $TF_TOKEN_app_terraform_io"
-    envVars:
-    - name: TF_TOKEN_app_terraform_io
-      value: '@secret:tf-token@'
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
@@ -49,11 +47,9 @@ jobs:
     image: hashicorp/terraform:1.10
     interpreter: !DefaultInterpreter
       commands: |
+        export TF_TOKEN_app_terraform_io="@secret:tf-token@"
         cd terraform
         terraform plan
-    envVars:
-    - name: TF_TOKEN_app_terraform_io
-      value: '@secret:tf-token@'
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   retryCondition: never
