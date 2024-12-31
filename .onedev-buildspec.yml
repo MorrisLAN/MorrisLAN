@@ -106,11 +106,12 @@ jobs:
   - !CommandStep
     name: docker-build-html
     runInContainer: true
-    image: docker:23.0.6-dind-rootless
+    image: docker:23.0.6-dind
     interpreter: !DefaultInterpreter
       commands: |
+        export DOCKER_BUILDKIT=1
         cd html
-        docker build -t git.morrislan.net/morrislan/html:prod .
+        docker buildx build -t git.morrislan.net/morrislan/html:prod .
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
