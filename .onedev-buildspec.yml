@@ -29,18 +29,16 @@ jobs:
     withLfs: true
     withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !CommandStep
-    name: terraform
-    runInContainer: true
+  - !RunContainerStep
+    name: terraform-plan
     image: hashicorp/terraform:1.10
-    interpreter: !DefaultInterpreter
-      commands: |
-        cd terraform
-        terraform init
-        terraform plan
+    args: plan
+    workingDir: /morrislan/terraform
     envVars:
-    - name: TF_TOKEN
+    - name: TF_TOKEN_app_terraform_io
       value: '@secret:tf-token@'
+    volumeMounts:
+    - targetPath: /morrislan
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   retryCondition: never
