@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: onedev
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://dl.cloudsmith.io/public/onedev/onedev/helm/charts
+      chart: onedev
+      targetRevision: 11.6.9
+      helm:
+        valuesObject: {}
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'apps/onedev'
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: onedev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
