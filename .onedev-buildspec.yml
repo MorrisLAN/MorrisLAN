@@ -106,12 +106,11 @@ jobs:
   - !CommandStep
     name: docker-build-html
     runInContainer: true
-    image: docker:23.0.6-dind
+    image: quay.io/podman/stable
     interpreter: !DefaultInterpreter
       commands: |
-        export DOCKER_BUILDKIT=1
         cd html
-        docker buildx build -t git.morrislan.net/morrislan/html:prod .
+        podman build -t git.morrislan.net/morrislan/html:prod .
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
