@@ -30,16 +30,15 @@ jobs:
     withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
-    name: terraform
+    name: terraform-init
     runInContainer: true
     image: hashicorp/terraform:1.10
     interpreter: !DefaultInterpreter
       commands: |
         cd terraform
         terraform init
-        terraform plan
     envVars:
-    - name: F_TOKEN_app_terraform_io
+    - name: TF_TOKEN_app_terraform_io
       value: '@secret:tf-token@'
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
