@@ -107,14 +107,10 @@ jobs:
     name: docker-build-html
     buildPath: html/
     output: !RegistryOutput
-      tags: html:prod
+      tags: html:@build_version@
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger
-    paths: html/*
-  - !BranchUpdateTrigger
-    branches: prod
-  - !PullRequestUpdateTrigger
     branches: prod
   retryCondition: never
   maxRetries: 3
