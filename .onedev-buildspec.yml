@@ -35,11 +35,8 @@ jobs:
     image: hashicorp/terraform:1.10
     interpreter: !DefaultInterpreter
       commands: |
+        cd terraform
         terraform plan
-        echo "LS is"
-        echo
-        ls -al
-        echo "PWD is $(pwd)"
     envVars:
     - name: TF_TOKEN
       value: '@secret:tf-token@'
