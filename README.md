@@ -1,10 +1,23 @@
-# morrislan
 
-### Infrastructure as Code (IaC) for my personal network/digital infrastructure.
 
-##### Using [Terraform](https://www.terraform.io) and [GitHub Actions](https://github.com/features/actions) for a fully automated deployment pipeline.
-###### (built using several of my modules/packages, which you are free to pinch from [here](https://github.com/m4xmorris))
+# 🖧 morrislan
 
-[![Trivy](https://github.com/MorrisLAN/morrislan/actions/workflows/trivy.yml/badge.svg)](https://github.com/MorrisLAN/morrislan/actions/workflows/trivy.yml)
-[![Terraform Apply](https://github.com/MorrisLAN/morrislan/actions/workflows/terraform-apply.yml/badge.svg)](https://github.com/MorrisLAN/morrislan/actions/workflows/terraform-apply.yml)
-[![Nix Build](https://github.com/MorrisLAN/morrislan/actions/workflows/nix-build.yml/badge.svg)](https://github.com/MorrisLAN/morrislan/actions/workflows/nix-build.yml)
+### Infrastructure as Code (IaC) for [my](https://github.com/m4xmorris) personal network/digital infrastructure.
+
+🔧 **Technologies in Use:**
+
+- [OneDev](https://onedev.io/) - GitOps/CI platform
+- [Kubernetes (k8s)](https://kubernetes.io/) - workload/container orchestrator
+- [Talos Linux](https://www.talos.dev/) - API-managed OS that is purpose built for running k8s
+- [Omni](https://github.com/siderolabs/omni) - centralised machine & cluster management for Talos
+- [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) - GitOps for k8s
+- [Authentik](https://goauthentik.io/) - Identity provider/user management for SSO
+- [Cloudflare Access/Tunnels](https://www.cloudflare.com/en-gb/zero-trust/products/access/) - Secure access to services & apps
+- [Home Assistant](https://www.home-assistant.io/) - Smart home controller
+- [Kata Containers](https://katacontainers.io/) - VM-based container runtime
+- [LibreSpeed](https://github.com/librespeed/speedtest) - Self hosted speedtest
+- [metrics-server](https://github.com/kubernetes-sigs/metrics-server) - k8s metrics API
+- [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) - monitoring/metrics stack
+- [rook-ceph](https://rook.io/) - distributed storage for k8s
+- [Trivy Operator](https://github.com/aquasecurity/trivy-operator) - security toolkit for k8s
+- [Vault](https://www.vaultproject.io/) - secrets management engine
