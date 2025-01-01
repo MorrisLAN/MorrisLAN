@@ -116,6 +116,11 @@ jobs:
         done
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    branches: prod
+  - !PullRequestUpdateTrigger
+    branches: prod
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
