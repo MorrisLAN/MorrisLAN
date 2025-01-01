@@ -1,6 +1,6 @@
 version: 38
 jobs:
-- name: github-mirror
+- name: deploy
   steps:
   - !CheckoutStep
     name: checkout
@@ -9,62 +9,10 @@ jobs:
     withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !PushRepository
-    name: push-to-github
+    name: github-mirror
     remoteUrl: https://github.com/MorrisLAN/morrislan
     passwordSecret: github-pat
     force: false
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    branches: prod
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
-- name: terraform-plan
-  steps:
-  - !CheckoutStep
-    name: checkout
-    cloneCredential: !DefaultCredential {}
-    withLfs: true
-    withSubmodules: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !CommandStep
-    name: terraform-plan
-    runInContainer: true
-    image: hashicorp/terraform:1.10
-    interpreter: !DefaultInterpreter
-      commands: |
-        export TF_INPUT="false"
-        export TF_IN_AUTOMATION="true"
-        export TF_TOKEN_app_terraform_io="@secret:tf-token@"
-        export TF_VAR_cloudflare_token="@secret:cloudflare-token@"
-        export TF_VAR_cloudflare_account_id="@secret:cloudflare-account-id@"
-        export TF_VAR_cloudflare_zone_id="@secret:cloudflare-zone-id@"
-
-        cd terraform
-        terraform init &&
-        terraform plan
-    useTTY: false
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    paths: terraform/**
-  - !BranchUpdateTrigger
-    branches: prod
-  - !PullRequestUpdateTrigger
-    branches: prod
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
-- name: terraform-apply
-  steps:
-  - !CheckoutStep
-    name: checkout
-    cloneCredential: !DefaultCredential {}
-    withLfs: true
-    withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
     name: terraform-apply
@@ -84,53 +32,17 @@ jobs:
         terraform apply -auto-approve
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    branches: prod
-  jobDependencies:
-  - jobName: terraform-plan
-    requireSuccessful: true
-    artifacts: '**'
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
-- name: build-homepage
-  steps:
-  - !CheckoutStep
-    name: checkout
-    cloneCredential: !DefaultCredential {}
-    withLfs: true
-    withSubmodules: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !BuildImageStep
-    name: docker-build
-    buildPath: apps/homepage
-    output: !RegistryOutput
-      tags: '@server_host@/morrislan/homepage:latest'
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    branches: prod
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
-- name: sync-omni-clusters
-  steps:
-  - !CheckoutStep
-    name: checkout
-    cloneCredential: !DefaultCredential {}
-    withLfs: true
-    withSubmodules: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
-    name: get-omnictl
+    name: omnictl-apply-machineclasses
     runInContainer: true
     image: alpine
     interpreter: !DefaultInterpreter
       commands: |
-        wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && chmod +x omnictl
+        export OMNI_ENDPOINT=@secret:omni-host@
+        export OMNI_SERVICE_ACCOUNT_KEY=@secret:omni-token@
+        find omni/ -type f -name '*-machineclasses.yaml' | while read -r file; do
+          ./omnictl apply -f "$file"
+        done
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
@@ -146,72 +58,41 @@ jobs:
         done
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !BuildImageStep
+    name: build-homepage
+    buildPath: apps/homepage
+    output: !RegistryOutput
+      tags: '@server_host@/morrislan/homepage:latest'
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger
     branches: prod
   jobDependencies:
-  - jobName: sync-omni-machineclasses
-    requireSuccessful: true
-    artifacts: '**'
-  - jobName: validate-omni-clusters
+  - jobName: test
     requireSuccessful: true
     artifacts: '**'
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
-- name: sync-omni-machineclasses
+- name: test
   steps:
-  - !CheckoutStep
-    name: checkout
-    cloneCredential: !DefaultCredential {}
-    withLfs: true
-    withSubmodules: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
-    name: get-omnictl
+    name: terraform-plan
     runInContainer: true
-    image: alpine
+    image: hashicorp/terraform:1.10
     interpreter: !DefaultInterpreter
       commands: |
-        wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && chmod +x omnictl
-    useTTY: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !CommandStep
-    name: omnictl-apply-machineclasses
-    runInContainer: true
-    image: alpine
-    interpreter: !DefaultInterpreter
-      commands: |
-        export OMNI_ENDPOINT=@secret:omni-host@
-        export OMNI_SERVICE_ACCOUNT_KEY=@secret:omni-token@
-        find omni/ -type f -name '*-machineclasses.yaml' | while read -r file; do
-          ./omnictl apply -f "$file"
-        done
-    useTTY: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    branches: prod
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
-- name: validate-omni-clusters
-  steps:
-  - !CheckoutStep
-    name: checkout
-    cloneCredential: !DefaultCredential {}
-    withLfs: true
-    withSubmodules: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !CommandStep
-    name: get-omnictl
-    runInContainer: true
-    image: alpine
-    interpreter: !DefaultInterpreter
-      commands: |
-        wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && chmod +x omnictl
+        export TF_INPUT="false"
+        export TF_IN_AUTOMATION="true"
+        export TF_TOKEN_app_terraform_io="@secret:tf-token@"
+        export TF_VAR_cloudflare_token="@secret:cloudflare-token@"
+        export TF_VAR_cloudflare_account_id="@secret:cloudflare-account-id@"
+        export TF_VAR_cloudflare_zone_id="@secret:cloudflare-zone-id@"
+
+        cd terraform
+        terraform init &&
+        terraform plan
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
@@ -220,18 +101,13 @@ jobs:
     image: alpine
     interpreter: !DefaultInterpreter
       commands: |
+        wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && chmod +x omnictl
+
         find omni/ -type f -name '*-cluster.yaml' | while read -r cluster; do
           ./omnictl cluster template validate -f "$cluster"
         done
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    paths: omni/**
-  - !BranchUpdateTrigger
-    branches: prod
-  - !PullRequestUpdateTrigger
-    branches: prod
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
