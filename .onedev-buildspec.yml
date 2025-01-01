@@ -29,6 +29,19 @@ jobs:
     withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
+    name: terraform-fmt-check
+    runInContainer: true
+    image: hashicorp/terraform:1.10
+    interpreter: !DefaultInterpreter
+      commands: |
+        export TF_INPUT="false"
+        export TF_IN_AUTOMATION="true"
+
+        cd infra/terraform
+        terraform fmt -check
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
     name: terraform-plan
     runInContainer: true
     image: hashicorp/terraform:1.10
