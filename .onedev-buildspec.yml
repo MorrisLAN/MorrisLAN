@@ -116,7 +116,7 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
-- name: sync-omni
+- name: sync-omni-clusters
   steps:
   - !CheckoutStep
     name: checkout
@@ -143,6 +143,44 @@ jobs:
         export OMNI_SERVICE_ACCOUNT_KEY=@secret:omni-token@
         find omni/ -type f -name '*-cluster.yaml' | while read -r cluster; do
           ./omnictl cluster template sync -f "$cluster"
+        done
+    useTTY: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  jobDependencies:
+  - jobName: sync-omni-machineclasses
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: sync-omni-machineclasses
+  steps:
+  - !CheckoutStep
+    name: checkout
+    cloneCredential: !DefaultCredential {}
+    withLfs: true
+    withSubmodules: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: get-omnictl
+    runInContainer: true
+    image: alpine
+    interpreter: !DefaultInterpreter
+      commands: |
+        wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && chmod +x omnictl
+    useTTY: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: omnictl-apply-machineclasses
+    runInContainer: true
+    image: alpine
+    interpreter: !DefaultInterpreter
+      commands: |
+        export OMNI_ENDPOINT=@secret:omni-host@
+        export OMNI_SERVICE_ACCOUNT_KEY=@secret:omni-token@
+        find omni/ -type f -name '*-machineclasses.yaml' | while read -r file; do
+          ./omnictl apply -f "$file"
         done
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
