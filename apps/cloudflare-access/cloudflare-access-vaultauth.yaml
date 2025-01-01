@@ -1,0 +1,11 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: cloudflare-access
+  namespace: cloudflare-access
+spec:
+  method: kubernetes
+  mount: secrets
+  kubernetes:
+    role: cloudflare-access
+    serviceAccount: cloudflare-access
