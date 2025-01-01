@@ -21,4 +21,7 @@ spec:
           - run
         env:
         - name: TUNNEL_TOKEN
-          value: "<path:secrets/data/cloudflare-access/tunnels#prod>"
+          valueFrom:
+            secretKeyRef:
+              name: cloudflare-access-tunnels
+              key: prod
