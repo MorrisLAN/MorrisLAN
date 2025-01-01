@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: cloudflared
-        image: git.morrislan.net/morrislan/cloudflared:latest
+        image: git.morrislan.net/morrislan/cloudflared:prod
         args:
           - tunnel
           - run
