@@ -61,7 +61,7 @@ jobs:
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !BuildImageStep
-    name: build-homepage
+    name: docker-build-homepage
     buildPath: apps/homepage
     output: !RegistryOutput
       tags: '@server_host@/morrislan/homepage:latest'
