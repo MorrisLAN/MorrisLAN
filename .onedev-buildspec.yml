@@ -38,6 +38,8 @@ jobs:
     image: alpine
     interpreter: !DefaultInterpreter
       commands: |
+        wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && chmod +x omnictl
+
         export OMNI_ENDPOINT=@secret:omni-host@
         export OMNI_SERVICE_ACCOUNT_KEY=@secret:omni-token@
         find omni/ -type f -name '*-machineclasses.yaml' | while read -r file; do
