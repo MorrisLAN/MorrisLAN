@@ -95,7 +95,7 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
-- name: docker-build-homepage
+- name: build-homepage
   steps:
   - !CheckoutStep
     name: checkout
@@ -104,7 +104,7 @@ jobs:
     withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !BuildImageStep
-    name: docker-build-homepage
+    name: docker-build
     buildPath: apps/homepage
     output: !RegistryOutput
       tags: '@server_host@/morrislan/homepage:latest'
