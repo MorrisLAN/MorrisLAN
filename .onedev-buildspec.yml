@@ -130,6 +130,7 @@ jobs:
     image: alpine
     interpreter: !DefaultInterpreter
       commands: |
+        cd omni/
         wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && chmod +x omnictl
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
