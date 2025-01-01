@@ -22,5 +22,5 @@ spec:
         - name: TUNNEL_TOKEN
           valueFrom:
             secretKeyRef:
-              name: cloudflare-access-tunnels
+              name: tunnels
               key: prod

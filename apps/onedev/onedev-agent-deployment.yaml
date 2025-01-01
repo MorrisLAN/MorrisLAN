@@ -47,6 +47,11 @@ spec:
           value: "1"
         - name: DOCKER_HOST
           value: tcp://localhost:2376
+        - name: AGENT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: vault-secrets
+              key: agent-token
         command: ["docker"]
         args:
           - "run"
@@ -58,7 +63,7 @@ spec:
           - "-e"
           - "serverUrl=https://git.morrislan.net"
           - "-e"
-          - "agentToken=<path:secrets/data/onedev#agent-token>"
+          - "agentToken=$(AGENT_TOKEN)"
           - "-h"
           - "onedev-agent"
           - "1dev/agent"
