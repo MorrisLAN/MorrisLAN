@@ -142,8 +142,9 @@ jobs:
         export OMNI_ENDPOINT=@secret:omni-host@
         export OMNI_SERVICE_ACCOUNT_KEY=@secret:omni-token@
         ls -al
+        ./omnictl --help
         find omni/ -type f -name '*-cluster.yaml' | while read -r cluster; do
-          echo ./omnictl cluster template sync -f "$cluster"
+          ./omnictl cluster template sync -f "$cluster"
         done
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
