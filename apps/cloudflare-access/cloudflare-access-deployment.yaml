@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: cloudflare-access
   namespace: cloudflare-access
@@ -7,7 +7,6 @@ spec:
   selector:
     matchLabels:
       app: cloudflare-access
-  replicas: 3
   template:
     metadata:
       labels:
