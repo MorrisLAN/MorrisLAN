@@ -12,7 +12,7 @@ jobs:
     name: push-to-github
     remoteUrl: https://github.com/MorrisLAN/morrislan
     passwordSecret: github-pat
-    force: false
+    force: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger {}
@@ -258,7 +258,7 @@ jobs:
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !BuildImageStep
     name: docker-build
-    buildPath: apps/cloudflared
+    buildPath: apps/cloudflare-access
     output: !RegistryOutput
       tags: '@server_host@/morrislan/cloudflared:@branch@'
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
