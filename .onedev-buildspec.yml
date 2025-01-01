@@ -77,6 +77,12 @@ jobs:
   timeout: 14400
 - name: test
   steps:
+  - !CheckoutStep
+    name: checkout
+    cloneCredential: !DefaultCredential {}
+    withLfs: true
+    withSubmodules: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
     name: terraform-plan
     runInContainer: true
