@@ -1,5 +1,5 @@
 kind: Cluster
-name: box
+name: prod
 kubernetes:
   version: v1.30.8
 talos:
@@ -42,5 +42,5 @@ patches:
 ---
 kind: ControlPlane
 machineClass:
-  name: desired-box
+  name: desired-prod
   size: unlimited
