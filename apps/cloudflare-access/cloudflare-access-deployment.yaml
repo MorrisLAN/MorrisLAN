@@ -15,7 +15,10 @@ spec:
     spec:
       containers:
       - name: cloudflared
-        image: git.morrislan.net/morrislan/cloudflared:prod
+        image: cloudflare/cloudflared:2024.10.0
         args:
           - tunnel
           - run
+        env:
+        - name: TUNNEL_TOKEN
+          value: "<path:secrets/data/cloudflare-access/tunnels#prod>"
