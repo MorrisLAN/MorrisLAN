@@ -12,18 +12,10 @@ spec:
     metadata:
       labels:
         app: cloudflare-access
-      annotations:
-        vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/role: "cloudflare-access"
-        vault.hashicorp.com/agent-inject-template-cloudflare-access-tunnels-prod: |
-          {{ with secret "secrets/cloudflare-access/tunnels" }}{{ index .Data.data "prod"}}{{ end }}
     spec:
-      serviceAccountName: cloudflare-access
       containers:
       - name: cloudflared
-        image: cloudflare/cloudflared:2024.10.0
+        image: git.morrislan.net/morrislan/cloudflared:latest
         args:
           - tunnel
           - run
-          - --token
-          - $(cat /vault/secrets/cloudflare-access-tunnels-prod)
