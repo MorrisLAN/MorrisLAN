@@ -41,7 +41,7 @@ jobs:
         export TF_VAR_cloudflare_account_id="@secret:cloudflare-account-id@"
         export TF_VAR_cloudflare_zone_id="@secret:cloudflare-zone-id@"
 
-        cd terraform
+        cd infra/terraform
         terraform init &&
         terraform plan
     useTTY: false
@@ -78,7 +78,7 @@ jobs:
         export TF_VAR_cloudflare_account_id="@secret:cloudflare-account-id@"
         export TF_VAR_cloudflare_zone_id="@secret:cloudflare-zone-id@"
 
-        cd terraform
+        cd infra/terraform
         terraform init &&
         terraform apply -auto-approve
     useTTY: true
@@ -140,7 +140,7 @@ jobs:
       commands: |
         export OMNI_ENDPOINT=@secret:omni-host@
         export OMNI_SERVICE_ACCOUNT_KEY=@secret:omni-token@
-        find omni/ -type f -name '*-cluster.yaml' | while read -r cluster; do
+        find infra/omni/ -type f -name '*-cluster.yaml' | while read -r cluster; do
           ./omnictl cluster template sync -f "$cluster"
         done
     useTTY: true
@@ -184,7 +184,7 @@ jobs:
       commands: |
         export OMNI_ENDPOINT=@secret:omni-host@
         export OMNI_SERVICE_ACCOUNT_KEY=@secret:omni-token@
-        find omni/ -type f -name '*-machineclasses.yaml' | while read -r file; do
+        find infra/omni/ -type f -name '*-machineclasses.yaml' | while read -r file; do
           ./omnictl apply -f "$file"
         done
     useTTY: true
@@ -219,7 +219,7 @@ jobs:
     image: alpine
     interpreter: !DefaultInterpreter
       commands: |
-        find omni/ -type f -name '*-cluster.yaml' | while read -r cluster; do
+        find infra/omni/ -type f -name '*-cluster.yaml' | while read -r cluster; do
           ./omnictl cluster template validate -f "$cluster"
         done
     useTTY: true
