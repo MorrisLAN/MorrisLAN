@@ -8,26 +8,18 @@ spec:
   sources:
     - repoURL: https://helm.releases.hashicorp.com
       chart: vault
-      targetRevision: 0.28.1
+      targetRevision: 0.29.1
       helm:
         valuesObject:
           ui:
             enabled: true
-          # server:
-            # ingress:
-            #   enabled: true
-            #   activeService: false
-            #   annotations:
-            #     kubernetes.io/ingress.class: nginx
-            #     cert-manager.io/cluster-issuer: "letsencrypt"
-            #   hosts:
-            #     - host: vault.morrislan.net
-            #       paths:
-            #         - /
-            #   tls:
-            #     - secretName: vault-tls
-            #       hosts:
-            #         - vault.morrislan.net
+
+    - repoURL: https://helm.releases.hashicorp.com
+      chart: vault-secrets-operator
+      targetRevision: 0.9.1
+      helm:
+        valuesObject: {}
+
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
       path: 'apps/vault'
