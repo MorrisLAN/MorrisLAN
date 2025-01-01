@@ -5,7 +5,7 @@ metadata:
   namespace: cloudflare-access
 spec:
   method: kubernetes
-  mount: secrets
+  mount: kubernetes
   kubernetes:
     role: cloudflare-access
     serviceAccount: cloudflare-access
