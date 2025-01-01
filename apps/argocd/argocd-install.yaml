@@ -22336,10 +22336,10 @@ spec:
           - mountPath: /tmp
             name: tmp
 
-          # Register plugins into sidecar
-          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-            subPath: avp.yaml
-            name: cmp-plugin
+          # # Register plugins into sidecar
+          # - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          #   subPath: avp.yaml
+          #   name: cmp-plugin
 
           # Important: Mount tools into $PATH
           - name: custom-tools
@@ -22359,10 +22359,10 @@ spec:
           - mountPath: /tmp
             name: tmp
 
-          # Register plugins into sidecar
-          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-            subPath: avp-helm.yaml
-            name: cmp-plugin
+          # # Register plugins into sidecar
+          # - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          #   subPath: avp-helm.yaml
+          #   name: cmp-plugin
 
           # Important: Mount tools into $PATH
           - name: custom-tools
@@ -22408,9 +22408,9 @@ spec:
       - configMap:
           name: argocd-ssh-known-hosts-cm
         name: ssh-known-hosts
-      - configMap:
-          name: cmp-plugin
-        name: cmp-plugin
+      # - configMap:
+      #     name: cmp-plugin
+      #   name: cmp-plugin
       - configMap:
           name: argocd-tls-certs-cm
         name: tls-certs
