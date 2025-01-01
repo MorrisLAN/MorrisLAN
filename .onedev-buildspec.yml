@@ -119,7 +119,7 @@ jobs:
     name: docker-build
     buildPath: apps/homepage
     output: !RegistryOutput
-      tags: '@server_host@/morrislan/homepage:@branch@'
+      tags: '@server_host@/morrislan/homepage:latest'
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger
