@@ -248,24 +248,3 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
-- name: build-cloudflared
-  steps:
-  - !CheckoutStep
-    name: checkout
-    cloneCredential: !DefaultCredential {}
-    withLfs: true
-    withSubmodules: true
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !BuildImageStep
-    name: docker-build
-    buildPath: apps/cloudflare-access
-    output: !RegistryOutput
-      tags: '@server_host@/morrislan/cloudflared:@branch@'
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    branches: prod
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 14400
