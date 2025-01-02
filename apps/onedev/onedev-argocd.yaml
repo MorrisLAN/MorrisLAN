@@ -9,6 +9,7 @@ spec:
     - repoURL: https://dl.cloudsmith.io/public/onedev/onedev/helm/charts
       chart: onedev
       targetRevision: 11.6.9
+      helm: {}
             
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod

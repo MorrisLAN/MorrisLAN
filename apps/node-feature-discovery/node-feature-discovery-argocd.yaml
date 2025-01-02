@@ -9,6 +9,7 @@ spec:
     - repoURL: https://kubernetes-sigs.github.io/node-feature-discovery/charts
       chart: node-feature-discovery
       targetRevision: 0.17.0
+      helm: {}
 
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
