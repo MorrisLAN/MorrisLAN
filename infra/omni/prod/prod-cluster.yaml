@@ -28,6 +28,8 @@ patches:
                   - metrics
                   - onedev
                   - authentik
+                  - node-feature-discovery
+                  - falco
   - name: kubelet-serving-cert-approver
     inline:
       cluster:
