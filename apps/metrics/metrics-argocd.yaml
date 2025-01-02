@@ -42,8 +42,6 @@ spec:
       targetRevision: 2.10.2
       helm:
         valuesObject:
-          grafana:
-            enabled: true
           promtail:
             config:
               clients:
