@@ -24,6 +24,10 @@ spec:
           - name: HELM_VALUES
             value: |
               tty: true
+              falcosidekick:
+                enabled: true
+                webui:
+                  enabled: true
 
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
