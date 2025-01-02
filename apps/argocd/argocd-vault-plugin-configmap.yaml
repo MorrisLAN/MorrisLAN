@@ -18,7 +18,7 @@ data:
             - . 
             - -type f 
             - -not -name argocd-vault-plugin-configmap.yaml 
-            - -exec grep -l "<path:secrets" {} +
+            - -exec grep -l <path:secrets {} +
       generate:
         command: ["bash", "-c"]
         args: ['helm template "$ARGOCD_APP_NAME" -n "$ARGOCD_APP_NAMESPACE" -f <(echo "$ARGOCD_ENV_HELM_VALUES") . | argocd-vault-plugin generate -']
