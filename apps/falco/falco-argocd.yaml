@@ -68,9 +68,6 @@ spec:
                 enabled: true
               serviceMonitor:
                 create: true
-              grafana:
-                dashboards:
-                  enabled: true
 
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
