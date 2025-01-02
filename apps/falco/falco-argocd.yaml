@@ -64,6 +64,9 @@ spec:
               driver:
                 kind: ebpf
 
+              serviceMonitor:
+                create: true
+
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
       path: 'apps/falco'
