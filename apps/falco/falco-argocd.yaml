@@ -62,7 +62,7 @@ spec:
 
               tty: true
               driver:
-                kind: modern_ebpf
+                kind: ebpf
 
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
