@@ -17,7 +17,7 @@ data:
             - sh
             - "-c"
             - "find . -type f -not -name 'argocd-vault-plugin-configmap.yaml' -exec grep -l '<path:secrets' {} + > /dev/null"
-            - "&&""
+            - "&&"
             - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
       generate:
         command: ["bash", "-c"]
