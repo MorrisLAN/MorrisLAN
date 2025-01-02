@@ -40,7 +40,12 @@ spec:
     - repoURL: https://grafana.github.io/helm-charts
       chart: loki-stack
       targetRevision: 2.10.2
-      helm: {}
+      helm:
+        valuesObject:
+          promtail:
+            config:
+              clients:
+                - url: http://metrics-loki.metrics.svc:3100/loki/api/v1/push
 
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
