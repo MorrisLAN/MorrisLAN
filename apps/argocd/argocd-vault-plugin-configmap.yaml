@@ -24,7 +24,7 @@ data:
             - -exec
             - grep
             - -l
-            - "<path:secrets"
+            - "\"<path:secrets\""
             - "{}"
             - "+"
       generate:
