@@ -22322,95 +22322,73 @@ spec:
           name: helm-working-dir
         - mountPath: /home/argocd/cmp-server/plugins
           name: plugins
-      # - name: avp
-      #   command: [/var/run/argocd/argocd-cmp-server]
-      #   image: quay.io/argoproj/argocd:v2.12.3
-      #   securityContext:
-      #     runAsNonRoot: true
-      #     runAsUser: 999
-      #   volumeMounts:
-      #     - mountPath: /var/run/argocd
-      #       name: var-files
-      #     - mountPath: /home/argocd/cmp-server/plugins
-      #       name: plugins
-      #     - mountPath: /tmp
-      #       name: tmp
 
-      #     # # Register plugins into sidecar
-      #     # - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-      #     #   subPath: avp.yaml
-      #     #   name: cmp-plugin
+      - name: avp-helm
+        command: [/var/run/argocd/argocd-cmp-server]
+        image: quay.io/argoproj/argocd:v2.12.3
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: tmp
 
-      #     # Important: Mount tools into $PATH
-      #     - name: custom-tools
-      #       subPath: argocd-vault-plugin
-      #       mountPath: /usr/local/bin/argocd-vault-plugin
-      # - name: avp-helm
-      #   command: [/var/run/argocd/argocd-cmp-server]
-      #   image: quay.io/argoproj/argocd:v2.12.3
-      #   securityContext:
-      #     runAsNonRoot: true
-      #     runAsUser: 999
-      #   volumeMounts:
-      #     - mountPath: /var/run/argocd
-      #       name: var-files
-      #     - mountPath: /home/argocd/cmp-server/plugins
-      #       name: plugins
-      #     - mountPath: /tmp
-      #       name: tmp
+          # Register plugins into sidecar
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: avp-helm.yaml
+            name: cmp-plugin
 
-      #     # # Register plugins into sidecar
-      #     # - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-      #     #   subPath: avp-helm.yaml
-      #     #   name: cmp-plugin
+          # Important: Mount tools into $PATH
+          - name: custom-tools
+            subPath: argocd-vault-plugin
+            mountPath: /usr/local/bin/argocd-vault-plugin
+      initContainers:
+      - name: download-tools
+        image: registry.access.redhat.com/ubi8
+        env:
+          - name: AVP_VERSION
+            value: 1.18.0
+        command: [sh, -c]
+        args:
+          - >-
+            curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64 -o argocd-vault-plugin &&
+            chmod +x argocd-vault-plugin &&
+            mv argocd-vault-plugin /custom-tools/
 
-      #     # Important: Mount tools into $PATH
-      #     - name: custom-tools
-      #       subPath: argocd-vault-plugin
-      #       mountPath: /usr/local/bin/argocd-vault-plugin
-      # initContainers:
-      # - name: download-tools
-      #   image: registry.access.redhat.com/ubi8
-      #   env:
-      #     - name: AVP_VERSION
-      #       value: 1.18.0
-      #   command: [sh, -c]
-      #   args:
-      #     - >-
-      #       curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64 -o argocd-vault-plugin &&
-      #       chmod +x argocd-vault-plugin &&
-      #       mv argocd-vault-plugin /custom-tools/
-
-      #   volumeMounts:
-      #     - mountPath: /custom-tools
-      #       name: custom-tools
-      # - command:
-      #   - /bin/cp
-      #   - -n
-      #   - /usr/local/bin/argocd
-      #   - /var/run/argocd/argocd-cmp-server
-      #   image: quay.io/argoproj/argocd:v2.12.3
-      #   name: copyutil
-      #   securityContext:
-      #     allowPrivilegeEscalation: false
-      #     capabilities:
-      #       drop:
-      #       - ALL
-      #     readOnlyRootFilesystem: true
-      #     runAsNonRoot: true
-      #     seccompProfile:
-      #       type: RuntimeDefault
-      #   volumeMounts:
-      #   - mountPath: /var/run/argocd
-      #     name: var-files
+        volumeMounts:
+          - mountPath: /custom-tools
+            name: custom-tools
+      - command:
+        - /bin/cp
+        - -n
+        - /usr/local/bin/argocd
+        - /var/run/argocd/argocd-cmp-server
+        image: quay.io/argoproj/argocd:v2.12.3
+        name: copyutil
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - mountPath: /var/run/argocd
+          name: var-files
       serviceAccountName: argocd-repo-server
       volumes:
       - configMap:
           name: argocd-ssh-known-hosts-cm
         name: ssh-known-hosts
-      # - configMap:
-      #     name: cmp-plugin
-      #   name: cmp-plugin
+      - configMap:
+          name: cmp-plugin
+        name: cmp-plugin
       - configMap:
           name: argocd-tls-certs-cm
         name: tls-certs
