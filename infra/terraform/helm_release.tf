@@ -36,7 +36,7 @@ resource "helm_release" "hoopdev" {
     value = "512Mi"
   }
   set {
-    name = "persistence.enabled"
+    name  = "persistence.enabled"
     value = "true"
   }
 }
