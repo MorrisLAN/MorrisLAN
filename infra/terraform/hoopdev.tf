@@ -33,7 +33,7 @@ ingressApi:
   tls:
     - hosts:
       - hoop.morrislan.net
-      secretName: hoopdev-tls
+      secretName: hoopdev-web-tls
 ingressGrpc:
   enabled: true
   ingressClassName: nginx
