@@ -9,7 +9,7 @@ resource "helm_release" "hoopdev" {
 
   set {
     name  = "config.API_URL"
-    value = "https://hoopdev.morrislan.net"
+    value = "https://hoop.morrislan.net"
   }
   set {
     name  = "config.POSTGRES_DB_URI"
