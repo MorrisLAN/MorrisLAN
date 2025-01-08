@@ -89,3 +89,54 @@ resource "kubernetes_manifest" "hoopdev_db_service" {
     }
   }
 }
+
+resource "kubernetes_manifest" "namespace_cloudflare_access" {
+  manifest = {
+    "apiVersion" = "v1"
+    "kind"       = "Namespace"
+    "metadata" = {
+      "name" = "cloudflare-access"
+    }
+  }
+}
+
+resource "kubernetes_manifest" "cloudflare_access_daemonset" {
+  manifest = {
+    "apiVersion" = "apps/v1"
+    "kind"       = "DaemonSet"
+    "metadata" = {
+      "name"      = "cloudflare-access"
+      "namespace" = "cloudflare-access"
+    }
+    "spec" = {
+      "selector" = {
+        "matchLabels" = {
+          "app" = "cloudflare-access"
+        }
+      }
+      "template" = {
+        "metadata" = {
+          "labels" = {
+            "app" = "cloudflare-access"
+          }
+        }
+        "spec" = {
+          "containers" = [
+            {
+              "name"  = "cloudflared"
+              "image" = "cloudflare/cloudflared:2024.10.0"
+              "args"  = ["tunnel", "run"]
+              "env" = [
+                {
+                  "name" = "TUNNEL_TOKEN"
+                  "value" = var.cloudflare_access_tunnel_mgmt_token
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+  depends_on = [kubernetes_manifest.namespace_cloudflare_access]
+}

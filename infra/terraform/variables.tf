@@ -38,3 +38,9 @@ variable "hoopdev_oidc_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "cloudflare_access_tunnel_mgmt_token" {
+  description = "Token for the mgmt clusters Cloudflare Access tunnel"
+  type        = string
+  sensitive   = true
+}
