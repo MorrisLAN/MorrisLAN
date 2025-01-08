@@ -44,7 +44,7 @@ resource "helm_release" "hoopdev" {
     value = "true"
   }
   set {
-    name = "persistence.storageClassName"
+    name  = "persistence.storageClassName"
     value = "do-block-storage"
   }
 }
