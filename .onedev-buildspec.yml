@@ -57,6 +57,7 @@ jobs:
         export TF_VAR_hoopdev_db_pass="@secret:hoopdev-db-pass@"
         export TF_VAR_hoopdev_oidc_id="@secret:hoopdev-oidc-id@"
         export TF_VAR_hoopdev_oidc_secret="@secret:hoopdev-oidc-secret@"
+        export TF_VAR_hoopdev_slack_token="@secret:hoopdev-slack-token@"
         export TF_VAR_cloudflare_access_tunnel_mgmt_token="@secret:cloudflare-access-tunnel-mgmt-token@"
 
         cd infra/terraform
@@ -99,6 +100,7 @@ jobs:
         export TF_VAR_hoopdev_db_pass="@secret:hoopdev-db-pass@"
         export TF_VAR_hoopdev_oidc_id="@secret:hoopdev-oidc-id@"
         export TF_VAR_hoopdev_oidc_secret="@secret:hoopdev-oidc-secret@"
+        export TF_VAR_hoopdev_slack_token="@secret:hoopdev-slack-token@"
         export TF_VAR_cloudflare_access_tunnel_mgmt_token="@secret:cloudflare-access-tunnel-mgmt-token@"
 
         cd infra/terraform

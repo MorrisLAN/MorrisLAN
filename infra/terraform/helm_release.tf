@@ -28,6 +28,10 @@ resource "helm_release" "hoopdev" {
     value = var.hoopdev_oidc_secret
   }
   set {
+    name  = "config.notification.slackBotToken"
+    value = var.hoopdev_slack_token
+  }
+  set {
     name  = "defaultAgent.enabled"
     value = "true"
   }
