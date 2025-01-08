@@ -1,3 +1,38 @@
+resource "helm_release" "hoopdev" {
+  depends_on = [digitalocean_kubernetes_cluster.mgmt]
+  name       = "hoopdev"
+  chart      = "https://releases.hoop.dev/release/1.31.19/hoop-chart-1.31.19.tgz"
+
+  namespace = "hoopdev"
+
+  create_namespace = true
+
+  set {
+    name  = "config.API_URL"
+    value = "https://hoopdev.morrislan.net"
+  }
+  set {
+    name  = "config.POSTGRES_DB_URI"
+    value = "postgres://root:${var.hoopdev_db_pass}@hoopdev-db.hoopdev:5432/hoopdb?sslmode=disable"
+  }
+  set {
+    name  = "IDP_ISSUER"
+    value = "https://auth.morrislan.net/application/o/hoopdev/"
+  }
+  set {
+    name  = "IDP_CLIENT_ID"
+    value = var.hoopdev_oidc_id
+  }
+  set {
+    name  = "IDP_CLIENT_SECRET"
+    value = var.hoopdev_oidc_secret
+  }
+  set {
+    name  = "defaultAgent.enabled"
+    value = "true"
+  }
+}
+
 resource "helm_release" "gitlab" {
   depends_on = [digitalocean_kubernetes_cluster.mgmt]
   name       = "gitlab"

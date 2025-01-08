@@ -20,3 +20,9 @@ variable "do_token" {
   type        = string
   sensitive   = true
 }
+
+variable "hoopdev_db_pass" {
+  description = "Password for hoop.devs DB"
+  type        = string
+  sensitive   = true
+}
