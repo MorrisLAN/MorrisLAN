@@ -35,6 +35,10 @@ resource "helm_release" "hoopdev" {
     name  = "resources.gw.requests.memory"
     value = "512Mi"
   }
+  set {
+    name = "persistence.enabled"
+    value = "true"
+  }
 }
 
 resource "helm_release" "gitlab" {
