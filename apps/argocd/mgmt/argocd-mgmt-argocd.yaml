@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: argocd-mgmt
   namespace: argocd
-  annotations:
-    avp.kubernetes.io/path: "secrets/data/argocd/mgmt"
 spec:
   project: default
   sources:
