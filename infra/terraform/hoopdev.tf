@@ -24,7 +24,7 @@ config:
   IDP_CLIENT_SECRET: ${var.hoopdev_oidc_secret}
   notification:
     slackBotToken: ${var.hoopdev_slack_token}
-ingressAPI:
+ingressApi:
   enabled: true
   ingressClassName: nginx
   host: hoop.morrislan.net
