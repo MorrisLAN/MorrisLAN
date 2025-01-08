@@ -12,8 +12,8 @@ data:
   oidc.config: |
     name: authentik
     issuer: https://auth.morrislan.net/application/o/argocd-mgmt/
-    clientID: <path:secrets/data/argocd/mgmt#oidc-client-id>
-    clientSecret: <path:secrets/data/argocd/mgmt#oidc-client-secret>
+    clientID: <p1ath:secrets/data/argocd/mgmt#oidc-client-id>
+    clientSecret: <p1ath:secrets/data/argocd/mgmt#oidc-client-secret>
     requestedScopes: ["openid", "profile", "email", "groups"]
 ---
 apiVersion: v1
