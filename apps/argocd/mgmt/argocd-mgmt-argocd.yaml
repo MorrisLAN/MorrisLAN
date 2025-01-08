@@ -9,7 +9,7 @@ spec:
   project: default
   sources:
     - repoURL: 'https://git.morrislan.net/morrislan'
-      targetRevision: mgmt
+      targetRevision: prod
       path: 'apps/argocd/mgmt'
 
     - repoURL: 'https://git.morrislan.net/morrislan'
