@@ -128,7 +128,7 @@ resource "kubernetes_manifest" "cloudflare_access_daemonset" {
               "args"  = ["tunnel", "run"]
               "env" = [
                 {
-                  "name" = "TUNNEL_TOKEN"
+                  "name"  = "TUNNEL_TOKEN"
                   "value" = var.cloudflare_access_tunnel_mgmt_token
                 }
               ]
