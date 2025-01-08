@@ -16,15 +16,15 @@ resource "helm_release" "hoopdev" {
     value = "postgres://root:${var.hoopdev_db_pass}@hoopdev-db.hoopdev:5432/hoopdb?sslmode=disable"
   }
   set {
-    name  = "IDP_ISSUER"
+    name  = "config.IDP_ISSUER"
     value = "https://auth.morrislan.net/application/o/hoopdev/"
   }
   set {
-    name  = "IDP_CLIENT_ID"
+    name  = "config.IDP_CLIENT_ID"
     value = var.hoopdev_oidc_id
   }
   set {
-    name  = "IDP_CLIENT_SECRET"
+    name  = "config.IDP_CLIENT_SECRET"
     value = var.hoopdev_oidc_secret
   }
   set {
