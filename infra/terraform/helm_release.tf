@@ -31,6 +31,10 @@ resource "helm_release" "hoopdev" {
     name  = "defaultAgent.enabled"
     value = "true"
   }
+  set {
+    name  = "resources.gw.requests.memory"
+    value = "512Mi"
+  }
 }
 
 resource "helm_release" "gitlab" {
