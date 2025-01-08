@@ -29,3 +29,29 @@ resource "kubernetes_secret" "cloudflare_token" {
 
   type = "Opaque"
 }
+
+resource "kubernetes_manifest" "clusterissuer_letsencrypt" {
+  manifest = {
+    "apiVersion" = "cert-manager.io/v1"
+    "kind"       = "ClusterIssuer"
+    "metadata" = {
+      "name" = "letsencrypt"
+    }
+    "spec" = {
+      "acme" = {
+        "solvers" = [
+          {
+            "dns01" = {
+              "cloudflare" = {
+                "apiTokenSecretRef" = {
+                  "name" = "cloudflare-token"
+                  "key"  = "token"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
