@@ -80,7 +80,7 @@ resource "kubernetes_manifest" "hoopdev_db_deployment" {
               "volumeMounts" = [
                 {
                   "name"      = "pg-data"
-                  "mountPath" = "/var/lib/postgresql/data"
+                  "mountPath" = "/var/lib/postgresql"
                 }
               ]
             }
