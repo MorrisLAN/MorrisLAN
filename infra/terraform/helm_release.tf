@@ -43,6 +43,10 @@ resource "helm_release" "hoopdev" {
     name  = "persistence.enabled"
     value = "true"
   }
+  set {
+    name = "persistence.storageClassName"
+    value = "do-block-storage"
+  }
 }
 
 resource "helm_release" "gitlab" {
