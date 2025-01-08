@@ -25,4 +25,8 @@ resource "helm_release" "gitlab" {
     name  = "nginx-ingress.enabled"
     value = "false"
   }
+  set {
+    name  = "certmanager-issuer.email"
+    value = "ssl@morrislan.net"
+  }
 }
