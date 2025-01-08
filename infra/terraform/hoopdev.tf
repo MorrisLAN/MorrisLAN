@@ -8,6 +8,47 @@ resource "kubernetes_manifest" "namespace_hoopdev" {
   }
 }
 
+resource "helm_release" "hoopdev" {
+  depends_on       = [digitalocean_kubernetes_cluster.mgmt]
+  name             = "hoopdev"
+  chart            = "https://releases.hoop.dev/release/1.31.19/hoop-chart-1.31.19.tgz"
+  namespace        = "hoopdev"
+  create_namespace = true
+  values = [
+    <<EOT
+config:
+  API_URL: "https://hoop.morrislan.net"
+  POSTGRES_DB_URI: "postgres://root:${var.hoopdev_db_pass}@hoopdev-db.hoopdev:5432/hoopdb?sslmode=disable"
+  IDP_ISSUER: "https://auth.morrislan.net/application/o/hoopdev/"
+  IDP_CLIENT_ID: ${var.hoopdev_oidc_id}
+  IDP_CLIENT_SECRET: ${var.hoopdev_oidc_secret}
+  notification:
+    slackBotToken: ${var.hoopdev_slack_token}
+ingressAPI:
+  enabled: true
+  host: hoop.morrislan.net
+  tls:
+    - hosts:
+      - hoop.morrislan.net
+ingressGrpc:
+  enabled: true
+  host: hoop-grpc.morrislan.net
+  tls:
+    - hosts:
+      - hoop-grpc.morrislan.net
+defaultAgent:
+  enabled: true
+resources:
+  gw:
+    requests:
+      memory: "512Mi"
+persistence:
+  enabled: true
+  storageClassName: "do-block-storage"
+EOT
+  ]
+}
+
 resource "kubernetes_manifest" "hoopdev_db_pvc" {
   manifest = {
     "apiVersion" = "v1"
@@ -121,55 +162,4 @@ resource "kubernetes_manifest" "hoopdev_db_service" {
       }
     }
   }
-}
-
-resource "kubernetes_manifest" "namespace_cloudflare_access" {
-  manifest = {
-    "apiVersion" = "v1"
-    "kind"       = "Namespace"
-    "metadata" = {
-      "name" = "cloudflare-access"
-    }
-  }
-}
-
-resource "kubernetes_manifest" "cloudflare_access_daemonset" {
-  manifest = {
-    "apiVersion" = "apps/v1"
-    "kind"       = "DaemonSet"
-    "metadata" = {
-      "name"      = "cloudflare-access"
-      "namespace" = "cloudflare-access"
-    }
-    "spec" = {
-      "selector" = {
-        "matchLabels" = {
-          "app" = "cloudflare-access"
-        }
-      }
-      "template" = {
-        "metadata" = {
-          "labels" = {
-            "app" = "cloudflare-access"
-          }
-        }
-        "spec" = {
-          "containers" = [
-            {
-              "name"  = "cloudflared"
-              "image" = "cloudflare/cloudflared:2024.10.0"
-              "args"  = ["tunnel", "run", "--protocol", "http2"]
-              "env" = [
-                {
-                  "name"  = "TUNNEL_TOKEN"
-                  "value" = var.cloudflare_access_tunnel_mgmt_token
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  }
-  depends_on = [kubernetes_manifest.namespace_cloudflare_access]
 }
