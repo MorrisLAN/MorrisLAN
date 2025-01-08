@@ -29,6 +29,8 @@ ingressApi:
   ingressClassName: nginx
   host: hoop.morrislan.net
   tls:
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt"
     - hosts:
       - hoop.morrislan.net
       secretName: hoopdev-grpc-tls
@@ -37,6 +39,8 @@ ingressGrpc:
   ingressClassName: nginx
   host: hoop-grpc.morrislan.net
   tls:
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt"
     - hosts:
       - hoop-grpc.morrislan.net
       secretName: hoopdev-grpc-tls
