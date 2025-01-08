@@ -26,12 +26,14 @@ config:
     slackBotToken: ${var.hoopdev_slack_token}
 ingressAPI:
   enabled: true
+  ingressClassName: nginx
   host: hoop.morrislan.net
   tls:
     - hosts:
       - hoop.morrislan.net
 ingressGrpc:
   enabled: true
+  ingressClassName: nginx
   host: hoop-grpc.morrislan.net
   tls:
     - hosts:
