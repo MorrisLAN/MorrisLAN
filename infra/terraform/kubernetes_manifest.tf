@@ -158,7 +158,7 @@ resource "kubernetes_manifest" "cloudflare_access_daemonset" {
             {
               "name"  = "cloudflared"
               "image" = "cloudflare/cloudflared:2024.10.0"
-              "args"  = ["tunnel", "run"]
+              "args"  = ["tunnel", "run", "--protocol", "http2"]
               "env" = [
                 {
                   "name"  = "TUNNEL_TOKEN"
