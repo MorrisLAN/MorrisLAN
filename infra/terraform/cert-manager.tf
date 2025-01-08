@@ -18,7 +18,7 @@ resource "helm_release" "cert_manager" {
 }
 
 resource "kubernetes_secret" "cloudflare_token" {
-  metadata = {
+  metadata {
     name      = "cloudflare-token"
     namespace = "cloudflare-access"
   }
@@ -29,6 +29,7 @@ resource "kubernetes_secret" "cloudflare_token" {
 
   type = "Opaque"
 }
+
 
 
 resource "kubernetes_manifest" "clusterissuer_letsencrypt" {
