@@ -8,6 +8,25 @@ resource "kubernetes_manifest" "namespace_hoopdev" {
   }
 }
 
+resource "kubernetes_manifest" "hoopdev_db_pvc" {
+  manifest = {
+    "apiVersion" = "v1"
+    "kind"       = "PersistentVolumeClaim"
+    "metadata" = {
+      "name"      = "hoopdev-db"
+      "namespace" = "hoopdev"
+    }
+    "spec" = {
+      "accessModes" = ["ReadWriteOnce"]
+      "resources" = {
+        "requests" = {
+          "storage" = "10Gi"
+        }
+      }
+    }
+  }
+}
+
 resource "kubernetes_manifest" "hoopdev_db_deployment" {
   manifest = {
     "apiVersion" = "apps/v1"
@@ -58,6 +77,20 @@ resource "kubernetes_manifest" "hoopdev_db_deployment" {
                   "protocol"      = "TCP"
                 }
               ]
+              "volumeMounts" = [
+                {
+                  "name"      = "pg-data"
+                  "mountPath" = "/var/lib/postgresql/data"
+                }
+              ]
+            }
+          ]
+          "volumes" = [
+            {
+              "name" = "pg-data"
+              "persistentVolumeClaim" = {
+                "claimName" = "hoopdev-db"
+              }
             }
           ]
         }
