@@ -39,6 +39,11 @@ resource "kubernetes_manifest" "clusterissuer_letsencrypt" {
     }
     "spec" = {
       "acme" = {
+        "email"  = "ssl@morrislan.net"
+        "server" = "https://acme-v02.api.letsencrypt.org/directory"
+        "privateKeySecretRef" = {
+          "name" = "letsencrypt-tls"
+        }
         "solvers" = [
           {
             "dns01" = {
