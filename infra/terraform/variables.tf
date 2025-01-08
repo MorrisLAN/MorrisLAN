@@ -26,3 +26,15 @@ variable "hoopdev_db_pass" {
   type        = string
   sensitive   = true
 }
+
+variable "hoopdev_oidc_id" {
+  description = "OIDC client ID for hoop.dev"
+  type        = string
+  sensitive   = true
+}
+
+variable "hoopdev_oidc_secret" {
+  description = "OIDC client secret for hoop.dev"
+  type        = string
+  sensitive   = true
+}
