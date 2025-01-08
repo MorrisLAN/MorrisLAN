@@ -24,7 +24,7 @@ resource "kubernetes_secret" "cloudflare_token" {
   }
 
   data = {
-    "token" = base64encode(var.cloudflare_token)
+    "token" = var.cloudflare_token
   }
 
   type = "Opaque"
