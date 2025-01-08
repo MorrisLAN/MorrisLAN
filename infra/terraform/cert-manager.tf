@@ -20,7 +20,7 @@ resource "helm_release" "cert_manager" {
 resource "kubernetes_secret" "cloudflare_token" {
   metadata {
     name      = "cloudflare-token"
-    namespace = "cloudflare-access"
+    namespace = "cert-manager"
   }
 
   data = {
