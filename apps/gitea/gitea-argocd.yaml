@@ -37,6 +37,9 @@ spec:
                   SIGNING_NAME: MorrisLAN Gitea
                   SIGNING_EMAIL: git@morrislan.net
                   INITIAL_COMMIT: always
+                  WIKI: always
+                  CRUD_ACTIONS: always
+                  MERGES: always
               server:
                 OFFLINE_MODE: false
                 DISABLE_SSH: true
