@@ -11,7 +11,7 @@ spec:
       targetRevision: 0.23.0
       helm: {}
 
-    - repoURL: 'https://git.morrislan.net/morrislan'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'apps/cnpg'
   destination:

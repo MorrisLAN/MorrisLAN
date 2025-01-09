@@ -15,7 +15,7 @@ spec:
             ingressClassResource:
               default: true
 
-    - repoURL: 'https://git.morrislan.net/morrislan'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'apps/ingress-nginx'
 

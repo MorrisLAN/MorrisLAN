@@ -50,7 +50,7 @@ spec:
               clients:
                 - url: http://metrics-loki.metrics.svc:3100/loki/api/v1/push
 
-    - repoURL: 'https://git.morrislan.net/morrislan'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'apps/metrics'
   destination:

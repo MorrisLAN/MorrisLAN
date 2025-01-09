@@ -35,7 +35,7 @@ spec:
             address: "http://vault.vault.svc:8200"
             skipTLSVerify: false
             
-    - repoURL: 'https://git.morrislan.net/morrislan'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'apps/vault'
   destination:

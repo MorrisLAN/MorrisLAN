@@ -20,7 +20,7 @@ spec:
                   name: cloudflare
                   key: token
 
-    - repoURL: 'https://git.morrislan.net/morrislan'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'apps/external-dns'
 

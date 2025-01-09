@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: 'https://git.morrislan.net/morrislan'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'apps/netbird/routers/prod'
   destination:

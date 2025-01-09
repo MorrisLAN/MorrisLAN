@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: homepage
-        image: git.morrislan.net/morrislan/homepage:latest 
+        image: git.morrislan.net/MorrisLAN/morrislan/homepage:latest 
         imagePullPolicy: Always
         ports:
         - containerPort: 80

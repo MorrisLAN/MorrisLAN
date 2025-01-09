@@ -54,7 +54,7 @@ spec:
                 hosts:
                   - gitea.morrislan.net
 
-    - repoURL: 'https://git.morrislan.net/morrislan'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'apps/gitea'
   destination:
