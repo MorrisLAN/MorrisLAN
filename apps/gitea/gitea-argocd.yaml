@@ -13,6 +13,8 @@ spec:
         valuesObject:
           actions:
             enabled: true
+            existingSecret: vault-gitea
+            existingSecretKey: runner-mgmt-token
           gitea:
             config:
               server:
