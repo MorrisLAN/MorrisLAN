@@ -59,6 +59,17 @@ spec:
               redis:
                 enabled: true
               server:
+                ingress:
+                  enabled: true
+                  annotations:
+                    cert-manager.io/cluster-issuer: letsencrypt
+                  hosts:
+                    - host: auth.morrislan.net
+
+                  tls:
+                    - secretName: vault-tls
+                      hosts:
+                        - auth.morrislan.net
                 replicas: 1
                 metrics:
                   enabled: true
