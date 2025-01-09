@@ -45,14 +45,14 @@ spec:
               cert-manager.io/cluster-issuer: letsencrypt
               nginx.ingress.kubernetes.io/proxy-body-size: 10m
             hosts:
-              - host: gitea.morrislan.net
+              - host: git.morrislan.net
                 paths:
                   - path: /
                     pathType: Prefix
             tls:
               - secretName: gitea-tls
                 hosts:
-                  - gitea.morrislan.net
+                  - git.morrislan.net
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
