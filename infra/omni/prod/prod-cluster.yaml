@@ -30,6 +30,7 @@ patches:
                   - authentik
                   - node-feature-discovery
                   - falco
+                  - netbird
   - name: kubelet-serving-cert-approver
     inline:
       cluster:
