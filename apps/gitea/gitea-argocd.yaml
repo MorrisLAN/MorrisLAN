@@ -17,6 +17,9 @@ spec:
               cert-manager.io/cluster-issuer: letsencrypt
             hosts:
               - host: gitea.morrislan.net
+                paths:
+                  - path: /
+                    pathType: Prefix
             tls:
               - secretName: gitea-tls
                 hosts:
