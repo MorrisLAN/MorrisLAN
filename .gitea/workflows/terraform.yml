@@ -49,14 +49,8 @@ jobs:
         id: validate
         run: terraform validate
 
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan
-
-      - name: Export Plan
-        uses: actions/upload-artifact@v3
-        with:
-          name: tfplan
-          path: infra/terraform/tfplan
+      - name: Plan
+        run: terraform plan
 
   apply:
     name: "Apply"
@@ -71,12 +65,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Import Plan
-        uses: actions/download-artifact@v3
-        with:
-          name: tfplan
-          path: infra/terraform/tfplan
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -86,5 +74,5 @@ jobs:
         id: init
         run: terraform init
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve "tfplan"
+      - name: Apply
+        run: terraform apply -auto-approve
