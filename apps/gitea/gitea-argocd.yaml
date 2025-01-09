@@ -11,6 +11,14 @@ spec:
       targetRevision: 10.6.0
       helm:
         valuesObject:
+          redis-cluster:
+            enabled: false
+          postgresql-ha:
+            enabled: false
+          redis:
+            enabled: true
+          postgresql:
+            enabled: true
           ingress:
             enabled: true
             annotations:
