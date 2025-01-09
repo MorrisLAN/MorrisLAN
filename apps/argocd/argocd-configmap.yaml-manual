@@ -7,6 +7,13 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
+  resource.exclusions: |
+    - apiGroups:
+      - cilium.io
+      kinds:
+      - CiliumIdentity
+      clusters:
+      - "*"
   url: https://argocd.morrislan.net
   timeout.reconciliation: 45s
   oidc.config: |
