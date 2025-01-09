@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: netbird
+  name: netbird-router-mgmt
   namespace: argocd
 spec:
   project: default
   sources:
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
-      path: 'apps/netbird'
+      path: 'apps/netbird/routers/mgmt'
   destination:
     server: https://kubernetes.default.svc
     namespace: netbird

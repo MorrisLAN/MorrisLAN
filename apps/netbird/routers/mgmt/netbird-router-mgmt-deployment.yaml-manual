@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: netbird-prod-router
+  name: netbird-router-mgmt
   namespace: netbird
 spec:
   selector:
     matchLabels:
-      app: netbird-prod-router
+      app: netbird-router-mgmt
   template:
     metadata:
       labels:
-        app: netbird-prod-router
+        app: netbird-router-mgmt
     spec:
       containers:
         - name: netbird
@@ -23,7 +23,7 @@ spec:
             - name: NB_SETUP_KEY
               value: "0000000000-0000-0000-0000-0000000000"
             - name: NB_HOSTNAME
-              value: "prod-router"
+              value: "router-mgmt"
             - name: NB_LOG_LEVEL
               value: "info"
           securityContext:
