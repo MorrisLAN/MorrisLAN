@@ -53,7 +53,7 @@ jobs:
         run: terraform plan -out=tfplan
 
       - name: Export Plan
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: tfplan
           path: infra/terraform/tfplan
@@ -72,7 +72,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Import Plan
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: tfplan
           path: infra/terraform/tfplan
