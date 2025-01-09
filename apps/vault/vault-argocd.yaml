@@ -13,7 +13,18 @@ spec:
         valuesObject:
           ui:
             enabled: true
+          server:
+            ingress:
+              enabled: true
+              annotations:
+                cert-manager.io/cluster-issuer: letsencrypt
+              hosts:
+                - host: vault.morrislan.net
 
+              tls:
+                - secretName: vault-tls
+                  hosts:
+                    - vault.morrislan.net
     - repoURL: https://helm.releases.hashicorp.com
       chart: vault-secrets-operator
       targetRevision: 0.9.1
