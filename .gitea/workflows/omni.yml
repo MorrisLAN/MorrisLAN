@@ -42,7 +42,7 @@ jobs:
   sync-machineclasses:
     name: "Sync machineclasses"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/pod'
+    if: github.ref == 'refs/heads/prod'
     defaults:
       run:
         shell: bash
@@ -65,7 +65,7 @@ jobs:
   sync-clusters:
     name: "Sync clusters"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/pod'
+    if: github.ref == 'refs/heads/prod'
     needs: validate-clusters
     defaults:
       run:

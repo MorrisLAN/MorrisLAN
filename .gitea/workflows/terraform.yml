@@ -61,7 +61,7 @@ jobs:
   terraform-apply:
     name: "Terraform Apply"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/pod'
+    if: github.ref == 'refs/heads/prod'
     needs: terraform-plan
     defaults:
       run:
