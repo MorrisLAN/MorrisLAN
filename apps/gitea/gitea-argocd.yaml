@@ -16,8 +16,7 @@ spec:
             annotations:
               cert-manager.io/cluster-issuer: letsencrypt
             hosts:
-              - gitea.morrislan.net
-
+              - host: gitea.morrislan.net
             tls:
               - secretName: gitea-tls
                 hosts:
