@@ -17,7 +17,7 @@ spec:
 
     - repoURL: 'https://git.morrislan.net/morrislan'
       targetRevision: prod
-      path: 'apps/cert-manager/manifests'
+      path: 'apps/cert-manager'
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
