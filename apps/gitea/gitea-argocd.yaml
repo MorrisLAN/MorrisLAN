@@ -13,6 +13,8 @@ spec:
         valuesObject:
           actions:
             enabled: true
+            provisioning:
+              enabled: true
           gitea:
             config:
               server:
