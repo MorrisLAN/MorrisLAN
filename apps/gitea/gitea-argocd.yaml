@@ -14,7 +14,8 @@ spec:
           gitea:
             config:
               server:
-                offline_mode: false
+                OFFLINE_MODE: false
+                DISABLE_SSH: true
               service:
                 DISABLE_REGISTRATION: true
                 REQUIRE_SIGNIN_VIEW: false
