@@ -28,7 +28,7 @@ spec:
       targetRevision: prod
       path: 'apps/vault'
   destination:
-    server: https://kubernetes.default.svc
+    name: in-cluster
     namespace: vault
   syncPolicy:
     automated:
