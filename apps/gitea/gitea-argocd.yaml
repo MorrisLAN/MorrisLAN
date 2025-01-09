@@ -32,7 +32,7 @@ spec:
                 DISABLE_SSH: true
               service:
                 DISABLE_REGISTRATION: true
-                REQUIRE_SIGNIN_VIEW: true
+                REQUIRE_SIGNIN_VIEW: false
                 SHOW_REGISTRATION_BUTTON: false
               openid:
                 ENABLE_OPENID_SIGNIN: false
