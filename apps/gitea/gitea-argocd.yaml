@@ -12,6 +12,9 @@ spec:
       helm:
         valuesObject:
           actions:
+            actRunner:
+              config: |
+                labels: ["ubuntu-latest"]
             enabled: true
             existingSecret: vault-gitea
             existingSecretKey: runner-mgmt-token

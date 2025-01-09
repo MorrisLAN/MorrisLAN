@@ -25,7 +25,6 @@ jobs:
         shell: bash
         working-directory: ./infra/omni
     steps:
-      - uses: actions/setup-node@v4
       - name: Checkout
         uses: actions/checkout@v4
 
