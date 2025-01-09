@@ -12,10 +12,11 @@ spec:
       helm:
         valuesObject:
           actions:
-            statefulset:
-              actRunner:
-                config: |
-                  labels: ["ubuntu-latest"]
+            # statefulset:
+            #   actRunner:
+            #     config: |
+            #       labels: 
+            #         - ubuntu-latest:docker://node:16-bullseye
             enabled: true
             existingSecret: vault-gitea
             existingSecretKey: runner-mgmt-token
