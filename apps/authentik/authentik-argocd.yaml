@@ -67,7 +67,7 @@ spec:
                     - auth.morrislan.net
 
                   tls:
-                    - secretName: vault-tls
+                    - secretName: authentik-tls
                       hosts:
                         - auth.morrislan.net
                 replicas: 1
