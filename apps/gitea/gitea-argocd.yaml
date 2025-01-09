@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://dl.gitea.com/charts/
+      chart: gitea
+      targetRevision: 10.6.0
+      helm:
+        valuesObject:
+          gitea:
+            config:
+              server:
+                OFFLINE_MODE: false
+                DISABLE_SSH: true
+              service:
+                DISABLE_REGISTRATION: true
+                REQUIRE_SIGNIN_VIEW: false
+                SHOW_REGISTRATION_BUTTON: false
+              openid:
+                ENABLE_OPENID_SIGNIN: false
+                ENABLE_OPENID_SIGNUP: true
+              oauth2_client:
+                ENABLE_AUTO_REGISTRATION: true
+            admin:
+              existingSecret: vault-gitea
+          redis-cluster:
+            enabled: false
+          postgresql-ha:
+            enabled: false
+          redis:
+            enabled: true
+          postgresql:
+            enabled: true
+          ingress:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt
+              nginx.ingress.kubernetes.io/proxy-body-size: 10m
+            hosts:
+              - host: gitea.morrislan.net
+                paths:
+                  - path: /
+                    pathType: Prefix
+            tls:
+              - secretName: gitea-tls
+                hosts:
+                  - gitea.morrislan.net
+
+    - repoURL: 'https://git.morrislan.net/morrislan'
+      targetRevision: prod
+      path: 'apps/gitea'
+  destination:
+    name: in-cluster
+    namespace: gitea
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
