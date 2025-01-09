@@ -15,9 +15,6 @@ spec:
             ingressClassResource:
               default: true
 
-    - repoURL: 'https://git.morrislan.net/morrislan'
-      targetRevision: prod
-      path: 'apps/ingress-nginx'
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
