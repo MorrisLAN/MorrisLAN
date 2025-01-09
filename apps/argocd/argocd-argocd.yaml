@@ -4,7 +4,7 @@ metadata:
   name: argocd
   namespace: argocd
   annotations:
-    # avp.kubernetes.io/path: "secrets/data/argocd"
+    avp.kubernetes.io/path: "secrets/data/argocd"
 spec:
   project: default
   sources:
