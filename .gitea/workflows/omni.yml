@@ -19,7 +19,7 @@ env:
 jobs:
   validate-clusters:
     name: "Validate clusters"
-    runs-on: ubuntu-latest:docker://node:16-bullseye
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
