@@ -13,6 +13,8 @@ spec:
         valuesObject:
           gitea:
             config:
+              server:
+                offline_mode: false
               service:
                 DISABLE_REGISTRATION: true
                 REQUIRE_SIGNIN_VIEW: false
