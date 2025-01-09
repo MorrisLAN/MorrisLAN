@@ -31,15 +31,14 @@ spec:
             existingSecretKey: runner-mgmt-token
           gitea:
             config:
-              repository:
-                signing:
-                  SIGNING_KEY: 9618C0C6E9D833D1
-                  SIGNING_NAME: MorrisLAN Gitea
-                  SIGNING_EMAIL: git@morrislan.net
-                  INITIAL_COMMIT: always
-                  WIKI: always
-                  CRUD_ACTIONS: always
-                  MERGES: always
+              repository.signing:
+                SIGNING_KEY: 9618C0C6E9D833D1
+                SIGNING_NAME: MorrisLAN Gitea
+                SIGNING_EMAIL: git@morrislan.net
+                INITIAL_COMMIT: always
+                WIKI: always
+                CRUD_ACTIONS: always
+                MERGES: always
               server:
                 OFFLINE_MODE: false
                 DISABLE_SSH: true
