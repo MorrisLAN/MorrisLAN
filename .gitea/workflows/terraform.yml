@@ -21,8 +21,8 @@ env:
   TF_VAR_do_token: "${{ secrets.DO_TOKEN }}"
 
 jobs:
-  terraform-plan:
-    name: "Terraform Plan"
+  plan:
+    name: "Plan"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -53,13 +53,13 @@ jobs:
         run: terraform plan -out=tfplan
 
       - name: Export Plan
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: tfplan
           path: infra/terraform/tfplan
 
-  terraform-apply:
-    name: "Terraform Apply"
+  apply:
+    name: "Apply"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/prod'
     needs: terraform-plan
