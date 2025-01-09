@@ -20,6 +20,10 @@ spec:
                   name: cloudflare-token
                   key: token
 
+    - repoURL: 'https://git.morrislan.net/morrislan'
+      targetRevision: prod
+      path: 'apps/external-dns'
+
   destination:
     server: https://kubernetes.default.svc
     namespace: external-dns
