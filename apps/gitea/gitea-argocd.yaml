@@ -11,6 +11,10 @@ spec:
       targetRevision: 10.6.0
       helm:
         valuesObject:
+          signing:
+            enabled: true
+            gpgHome: /data/git/.gnupg
+            existingSecret: vault-gitea
           actions:
             statefulset:
               actRunner:
