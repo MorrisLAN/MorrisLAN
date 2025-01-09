@@ -1,0 +1,87 @@
+name: "Omni"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  push:
+    branches:
+      - prod
+  pull_request:
+    branches:
+      - prod
+
+env:
+  OMNI_ENDPOINT: "https://omni.morrislan.net"
+  OMNI_SERVICE_ACCOUNT_KEY: "${{ secrets.OMNI_TOKEN }}"
+
+jobs:
+  validate-clusters:
+    name: "Validate clusters"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/omni
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get omnictl
+        run: |
+          wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && 
+          chmod +x omnictl
+
+      - name: Validate clusters
+        run: |
+          find . -type f -name '*-cluster.yaml' | while read -r cluster; do
+            ./omnictl cluster template validate -f "$cluster"
+          done
+
+  sync-machineclasses:
+    name: "Sync machineclasses"
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/pod'
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/omni
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get omnictl
+        run: |
+          wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && 
+          chmod +x omnictl
+
+      - name: Sync machineclasses
+        run: |
+          find . -type f -name '*-machineclasses.yaml' | while read -r file; do
+            ./omnictl apply -f "$file"
+          done
+
+  sync-clusters:
+    name: "Sync clusters"
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/pod'
+    needs: validate-clusters
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/omni
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get omnictl
+        run: |
+          wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && 
+          chmod +x omnictl
+
+      - name: Sync clusters
+        run: |
+          find . -type f -name '*-cluster.yaml' | while read -r cluster; do
+            ./omnictl cluster template sync -f "$cluster"
+          done

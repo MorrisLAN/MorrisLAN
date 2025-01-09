@@ -1,0 +1,89 @@
+name: "Terraform"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  push:
+    branches:
+      - prod
+  pull_request:
+    branches:
+      - prod
+
+env:
+  TF_IN_AUTOMATION: "true"
+  TF_INPUT: "false"
+  TF_VAR_cloudflare_token: "${{ secrets.CLOUDFLARE_TOKEN }}"
+  TF_VAR_cloudflare_account_id: "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+  TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
+  TF_VAR_do_token: "${{ secrets.DO_TOKEN }}"
+
+jobs:
+  terraform-plan:
+    name: "Terraform Plan"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/terraform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_TOKEN }}
+
+      - name: Format Check
+        id: fmt-check
+        run: terraform fmt -check
+
+      - name: Initialize
+        id: init
+        run: terraform init
+
+      - name: Validate
+        id: validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Export Plan
+        uses: actions/upload-artifact@v3
+        with:
+          name: tfplan
+          path: tfplan
+
+  terraform-apply:
+    name: "Terraform Apply"
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/pod'
+    needs: terraform-plan
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/terraform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Import Plan
+        uses: actions/download-artifact@v4
+        with:
+          name: tfplan
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_TOKEN }}
+
+      - name: Initialize
+        id: init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve "tfplan"
