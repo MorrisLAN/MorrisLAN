@@ -21,7 +21,10 @@ spec:
             - name: NB_ADMIN_URL
               value: "https://vpn.morrislan.net:443"
             - name: NB_SETUP_KEY
-              value: "0000000000-0000-0000-0000-0000000000"
+              valueFrom:
+                secretKeyRef:
+                  name: vault-netbird
+                  key: router-prod-key
             - name: NB_HOSTNAME
               value: "router-prod"
             - name: NB_LOG_LEVEL

@@ -10,7 +10,7 @@ spec:
       targetRevision: prod
       path: 'apps/netbird/routers/prod'
   destination:
-    server: https://kubernetes.default.svc
+    name: omni-prod
     namespace: netbird
   syncPolicy:
     automated:
