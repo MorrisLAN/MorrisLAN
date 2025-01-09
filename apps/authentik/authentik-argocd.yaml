@@ -64,7 +64,7 @@ spec:
                   annotations:
                     cert-manager.io/cluster-issuer: letsencrypt
                   hosts:
-                    - host: auth.morrislan.net
+                    - auth.morrislan.net
 
                   tls:
                     - secretName: vault-tls
