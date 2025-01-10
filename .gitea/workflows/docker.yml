@@ -16,14 +16,8 @@ jobs:
   build-homepage:
     name: "Build homepage"
     runs-on: ubuntu-latest
-    services:
-      docker:
-        image: docker:dind-rootless
-        options: --privileged
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock:ro
     container:
-      image: cimg/node:23.6.0
+      image: gcr.io/kaniko-project/executor:latest
     defaults:
       run:
         shell: bash
