@@ -1,0 +1,47 @@
+name: "Docker"
+
+permissions:
+  contents: read
+  packages: write
+
+on:
+  push:
+  #   branches:
+  #     - prod
+  # pull_request:
+  #   branches:
+  #     - prod
+
+jobs:
+  build-homepage:
+    name: "Build homepage"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./apps/homepage
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          docker build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/MorrisLAN/homepage:latest
+
+  push-homepage:
+    name: "Push homepage"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./apps/homepage
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login git.morrislan.net -u ${{ github.actor }} --password-stdin
+
+      - name: Push
+        run: |
+          docker push git.morrislan.net/MorrisLAN/homepage:latest
