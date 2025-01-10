@@ -13,37 +13,38 @@ on:
       - prod
 
 jobs:
-  actions-jobs:
-    name: "Build actions-jobs"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # Doesnt build in ACT runner right now (error running container: error creating new mount namespace)
+  # actions-jobs:
+  #   name: "Build actions-jobs"
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Import Secrets
-        uses: hashicorp/vault-action@v3
-        with:
-          url: https://vault.morrislan.net
-          method: approle
-          roleId: ${{ secrets.VAULT_ROLE_ID }}
-          secretId: ${{ secrets.VAULT_SECRET_ID }}
-          secrets: |
-            secrets/data/gitea ci-docker-token | DOCKER_TOKEN ;
+  #     - name: Import Secrets
+  #       uses: hashicorp/vault-action@v3
+  #       with:
+  #         url: https://vault.morrislan.net
+  #         method: approle
+  #         roleId: ${{ secrets.VAULT_ROLE_ID }}
+  #         secretId: ${{ secrets.VAULT_SECRET_ID }}
+  #         secrets: |
+  #           secrets/data/gitea ci-docker-token | DOCKER_TOKEN ;
 
-      - name: Login to Registry
-        run: echo ${{ env.DOCKER_TOKEN }} | podman login git.morrislan.net --username morrislan-gitea --password-stdin
+  #     - name: Login to Registry
+  #       run: echo ${{ env.DOCKER_TOKEN }} | podman login git.morrislan.net --username morrislan-gitea --password-stdin
 
-      - name: Build
-        run: podman build /workspace/MorrisLAN/morrislan/apps/gitea/actions-jobs-image -t git.morrislan.net/morrislan/actions-jobs:${{ github.sha }}
+  #     - name: Build
+  #       run: podman build /workspace/MorrisLAN/morrislan/apps/gitea/actions-jobs-image -t git.morrislan.net/morrislan/actions-jobs:${{ github.sha }}
 
-      - name: Push
-        run: podman push git.morrislan.net/morrislan/actions-jobs:${{ github.sha }}
+  #     - name: Push
+  #       run: podman push git.morrislan.net/morrislan/actions-jobs:${{ github.sha }}
 
-      - name: Push latest
-        if: github.ref == 'refs/heads/prod'
-        run: |
-          podman tag git.morrislan.net/morrislan/actions-jobs:${{ github.sha }} git.morrislan.net/morrislan/actions-jobs:latest
-          podman push git.morrislan.net/morrislan/actions-jobs:latest
+  #     - name: Push latest
+  #       if: github.ref == 'refs/heads/prod'
+  #       run: |
+  #         podman tag git.morrislan.net/morrislan/actions-jobs:${{ github.sha }} git.morrislan.net/morrislan/actions-jobs:latest
+  #         podman push git.morrislan.net/morrislan/actions-jobs:latest
 
   homepage:
     name: "Build homepage"
