@@ -31,6 +31,9 @@ spec:
             existingSecretKey: runner-mgmt-token
           gitea:
             config:
+              ui:
+                DEFAULT_THEME: auto
+                THEMES: auto
               repository.signing:
                 SIGNING_KEY: 9618C0C6E9D833D1
                 SIGNING_NAME: MorrisLAN Gitea
