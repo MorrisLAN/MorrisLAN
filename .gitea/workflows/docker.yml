@@ -24,7 +24,7 @@ jobs:
         working-directory: ./apps/homepage
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       - name: Import Secrets
         uses: hashicorp/vault-action@v3
         with:
