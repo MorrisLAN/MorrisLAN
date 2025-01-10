@@ -24,9 +24,12 @@ spec:
           - --key=/etc/omni/tls/tls.key
           - --machine-api-cert=/etc/omni/tls/tls.crt
           - --machine-api-key=/etc/omni/tls/tls.key
+          - --bind-addr=0.0.0.0:443
+          - --machine-api-bind-addr=0.0.0.0:8090
+          - --k8s-proxy-bind-addr=0.0.0.0:8100
           - --private-key-source=file:///omni.asc
           - --siderolink-api-advertised-url=https://omni.morrislan.net:8090/
-          - --advertised-kubernetes-proxy-url=https://omni.morrislan.net:8095/
+          - --advertised-kubernetes-proxy-url=https://omni.morrislan.net:8100/
           - --siderolink-wireguard-advertised-addr=206.189.244.103:50180
           - --advertised-api-url=https://omni.morrislan.net/
           - --auth-saml-enabled=true
@@ -43,13 +46,13 @@ spec:
             squat.ai/tun: 1
         ports:
           - name: omni
-            containerPort: 8080
+            containerPort: 443
             protocol: TCP
           - name: siderolink
             containerPort: 8090
             protocol: TCP
           - name: k8s-proxy
-            containerPort: 8095
+            containerPort: 8100
             protocol: TCP
           - name: wireguard
             containerPort: 50180

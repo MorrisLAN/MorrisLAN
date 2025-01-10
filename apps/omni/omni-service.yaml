@@ -14,13 +14,12 @@ spec:
   ports:
     - name: omni
       port: 443
-      targetPort: 8080
       protocol: TCP
     - name: siderolink
       port: 8090
       protocol: TCP
     - name: k8s-proxy
-      port: 8095
+      port: 8100
       protocol: TCP
     - name: wireguard
       port: 50180
