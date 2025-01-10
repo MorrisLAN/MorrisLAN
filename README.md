@@ -7,7 +7,7 @@
 
 🔧 **Technologies in Use:**
 
-- [OneDev](https://onedev.io/) - GitOps/CI platform
+- [Gitea](https://about.gitea.com/) - GitOps/CI platform
 - [Kubernetes (k8s)](https://kubernetes.io/) - workload/container orchestrator
 - [Talos Linux](https://www.talos.dev/) - API-managed OS that is purpose built for running k8s
 - [Omni](https://omni.siderolabs.com/) - centralised machine & cluster management for Talos
