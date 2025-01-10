@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: omni
+  namespace: argocd
+spec:
+  project: default
+  sources:
+     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+       targetRevision: prod
+       path: 'apps/omni'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: omni
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

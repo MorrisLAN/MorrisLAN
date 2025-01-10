@@ -1,0 +1,143 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: GRPC
+    nginx.ingress.kubernetes.io/proxy-body-size: 32m
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+  labels:
+    app: omni
+  name: api
+  namespace: omni
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: omni.morrislan.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: omni-internal-grpc
+            port:
+              number: 8080
+        path: /cosi.resource.State
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /management.ManagementService
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /machine.MachineService
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /cluster.ClusterService
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /inspect.InspectService
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /resource.ResourceService
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /storage.StorageService
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /time.TimeService
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /auth.AuthService
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8080
+        path: /oicd.
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - omni.morrislan.net
+    secretName: omni.morrislan.net-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubernetes-proxy
+  namespace: omni
+  labels:
+   app: omni
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: k8s.morrislan.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: internal
+            port:
+              number: 8095
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - k8s.morrislan.net
+    secretName: k8s.morrislan.net-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: GRPC
+  name: siderolink
+  namespace: omni
+  labels:
+    app: omni
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: siderolink.morrislan.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: internal-grpc
+            port:
+              number: 8090
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - siderolink.morrislan.net
+    secretName: siderolink.morrislan.net-tls
