@@ -11,6 +11,10 @@ spec:
       targetRevision: 10.6.0
       helm:
         valuesObject:
+          extraVolumes:
+            - name: gitea-themes
+              secret:
+                secretName: vault-gitea
           signing:
             enabled: true
             gpgHome: /data/git/.gnupg
@@ -31,6 +35,9 @@ spec:
             existingSecretKey: runner-mgmt-token
           gitea:
             config:
+              ui:
+                DEFAULT_THEME: github-auto
+                THEMES: auto,gitea,arc-green,github,github-dark,github-auto
               repository.signing:
                 SIGNING_KEY: 9618C0C6E9D833D1
                 SIGNING_NAME: MorrisLAN Gitea
