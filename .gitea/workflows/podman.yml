@@ -36,7 +36,7 @@ jobs:
             secrets/data/gitea ci-docker-token | DOCKER_TOKEN ;
 
       - name: Login to Registry
-        run: echo ${{ env.DOCKER_TOKEN }} | podman login git.morrislan.net --username morrislan-gitea --password-stdi
+        run: echo ${{ env.DOCKER_TOKEN }} | podman login git.morrislan.net --username morrislan-gitea --password-stdin
 
       - name: Build
         run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:latest
