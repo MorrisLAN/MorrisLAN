@@ -53,7 +53,7 @@ spec:
                 ENABLE_AUTO_REGISTRATION: true
             admin:
               existingSecret: vault-gitea
-              email: git1@morrislan.net
+              email: git2@morrislan.net
           redis-cluster:
             enabled: false
           postgresql-ha:
