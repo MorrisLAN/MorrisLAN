@@ -24,11 +24,11 @@ spec:
           - --key=/etc/omni/tls/tls.key
           - --private-key-source=file:///omni.asc
           - --etcd-embedded=true
-          - --siderolink-api-advertised-url="https://siderolink.morrislan.net"
-          - --advertised-kubernetes-proxy-url="https://k8s.morrislan.net"
-          - --siderolink-wireguard-advertised-addr="omni.morrislan.net:30180"
+          - --siderolink-api-advertised-url=https://siderolink.morrislan.net
+          - --advertised-kubernetes-proxy-url=https://k8s.morrislan.net
+          - --siderolink-wireguard-advertised-addr=omni.morrislan.net:30180
           - --auth-saml-enabled=true
-          - --auth-saml-url="https://auth.morrislan.net/api/v3/providers/saml/47/metadata/?download"
+          - --auth-saml-url=https://auth.morrislan.net/api/v3/providers/saml/47/metadata/?download
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
