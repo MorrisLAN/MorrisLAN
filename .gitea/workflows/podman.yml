@@ -26,6 +26,8 @@ jobs:
   push-homepage:
     name: "Push homepage"
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/prod'
+    needs: build-homepage
     steps:
       - name: Checkout
         uses: actions/checkout@v4
