@@ -23,7 +23,7 @@ spec:
           - --cert=/etc/omni/tls/tls.crt
           - --key=/etc/omni/tls/tls.key
           - --private-key-source=file:///omni.asc
-          # - --etcd-embedded=true
+          - --etcd-embedded=true
           - --siderolink-api-advertised-url="https://siderolink.morrislan.net"
           - --advertised-kubernetes-proxy-url="https://k8s.morrislan.net"
           - --siderolink-wireguard-advertised-addr="omni.morrislan.net:30180"
