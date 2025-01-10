@@ -15,6 +15,10 @@ spec:
             - name: gitea-themes
               secret:
                 secretName: vault-gitea
+          extraVolumeMounts:
+            - name: gitea-themes
+              readOnly: true
+              mountPath: "/data/gitea/public/assets/css"
           signing:
             enabled: true
             gpgHome: /data/git/.gnupg
