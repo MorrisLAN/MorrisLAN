@@ -45,5 +45,5 @@ patches:
 ---
 kind: ControlPlane
 machineClass:
-  name: desired-prod
+  name: cluster-desired-prod
   size: unlimited
