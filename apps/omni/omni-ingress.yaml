@@ -5,6 +5,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: GRPC
     nginx.ingress.kubernetes.io/proxy-body-size: 32m
     nginx.ingress.kubernetes.io/service-upstream: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
   labels:
     app: omni
   name: api
@@ -88,13 +89,17 @@ spec:
   tls:
   - hosts:
     - omni.morrislan.net
-    secretName: omni.morrislan.net-tls
+    - k8s.morrislan.net
+    - siderolink.morrislan.net
+    secretName: omni-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kubernetes-proxy
   namespace: omni
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
   labels:
    app: omni
 spec:
@@ -112,14 +117,17 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
+    - omni.morrislan.net
     - k8s.morrislan.net
-    secretName: k8s.morrislan.net-tls
+    - siderolink.morrislan.net
+    secretName: omni-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: GRPC
+    cert-manager.io/cluster-issuer: letsencrypt
   name: siderolink
   namespace: omni
   labels:
@@ -139,5 +147,36 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
+    - omni.morrislan.net
+    - k8s.morrislan.net
     - siderolink.morrislan.net
-    secretName: siderolink.morrislan.net-tls
+    secretName: omni-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ui
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  labels:
+    app: omni
+  namespace: omni
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: omni.morrislan.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: internal
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - omni.morrislan.net
+    - k8s.morrislan.net
+    - siderolink.morrislan.net
+    secretName: omni-tls

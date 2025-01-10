@@ -55,16 +55,22 @@ spec:
             containerPort: 50180
             protocol: UDP
         volumeMounts:
-        - name: etcd
+        - name: omni-etcd
           mountPath: /_out
         - name: omni-asc
           mountPath: /omni.asc
           subPath: "omni.asc"
           readOnly: true
+        - name: omni-tls
+          mountPath: /etc/omni/tls
+          readOnly: true
       volumes:
-      - name: etcd
+      - name: omni-etcd
         persistentVolumeClaim:
           claimName: omni-etcd
       - name: omni-asc
         secret:
           secretName: vault-omni
+      - name: omni-tls
+        secret:
+          secretName: omni-tls
