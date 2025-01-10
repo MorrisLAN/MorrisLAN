@@ -1,4 +1,4 @@
-name: "Docker"
+name: "Podman"
 
 permissions:
   contents: read
@@ -17,14 +17,14 @@ jobs:
     name: "Build homepage"
     runs-on: ubuntu-latest
     container:
-      image: buildah/buildah
+      image: cimg/node:23.6.0
     defaults:
       run:
         shell: bash
         working-directory: ./apps/homepage
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Import Secrets
         uses: hashicorp/vault-action@v3
         with:
