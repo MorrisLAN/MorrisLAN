@@ -1,2 +1,2 @@
-FROM docker:25.0.2-dind
+FROM buildah/buildah
 RUN apk add --no-cache nodejs npm curl git bash
