@@ -22,7 +22,7 @@ spec:
           - --name="MorrisLAN Omni"
           - --cert=/etc/omni/tls/tls.crt
           - --key=/etc/omni/tls/tls.key
-          - --private-key-source="file:///omni.asc"
+          - --private-key-source="/omni.asc"
           - --etcd-embedded=true
           - --siderolink-api-advertised-url="https://siderolink.morrislan.net"
           - --advertised-kubernetes-proxy-url="https://k8s.morrislan.net"
