@@ -17,7 +17,7 @@ jobs:
     name: "Build homepage"
     runs-on: ubuntu-latest
     container:
-      image: cimg/node:23.6.0
+      image: git.morrislan.net/morrislan/actions-job-dind:latest
     defaults:
       run:
         shell: bash
