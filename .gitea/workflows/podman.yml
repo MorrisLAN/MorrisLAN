@@ -17,7 +17,7 @@ jobs:
     name: "Build homepage"
     runs-on: ubuntu-latest
     container:
-      image: cimg/node:23.6.0
+      image: git.morrislan.net/morrislan/actions-jobs:latest
     defaults:
       run:
         shell: bash
@@ -42,12 +42,9 @@ jobs:
           username: morrislan-gitea
           password: ${{ env.DOCKER_TOKEN }}
 
-      - name: Buildah Action
-        uses: redhat-actions/buildah-build@v2
-        with:
-          tags: git.morrislan.net/MorrisLAN/homepage:latest
-          containerfiles: |
-            ./apps/homepage/Dockerfile
+      - name: Build
+        run: |
+          podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:latest
 
   push-homepage:
     name: "Push homepage"

@@ -1,4 +1,4 @@
-FROM node:16-bullseye
+FROM docker.io/library/node:16-bullseye
 
 RUN apt-get update && \
     apt-get install -y \
