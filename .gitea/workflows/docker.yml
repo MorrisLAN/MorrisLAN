@@ -25,7 +25,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: curl dind
       - name: Import Secrets
         uses: hashicorp/vault-action@v3
         with:

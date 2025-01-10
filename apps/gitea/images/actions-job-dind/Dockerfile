@@ -1,2 +1,2 @@
 FROM docker:25.0.2-dind
-RUN apk add --no-cache nodejs npm curl git
+RUN apk add --no-cache nodejs npm curl git bash
