@@ -6,11 +6,11 @@ permissions:
 
 on:
   push:
-  #   branches:
-  #     - prod
-  # pull_request:
-  #   branches:
-  #     - prod
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - prod
 
 jobs:
   build-homepage:
@@ -21,12 +21,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build
-        run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:latest
+        run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
 
   push-homepage:
     name: "Push homepage"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/prod'
     needs: build-homepage
     steps:
       - name: Checkout
@@ -46,7 +45,13 @@ jobs:
         run: echo ${{ env.DOCKER_TOKEN }} | podman login git.morrislan.net --username morrislan-gitea --password-stdin
 
       - name: Build
-        run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:latest
+        run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
 
       - name: Push
-        run: podman push git.morrislan.net/morrislan/homepage:latest
+        run: podman push git.morrislan.net/morrislan/homepage:${{ github.sha }}
+
+      - name: Push to latest
+        if: github.ref == 'refs/heads/prod'
+        run: |
+          podman tag git.morrislan.net/morrislan/homepage:${{ github.sha }} git.morrislan.net/morrislan/homepage:latest
+          podman push git.morrislan.net/morrislan/homepage:latest
