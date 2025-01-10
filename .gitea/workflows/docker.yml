@@ -17,7 +17,7 @@ jobs:
     name: "Build homepage"
     runs-on: ubuntu-latest
     container:
-      image: cimg/node:23.6.0
+      image: buildah/buildah
     defaults:
       run:
         shell: bash
