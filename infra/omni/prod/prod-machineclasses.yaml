@@ -1,7 +1,7 @@
 metadata:
   namespace: default
   type: MachineClasses.omni.sidero.dev
-  id: desired-prod
+  id: cluster-desired-prod
 spec:
   matchlabels:
     - cluster-desired = prod
