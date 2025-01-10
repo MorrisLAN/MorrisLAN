@@ -16,6 +16,8 @@ jobs:
   build-homepage:
     name: "Build homepage"
     runs-on: ubuntu-latest
+    container:
+      image: docker:27-dind
     defaults:
       run:
         shell: bash
