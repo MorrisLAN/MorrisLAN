@@ -14,7 +14,6 @@ on:
 
 env:
   OMNI_ENDPOINT: "https://omni.morrislan.net"
-  OMNI_SERVICE_ACCOUNT_KEY: "${{ secrets.OMNI_TOKEN }}"
 
 jobs:
   validate-clusters:
@@ -51,6 +50,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault.morrislan.net
+          method: approle
+          roleId: ${{ secrets.VAULT_ROLE_ID }}
+          secretId: ${{ secrets.VAULT_SECRET_ID }}
+          secrets: |
+            secret/data/omni token | OMNI_SERVICE_ACCOUNT_KEY ;
+
       - name: Get omnictl
         run: |
           wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && 
@@ -74,6 +83,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault.morrislan.net
+          method: approle
+          roleId: ${{ secrets.VAULT_ROLE_ID }}
+          secretId: ${{ secrets.VAULT_SECRET_ID }}
+          secrets: |
+            secret/data/omni token | OMNI_SERVICE_ACCOUNT_KEY ;
 
       - name: Get omnictl
         run: |
