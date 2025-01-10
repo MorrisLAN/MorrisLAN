@@ -5,6 +5,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: GRPC
     nginx.ingress.kubernetes.io/proxy-body-size: 32m
     nginx.ingress.kubernetes.io/service-upstream: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     cert-manager.io/cluster-issuer: letsencrypt
   labels:
     app: omni
@@ -100,6 +101,7 @@ metadata:
   namespace: omni
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
   labels:
    app: omni
 spec:
@@ -127,6 +129,7 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: GRPC
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     cert-manager.io/cluster-issuer: letsencrypt
   name: siderolink
   namespace: omni
@@ -157,6 +160,7 @@ kind: Ingress
 metadata:
   name: ui
   annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     cert-manager.io/cluster-issuer: letsencrypt
   labels:
     app: omni
