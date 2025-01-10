@@ -25,7 +25,7 @@ spec:
           - --machine-api-cert=/etc/omni/tls/tls.crt
           - --machine-api-key=/etc/omni/tls/tls.key
           - --private-key-source=file:///omni.asc
-          - --siderolink-api-advertised-url='https://omni.morrislan.net:8090/'
+          - --siderolink-api-advertised-url=https://omni.morrislan.net:8090/
           - --advertised-kubernetes-proxy-url='https://omni.morrislan.net:8095/'
           - --siderolink-wireguard-advertised-addr=143.198.240.199:50180
           - --advertised-api-url=https://omni.morrislan.net/
