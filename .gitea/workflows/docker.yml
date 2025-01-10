@@ -17,7 +17,7 @@ jobs:
     name: "Build homepage"
     runs-on: ubuntu-latest
     container:
-      image: buildah/buildah
+      image: git.morrislan.net/morrislan/actions-job-dind:latest
     defaults:
       run:
         shell: bash
