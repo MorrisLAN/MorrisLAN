@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: omni-tls
+  namespace: omni
+spec:
+  secretName: omni-tls
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - "omni.morrislan.net"
+  commonName: "omni.morrislan.net"
