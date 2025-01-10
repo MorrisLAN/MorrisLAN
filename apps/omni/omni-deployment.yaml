@@ -27,7 +27,7 @@ spec:
           - --private-key-source=file:///omni.asc
           - --siderolink-api-advertised-url=https://omni.morrislan.net:8090/
           - --advertised-kubernetes-proxy-url=https://omni.morrislan.net:8095/
-          - --siderolink-wireguard-advertised-addr=143.198.240.199:50180
+          - --siderolink-wireguard-advertised-addr=206.189.244.103:50180
           - --advertised-api-url=https://omni.morrislan.net/
           - --auth-saml-enabled=true
           - --auth-saml-url=https://auth.morrislan.net/api/v3/providers/saml/47/metadata/?download
