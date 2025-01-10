@@ -20,8 +20,8 @@ jobs:
       docker:
         image: docker:25.0.2-dind
         options: --privileged
-        ports:
-          - 2375:2375
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock:ro
     container:
       image: cimg/node:23.6.0
     defaults:
