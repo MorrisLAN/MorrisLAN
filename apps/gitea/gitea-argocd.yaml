@@ -40,8 +40,8 @@ spec:
           gitea:
             config:
               ui:
-                DEFAULT_THEME: github-auto
-                THEMES: auto,gitea,arc-green,github,github-dark,github-auto
+                DEFAULT_THEME: palenight
+                THEMES: auto,palenight
               repository.signing:
                 SIGNING_KEY: 9618C0C6E9D833D1
                 SIGNING_NAME: MorrisLAN Gitea
