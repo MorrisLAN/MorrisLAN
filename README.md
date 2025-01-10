@@ -8,6 +8,7 @@
 🔧 **Technologies in Use:**
 
 - [Gitea](https://about.gitea.com/) - GitOps/CI platform
+- [Terraform](https://www.terraform.io/) - IaC tool
 - [Kubernetes (k8s)](https://kubernetes.io/) - workload/container orchestrator
 - [Talos Linux](https://www.talos.dev/) - API-managed OS that is purpose built for running k8s
 - [Omni](https://omni.siderolabs.com/) - centralised machine & cluster management for Talos
