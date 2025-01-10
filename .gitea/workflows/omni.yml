@@ -58,7 +58,7 @@ jobs:
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
-            secret/data/omni token | OMNI_SERVICE_ACCOUNT_KEY ;
+            secrets/data/omni token | OMNI_SERVICE_ACCOUNT_KEY ;
 
       - name: Get omnictl
         run: |
@@ -75,7 +75,9 @@ jobs:
     name: "Sync clusters"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/prod'
-    needs: validate-clusters
+    needs:
+      - validate-clusters
+      - sync-machineclasses
     defaults:
       run:
         shell: bash
@@ -92,7 +94,7 @@ jobs:
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
-            secret/data/omni token | OMNI_SERVICE_ACCOUNT_KEY ;
+            secrets/data/omni token | OMNI_SERVICE_ACCOUNT_KEY ;
 
       - name: Get omnictl
         run: |
