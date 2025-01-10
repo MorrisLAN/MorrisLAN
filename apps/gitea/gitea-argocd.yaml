@@ -25,7 +25,7 @@ spec:
                     enabled: false
                   runner:
                     labels:
-                      - "ubuntu-latest:docker://node:16-bullseye"
+                      - "ubuntu-latest:docker://ubuntu:latest"
             enabled: true
             existingSecret: vault-gitea
             existingSecretKey: runner-mgmt-token
