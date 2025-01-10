@@ -24,7 +24,7 @@ spec:
           - --key=/etc/omni/tls/tls.key
           - --machine-api-cert=/etc/omni/tls/tls.crt
           - --machine-api-key=/etc/omni/tls/tls.key
-          - --bind-addr=0.0.0.0:443
+          - --bind-addr=0.0.0.0:8080
           - --machine-api-bind-addr=0.0.0.0:8090
           - --k8s-proxy-bind-addr=0.0.0.0:8100
           - --private-key-source=file:///omni.asc
@@ -46,7 +46,7 @@ spec:
             squat.ai/tun: 1
         ports:
           - name: omni
-            containerPort: 443
+            containerPort: 8080
             protocol: TCP
           - name: siderolink
             containerPort: 8090
