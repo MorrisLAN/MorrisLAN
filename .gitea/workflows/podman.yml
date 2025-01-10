@@ -13,18 +13,8 @@ on:
       - prod
 
 jobs:
-  build-actions-jobs:
+  actions-jobs:
     name: "Build actions-jobs"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build
-        run: podman build /workspace/MorrisLAN/morrislan/apps/gitea/actions-jobs-image -t git.morrislan.net/morrislan/actions-jobs:${{ github.sha }}
-
-  push-actions-jobs:
-    name: "Push actions-jobs"
     runs-on: ubuntu-latest
     needs: build-actions-jobs
     steps:
@@ -56,18 +46,8 @@ jobs:
           podman tag git.morrislan.net/morrislan/actions-jobs:${{ github.sha }} git.morrislan.net/morrislan/actions-jobs:latest
           podman push git.morrislan.net/morrislan/actions-jobs:latest
 
-  build-homepage:
+  homepage:
     name: "Build homepage"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build
-        run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
-
-  push-homepage:
-    name: "Push homepage"
     runs-on: ubuntu-latest
     needs: build-homepage
     steps:
