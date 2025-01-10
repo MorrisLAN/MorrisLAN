@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       docker:
-        image: docker:25.0.2-dind
+        image: docker:dind-rootless
         options: --privileged
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock:ro
