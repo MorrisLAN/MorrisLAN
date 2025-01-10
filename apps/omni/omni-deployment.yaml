@@ -24,8 +24,7 @@ spec:
           - --key=/tls.key
           - --machine-api-cert=/tls.crt
           - --machine-api-key=/tls.key
-          - --private-key-source='file:///omni.asc'
-          # - --etcd-embedded=true
+          - --private-key-source=file:///omni.asc
           - --siderolink-api-advertised-url=https://siderolink.morrislan.net
           - --advertised-kubernetes-proxy-url=https://k8s.morrislan.net
           - --siderolink-wireguard-advertised-addr=143.198.240.199:30180
