@@ -93,6 +93,4 @@ spec:
   ignoreDifferences:
     - kind: StatefulSet
       jsonPointers:
-        - /metadata/managedFields
-        - /metadata/annotations
-        - /spec/template/metadata/creationTimestamp
+        - /spec/volumeClaimTemplates
