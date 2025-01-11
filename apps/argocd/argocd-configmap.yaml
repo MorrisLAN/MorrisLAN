@@ -35,12 +35,11 @@ metadata:
 data:
   subscriptions: |
     - recipients:
-      - slack_webhook
+      - slack:argocd
       triggers:
-      - on-sync-status-unknown
-      - on-sync-succeeded
-      - on-sync-failed
-      - on-sync-error
+      - on-update-started
+      - on-update-succeeded
+      - on-update-failed
   service.slack: |
     token: <path:secrets/data/argocd#slack-token>
 
