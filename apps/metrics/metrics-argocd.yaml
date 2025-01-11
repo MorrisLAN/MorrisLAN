@@ -37,18 +37,9 @@ spec:
                       requests:
                         storage: 50Gi
 
-    - repoURL: https://grafana.github.io/helm-charts
-      chart: loki-stack
-      targetRevision: 2.10.2
-      helm:
-        valuesObject:
-          image:
-            repository: grafana/loki
-            tag: 2.9.3
-          promtail:
-            config:
-              clients:
-                - url: http://metrics-loki.metrics.svc:3100/loki/api/v1/push
+    - repoURL: https://kubernetes-sigs.github.io/metrics-server/
+      chart: metrics-server
+      targetRevision: 3.12.2
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
