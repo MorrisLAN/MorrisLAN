@@ -42,7 +42,7 @@ data:
       - on-sync-failed
       - on-sync-error
   service.slack: |
-    token: <path:secrets/data/argocd#slack-webhook>
+    token: <path:secrets/data/argocd#slack-token>
 
   # Notification template when an application update starts
   template.app-update-started: |
