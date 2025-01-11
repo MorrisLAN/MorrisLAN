@@ -90,3 +90,8 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
+  ignoreDifferences:
+  - jsonPointers:
+    - /spec/volumeName
+    - /spec/storageClassName
+    kind: PersistentVolumeClaim
