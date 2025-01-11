@@ -1,0 +1,11 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: hoopdev
+  namespace: hoopdev
+spec:
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: hoopdev
+    serviceAccount: hoopdev

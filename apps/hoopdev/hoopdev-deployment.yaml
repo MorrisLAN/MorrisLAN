@@ -22,7 +22,10 @@ spec:
             - name: POSTGRES_USER
               value: "root"
             - name: POSTGRES_PASSWORD
-              value: <path:secrets/data/hoopdev#db-pass>
+              valueFrom:
+                secretKeyRef:
+                  name: vault-hoopdev
+                  key: db-pass
             - name: POSTGRES_DB
               value: "hoopdb"
           ports:
