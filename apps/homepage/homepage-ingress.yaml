@@ -18,7 +18,18 @@ spec:
             name: homepage
             port:
               name: http
+  - host: www.morrislan.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: homepage
+            port:
+              name: http
   tls:
   - hosts:
     - morrislan.net
+    - www.morrislan.net
     secretName: morrislan-net-tls
