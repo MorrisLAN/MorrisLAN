@@ -19,7 +19,7 @@ spec:
         image: ghcr.io/siderolabs/omni:v0.45.1
         args:
           - --account-id='af3f49dd-8319-412f-93a1-3167788527e6'
-          - --name=
+          # - --name=omni
           - --cert=/etc/omni/tls/tls.crt
           - --key=/etc/omni/tls/tls.key
           - --machine-api-cert=/etc/omni/tls/tls.crt
