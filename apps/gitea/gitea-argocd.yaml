@@ -92,8 +92,6 @@ spec:
       - CreateNamespace=true
   ignoreDifferences:
     - kind: StatefulSet
-      group: apps
-      name: gitea-act-runner
       jsonPointers:
         - /metadata/managedFields
         - /metadata/annotations
