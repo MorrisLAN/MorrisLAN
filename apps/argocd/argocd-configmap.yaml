@@ -33,5 +33,38 @@ metadata:
   name: argocd-notifications-cm
   namespace: argocd
 data:
-  service.slack: |
-    token: $slack-token
+  subscriptions: |
+    - recipients:
+      - send_slack
+      triggers:
+      - on-sync-status-unknown
+      - on-sync-succeeded
+      - on-sync-failed
+      - on-sync-error
+  service.webhook.slack_webhook: |
+    url: <path:secrets/data/argocd#slack-webhook>
+    headers:
+    - name: Content-Type
+      value: application/json
+
+  template.send-slack: |
+    webhook:
+      slack_webhook:
+        method: POST
+        body: |
+          {
+            "attachments": [{
+              "title": "{{.app.metadata.name}}",
+              "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "color": "#18be52",
+              "fields": [{
+                "title": "Sync Status",
+                "value": "{{.app.status.sync.status}}",
+                "short": true
+              }, {
+                "title": "Repository",
+                "value": "{{.app.spec.source.repoURL}}",
+                "short": true
+              }]
+            }]
+          }
