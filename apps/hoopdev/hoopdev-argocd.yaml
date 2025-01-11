@@ -1,0 +1,72 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hoopdev
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/hoophq/hoop
+      path: deploy/helm-chart/chart/gateway
+      targetRevision: 1.31.23
+      plugin:
+        env:
+          - name: AVP_TYPE
+            value: vault
+          - name: VAULT_ADDR
+            value: http://vault.vault.svc:8200
+          - name: AVP_AUTH_TYPE
+            value: k8s
+          - name: AVP_K8S_ROLE
+            value: hoopdev
+          - name: HELM_VALUES
+            value: |
+              config:
+                API_URL: "https://hoop.morrislan.net"
+                POSTGRES_DB_URI: "postgres://root:<path:secrets/data/hoopdev#db-pass>@hoopdev-db.hoopdev:5432/hoopdb?sslmode=disable"
+                IDP_ISSUER: "https://auth.morrislan.net/application/o/hoopdev/"
+                IDP_CLIENT_ID: <path:secrets/data/hoopdev#oidc-client-id>
+                IDP_CLIENT_SECRET: <path:secrets/data/hoopdev#oidc-client-secret>
+              ingressApi:
+                enabled: true
+                ingressClassName: nginx
+                host: hoop.morrislan.net
+                annotations:
+                  cert-manager.io/cluster-issuer: "letsencrypt"
+                tls:
+                  - hosts:
+                    - hoop.morrislan.net
+                    secretName: hoopdev-web-tls
+              ingressGrpc:
+                enabled: true
+                ingressClassName: nginx
+                host: hoop-grpc.morrislan.net
+                annotations:
+                  cert-manager.io/cluster-issuer: "letsencrypt"
+                tls:
+                  - hosts:
+                    - hoop-grpc.morrislan.net
+                    secretName: hoopdev-grpc-tls
+              defaultAgent:
+                enabled: true
+              resources:
+                gw:
+                  requests:
+                    memory: "512Mi"
+              persistence:
+                enabled: true
+                storageClassName: "do-block-storage"
+
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: prod
+      path: 'apps/hoopdev'
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hoopdev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
