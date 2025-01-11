@@ -91,6 +91,7 @@ spec:
       - ServerSideApply=true
       - CreateNamespace=true
   ignoreDifferences:
-    - kind: StatefulSet
+    - kind: "*"
+      group: "*"
       jsonPointers:
         - /spec/volumeClaimTemplates
