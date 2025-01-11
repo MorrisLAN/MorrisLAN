@@ -12,6 +12,16 @@ spec:
       helm:
         valuesObject:
           grafana:
+            ingress:
+              enabled: true
+              annotations:
+                cert-manager.io/cluster-issuer: letsencrypt
+              hosts:
+                - metrics.morrislan.net
+              tls:
+                - secretName: metrics-tls
+                  hosts:
+                    - metrics.morrislan.net
             grafana.ini:
               server:
                 root_url: https://metrics.morrislan.net/
