@@ -47,11 +47,6 @@ spec:
                       requests:
                         storage: 50Gi
 
-    - repoURL: https://kubernetes-sigs.github.io/metrics-server/
-      chart: metrics-server
-      targetRevision: 3.12.2
-      helm: {}
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
       path: 'apps/metrics'
