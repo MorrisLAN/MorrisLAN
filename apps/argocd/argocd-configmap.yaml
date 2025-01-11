@@ -55,7 +55,7 @@ data:
           {
             "attachments": [{
               "title": "{{.app.metadata.name}}",
-              "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "title_link": "https://argocd.morrislan.net/applications/{{.app.metadata.name}}",
               "color": "#18be52",
               "fields": [{
                 "title": "Sync Status",
