@@ -63,7 +63,7 @@ data:
                 "short": true
               }, {
                 "title": "Repository",
-                "value": "{{.app.spec.source.repoURL}}",
+                "value": "{{.app.spec.sources.0.repoURL}}",
                 "short": true
               }]
             }]
