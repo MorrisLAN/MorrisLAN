@@ -43,6 +43,7 @@ spec:
                 host: hoop-grpc.morrislan.net
                 annotations:
                   cert-manager.io/cluster-issuer: "letsencrypt"
+                  external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
                 tls:
                   - hosts:
                     - hoop-grpc.morrislan.net
