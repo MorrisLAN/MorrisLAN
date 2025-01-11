@@ -37,7 +37,6 @@ data:
     - recipients:
       - slack:argocd
       triggers:
-      - on-update-succeeded
       - on-update-failed
   service.slack: |
     token: <path:secrets/data/argocd#slack-token>
