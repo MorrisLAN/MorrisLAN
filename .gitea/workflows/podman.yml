@@ -16,7 +16,9 @@ jobs:
   # Doesnt build in ACT runner right now (error running container: error creating new mount namespace)
   # actions-jobs:
   #   name: "Build actions-jobs"
-  #   runs-on: ubuntu-latest
+  #  runs-on: ubuntu-latest
+  #  container:
+  #    image: git.morrislan.net/morrislan/podman-action:latest
   #   steps:
   #     - name: Checkout
   #       uses: actions/checkout@v4
@@ -49,6 +51,8 @@ jobs:
   homepage:
     name: "Build homepage"
     runs-on: ubuntu-latest
+    container:
+      image: git.morrislan.net/morrislan/podman-action:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
