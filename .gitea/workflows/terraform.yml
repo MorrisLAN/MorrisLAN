@@ -37,7 +37,6 @@ jobs:
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
-            secrets/data/tf-cloud token | TF_TOKEN_app_terraform_io ;
             secrets/data/cloudflare token | TF_VAR_cloudflare_token ;
             secrets/data/cloudflare account-id | TF_VAR_cloudflare_account_id ;
             secrets/data/do token | TF_VAR_do_token ;
@@ -85,7 +84,6 @@ jobs:
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
-            secrets/data/tf-cloud token | TF_TOKEN_app_terraform_io ;
             secrets/data/cloudflare token | TF_VAR_cloudflare_token ;
             secrets/data/cloudflare account-id | TF_VAR_cloudflare_account_id ;
             secrets/data/do token | TF_VAR_do_token ;
