@@ -35,7 +35,7 @@ metadata:
 data:
   subscriptions: |
     - recipients:
-      - send_slack
+      - slack_webhook
       triggers:
       - on-sync-status-unknown
       - on-sync-succeeded
