@@ -91,7 +91,8 @@ spec:
       - ServerSideApply=true
       - CreateNamespace=true
   ignoreDifferences:
-  - jsonPointers:
+  - kind: PersistentVolumeClaim
+    jsonPointers:
+    - /spec/metadata
     - /spec/volumeName
     - /spec/storageClassName
-    kind: PersistentVolumeClaim
