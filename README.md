@@ -5,6 +5,9 @@
 ![podman](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/podman.yml/badge.svg?branch=prod)
 ![omni](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/omni.yml/badge.svg?branch=prod)
 
+![argocd](https://argocd.morrislan.net/api/badge?name=argocd&showAppName=true)
+
+
 🔧 **Technologies in Use:**
 
 - [Gitea](https://about.gitea.com/) - GitOps/CI platform
