@@ -1,26 +1,28 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd
-  namespace: argocd
+  name: argo
+  namespace: argo
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    ingress.kubernetes.io/proxy-body-size: 100M
+    ingress.kubernetes.io/app-root: "/"
 spec:
   ingressClassName: nginx
   rules:
-  - host: argocd.morrislan.net
+  - host: argo.morrislan.net
     http:
       paths:
       - path: /
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
-            name: argocd-server
+            name: argo-server
             port:
-              name: https
+              name: web
   tls:
   - hosts:
-    - argocd.morrislan.net
-    secretName: argocd-server-tls # as expected by argocd-server
+    - argo.morrislan.net
+    secretName: argo-tls

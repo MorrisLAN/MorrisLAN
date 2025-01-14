@@ -1,0 +1,11 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: argo-server
+  namespace: argo
+spec:
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: argo-server
+    serviceAccount: argo-server
