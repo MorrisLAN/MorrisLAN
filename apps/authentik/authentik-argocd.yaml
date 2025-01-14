@@ -51,7 +51,7 @@ spec:
                 image:
                   registry: docker.io
                   repository: bitnami/postgresql
-                  tag: 16.4.0
+                  tag: 17.2.0
                 auth:
                   password: <path:secrets/data/authentik#db-pass>
               redis:
