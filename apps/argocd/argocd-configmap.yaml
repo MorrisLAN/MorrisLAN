@@ -33,10 +33,13 @@ metadata:
   name: argocd-notifications-cm
   namespace: argocd
 data:
+  statusbadge.enabled: true
   subscriptions: |
     - recipients:
       - slack:argocd
       triggers:
+      - on-update-started
+      - on-update-succeeded
       - on-update-failed
   service.slack: |
     token: <path:secrets/data/argocd#slack-token>
@@ -113,18 +116,18 @@ data:
         }]
 
   # # Trigger when the application update starts
-  # trigger.on-update-started: |
-  #   - description: Application update has started
-  #     send:
-  #       - app-update-started
-  #     when: app.status.operationState.phase in ['Running', 'InProgress']
+  trigger.on-update-started: |
+    - description: Application update has started
+      send:
+        - app-update-started
+      when: app.status.operationState.phase in ['Running', 'InProgress']
 
   # # Trigger when the application update succeeds
-  # trigger.on-update-succeeded: |
-  #   - description: Application update has succeeded
-  #     send:
-  #       - app-update-succeeded
-  #     when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+  trigger.on-update-succeeded: |
+    - description: Application update has succeeded
+      send:
+        - app-update-succeeded
+      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
 
   # Trigger when the application update fails
   trigger.on-update-failed: |
