@@ -12,6 +12,7 @@ spec:
       helm:
         valuesObject:
           controller:
+            replicaCount: 2
             ingressClassResource:
               default: true
 
