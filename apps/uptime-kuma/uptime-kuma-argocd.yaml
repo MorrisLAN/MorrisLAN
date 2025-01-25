@@ -48,6 +48,7 @@ spec:
                  oidc-issuer-url: "https://auth.morrislan.net/application/o/uptime-kuma/"
                  skip-provider-button: "true"
                  pass-authorization-header: "true" 
+                 upstream: "http://uptime-kuma.uptime-kuma.svc"
                  session-store-type: cookie
                  cookie-refresh: 15m
 
