@@ -17,11 +17,11 @@ spec:
               cert-manager.io/cluster-issuer: letsencrypt
             className: nginx
             hosts:
-              - status.morrislan.net
+              - "uptime.morrislan.net"
             tls:
               enabled: true
               hosts:
-                - host: status.morrislan.net
+                - host: "uptime.morrislan.net"
                   secretName: oneuptime-tls
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
