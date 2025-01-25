@@ -88,3 +88,11 @@ resource "cloudflare_record" "protonmail_verify" {
   allow_overwrite = true
   type            = "TXT"
 }
+
+resource "cloudflare_record" "status" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "status.morrislan.net"
+  content         = "statuspage.betteruptime.com"
+  allow_overwrite = true
+  type            = "CNAME"
+}
