@@ -9,7 +9,19 @@ spec:
     - repoURL: https://helm-chart.oneuptime.com/
       chart: oneuptime
       targetRevision: 7.0.3567
-      helm: {}
+      helm:
+        valuesObject:
+          oneuptimeIngress:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt
+            className: nginx
+            hosts:
+              - status.morrislan.net
+            tls:
+              enabled: true
+              hosts:
+                - status.morrislan.net
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
