@@ -21,7 +21,8 @@ spec:
             tls:
               enabled: true
               hosts:
-                - status.morrislan.net
+                - host: status.morrislan.net
+                  secretName: oneuptime-tls
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: prod
