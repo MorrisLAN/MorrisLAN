@@ -5,13 +5,14 @@ metadata:
   namespace: uptime-kuma
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/rewrite-target: /status/morrislan$1
 spec:
   ingressClassName: nginx
   rules:
   - host: status.morrislan.net
     http:
       paths:
-      - path: /
+      - path: /(.*)
         pathType: Prefix
         backend:
           service:
