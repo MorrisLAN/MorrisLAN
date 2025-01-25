@@ -39,9 +39,6 @@ spec:
                  clientID: "<path:secrets/data/uptime-kuma#oidc-client-id>"
                  clientSecret: "<path:secrets/data/uptime-kuma#oidc-client-secret>"
                  cookieSecret: "<path:secrets/data/uptime-kuma#oidc-cookie-secret>"
-               configFile: |-
-                 email_domains = [ "*" ]
-                 upstreams = [ "http://uptime-kuma.uptime-kuma.svc" ]
                extraArgs:
                  provider: oidc
                  provider-display-name: "authentik"
