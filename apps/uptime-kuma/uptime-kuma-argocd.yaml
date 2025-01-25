@@ -29,12 +29,10 @@ spec:
                    cert-manager.io/cluster-issuer: letsencrypt
                  hosts:
                    - uptime-kuma.morrislan.net
-                   - status.morrislan.net
                  tls:
-                   - secretName: uptime-kuma-tls
+                   - secretName: uptime-kuma-admin-tls
                      hosts:
                        - uptime-kuma.morrislan.net
-                       - status.morrislan.net
                config:
                  clientID: "<path:secrets/data/uptime-kuma#oidc-client-id>"
                  clientSecret: "<path:secrets/data/uptime-kuma#oidc-client-secret>"
