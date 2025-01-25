@@ -45,6 +45,7 @@ spec:
                extraArgs:
                  provider: oidc
                  provider-display-name: "authentik"
+                 provider-issuer-url: "https://auth.morrislan.net/application/o/uptime-kuma/"
                  skip-provider-button: "true"
                  pass-authorization-header: "true" 
                  session-store-type: cookie
