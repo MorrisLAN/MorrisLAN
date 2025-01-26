@@ -20,4 +20,7 @@ resource "digitalocean_kubernetes_node_pool" "mgmt_metrics" {
     value  = "metrics"
     effect = "NoSchedule"
   }
+  labels = {
+    workloadKind  = "metrics"
+  }
 }
