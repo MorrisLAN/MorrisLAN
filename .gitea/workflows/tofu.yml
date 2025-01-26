@@ -1,4 +1,4 @@
-name: "Terraform"
+name: "OpenTofu"
 
 permissions:
   contents: read
@@ -22,7 +22,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./infra/terraform
+        working-directory: ./infra/tofu
     env:
       TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
     steps:
@@ -43,33 +43,33 @@ jobs:
             secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
             secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;      
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
 
       - name: Format Check
         id: fmt-check
-        run: terraform fmt -check
+        run: tofu fmt -check
 
       - name: Initialize
         id: init
-        run: terraform init
+        run: tofu init
 
       - name: Validate
         id: validate
-        run: terraform validate
+        run: tofu validate
 
       - name: Plan
-        run: terraform plan
+        run: tofu plan
 
   apply:
     name: "Apply"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/prod'
-    needs: terraform-plan
+    needs: plan
     defaults:
       run:
         shell: bash
-        working-directory: ./infra/terraform
+        working-directory: ./infra/tofu
     env:
       TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
     steps:
@@ -90,12 +90,12 @@ jobs:
             secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
             secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;      
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
 
       - name: Initialize
         id: init
-        run: terraform init
+        run: tofu init
 
       - name: Apply
-        run: terraform apply -auto-approve
+        run: tofu apply -auto-approve
