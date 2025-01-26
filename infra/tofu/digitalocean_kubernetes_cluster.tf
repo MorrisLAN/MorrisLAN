@@ -11,7 +11,7 @@ resource "digitalocean_kubernetes_cluster" "mgmt" {
 }
 
 resource "digitalocean_kubernetes_node_pool" "mgmt_metrics" {
-  name    = "metrics-node"
+  name       = "metrics-node"
   cluster_id = digitalocean_kubernetes_cluster.mgmt.id
   size       = "s-2vcpu-4gb"
   node_count = 1
