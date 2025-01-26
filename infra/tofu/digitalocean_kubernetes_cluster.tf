@@ -9,3 +9,15 @@ resource "digitalocean_kubernetes_cluster" "mgmt" {
     node_count = 2
   }
 }
+
+resource "digitalocean_kubernetes_node_pool" "mgmt_metrics" {
+  name    = "metrics-node"
+  cluster_id = digitalocean_kubernetes_cluster.mgmt.id
+  size       = "s-2vcpu-4gb"
+  node_count = 1
+  taint {
+    key    = "workloadKind"
+    value  = "metrics"
+    effect = "NoSchedule"
+  }
+}

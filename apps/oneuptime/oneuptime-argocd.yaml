@@ -11,6 +11,20 @@ spec:
       targetRevision: 7.0.3567
       helm:
         valuesObject:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: "workloadKind"
+                        operator: "In"
+                        values:
+                          - "metrics"
+          tolerations:
+            - key: "workloadKind"
+              operator: "Equal"
+              value: "metrics"
+              effect: "NoSchedule"
           oneuptimeIngress:
             enabled: true
             annotations:
