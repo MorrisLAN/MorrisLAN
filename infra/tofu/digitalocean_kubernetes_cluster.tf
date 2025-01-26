@@ -5,7 +5,7 @@ resource "digitalocean_kubernetes_cluster" "mgmt" {
 
   node_pool {
     name       = "mgmt-node"
-    size       = "s-2vcpu-4gb"
+    size       = "s-4vcpu-8gb"
     node_count = 2
   }
 }
