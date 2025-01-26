@@ -13,7 +13,7 @@ resource "digitalocean_kubernetes_cluster" "mgmt" {
 resource "digitalocean_kubernetes_node_pool" "mgmt_metrics" {
   name       = "metrics-node"
   cluster_id = digitalocean_kubernetes_cluster.mgmt.id
-  size       = "s-2vcpu-4gb"
+  size       = "s-4vcpu-8gb"
   node_count = 1
   taint {
     key    = "workloadKind"
