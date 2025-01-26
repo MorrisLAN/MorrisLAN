@@ -11,6 +11,7 @@ spec:
       targetRevision: 7.0.3567
       helm:
         valuesObject:
+          host: "uptime.morrislan.net"
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
