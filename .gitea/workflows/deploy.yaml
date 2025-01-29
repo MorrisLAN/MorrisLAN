@@ -61,7 +61,7 @@ jobs:
         run: tofu plan -out=tfplan
 
       - name: Apply
-        run: tofu apply -auto-approve
+        run: tofu apply -auto-approve tfplan
         if: github.ref == 'refs/heads/main'
 
   omni:

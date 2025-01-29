@@ -13,7 +13,7 @@ on:
       - main
 
 jobs:
-  build-homepage:
+  homepage:
     name: "Build homepage"
     runs-on: ubuntu-latest
     container:
