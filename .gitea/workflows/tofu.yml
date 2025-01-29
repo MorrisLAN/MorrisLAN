@@ -122,7 +122,7 @@ jobs:
             # Debugging: Log the raw reactions response for inspection
             echo "Reactions API response: $REACTIONS"
             
-            if echo "$REACTIONS" | jq -e '.message.reactions[] | select(.name=="white_tick")' > /dev/null 2>&1; then
+            if echo "$REACTIONS" | jq -e '.message.reactions[] | select(.name=="white_check_mark")' > /dev/null 2>&1; then
               echo "Approval received."
               exit 0
             fi
