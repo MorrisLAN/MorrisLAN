@@ -48,7 +48,7 @@ spec:
                  cookie-refresh: 15m
 
      - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-       targetRevision: prod
+       targetRevision: main
        path: 'apps/uptime-kuma'
   destination:
     server: 'https://kubernetes.default.svc'

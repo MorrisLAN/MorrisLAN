@@ -40,7 +40,7 @@ spec:
                   secretName: oneuptime-tls
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/oneuptime'
 
   destination:

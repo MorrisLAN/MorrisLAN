@@ -14,7 +14,7 @@ spec:
           monitoring:
             enabled: true
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/rook-ceph'
   destination:
     server: https://kubernetes.default.svc

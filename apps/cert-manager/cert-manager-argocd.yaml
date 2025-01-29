@@ -16,7 +16,7 @@ spec:
             keep: true
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/cert-manager'
 
   destination:

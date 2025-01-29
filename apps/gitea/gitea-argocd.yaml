@@ -78,7 +78,7 @@ spec:
                   - git.morrislan.net
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/gitea'
   destination:
     name: in-cluster
