@@ -70,9 +70,9 @@ spec:
                         - auth.morrislan.net
                 replicas: 1
                 metrics:
-                  enabled: true
+                  enabled: false
                   serviceMonitor:
-                    enabled: true
+                    enabled: false
               worker:
                 replicas: 1
               prometheus:

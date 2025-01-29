@@ -41,7 +41,7 @@ jobs:
             secrets/data/cloudflare account-id | TF_VAR_cloudflare_account_id ;
             secrets/data/do token | TF_VAR_do_token ;
             secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
-            secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;      
+            secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;
 
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
@@ -59,12 +59,21 @@ jobs:
         run: tofu validate
 
       - name: Plan
-        run: tofu plan
+        id: plan
+        run: tofu plan -out=tfplan
+
+      - name: Send Slack Approval Request
+        uses: slackapi/slack-github-action@v1
+        with:
+          channel-id: "CXXXXXXXX" # Replace with actual Slack channel ID
+          slack-message: "Terraform plan completed. Approve apply? <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Click here>"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
   apply:
     name: "Apply"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/prod'
+    if: github.event_name == 'workflow_dispatch'
     needs: plan
     defaults:
       run:
@@ -88,7 +97,7 @@ jobs:
             secrets/data/cloudflare account-id | TF_VAR_cloudflare_account_id ;
             secrets/data/do token | TF_VAR_do_token ;
             secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
-            secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;      
+            secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;
 
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
