@@ -6,10 +6,10 @@ permissions:
 on:
   push:
     branches:
-      - prod
+      - main
   pull_request:
     branches:
-      - prod
+      - main
 
 env:
   TF_IN_AUTOMATION: "true"
@@ -93,7 +93,6 @@ jobs:
 
       - name: Install jq
         uses: dcarbone/install-jq-action@v3.0.1
-
 
       - name: Request Approval
         id: slack_notify
