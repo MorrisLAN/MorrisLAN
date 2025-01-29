@@ -14,7 +14,7 @@ on:
 
 jobs:
   homepage:
-    name: "Build homepage"
+    name: "homepage"
     runs-on: ubuntu-latest
     container:
       image: git.morrislan.net/morrislan/podman-action:latest
