@@ -43,7 +43,10 @@ jobs:
         run: |
           CHANNEL_ID="C07SE7RT7MG"  # Replace with your Slack channel ID
           MESSAGE_TS=$(jq -r '.ts' <<< '${{ steps.slack_notify.outputs.slack-response }}')
-          
+
+          # Log the timestamp for debugging
+          echo "Message timestamp: $MESSAGE_TS"
+
           echo "Waiting for approval reaction on message timestamp $MESSAGE_TS..."
 
           # Retry loop for reactions
