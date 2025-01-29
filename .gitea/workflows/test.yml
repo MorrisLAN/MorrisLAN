@@ -1,7 +1,9 @@
 name: Require Slack Approval
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - prod
 
 jobs:
   request-approval:
