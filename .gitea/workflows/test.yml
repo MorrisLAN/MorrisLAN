@@ -27,33 +27,8 @@ jobs:
         uses: slackapi/slack-github-action@v1
         with:
           channel-id: "C07SE7RT7MG"
-          payload: |
-            {
-              "text": "Approval required for deployment.\nReact with ✅ to approve.",
-              "attachments": [
-                {
-                  "text": "Deployment request for <${{ github.event.pull_request.html_url }}|PR> by `${{ github.actor }}`",
-                  "color": "#FFA500",
-                  "fields": [
-                    {
-                      "title": "Actions Run",
-                      "value": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Actions run>",
-                      "short": false
-                    },
-                    {
-                      "title": "Commit",
-                      "value": "<${{ github.event.head_commit.url }}|View Commit>",
-                      "short": false
-                    },
-                    {
-                      "title": "Commit Message",
-                      "value": "${{ github.event.head_commit.message }}",
-                      "short": false
-                    }
-                  ]
-                }
-              ]
-            }
+          payload: '{"text": "Approval required for deployment. React with ✅ to approve.", "attachments": [{"text": "Deployment request for <${{ github.event.pull_request.html_url }}|PR> by `${{ github.actor }}`", "color": "#FFA500", "fields": [{"title": "Actions Run", "value": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Actions run>", "short": false}, {"title": "Commit", "value": "<${{ github.event.head_commit.url }}|View Commit>", "short": false}, {"title": "Commit Message", "value": "${{ github.event.head_commit.message }}", "short": false}]}]}'
+
 
 
       - name: Wait for Slack Reaction
