@@ -17,7 +17,7 @@ jobs:
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
-            secrets/data/gitea slack-bot-token | slack_bot_token ;
+            secrets/data/gitea slack-bot-token | SLACK_BOT_TOKEN ;
 
       - name: Send Slack Approval Request
         id: slack_notify
@@ -34,8 +34,6 @@ jobs:
                 }
               ]
             }
-        env:
-          SLACK_BOT_TOKEN: $slack_bot_token
 
   wait-for-approval:
     runs-on: ubuntu-latest
@@ -49,7 +47,7 @@ jobs:
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
-            secrets/data/gitea slack-bot-token | slack_bot_token ;
+            secrets/data/gitea slack-bot-token | SLACK_BOT_TOKEN ;
       - name: Wait for Slack Reaction
         id: wait_for_reaction
         run: |
@@ -59,7 +57,7 @@ jobs:
           echo "Waiting for approval reaction..."
           
           while true; do
-            REACTIONS=$(curl -s -H "Authorization: Bearer $slack_bot_token" \
+            REACTIONS=$(curl -s -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
               -H "Content-Type: application/json" \
               "https://slack.com/api/reactions.get?channel=$CHANNEL_ID&timestamp=$MESSAGE_TS")
 
