@@ -46,14 +46,29 @@ jobs:
           
           echo "Waiting for approval reaction on message timestamp $MESSAGE_TS..."
 
+          # Retry loop for reactions
           while true; do
+            # Fetch reactions from Slack API
             REACTIONS=$(curl -s -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
               -H "Content-Type: application/json" \
               "https://slack.com/api/reactions.get?channel=$CHANNEL_ID&timestamp=$MESSAGE_TS")
 
+            # Debugging: Log the raw reactions response for inspection
+            echo "Reactions API response: $REACTIONS"
+            
+            # Check if the white_check_mark reaction is present
             if echo "$REACTIONS" | jq -e '.message.reactions[] | select(.name=="white_check_mark")' > /dev/null 2>&1; then
               echo "Approval received!"
               exit 0
+            fi
+
+            # Handle Slack API rate limiting (if applicable)
+            ERROR_CODE=$(echo "$REACTIONS" | jq -r '.error')
+            if [ "$ERROR_CODE" == "rate_limited" ]; then
+              RETRY_AFTER=$(echo "$REACTIONS" | jq -r '.retry_after')
+              echo "Rate limited. Sleeping for $RETRY_AFTER seconds..."
+              sleep $RETRY_AFTER
+              continue
             fi
 
             echo "No approval yet. Sleeping for 30s..."
