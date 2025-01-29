@@ -42,15 +42,12 @@ jobs:
         id: wait_for_reaction
         run: |
           CHANNEL_ID="C07SE7RT7MG"  # Replace with your Slack channel ID
-          MESSAGE_RESPONSE="${{ steps.slack_notify.outputs.response }}"
-
-          # Extract the timestamp from the response JSON
-          MESSAGE_TS=$(echo "$MESSAGE_RESPONSE" | jq -r '.ts')
+          MESSAGE_TS="${{ steps.slack_notify.outputs.ts }}"
 
           # Log the timestamp for debugging
           echo "Message timestamp: $MESSAGE_TS"
 
-          if [ "$MESSAGE_TS" == "null" ]; then
+          if [ -z "$MESSAGE_TS" ]; then
             echo "Error: No valid timestamp received."
             exit 1
           fi
