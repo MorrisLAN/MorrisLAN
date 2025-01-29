@@ -6,8 +6,9 @@ on:
       - prod
 
 jobs:
-  request-approval:
+  wait-for-approval:
     runs-on: ubuntu-latest
+    needs: request-approval
     steps:
       - name: Import Secrets
         uses: hashicorp/vault-action@v3
@@ -18,7 +19,7 @@ jobs:
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
             secrets/data/gitea slack-bot-token | SLACK_BOT_TOKEN ;
-
+            
       - name: Send Slack Approval Request
         id: slack_notify
         uses: slackapi/slack-github-action@v1
@@ -35,19 +36,6 @@ jobs:
               ]
             }
 
-  wait-for-approval:
-    runs-on: ubuntu-latest
-    needs: request-approval
-    steps:
-      - name: Import Secrets
-        uses: hashicorp/vault-action@v3
-        with:
-          url: https://vault.morrislan.net
-          method: approle
-          roleId: ${{ secrets.VAULT_ROLE_ID }}
-          secretId: ${{ secrets.VAULT_SECRET_ID }}
-          secrets: |
-            secrets/data/gitea slack-bot-token | SLACK_BOT_TOKEN ;
       - name: Wait for Slack Reaction
         id: wait_for_reaction
         run: |
