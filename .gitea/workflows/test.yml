@@ -32,7 +32,7 @@ jobs:
               "text": "Approval required for deployment.\nReact with ✅ to approve.",
               "attachments": [
                 {
-                  "text": "Deployment request for <https://git.morrislan.net/morrisLAN/morrislan/commit/${{ github.sha }}|${{ github.sha }}> (<https://git.morrislan.net/MorrisLAN/morrislan/actions/runs/${{ github.run_id }}|${{ github.run_id }}>)",
+                  "text": "Deployment request for <https://git.morrislan.net/morrisLAN/morrislan/commit/${{ github.sha }}|${{ github.sha }}> (<https://git.morrislan.net/MorrisLAN/morrislan/actions/runs/${{ github.run_attempt }}|${{ github.run_attempt }}>)",
                   "color": "#FFA500"
                 }
               ]
