@@ -91,6 +91,9 @@ jobs:
             secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;
             secrets/data/gitea slack-bot-token | SLACK_BOT_TOKEN ;
 
+      - name: Install jq
+        uses: dcarbone/install-jq-action@v3.0.1
+
 
       - name: Request Approval
         id: slack_notify
@@ -114,37 +117,22 @@ jobs:
           CHANNEL_ID="C07SE7RT7MG"
           MESSAGE_TS="${{ steps.slack_notify.outputs.ts }}"
 
-          echo "Message timestamp: $MESSAGE_TS"
-
-          if [ -z "$MESSAGE_TS" ]; then
-            echo "Error: No valid timestamp received."
-            exit 1
-          fi
-
-          echo "Waiting for approval reaction on message timestamp $MESSAGE_TS..."
-
           while true; do
             REACTIONS=$(curl -s -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
               -H "Content-Type: application/json" \
               "https://slack.com/api/reactions.get?channel=$CHANNEL_ID&timestamp=$MESSAGE_TS")
 
+            # Debugging: Log the raw reactions response for inspection
             echo "Reactions API response: $REACTIONS"
-
-            if echo "$REACTIONS" | jq -e '.ok' | grep -q false; then
-              echo "Error: Slack API call failed. Response: $REACTIONS"
-              exit 1
-            fi
-
-            if echo "$REACTIONS" | jq -e '.message.reactions[]? | select(.name=="white_check_mark")' > /dev/null 2>&1; then
-              echo "Approval received!"
+            
+            if echo "$REACTIONS" | jq -e '.message.reactions[] | select(.name=="white_check_mark")' > /dev/null 2>&1; then
+              echo "Approval received."
               exit 0
             fi
 
             echo "No approval yet. Sleeping for 30s..."
             sleep 30
-          done
-   
-
+          done    
 
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
