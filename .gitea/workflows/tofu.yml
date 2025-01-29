@@ -62,14 +62,6 @@ jobs:
         id: plan
         run: tofu plan -out=tfplan
 
-      - name: Send Slack Approval Request
-        uses: slackapi/slack-github-action@v1
-        with:
-          channel-id: "CXXXXXXXX" # Replace with actual Slack channel ID
-          slack-message: "Terraform plan completed. Approve apply? <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Click here>"
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-
   apply:
     name: "Apply"
     runs-on: ubuntu-latest
@@ -98,6 +90,62 @@ jobs:
             secrets/data/do token | TF_VAR_do_token ;
             secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
             secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;
+            secrets/data/gitea slack-bot-token | SLACK_BOT_TOKEN ;
+
+
+      - name: Request Approval
+        id: slack_notify
+        uses: slackapi/slack-github-action@v2
+        with:
+          channel-id: "C07SE7RT7MG"
+          payload: |
+            {
+              "text": "Approval required for deployment.\nReact with ✅ to approve.",
+              "attachments": [
+                {
+                  "text": "Deployment request for <${{ github.event.pull_request.html_url }}|PR> by `${{ github.actor }}`",
+                  "color": "#FFA500",
+                  "fields": [
+                    {
+                      "title": "Actions Run",
+                      "value": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Actions run>",
+                      "short": false
+                    },
+                    {
+                      "title": "Commit",
+                      "value": "<${{ github.event.head_commit.url }}|View Commit>",
+                      "short": false
+                    },
+                    {
+                      "title": "Commit Message",
+                      "value": "${{ github.event.head_commit.message }}",
+                      "short": false
+                    }
+                  ]
+                }
+              ]
+            }
+
+      - name: Wait for Approval
+        id: wait_for_reaction
+        run: |
+          CHANNEL_ID="C07SE7RT7MG"
+          MESSAGE_TS="${{ steps.slack_notify.outputs.ts }}"
+
+          while true; do
+            REACTIONS=$(curl -s -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+              -H "Content-Type: application/json" \
+              "https://slack.com/api/reactions.get?channel=$CHANNEL_ID&timestamp=$MESSAGE_TS")
+            
+            if echo "$REACTIONS" | jq -e '.message.reactions[] | select(.name=="white_check_mark")' > /dev/null 2>&1; then
+              echo "Approval received."
+              exit 0
+            fi
+
+            echo "No approval yet. Sleeping for 30s..."
+            sleep 30
+          done
+
 
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
