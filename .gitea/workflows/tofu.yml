@@ -65,7 +65,6 @@ jobs:
   apply:
     name: "Apply"
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
     needs: plan
     defaults:
       run:
