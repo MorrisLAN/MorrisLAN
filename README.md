@@ -1,13 +1,13 @@
 # 🖧 morrislan
 
 ### Infrastructure as Code (IaC) for [my](https://maxmorris.io) personal network/digital infrastructure.
-![build](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/build.yml/badge.svg?branch=main)
-![deploy](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/deploy.yml/badge.svg?branch=main)
+![build](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/build.yaml/badge.svg?branch=main)
+![deploy](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/deploy.yaml/badge.svg?branch=main)
 
 🔧 **Technologies in Use:**
 
 - [Gitea](https://about.gitea.com/) - GitOps/CI platform [![Better Stack Badge](https://uptime.betterstack.com/status-badges/v3/monitor/1r45s.svg)](https://status.morrislan.net)
-- [Terraform](https://www.terraform.io/) - IaC tool
+- [OpenTofu](https://opentofu.org/) - IaC tool
 - [Kubernetes (k8s)](https://kubernetes.io/) - workload/container orchestrator
 - [netbird](https://netbird.io/) - open-source P2P VPN
 - [Talos Linux](https://www.talos.dev/) - API-managed OS that is purpose built for running k8s
