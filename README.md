@@ -1,9 +1,8 @@
 # 🖧 morrislan
 
 ### Infrastructure as Code (IaC) for [my](https://maxmorris.io) personal network/digital infrastructure.
-![terraform](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/terraform.yml/badge.svg?branch=prod)
-![podman](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/podman.yml/badge.svg?branch=prod)
-![omni](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/omni.yml/badge.svg?branch=prod)
+![build](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/build.yml/badge.svg?branch=main)
+![deploy](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/deploy.yml/badge.svg?branch=main)
 
 🔧 **Technologies in Use:**
 
