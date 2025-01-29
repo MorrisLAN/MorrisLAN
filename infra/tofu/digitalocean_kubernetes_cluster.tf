@@ -6,6 +6,6 @@ resource "digitalocean_kubernetes_cluster" "core" {
   node_pool {
     name       = "core-node"
     size       = "s-2vcpu-4gb"
-    node_count = 2
+    node_count = 1
   }
 }
