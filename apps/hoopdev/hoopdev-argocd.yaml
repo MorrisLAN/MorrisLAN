@@ -60,7 +60,7 @@ spec:
                 storageClassName: "do-block-storage"
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/hoopdev'
 
   destination:

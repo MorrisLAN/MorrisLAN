@@ -36,7 +36,7 @@ spec:
             skipTLSVerify: false
             
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/vault'
   destination:
     name: in-cluster

@@ -7,48 +7,12 @@ permissions:
 on:
   push:
     branches:
-      - prod
+      - main
   pull_request:
     branches:
-      - prod
+      - main
 
 jobs:
-  # Doesnt build in ACT runner right now (error running container: error creating new mount namespace)
-  # actions-jobs:
-  #   name: "Build actions-jobs"
-  #  runs-on: ubuntu-latest
-  #  container:
-  #    image: git.morrislan.net/morrislan/podman-action:latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-
-  #     - name: Import Secrets
-  #       uses: hashicorp/vault-action@v3
-  #       with:
-  #         url: https://vault.morrislan.net
-  #         method: approle
-  #         roleId: ${{ secrets.VAULT_ROLE_ID }}
-  #         secretId: ${{ secrets.VAULT_SECRET_ID }}
-  #         secrets: |
-  #           secrets/data/gitea ci-docker-token | DOCKER_TOKEN ;
-
-  #     - name: Login to Registry
-  #       run: echo ${{ env.DOCKER_TOKEN }} | podman login git.morrislan.net --username morrislan-gitea --password-stdin
-
-  #     - name: Build
-  #       run: podman build /workspace/MorrisLAN/morrislan/apps/gitea/actions-jobs-image -t git.morrislan.net/morrislan/actions-jobs:${{ github.sha }}
-
-  #     - name: Push
-  #       if: github.ref == 'refs/heads/prod'
-  #       run: podman push git.morrislan.net/morrislan/actions-jobs:${{ github.sha }}
-
-  #     - name: Push latest
-  #       if: github.ref == 'refs/heads/prod'
-  #       run: |
-  #         podman tag git.morrislan.net/morrislan/actions-jobs:${{ github.sha }} git.morrislan.net/morrislan/actions-jobs:latest
-  #         podman push git.morrislan.net/morrislan/actions-jobs:latest
-
   homepage:
     name: "Build homepage"
     runs-on: ubuntu-latest
@@ -75,11 +39,11 @@ jobs:
         run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
 
       - name: Push
-        if: github.ref == 'refs/heads/prod'
+        if: github.ref == 'refs/heads/main'
         run: podman push git.morrislan.net/morrislan/homepage:${{ github.sha }}
 
       - name: Push latest
-        if: github.ref == 'refs/heads/prod'
+        if: github.ref == 'refs/heads/main'
         run: |
           podman tag git.morrislan.net/morrislan/homepage:${{ github.sha }} git.morrislan.net/morrislan/homepage:latest
           podman push git.morrislan.net/morrislan/homepage:latest

@@ -6,10 +6,10 @@ permissions:
 on:
   push:
     branches:
-      - prod
+      - main
   pull_request:
     branches:
-      - prod
+      - main
 
 env:
   OMNI_ENDPOINT: "https://omni.morrislan.net"
@@ -40,7 +40,7 @@ jobs:
   sync-machineclasses:
     name: "Sync machineclasses"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/prod'
+    if: github.ref == 'refs/heads/main'
     defaults:
       run:
         shell: bash
@@ -73,7 +73,7 @@ jobs:
   sync-clusters:
     name: "Sync clusters"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/prod'
+    if: github.ref == 'refs/heads/main'
     needs:
       - validate-clusters
       - sync-machineclasses

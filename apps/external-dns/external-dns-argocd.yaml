@@ -23,7 +23,7 @@ spec:
            - --cloudflare-proxied
            
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/external-dns'
 
   destination:

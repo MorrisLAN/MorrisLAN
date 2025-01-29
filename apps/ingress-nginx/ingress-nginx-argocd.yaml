@@ -17,7 +17,7 @@ spec:
               default: true
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/ingress-nginx'
 
   destination:

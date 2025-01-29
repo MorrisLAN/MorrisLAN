@@ -34,7 +34,7 @@ spec:
                         token: "<path:secrets/data/betterstack#mgmt-source-token>"
 
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-      targetRevision: prod
+      targetRevision: main
       path: 'apps/metrics/mgmt'
   destination:
     server: https://kubernetes.default.svc
