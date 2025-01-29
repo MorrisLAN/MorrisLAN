@@ -9,6 +9,8 @@ jobs:
   wait-for-approval:
     runs-on: ubuntu-latest
     steps:
+      - name: Install JQ
+        uses: dcarbone/install-jq-action@v3.0.1
       - name: Import Secrets
         uses: hashicorp/vault-action@v3
         with:
@@ -39,7 +41,7 @@ jobs:
         id: wait_for_reaction
         run: |
           CHANNEL_ID="C07SE7RT7MG"  # Replace with your Slack channel ID
-          MESSAGE_TS=$(echo '${{ steps.slack_notify.outputs.slack-response }}' | grep -oP '"ts":"\K[^"]*')
+          MESSAGE_TS=$(jq -r '.message.ts' <<< '${{ steps.slack_notify.outputs.slack-response }}')
           
           echo "Waiting for approval reaction..."
           
@@ -48,7 +50,7 @@ jobs:
               -H "Content-Type: application/json" \
               "https://slack.com/api/reactions.get?channel=$CHANNEL_ID&timestamp=$MESSAGE_TS")
 
-            if echo "$REACTIONS" | grep -q '"name":"white_check_mark"'; then
+            if echo "$REACTIONS" | jq -e '.message.reactions[] | select(.name=="white_check_mark")' > /dev/null 2>&1; then
               echo "Approval received!"
               exit 0
             fi
