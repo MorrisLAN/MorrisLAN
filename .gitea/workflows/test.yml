@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Install JQ
         uses: dcarbone/install-jq-action@v3.0.1
+
       - name: Import Secrets
         uses: hashicorp/vault-action@v3
         with:
@@ -41,10 +42,10 @@ jobs:
         id: wait_for_reaction
         run: |
           CHANNEL_ID="C07SE7RT7MG"  # Replace with your Slack channel ID
-          MESSAGE_TS=$(jq -r '.message.ts' <<< '${{ steps.slack_notify.outputs.slack-response }}')
+          MESSAGE_TS=$(jq -r '.ts' <<< '${{ steps.slack_notify.outputs.slack-response }}')
           
-          echo "Waiting for approval reaction..."
-          
+          echo "Waiting for approval reaction on message timestamp $MESSAGE_TS..."
+
           while true; do
             REACTIONS=$(curl -s -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
               -H "Content-Type: application/json" \
