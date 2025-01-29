@@ -24,7 +24,7 @@ jobs:
 
       - name: Request Approval
         id: slack_notify
-        uses: slackapi/slack-github-action@v2
+        uses: slackapi/slack-github-action@v1
         with:
           channel-id: "C07SE7RT7MG"
           payload: |
