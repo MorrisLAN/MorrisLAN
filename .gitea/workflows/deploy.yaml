@@ -1,4 +1,4 @@
-name: "OpenTofu"
+name: "Deploy"
 
 permissions:
   contents: read
@@ -11,19 +11,17 @@ on:
     branches:
       - main
 
-env:
-  TF_IN_AUTOMATION: "true"
-  TF_INPUT: "false"
-
 jobs:
-  plan:
-    name: "Plan"
+  tofu:
+    name: "OpenTofu"
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
         working-directory: ./infra/tofu
     env:
+      TF_IN_AUTOMATION: "true"
+      TF_INPUT: "false"
       TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
     steps:
       - name: Checkout
@@ -41,7 +39,7 @@ jobs:
             secrets/data/cloudflare account-id | TF_VAR_cloudflare_account_id ;
             secrets/data/do token | TF_VAR_do_token ;
             secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
-            secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;
+            secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;            
 
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
@@ -62,16 +60,19 @@ jobs:
         id: plan
         run: tofu plan -out=tfplan
 
-  apply:
-    name: "Apply"
+      - name: Apply
+        run: tofu apply -auto-approve tfplan
+        if: github.ref == 'refs/heads/main'
+
+  omni:
+    name: "Omni"
     runs-on: ubuntu-latest
-    needs: plan
     defaults:
       run:
         shell: bash
-        working-directory: ./infra/tofu
+        working-directory: ./infra/omni
     env:
-      TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
+      OMNI_ENDPOINT: "https://omni.morrislan.net"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -84,18 +85,29 @@ jobs:
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
-            secrets/data/cloudflare token | TF_VAR_cloudflare_token ;
-            secrets/data/cloudflare account-id | TF_VAR_cloudflare_account_id ;
-            secrets/data/do token | TF_VAR_do_token ;
-            secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
-            secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;
+            secrets/data/omni token | OMNI_SERVICE_ACCOUNT_KEY ;            
 
-      - name: Setup OpenTofu
-        uses: opentofu/setup-opentofu@v1
+      - name: Get omnictl
+        run: |
+          wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && 
+          chmod +x omnictl          
 
-      - name: Initialize
-        id: init
-        run: tofu init
+      - name: Validate clusters
+        run: |
+          find . -type f -name '*-cluster.yaml' | while read -r cluster; do
+            ./omnictl cluster template validate -f "$cluster"
+          done          
 
-      - name: Apply
-        run: tofu apply -auto-approve
+      - name: Sync machineclasses
+        run: |
+          find . -type f -name '*-machineclasses.yaml' | while read -r file; do
+            ./omnictl apply -f "$file"
+          done          
+        if: github.ref == 'refs/heads/main'
+
+      - name: Sync clusters
+        run: |
+          find . -type f -name '*-cluster.yaml' | while read -r cluster; do
+            ./omnictl cluster template sync -f "$cluster"
+          done          
+        if: github.ref == 'refs/heads/main'
