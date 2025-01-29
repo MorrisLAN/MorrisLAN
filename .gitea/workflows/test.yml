@@ -29,7 +29,7 @@ jobs:
           channel-id: "C07SE7RT7MG"
           payload: |
             {
-              "text": "Approval required for deployment.\nReact with ✅ to approve.",
+              "text": "Approval required for ${{ github.workflow }}/${{ github.job }}.\nReact with ✅ to approve.",
               "attachments": [
                 {
                   "text": "Deployment request for <https://git.morrislan.net/morrisLAN/morrislan/commit/${{ github.sha }}|${{ github.sha }}> (<https://git.morrislan.net/MorrisLAN/morrislan/actions/runs/${{ github.run_number }}|${{ github.run_number }}>)",
