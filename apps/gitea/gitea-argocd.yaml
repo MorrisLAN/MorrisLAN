@@ -47,7 +47,7 @@ spec:
                 REQUIRE_SIGNIN_VIEW: false
                 SHOW_REGISTRATION_BUTTON: false
               openid:
-                ENABLE_OPENID_SIGNIN: false
+                ENABLE_OPENID_SIGNIN: true
                 ENABLE_OPENID_SIGNUP: true
               oauth2_client:
                 ENABLE_AUTO_REGISTRATION: true
