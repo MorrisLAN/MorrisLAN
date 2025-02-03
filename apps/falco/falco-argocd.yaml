@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://falcosecurity.github.io/charts
       chart: falco
-      targetRevision: 4.17.0
+      targetRevision: 4.19.0
       plugin:
         env:
           - name: AVP_TYPE
