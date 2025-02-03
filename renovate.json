@@ -11,9 +11,7 @@
         "pin",
         "digest"
       ],
-      "automerge": true,
-      "automergeType": "branch",
-      "automergeStrategy": "auto"
+      "automerge": false
     }
   ],
   "argocd": {
@@ -27,16 +25,5 @@
   },
   "github-actions": {
     "fileMatch": [".gitea/workflows/.*\\.yaml$"]
-  },
-  "prConcurrentLimit": 0,
-  "branchConcurrentLimit": 0,
-  "labels": ["renovate"],
-  "onboarding": false,
-  "requireConfig": "ignored",
-  "platformAutomerge": true,
-  "automerge": true,
-  "automergeType": "branch",
-  "prCreation": "not-pending",
-  "rebaseWhen": "auto",
-  "updateLockFiles": true
+  }
 }
