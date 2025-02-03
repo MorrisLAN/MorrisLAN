@@ -15,5 +15,14 @@
   ],
   "argocd": {
     "fileMatch": ["apps/.+-argocd\\.yaml$"]
+  },
+  "terraform": {
+    "fileMatch": ["infra/tofu/.*\\.tf$"]
+  },
+  "kubernetes": {
+    "fileMatch": ["apps/.*\\.yaml$"]
+  },
+  "githubActions": {
+    "fileMatch": [".gitea/workflows/.*\\.yaml$"]
   }
 }
