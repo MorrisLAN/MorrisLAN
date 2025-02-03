@@ -12,5 +12,8 @@
       ],
       "automerge": false
     }
-  ]
+  ],
+  "argocd": {
+    "fileMatch": ["apps/.+-argocd\\.yaml$"]
+  }
 }
