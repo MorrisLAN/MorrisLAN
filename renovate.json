@@ -11,7 +11,7 @@
         "pin",
         "digest"
       ],
-      "automerge": false
+      "automerge": true
     }
   ],
   "argocd": {
