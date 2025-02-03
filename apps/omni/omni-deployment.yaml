@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: omni
-        image: ghcr.io/siderolabs/omni:v0.45.1
+        image: ghcr.io/siderolabs/omni:v0.46.1
         args:
           - --account-id='af3f49dd-8319-412f-93a1-3167788527e6'
           - --name=omni
