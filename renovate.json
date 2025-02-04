@@ -14,8 +14,8 @@
       "automerge": true
     }
   ],
-  "automergeStrategy": "rebase", 
-  "rebaseWhen": "always",
+  "automergeStrategy": "merge-commit", 
+  "rebaseWhen": "auto",
   "argocd": {
     "fileMatch": ["apps/.+-argocd\\.yaml$"]
   },
