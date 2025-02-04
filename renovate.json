@@ -15,15 +15,18 @@
     }
   ],
   "argocd": {
-    "fileMatch": ["apps/.+-argocd\\.yaml$"]
+    "fileMatch": ["apps/.+/[^/]+-argocd\\.yaml$"]
   },
   "terraform": {
     "fileMatch": ["infra/tofu/.*\\.tf$"]
   },
   "kubernetes": {
-    "fileMatch": ["apps/.*\\.yaml$"]
+    "fileMatch": ["apps/.+/.+\\.yaml$"]
   },
   "github-actions": {
     "fileMatch": [".gitea/workflows/.*\\.yaml$"]
+  },
+  "dockerfile": {
+    "fileMatch": ["apps/.+/Dockerfile"]
   }
 }
