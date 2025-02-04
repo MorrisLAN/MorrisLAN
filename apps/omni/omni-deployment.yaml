@@ -6,6 +6,8 @@ metadata:
   labels:
     app: omni
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: omni
