@@ -15,13 +15,13 @@ data:
       - CiliumIdentity
       clusters:
       - "*"
-  url: https://argocd.morrislan.net
+  url: https://argocd-core.morrislan.net
   timeout.reconciliation: 45s
   oidc.config: |
     name: authentik
-    issuer: https://auth.morrislan.net/application/o/argocd/
-    clientID: <path:secrets/data/argocd#oidc-client-id>
-    clientSecret: <path:secrets/data/argocd#oidc-client-secret>
+    issuer: https://auth.morrislan.net/application/o/argocd-core/
+    clientID: <path:secrets/data/argocd/core#oidc-client-id>
+    clientSecret: <path:secrets/data/argocd/core#oidc-client-secret>
     requestedScopes: ["openid", "profile", "email", "groups"]
 ---
 apiVersion: v1
