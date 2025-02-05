@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: cloudflared
-        image: cloudflare/cloudflared:2025.1.1
+        image: cloudflare/cloudflared:2025.2.0
         args:
           - tunnel
           - run
@@ -23,4 +23,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: tunnels
-              key: prod
+              key: uk-brs-1

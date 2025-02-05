@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rook-ceph-cluster-htzn-fsn1
+  name: rook-ceph-cluster-uk-brs-1-prod
   namespace: argocd
 spec:
   project: default
   sources:
     - repoURL: https://charts.rook.io/release
       chart: rook-ceph-cluster
-      targetRevision: v1.16.2
+      targetRevision: v1.16.3
       helm:
         valuesObject:
-          clusterName: rook-ceph-cluster-htzn-fsn1
+          clusterName: rook-ceph-cluster-uk-brs-1-prod
           monitoring:
             enabled: true
             createPrometheusRules: true
@@ -23,6 +23,11 @@ spec:
             storage:
               useAllNodes: true
               useAllDevices: true
+
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: main
+      path: 'apps/rook-ceph/uk-brs-1-prod'
+
   destination:
     server: https://kubernetes.default.svc
     namespace: rook-ceph
