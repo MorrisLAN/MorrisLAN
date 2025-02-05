@@ -45,11 +45,6 @@ patches:
        sysctls:
          user.max_user_namespaces: "10000"
 
-  - name: pxe-install-fix
-    inline:
-      machine:
-        install:
-          disk: /dev/sda
 ---
 kind: ControlPlane
 machineClass:
