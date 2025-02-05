@@ -2,10 +2,10 @@ kind: Cluster
 name: uk-brs-1-prod
 labels:
   region: uk-brs-1
-kubernetes:
-  version: v1.30.8
 talos:
-  version: v1.9.1
+  version: v1.9.3
+kubernetes:
+  version: v1.32.1
 features:
   enableWorkloadProxy: true
   useEmbeddedDiscoveryService: true
