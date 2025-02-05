@@ -1,5 +1,5 @@
 kind: Cluster
-name: prod
+name: uk-brs-1-prod
 kubernetes:
   version: v1.30.8
 talos:
@@ -45,5 +45,5 @@ patches:
 ---
 kind: ControlPlane
 machineClass:
-  name: cluster-desired-prod
+  name: cluster-desired-uk-brs-1-prod
   size: unlimited
