@@ -10,7 +10,7 @@ spec:
       targetRevision: main
       path: 'apps/netbird/routers/uk-brs-1-prod'
   destination:
-    name: uk-brs-1-prod
+    server: https://kubernetes.default.svc
     namespace: netbird
   syncPolicy:
     automated:
