@@ -81,7 +81,7 @@ spec:
       targetRevision: main
       path: 'apps/gitea'
   destination:
-    name: in-cluster
+    server: https://kubernetes.default.svc
     namespace: gitea
   syncPolicy:
     automated:

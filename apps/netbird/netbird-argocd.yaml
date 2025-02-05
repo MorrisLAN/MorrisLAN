@@ -10,7 +10,7 @@ spec:
       targetRevision: main
       path: 'apps/netbird'
   destination:
-    name: in-cluster
+    server: https://kubernetes.default.svc
     namespace: netbird
   syncPolicy:
     automated:
