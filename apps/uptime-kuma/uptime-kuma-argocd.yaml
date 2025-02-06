@@ -8,7 +8,7 @@ spec:
   sources:
      - repoURL: https://oauth2-proxy.github.io/manifests
        chart: oauth2-proxy
-       targetRevision: 7.10.3
+       targetRevision: 7.10.4
        plugin:
          env:
            - name: AVP_TYPE
