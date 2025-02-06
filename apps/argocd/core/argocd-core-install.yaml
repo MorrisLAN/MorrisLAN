@@ -21718,7 +21718,7 @@ spec:
               key: applicationsetcontroller.enable.scm.providers
               name: argocd-cmd-params-cm
               optional: true
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         imagePullPolicy: Always
         name: argocd-applicationset-controller
         ports:
@@ -21841,7 +21841,7 @@ spec:
         - -n
         - /usr/local/bin/argocd
         - /shared/argocd-dex
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         imagePullPolicy: Always
         name: copyutil
         securityContext:
@@ -21923,7 +21923,7 @@ spec:
               key: notificationscontroller.selfservice.enabled
               name: argocd-cmd-params-cm
               optional: true
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         imagePullPolicy: Always
         livenessProbe:
           tcpSocket:
@@ -22023,7 +22023,7 @@ spec:
         - argocd
         - admin
         - redis-initial-password
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         imagePullPolicy: IfNotPresent
         name: secret-init
         securityContext:
@@ -22276,7 +22276,7 @@ spec:
           value: /helm-working-dir
         - name: HELM_DATA_HOME
           value: /helm-working-dir
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
@@ -22325,7 +22325,7 @@ spec:
 
       - name: avp
         command: [/var/run/argocd/argocd-cmp-server]
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
@@ -22349,7 +22349,7 @@ spec:
 
       - name: avp-helm
         command: [/var/run/argocd/argocd-cmp-server]
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
@@ -22391,7 +22391,7 @@ spec:
         - -n
         - /usr/local/bin/argocd
         - /var/run/argocd/argocd-cmp-server
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         name: copyutil
         securityContext:
           allowPrivilegeEscalation: false
@@ -22718,7 +22718,7 @@ spec:
               key: server.api.content.types
               name: argocd-cmd-params-cm
               optional: true
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -23017,7 +23017,7 @@ spec:
               key: controller.ignore.normalizer.jq.timeout
               name: argocd-cmd-params-cm
               optional: true
-        image: quay.io/argoproj/argocd:v2.14.1
+        image: quay.io/argoproj/argocd:v2.14.2
         imagePullPolicy: Always
         name: argocd-application-controller
         ports:
