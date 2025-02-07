@@ -21,9 +21,13 @@ jobs:
       image: git.morrislan.net/morrislan/podman-action:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4            
+
+      - name: Build
+        run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
 
       - name: Import Secrets
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
         uses: hashicorp/vault-action@v3
         with:
           url: https://vault.morrislan.net
@@ -31,10 +35,7 @@ jobs:
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
-            secrets/data/gitea ci-docker-token | DOCKER_TOKEN ;            
-
-      - name: Build
-        run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
+            secrets/data/gitea ci-docker-token | DOCKER_TOKEN ;
 
       - name: Login to Registry
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
