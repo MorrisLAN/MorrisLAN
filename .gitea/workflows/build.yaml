@@ -33,11 +33,12 @@ jobs:
           secrets: |
             secrets/data/gitea ci-docker-token | DOCKER_TOKEN ;            
 
-      - name: Login to Registry
-        run: echo ${{ env.DOCKER_TOKEN }} | podman login git.morrislan.net --username morrislan-gitea --password-stdin
-
       - name: Build
         run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
+
+      - name: Login to Registry
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+        run: echo ${{ env.DOCKER_TOKEN }} | podman login git.morrislan.net --username morrislan-gitea --password-stdin
 
       - name: Push dev
         if: github.ref == 'refs/heads/dev'
