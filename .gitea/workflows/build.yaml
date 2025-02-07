@@ -39,8 +39,11 @@ jobs:
       - name: Build
         run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
 
-      - name: Push
-        run: podman push git.morrislan.net/morrislan/homepage:${{ github.sha }}
+      - name: Push dev
+        if: github.ref == 'refs/heads/dev'
+        run:  |
+          podman tag git.morrislan.net/morrislan/homepage:${{ github.sha }} git.morrislan.net/morrislan/homepage:dev
+          podman push git.morrislan.net/morrislan/homepage:dev
 
       - name: Push latest
         if: github.ref == 'refs/heads/main'
