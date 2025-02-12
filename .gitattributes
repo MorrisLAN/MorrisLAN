@@ -1,3 +1,6 @@
+*.yml linguist-detectable
+*.yaml linguist-detectable
+*.json linguist-detectable
 *.yml linguist-language=YAML
 *.yaml linguist-language=YAML
 *.json linguist-language=JSON
