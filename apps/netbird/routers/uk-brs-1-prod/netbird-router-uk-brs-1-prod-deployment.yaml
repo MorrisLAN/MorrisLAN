@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: netbird
-          image: netbirdio/netbird:0.36.5
+          image: netbirdio/netbird:0.36.6
           env:
             - name: NB_MANAGEMENT_URL
               value: "https://vpn.morrislan.net:33073"

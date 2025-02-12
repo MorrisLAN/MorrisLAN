@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://helm-chart.oneuptime.com/
       chart: oneuptime
-      targetRevision: 7.0.3621
+      targetRevision: 7.0.3655
       helm:
         valuesObject:
           host: "uptime.morrislan.net"
