@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://github.com/hoophq/hoop
       path: deploy/helm-chart/chart/gateway
-      targetRevision: 1.32.3
+      targetRevision: 1.32.4
       plugin:
         env:
           - name: AVP_TYPE
