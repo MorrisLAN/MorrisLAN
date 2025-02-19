@@ -46,6 +46,7 @@ jobs:
             secrets/data/cloudflare token | TF_VAR_cloudflare_token ;
             secrets/data/cloudflare account-id | TF_VAR_cloudflare_account_id ;
             secrets/data/do token | TF_VAR_do_token ;
+            secrets/data/vultr token | TF_VAR_vultr_token ;
             secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
             secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;
 
