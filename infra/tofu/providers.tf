@@ -3,6 +3,9 @@ terraform {
     cloudflare = {
       source = "cloudflare/cloudflare"
     }
+    vultr = {
+      source = "vultr/vultr"
+    }
     digitalocean = {
       source = "digitalocean/digitalocean"
     }
@@ -17,6 +20,10 @@ terraform {
 
 provider "cloudflare" {
   api_token = var.cloudflare_token
+}
+
+provider "vultr" {
+  api_key = var.vultr_token
 }
 
 provider "digitalocean" {
