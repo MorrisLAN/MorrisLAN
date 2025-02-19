@@ -24,7 +24,7 @@ provider "cloudflare" {
 
 provider "vultr" {
   api_key = var.vultr_token
-}  
+}
 
 provider "digitalocean" {
   token = var.do_token
