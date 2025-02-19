@@ -15,6 +15,12 @@ variable "cloudflare_zone_id" {
   type        = string
 }
 
+variable "vultr_token" {
+  description = "Vultr API Token"
+  type        = string
+  sensitive   = true
+}
+
 variable "do_token" {
   description = "DigitalOcean API Token"
   type        = string
