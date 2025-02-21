@@ -9,7 +9,6 @@ spec:
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/cloudflare-access'
-
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cloudflare-access

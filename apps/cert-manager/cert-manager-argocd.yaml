@@ -14,11 +14,9 @@ spec:
           crds:
             enabled: true
             keep: true
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/cert-manager'
-
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager

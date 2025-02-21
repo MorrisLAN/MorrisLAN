@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://helm-chart.oneuptime.com/
       chart: oneuptime
-      targetRevision: 7.0.3669
+      targetRevision: 7.0.3684
       helm:
         valuesObject:
           host: "uptime.morrislan.net"
@@ -38,11 +38,9 @@ spec:
               hosts:
                 - host: "uptime.morrislan.net"
                   secretName: oneuptime-tls
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/oneuptime'
-
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: oneuptime

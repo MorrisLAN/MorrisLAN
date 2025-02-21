@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://github.com/hoophq/hoop
       path: deploy/helm-chart/chart/gateway
-      targetRevision: 1.32.4
+      targetRevision: 1.32.6
       plugin:
         env:
           - name: AVP_TYPE
@@ -58,11 +58,9 @@ spec:
               persistence:
                 enabled: true
                 storageClassName: "do-block-storage"
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/hoopdev'
-
   destination:
     server: https://kubernetes.default.svc
     namespace: hoopdev

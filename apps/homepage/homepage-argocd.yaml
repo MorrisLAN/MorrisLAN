@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   sources:
-     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-       targetRevision: main
-       path: 'apps/homepage'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: main
+      path: 'apps/homepage'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: homepage
