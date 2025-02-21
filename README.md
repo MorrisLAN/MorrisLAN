@@ -3,6 +3,7 @@
 ### Infrastructure as Code (IaC) for [my](https://maxmorris.io) personal network/digital infrastructure.
 ![build](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/build.yaml/badge.svg?branch=main)
 ![deploy](https://git.morrislan.net/MorrisLAN/morrislan/actions/workflows/deploy.yaml/badge.svg?branch=main)
+![argocd](https://argocd.morrislan.net/api/badge?project=default&revision=true)
 
 🔧 **Key Technologies:**
 
