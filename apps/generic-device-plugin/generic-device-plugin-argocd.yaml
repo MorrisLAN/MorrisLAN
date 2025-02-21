@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   sources:
-     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
-       targetRevision: main
-       path: 'apps/generic-device-plugin'
+    - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
+      targetRevision: main
+      path: 'apps/generic-device-plugin'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kube-system

@@ -38,11 +38,9 @@ spec:
               hosts:
                 - host: "uptime.morrislan.net"
                   secretName: oneuptime-tls
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/oneuptime'
-
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: oneuptime

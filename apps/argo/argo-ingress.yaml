@@ -12,17 +12,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: argo.morrislan.net
-    http:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: argo-server
-            port:
-              name: web
+    - host: argo.morrislan.net
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: argo-server
+                port:
+                  name: web
   tls:
-  - hosts:
-    - argo.morrislan.net
-    secretName: argo-tls
+    - hosts:
+        - argo.morrislan.net
+      secretName: argo-tls

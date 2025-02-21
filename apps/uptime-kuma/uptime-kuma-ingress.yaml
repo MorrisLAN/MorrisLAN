@@ -9,17 +9,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: status.morrislan.net
-    http:
-      paths:
-      - path: /(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: uptime-kuma
-            port:
-              number: 80
+    - host: status.morrislan.net
+      http:
+        paths:
+          - path: /(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: uptime-kuma
+                port:
+                  number: 80
   tls:
-  - hosts:
-    - status.morrislan.net
-    secretName: uptime-kuma-tls
+    - hosts:
+        - status.morrislan.net
+      secretName: uptime-kuma-tls

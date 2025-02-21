@@ -58,11 +58,9 @@ spec:
               persistence:
                 enabled: true
                 storageClassName: "do-block-storage"
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/hoopdev'
-
   destination:
     server: https://kubernetes.default.svc
     namespace: hoopdev

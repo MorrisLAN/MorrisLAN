@@ -25,10 +25,10 @@ patches:
               configuration:
                 exemptions:
                   namespaces:
-                  - rook-ceph
-                  - metrics
-                  - node-feature-discovery
-                  - falco
+                    - rook-ceph
+                    - metrics
+                    - node-feature-discovery
+                    - falco
   - name: kubelet-serving-cert-approver
     inline:
       cluster:
@@ -38,13 +38,11 @@ patches:
         kubelet:
           extraArgs:
             rotate-server-certificates: true
-
   - name: podman-fix
     inline:
       machine:
-       sysctls:
-         user.max_user_namespaces: "10000"
-
+        sysctls:
+          user.max_user_namespaces: "10000"
 ---
 kind: ControlPlane
 machineClass:

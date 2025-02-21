@@ -10,17 +10,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: argocd.morrislan.net
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server
-            port:
-              name: https
+    - host: argocd.morrislan.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  name: https
   tls:
-  - hosts:
-    - argocd.morrislan.net
-    secretName: argocd-server-tls # as expected by argocd-server
+    - hosts:
+        - argocd.morrislan.net
+      secretName: argocd-server-tls # as expected by argocd-server
