@@ -16,7 +16,7 @@ spec:
         app: librespeed
     spec:
       containers:
-      - name: librespeed
-        image: lscr.io/linuxserver/librespeed:latest
-        ports:
-        - containerPort: 80
+        - name: librespeed
+          image: lscr.io/linuxserver/librespeed:latest
+          ports:
+            - containerPort: 80

@@ -10,7 +10,6 @@ spec:
       chart: metrics-server
       targetRevision: 3.12.2
       helm: {}
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/metrics-server'

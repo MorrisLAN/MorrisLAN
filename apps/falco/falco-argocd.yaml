@@ -68,11 +68,9 @@ spec:
                 enabled: true
               serviceMonitor:
                 create: true
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/falco'
-
   destination:
     server: https://kubernetes.default.svc
     namespace: falco

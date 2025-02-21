@@ -76,7 +76,6 @@ spec:
               - secretName: gitea-tls
                 hosts:
                   - git.morrislan.net
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/gitea'

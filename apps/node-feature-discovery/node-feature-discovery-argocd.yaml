@@ -10,7 +10,6 @@ spec:
       chart: node-feature-discovery
       targetRevision: 0.17.1
       helm: {}
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/node-feature-discovery'

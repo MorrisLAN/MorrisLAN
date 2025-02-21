@@ -15,14 +15,14 @@ spec:
         app: uptime-kuma
     spec:
       containers:
-      - name: uptime-kuma
-        image: louislam/uptime-kuma:1.23.16
-        ports:
-        - containerPort: 3001
-        volumeMounts:
-        - name: uptime-kuma-data
-          mountPath: /app/data
+        - name: uptime-kuma
+          image: louislam/uptime-kuma:1.23.16
+          ports:
+            - containerPort: 3001
+          volumeMounts:
+            - name: uptime-kuma-data
+              mountPath: /app/data
       volumes:
-      - name: uptime-kuma-data
-        persistentVolumeClaim:
-          claimName: uptime-kuma-data
+        - name: uptime-kuma-data
+          persistentVolumeClaim:
+            claimName: uptime-kuma-data
