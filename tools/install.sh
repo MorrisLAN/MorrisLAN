@@ -14,7 +14,7 @@ find . -type f -name '*.sh' | while read -r SCRIPT; do
     else
         echo "Installing ${SCRIPT_NAME}"
     fi
-    
+
     sudo cp "${SCRIPT}" "/usr/bin/${SCRIPT_NAME}"
     sudo chmod +x "/usr/bin/${SCRIPT_NAME}"
 done

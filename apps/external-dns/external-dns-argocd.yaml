@@ -19,13 +19,11 @@ spec:
                 secretKeyRef:
                   name: cloudflare
                   key: token
-          extraArgs: 
-           - --cloudflare-proxied
-           
+          extraArgs:
+            - --cloudflare-proxied
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/external-dns'
-
   destination:
     server: https://kubernetes.default.svc
     namespace: external-dns

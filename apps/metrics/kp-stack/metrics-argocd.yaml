@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      targetRevision: 69.3.1
+      targetRevision: 69.4.1
       helm:
         valuesObject:
           grafana:
@@ -46,7 +46,6 @@ spec:
                     resources:
                       requests:
                         storage: 50Gi
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/metrics'

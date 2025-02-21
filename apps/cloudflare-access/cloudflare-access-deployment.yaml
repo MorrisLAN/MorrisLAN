@@ -13,14 +13,14 @@ spec:
         app: cloudflare-access
     spec:
       containers:
-      - name: cloudflared
-        image: cloudflare/cloudflared:2025.2.0
-        args:
-          - tunnel
-          - run
-        env:
-        - name: TUNNEL_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: tunnels
-              key: uk-brs-1
+        - name: cloudflared
+          image: cloudflare/cloudflared:2025.2.0
+          args:
+            - tunnel
+            - run
+          env:
+            - name: TUNNEL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tunnels
+                  key: uk-brs-1

@@ -1,8 +1,6 @@
 name: "Deploy"
-
 permissions:
   contents: read
-
 on:
   push:
     branches:
@@ -11,7 +9,6 @@ on:
   pull_request:
     branches:
       - dev
-
 jobs:
   tofu:
     name: "OpenTofu"
@@ -26,15 +23,12 @@ jobs:
       TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v4            
-
+        uses: actions/checkout@v4
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
-
       - name: Format Check
         id: fmt-check
         run: tofu fmt -check
-
       - name: Import Secrets
         uses: hashicorp/vault-action@v3
         with:
@@ -46,25 +40,21 @@ jobs:
             secrets/data/cloudflare token | TF_VAR_cloudflare_token ;
             secrets/data/cloudflare account-id | TF_VAR_cloudflare_account_id ;
             secrets/data/do token | TF_VAR_do_token ;
+            secrets/data/vultr token | TF_VAR_vultr_token ;
             secrets/data/do spaces-access-key-id | AWS_ACCESS_KEY_ID ;
             secrets/data/do spaces-secret-access-key | AWS_SECRET_ACCESS_KEY ;
-
       - name: Initialize
         id: init
         run: tofu init
-
       - name: Validate
         id: validate
         run: tofu validate
-
       - name: Plan
         id: plan
         run: tofu plan -out=tfplan
-
       - name: Apply
         run: tofu apply -auto-approve tfplan
         if: github.ref == 'refs/heads/main'
-
   omni:
     name: "Omni"
     runs-on: ubuntu-latest
@@ -77,18 +67,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Get omnictl
         run: |
-          wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && 
-          chmod +x omnictl          
-
+          wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl &&
+          chmod +x omnictl
       - name: Validate clusters
         run: |
           find . -type f -name '*-cluster.yaml' | while read -r cluster; do
             ./omnictl cluster template validate -f "$cluster"
-          done          
-
+          done
       - name: Import Secrets
         if: github.ref == 'refs/heads/main'
         uses: hashicorp/vault-action@v3
@@ -99,17 +86,15 @@ jobs:
           secretId: ${{ secrets.VAULT_SECRET_ID }}
           secrets: |
             secrets/data/omni token | OMNI_SERVICE_ACCOUNT_KEY ;
-
       - name: Sync machineclasses
         if: github.ref == 'refs/heads/main'
         run: |
           find . -type f -name '*-machineclasses.yaml' | while read -r file; do
             ./omnictl apply -f "$file"
-          done          
-
+          done
       - name: Sync clusters
         if: github.ref == 'refs/heads/main'
         run: |
           find . -type f -name '*-cluster.yaml' | while read -r cluster; do
             ./omnictl cluster template sync -f "$cluster"
-          done          
+          done

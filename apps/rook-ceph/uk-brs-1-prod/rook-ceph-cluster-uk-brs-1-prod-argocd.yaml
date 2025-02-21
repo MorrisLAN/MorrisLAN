@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://charts.rook.io/release
       chart: rook-ceph-cluster
-      targetRevision: v1.16.3
+      targetRevision: v1.16.4
       helm:
         valuesObject:
           clusterName: rook-ceph-cluster-uk-brs-1-prod
@@ -23,11 +23,9 @@ spec:
             storage:
               useAllNodes: true
               useAllDevices: true
-
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
       path: 'apps/rook-ceph/uk-brs-1-prod'
-
   destination:
     server: https://kubernetes.default.svc
     namespace: rook-ceph
