@@ -26,7 +26,7 @@ jobs:
       TF_VAR_cloudflare_zone_id: "${{ secrets.CLOUDFLARE_ZONE_ID }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v4            
+        uses: actions/checkout@v4
 
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
@@ -81,14 +81,14 @@ jobs:
 
       - name: Get omnictl
         run: |
-          wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl && 
-          chmod +x omnictl          
+          wget https://github.com/siderolabs/omni/releases/download/v0.45.1/omnictl-linux-amd64 -O omnictl &&
+          chmod +x omnictl
 
       - name: Validate clusters
         run: |
           find . -type f -name '*-cluster.yaml' | while read -r cluster; do
             ./omnictl cluster template validate -f "$cluster"
-          done          
+          done
 
       - name: Import Secrets
         if: github.ref == 'refs/heads/main'
@@ -106,11 +106,11 @@ jobs:
         run: |
           find . -type f -name '*-machineclasses.yaml' | while read -r file; do
             ./omnictl apply -f "$file"
-          done          
+          done
 
       - name: Sync clusters
         if: github.ref == 'refs/heads/main'
         run: |
           find . -type f -name '*-cluster.yaml' | while read -r cluster; do
             ./omnictl cluster template sync -f "$cluster"
-          done          
+          done

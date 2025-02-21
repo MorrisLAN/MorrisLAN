@@ -5,4 +5,3 @@ export TF_VAR_do_token="$(vault-get do#token)"
 export TF_VAR_vultr_token="$(vault-get vultr#token)"
 export TF_VAR_cloudflare_token="$(vault-get cloudflare#token)"
 export TF_VAR_cloudflare_account_id="$(vault-get cloudflare#account-id)"
-

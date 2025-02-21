@@ -38,7 +38,7 @@ spec:
                     library_path: libjson.so
                     init_config: ""
                 load_plugins: [k8saudit, json]
-                
+
               falcoctl:
                 config:
                   artifact:

@@ -3076,7 +3076,7 @@ spec:
       containers:
       - args:
         - server
-        - --auth-mode 
+        - --auth-mode
         - sso
         env: []
         image: quay.io/argoproj/argocli:v3.6.4

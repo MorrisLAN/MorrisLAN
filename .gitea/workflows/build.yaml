@@ -21,7 +21,7 @@ jobs:
       image: git.morrislan.net/morrislan/podman-action:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4            
+        uses: actions/checkout@v4
 
       - name: Build
         run: podman build /workspace/MorrisLAN/morrislan/apps/homepage -t git.morrislan.net/morrislan/homepage:${{ github.sha }}
@@ -51,4 +51,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           podman tag git.morrislan.net/morrislan/homepage:${{ github.sha }} git.morrislan.net/morrislan/homepage:latest
-          podman push git.morrislan.net/morrislan/homepage:latest          
+          podman push git.morrislan.net/morrislan/homepage:latest
