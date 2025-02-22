@@ -11,32 +11,19 @@ spec:
       targetRevision: 7.0.3691
       helm:
         valuesObject:
-          host: "uptime.morrislan.net"
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                  - matchExpressions:
-                      - key: "workloadKind"
-                        operator: "In"
-                        values:
-                          - "metrics"
-          tolerations:
-            - key: "workloadKind"
-              operator: "Equal"
-              value: "metrics"
-              effect: "NoSchedule"
+          host: "metrics.morrislan.net"
+          httpProtocol: https
           oneuptimeIngress:
             enabled: true
             annotations:
               cert-manager.io/cluster-issuer: letsencrypt
             className: nginx
             hosts:
-              - "uptime.morrislan.net"
+              - "metrics.morrislan.net"
             tls:
               enabled: true
               hosts:
-                - host: "uptime.morrislan.net"
+                - host: "metrics.morrislan.net"
                   secretName: oneuptime-tls
     - repoURL: 'https://git.morrislan.net/MorrisLAN/morrislan'
       targetRevision: main
