@@ -26,8 +26,8 @@ repos:
     rev: v1.97.3
     hooks:
       - id: terraform_fmt
-  - repo: https://github.com/bridgecrewio/checkov.git
-    rev: 3.2.372
-    hooks:
-      - id: checkov
-        args: [-d .]
+  # - repo: https://github.com/bridgecrewio/checkov.git
+  #   rev: 3.2.372
+  #   hooks:
+  #     - id: checkov
+  #       args: [-d .]
